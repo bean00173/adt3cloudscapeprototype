@@ -118,6 +118,11 @@ To merge your branch into the receiving you can use the following command :
 ```bash
 git merge <branch-to-be-merged>
 ```
+Once `main` is up to date (has been merged) with the branch, you are free to delete the branch using this code :
+```bash
+git branch --delete <old-branch>
+```
+
 \
 \
 \
