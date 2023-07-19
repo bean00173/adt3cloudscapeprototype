@@ -54,6 +54,14 @@ git checkout -b <new-branch>
 ```
 In this code the `-b` is an argument switches the current branch to the newly created one immediately, without the need to use two separate commands.
 
+Before you can do anything you must push the branch to the remote repository so it knows that it exists. If you try to make changes in the branch without pushing it to remote bad stuff will happen (experience)
+
+*** NOTE : THIS STEP IS VERY IMPORTANT ***
+
+```bash
+git push -u origin <new-branch>
+```
+
 ### Making Changes
 
 When editing the Unity Project, it is best to commit often, even with smaller changes (to a reasonable extent); i.e. little changes more often is better than big changes scarcely.
