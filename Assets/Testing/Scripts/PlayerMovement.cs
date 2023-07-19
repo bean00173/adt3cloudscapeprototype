@@ -108,8 +108,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Checking if the player is grounded
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        Debug.DrawRay(transform.position, Vector3.down, Color.red, playerHeight * 0.5f + 0.2f);
+        grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, whatIsGround);
+        Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down, Color.red, 0.2f);
 
         // Calling Input Function & Speed Control on Every Frame Update
 
