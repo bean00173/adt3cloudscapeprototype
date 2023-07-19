@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Collecting Rigidbody and freezing the Rotation
         rb = this.GetComponent<Rigidbody>();
-        ac = this.transform.Find("Player").GetComponent<Animator>();
+        //ac = this.transform.Find("Player").GetComponent<Animator>();
         source = this.GetComponent<AudioSource>();
         rb.freezeRotation = true;
         ResetJump();
@@ -123,12 +123,12 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             rb.drag = groundDrag;
-            ac.SetBool("grounded", true);
+            //ac.SetBool("grounded", true);
         }
         else
         {
             rb.drag = 0;
-            ac.SetBool("grounded", false);
+            //ac.SetBool("grounded", false);
         }
     }
 
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         // Calculating Movement Direction, always walk in the direction you're looking
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        ac.SetFloat("moveSpeed", rb.velocity.magnitude);
+        //ac.SetFloat("moveSpeed", rb.velocity.magnitude);
 
         // Adding Force to the Player Rigidbody if on Ground
         if (grounded)
@@ -204,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void notDashing()
     {
-        ac.SetBool("dashing", false);
+        //ac.SetBool("dashing", false);
     }
 
     public void PlayAudio(int index)
