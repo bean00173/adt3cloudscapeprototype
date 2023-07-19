@@ -95,7 +95,32 @@ If any errors are presented, consult Ben.
 
 If you are working on the same branch as someone (unadvisable), or you are on the receiving end of a merge, you will need to update your current workspace to match the remote repository.
 
-This is a simple command process
+This is a simple command process, first you need to bring your remote reference up to date. Use :
+```bash
+git remote update
+```
+Then to tell find out if you are behind or ahead, use :
+```bash
+git status -uno
+```
+If you are behind, your local repository needs to be updated. You can do so with :
+```bash
+git pull
+```
 
+### Merging Branches
+
+Before Merging, it is highly important to ensure that both the receiving branch (usually main) and the merging branch are fully up to date.
+
+The process of merging takes place in the branch that you are technically merging to, so if you are trying to merge to `main` you need to be in `main`   (see switching branches). Hence, `main` needs to be updated using a `pull` (see above).
+
+To merge your branch into the receiving you can use the following command :
+```bash
+git merge <branch-to-be-merged>
+```
+\
+\
+\
+***If you have any other questions about using GitHub for Unity Version Control ask Ben***
 
 
