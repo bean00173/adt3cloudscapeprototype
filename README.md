@@ -56,7 +56,7 @@ In this code the `-b` is an argument switches the current branch to the newly cr
 
 Before you can do anything you must push the branch to the remote repository so it knows that it exists. If you try to make changes in the branch without pushing it to remote bad stuff will happen (experience)
 
-*** NOTE : THIS STEP IS VERY IMPORTANT ***
+***NOTE : THIS STEP IS VERY IMPORTANT***
 
 ```bash
 git push -u origin <new-branch>
