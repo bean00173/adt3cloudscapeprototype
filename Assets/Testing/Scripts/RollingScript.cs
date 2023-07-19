@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollingScript : MonoBehaviour
+public class DashingScript : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
