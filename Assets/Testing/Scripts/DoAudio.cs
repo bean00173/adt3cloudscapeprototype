@@ -6,11 +6,11 @@ using UnityEngine.Events;
 public class DoAudio : MonoBehaviour
 {
     [SerializeField] private UnityEvent InvokeCase;
-    private PlayerController pc;
+    private PlayerMovement pc;
 
     private void Start()
     {
-        pc = GetComponentInParent<PlayerController>();   
+        pc = GetComponentInParent<PlayerMovement>();   
     }
 
     public void DoInvoke()
