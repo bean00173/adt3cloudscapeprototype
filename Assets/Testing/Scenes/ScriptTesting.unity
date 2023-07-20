@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36019285}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102771886, y: 1.53e-43, z: -4.5e-44, w: 0.99470496}
+  m_LocalRotation: {x: 0.102771886, y: 1e-45, z: -0, w: 0.99470496}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -883,6 +883,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8875970709200867603, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
   m_PrefabInstance: {fileID: 1014899483758562783}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &607889330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5562142956383237834, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+  m_PrefabInstance: {fileID: 1014899483758562783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77a48ecb685e1a43b591ee3b8579aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &610402735
 GameObject:
   m_ObjectHideFlags: 3
@@ -2071,6 +2082,34 @@ PrefabInstance:
     - target: {fileID: 4118158436371054196, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 607889330}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RunCoroutine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GreatswordCombat, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720639155779582533, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7288250908052302329, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: playerCam

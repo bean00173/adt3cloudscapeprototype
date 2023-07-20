@@ -5,13 +5,15 @@ using UnityEngine;
 public class GreatswordCombat : MonoBehaviour
 {
     public Transform weapon;
-    BoxCollider bc;
+    Collider bc;
     Animator ac;
+
+    bool crRunning;
 
     // Start is called before the first frame update
     void Start()
     {
-        bc = weapon.GetComponent<BoxCollider>();
+        bc = weapon.GetComponentInChildren<Collider>();
         ac = weapon.GetComponent<Animator>();
         bc.enabled = false;
         bc.isTrigger = true;
@@ -20,7 +22,7 @@ public class GreatswordCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)/* && CanAttack()*/)
         {
             Attack();
         }
@@ -28,26 +30,43 @@ public class GreatswordCombat : MonoBehaviour
 
     void Attack()
     {
-        ac.SetTrigger("Attack");
+        ac.SetTrigger("atk");
+        //    AlternateIndex();
+
+        //    if (crRunning == true)
+        //    {
+        //        StopAllCoroutines();
+        //    }
+
+        //    StartCoroutine(comboTimer());
+
     }
 
-    public void RunCoroutine()
-    {
-        StartCoroutine(comboTimer());
-    }
+    //IEnumerator comboTimer()
+    //{
+    //    crRunning = true;
 
-    IEnumerator comboTimer()
-    {
-        yield return new WaitForSeconds(1f);
+    //    yield return new WaitForSeconds(.5f);
 
-        if(Input.GetKey(KeyCode.Mouse0))
-        {
-            ac.SetBool("Combo", true);
-            yield break;
-        }
-        else
-        {
-            ac.SetBool("Combo", false);
-        }
-    }
+    //    crRunning = false;
+    //    ac.SetBool("atk", false);
+    //    ac.SetFloat("atkIndex", 0);
+    //}
+
+    //private void AlternateIndex()
+    //{
+    //    if(ac.GetFloat("atkIndex") == 0)
+    //    {
+    //        ac.SetFloat("atkIndex", 1);
+    //    }
+    //    else
+    //    {
+    //        ac.SetFloat("atkIndex", 0);
+    //    }
+    //}
+
+    //private bool CanAttack()
+    //{
+    //    return !ac.GetBool("atk");
+    //}
 }
