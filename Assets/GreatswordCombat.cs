@@ -5,18 +5,22 @@ using UnityEngine;
 public class GreatswordCombat : MonoBehaviour
 {
     public Transform weapon;
-    Collider bc;
+    public Transform hitbox;
+    Collider hit;
     Animator ac;
+    PlayerMovement pm;
 
     bool crRunning;
 
     // Start is called before the first frame update
     void Start()
     {
-        bc = weapon.GetComponentInChildren<Collider>();
+        hit = hitbox.GetComponent<Collider>();
         ac = weapon.GetComponent<Animator>();
-        bc.enabled = false;
-        bc.isTrigger = true;
+        pm = this.GetComponent<PlayerMovement>();
+
+        hit.enabled = false;
+        hit.isTrigger = true;
     }
 
     // Update is called once per frame
@@ -30,7 +34,10 @@ public class GreatswordCombat : MonoBehaviour
 
     void Attack()
     {
+
         ac.SetTrigger("atk");
+
+        StartCoroutine(EnableHit());
         //    AlternateIndex();
 
         //    if (crRunning == true)
@@ -40,6 +47,15 @@ public class GreatswordCombat : MonoBehaviour
 
         //    StartCoroutine(comboTimer());
 
+    }
+
+    IEnumerator EnableHit()
+    {
+        yield return new WaitForSeconds(.05f);
+        hit.enabled = true;
+        yield return new WaitForSeconds(.3f);
+        hit.enabled = false;
+        yield return new WaitForSeconds(.05f);
     }
 
     //IEnumerator comboTimer()
