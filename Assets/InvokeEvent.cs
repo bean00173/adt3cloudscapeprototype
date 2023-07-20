@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InvokeEvent : MonoBehaviour
 {
+    public UnityEvent playableEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class InvokeEvent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayEvent()
+    {
+        playableEvent.Invoke();
     }
 }
