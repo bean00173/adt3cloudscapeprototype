@@ -28,13 +28,26 @@ public class GreatswordCombat : MonoBehaviour
 
     void Attack()
     {
-        if (this.ac.GetCurrentAnimatorStateInfo(0).IsName("Swing") || this.ac.GetCurrentAnimatorStateInfo(0).IsName("Swing 2"))
+        ac.SetTrigger("Attack");
+    }
+
+    public void RunCoroutine()
+    {
+        StartCoroutine(comboTimer());
+    }
+
+    IEnumerator comboTimer()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if(Input.GetKey(KeyCode.Mouse0))
         {
-            ac.SetTrigger("Combo");
+            ac.SetBool("Combo", true);
+            yield break;
         }
         else
         {
-            ac.SetTrigger("Attack");
+            ac.SetBool("Combo", false);
         }
     }
 }
