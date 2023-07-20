@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     bool jumpReady;
 
     [Header("Ground Check")]
-    public float playerHeight;
     public LayerMask whatIsGround;
     public bool grounded;
 
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.rolling;
             movementSpeed = dashSpeed;
-            ac.SetBool("dashing", true);
+            //ac.SetBool("dashing", true);
         }
         // Mode - Sprinting
         else if (grounded && Input.GetKey(KeyCode.LeftShift) && (horizontalInput != 0 || verticalInput != 0))
