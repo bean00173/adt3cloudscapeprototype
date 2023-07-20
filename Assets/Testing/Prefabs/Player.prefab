@@ -68,6 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815254be4bbc053449ba9260ab385ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playableEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &967979791706106176
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77a48ecb685e1a43b591ee3b8579aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 1374171383281033274}
 --- !u!1 &2585028824118459162
 GameObject:
   m_ObjectHideFlags: 0

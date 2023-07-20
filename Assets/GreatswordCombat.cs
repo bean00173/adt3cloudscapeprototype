@@ -6,11 +6,13 @@ public class GreatswordCombat : MonoBehaviour
 {
     public Transform weapon;
     BoxCollider bc;
+    Animator ac;
 
     // Start is called before the first frame update
     void Start()
     {
         bc = weapon.GetComponent<BoxCollider>();
+        ac = weapon.GetComponent<Animator>();
         bc.enabled = false;
         bc.isTrigger = true;
     }
@@ -26,6 +28,13 @@ public class GreatswordCombat : MonoBehaviour
 
     void Attack()
     {
-
+        if (this.ac.GetCurrentAnimatorStateInfo(0).IsName("Swing") || this.ac.GetCurrentAnimatorStateInfo(0).IsName("Swing 2"))
+        {
+            ac.SetTrigger("Combo");
+        }
+        else
+        {
+            ac.SetTrigger("Attack");
+        }
     }
 }
