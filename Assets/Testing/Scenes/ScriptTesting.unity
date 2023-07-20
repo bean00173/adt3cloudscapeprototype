@@ -2341,6 +2341,10 @@ PrefabInstance:
       propertyPath: blade
       value: 
       objectReference: {fileID: 367976903}
+    - target: {fileID: 5562142956383237834, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 782544232}
     - target: {fileID: 7167088293833165219, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Name
       value: blade
@@ -2349,6 +2353,22 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 1434181076}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Size.x
+      value: 4.7615542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Size.z
+      value: 3.0824614
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Center.x
+      value: 0.07977271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Center.z
+      value: -1.9989126
+      objectReference: {fileID: 0}
     - target: {fileID: 8086528398679818710, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
