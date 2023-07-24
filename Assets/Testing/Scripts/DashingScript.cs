@@ -20,6 +20,8 @@ public class RollingScript : MonoBehaviour
 
     private Animator ac;
 
+    public Character.CharacterId currentCharacter;
+
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -31,6 +33,7 @@ public class RollingScript : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Dash();

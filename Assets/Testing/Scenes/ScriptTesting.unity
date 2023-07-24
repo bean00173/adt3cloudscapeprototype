@@ -2341,6 +2341,10 @@ PrefabInstance:
       propertyPath: blade
       value: 
       objectReference: {fileID: 367976903}
+    - target: {fileID: 5562142956383237834, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 782544232}
     - target: {fileID: 7167088293833165219, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Name
       value: blade
@@ -2407,10 +2411,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 516229058}
-  - {fileID: 1014899483758562783}
   - {fileID: 1434181076}
   - {fileID: 1612626361}
   - {fileID: 1511013246}
   - {fileID: 1161293155}
   - {fileID: 1635709563}
   - {fileID: 1376725313}
+  - {fileID: 1014899483758562783}
