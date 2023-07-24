@@ -1465,15 +1465,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff592fe2b1e7110408a08ff6f3d98df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ravHealth: 0
-  ravAtk: 0
-  ravSpeed: 0
-  abiHealth: 0
-  abiAtk: 0
-  abiSpeed: 0
-  sebHealth: 0
-  sebAtk: 0
-  sebSpeed: 0
+  ravHealth: 1
+  ravAtk: 2
+  ravSpeed: 3
+  abiHealth: 4
+  abiAtk: 5
+  abiSpeed: 6
+  sebHealth: 7
+  sebAtk: 8
+  sebSpeed: 9
 --- !u!4 &1376725313
 Transform:
   m_ObjectHideFlags: 0
@@ -2353,6 +2353,22 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 1434181076}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Size.x
+      value: 4.7615542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Size.z
+      value: 3.0824614
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Center.x
+      value: 0.07977271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579351253706199900, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Center.z
+      value: -1.9989126
+      objectReference: {fileID: 0}
     - target: {fileID: 8086528398679818710, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
