@@ -5,7 +5,7 @@ using UnityEngine;
 public class BodyPartContainer : MonoBehaviour
 {
 
-    public GameObject limb;
+    public GameObject[] limbs;
     // Start is called before the first frame update
     void Start()
     {

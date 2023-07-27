@@ -1937,6 +1937,7 @@ MonoBehaviour:
     damage: 0
     speed: 0
   goal: {fileID: 607889329}
+  pile: {fileID: 858523429}
 --- !u!4 &782544232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6598918387094107894, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
@@ -1951,6 +1952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858523429}
+  - component: {fileID: 858523430}
   m_Layer: 0
   m_Name: BodyParts
   m_TagString: Untagged
@@ -1973,6 +1975,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &858523430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858523428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f57cb1a6dbf99e4db6529d8c823aab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 5844812055023269438, guid: 310daaf885ad49f4f991874335fd40b2, type: 3}
 --- !u!1 &870165046
 GameObject:
   m_ObjectHideFlags: 3
@@ -3544,9 +3559,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336703139215284454, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 967979791706106176, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 967979791706106176, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 967979791706106176, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_TagString
@@ -3561,8 +3584,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2585028824118459162, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585028824118459162, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_TagString
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631464350380763303, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4118158436371054196, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3596,6 +3627,10 @@ PrefabInstance:
       propertyPath: playableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5561107890703097647, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5562142956383237834, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: blade
       value: 
@@ -3627,6 +3662,14 @@ PrefabInstance:
     - target: {fileID: 7167088293833165219, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Name
       value: blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167088293833165219, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277205632085295199, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7288250908052302329, guid: 0c5d02359159c544ba7c6d70ffe13e6c, type: 3}
       propertyPath: m_Enabled
