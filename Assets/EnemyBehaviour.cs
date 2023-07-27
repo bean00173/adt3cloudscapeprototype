@@ -14,7 +14,7 @@ public class Enemy
 public class EnemyBehaviour : MonoBehaviour
 {
 
-    public Enemy[] enemy;
+    public Enemy enemy = new Enemy();
 
     public Transform goal;
     NavMeshAgent agent;
@@ -29,5 +29,23 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         agent.destination = goal.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit");
+        //if (other.CompareTag("Weapon"))
+        //{
+        //    PlayableCharacter pCharacter = other.GetComponent<PlayableCharacter>();
+
+        //    if (enemy.health < other.GetComponent<PlayableCharacter>().attackModifier)
+        //    {
+        //        Destroy(this.gameObject);
+        //    }
+        //    else
+        //    {
+        //        enemy.health -= pCharacter.attackModifier;
+        //    }
+        //}
     }
 }
