@@ -25,13 +25,14 @@ public class BodyPartContainer : MonoBehaviour
             }
         }
 
-        if(bodyParts.Count == 50)
+        if(bodyParts.Count >= 50)
         {
             foreach (Transform child in transform)
             {
                 if (child.GetComponent<DespawnTimer>().readyToDespawn)
                 {
                     Destroy(child.gameObject);
+                    bodyParts.RemoveAt(bodyParts.IndexOf(child.gameObject));
                 }
 
                 if(bodyParts.Count < 50)

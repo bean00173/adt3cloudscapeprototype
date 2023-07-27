@@ -57,7 +57,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void EnemyDeath()
     {
-        Debug.Log("DEAD");
         health = 0;
         agent.speed = 0;
         CorpseExplode();
@@ -82,7 +81,7 @@ public class EnemyBehaviour : MonoBehaviour
                 rb.AddExplosionForce(Random.Range(5.0f, 10.0f), explosionPos, 1.0f, 3.0f); ;
         }
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
     private Vector3 spawnPos(int i)
