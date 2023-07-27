@@ -39,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon")) // if weapon trigger enter collider
         {
-            Transform player = other.transform.parent; // collect collider parent (player)
+            Transform player = other.transform.root; // collect collider root (player)
             PlayableCharacter pCharacter = player.GetComponent<PlayableCharacter>();
 
             if (health <= pCharacter.attackModifier) // if current health will be 0 after swing, death

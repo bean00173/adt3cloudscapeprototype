@@ -10,6 +10,7 @@ public class GreatswordCombat : MonoBehaviour
     Animator ac;
     PlayerMovement pm;
 
+    bool readyToAtk = true;
     bool crRunning;
 
     // Start is called before the first frame update
@@ -26,10 +27,11 @@ public class GreatswordCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk)
         {
             pm.MoveInterrupt(false);
             Attack();
+            readyToAtk = false;
         }
     }
 
@@ -53,12 +55,13 @@ public class GreatswordCombat : MonoBehaviour
 
     IEnumerator EnableHit()
     {
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(.1f);
         hit.enabled = true;
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(1.0f);
         hit.enabled = false;
         pm.MoveInterrupt(true);
-        yield return new WaitForSeconds(.05f);
+        readyToAtk = true;
+        yield return new WaitForSeconds(.1f);
 
 
 
