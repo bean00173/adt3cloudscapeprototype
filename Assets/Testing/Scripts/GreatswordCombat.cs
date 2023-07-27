@@ -29,7 +29,7 @@ public class GreatswordCombat : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk)
         {
-            pm.MoveInterrupt(false);
+            pm.MoveInterrupt(false); // halts movement for attack
             Attack();
             readyToAtk = false;
         }
@@ -55,15 +55,13 @@ public class GreatswordCombat : MonoBehaviour
 
     IEnumerator EnableHit()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.1f); // wait enough time for attack to start
         hit.enabled = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(.8f); // turn hitbox on for most of attack duration
         hit.enabled = false;
-        pm.MoveInterrupt(true);
+        yield return new WaitForSeconds(.3f); // end of attack
+        pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true;
-        yield return new WaitForSeconds(.1f);
-
-
 
     }
 
