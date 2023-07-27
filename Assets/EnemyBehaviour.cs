@@ -5,9 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public float maxHealth;
+    public float dmg;
+    public float speed;
+    private float health;
 
     public Transform goal;
     NavMeshAgent agent;
+
     // Start is called before the first frame update
     void Start()
     {
