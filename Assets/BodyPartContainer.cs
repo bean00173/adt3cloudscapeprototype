@@ -21,7 +21,7 @@ public class BodyPartContainer : MonoBehaviour
             {
                 if (child.GetComponent<DespawnTimer>().time <= 2.0f)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
             }
 
