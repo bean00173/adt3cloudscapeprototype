@@ -117,19 +117,6 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
 
         //ac.SetFloat("verticalSpeed", rb.velocity.y);
-
-        // Handle Drag
-
-        if (grounded)
-        {
-            rb.drag = groundDrag;
-            //ac.SetBool("grounded", true);
-        }
-        else
-        {
-            rb.drag = 0;
-            //ac.SetBool("grounded", false);
-        }
     }
 
     private void FixedUpdate()
@@ -167,10 +154,6 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
-        } // If Airborne
-        else if (!grounded)
-        {
-            rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
     }
