@@ -1848,9 +1848,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cdcdeb7f67b864eaf62ff4b935cd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  dmg: 0
-  speed: 0
+  enemy:
+  - health: 0
+    damage: 0
+    speed: 0
+  - health: 0
+    damage: 0
+    speed: 0
+  - health: 0
+    damage: 0
+    speed: 0
   goal: {fileID: 0}
 --- !u!4 &782544232 stripped
 Transform:
