@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool[] states;
 
+    public bool canMove = true;
+
     public MovementState state;
 
     public enum MovementState
@@ -112,10 +114,18 @@ public class PlayerMovement : MonoBehaviour
 
         // Calling Input Function & Speed Control on Every Frame Update
 
-        MyInput();
-        SpeedControl();
-        StateHandler();
+        if (canMove)
+        {
+            MyInput();
+            SpeedControl();
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, -9.81f, 0);
+            rb.angularVelocity = Vector3.zero;
+        }
 
+        StateHandler();
         //ac.SetFloat("verticalSpeed", rb.velocity.y);
     }
 
@@ -199,5 +209,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         lastIndex = index;
+    }
+
+    public void MoveInterrupt(bool move)
+    {
+        if (!move)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 }
