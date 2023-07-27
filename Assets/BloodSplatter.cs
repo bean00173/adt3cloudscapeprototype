@@ -5,6 +5,7 @@ using UnityEngine;
 public class BloodSplatter : MonoBehaviour
 {
     public GameObject bloodSplat;
+    private Transform parent;
     RaycastHit hit;
 
     bool splattered;
@@ -12,18 +13,18 @@ public class BloodSplatter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        parent = GameObject.Find("BloodContainer").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(!splattered && Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, LayerMask.GetMask("Ground")))
+        Debug.DrawRay(transform.position, Vector3.down, Color.red, .1f);
+        if(!splattered && Physics.Raycast(transform.position, Vector3.down, out hit, .5f, LayerMask.GetMask("Ground")))
         {
             splattered = true;
             Vector3 pos = new Vector3((float)hit.point.x, (float)hit.point.y + 0.1f, (float)hit.point.z);
-            Instantiate(bloodSplat, pos, Quaternion.identity);
+            Instantiate(bloodSplat, pos, Quaternion.identity, parent);
 
         }
     }

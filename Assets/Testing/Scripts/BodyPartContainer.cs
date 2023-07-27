@@ -13,7 +13,11 @@ public class Limb
 public class BodyPartContainer : MonoBehaviour
 {
 
-    public List<Limb> limbs = new List<Limb> ();
+    public List<Limb> gruntLimbs = new List<Limb> ();
+    public List<Limb> bruteLimbs = new List<Limb>();
+    public List<Limb> rangerLimbs = new List<Limb>();
+
+    List<Limb> limbs = new List<Limb> ();
     public List<GameObject> bodyParts = new List<GameObject>();
 
     
@@ -53,8 +57,22 @@ public class BodyPartContainer : MonoBehaviour
         }
     }
 
-    public void DropLimbs(int count, Vector3 spawnPos) // function to grab random limb from possible limb drops
+    public void DropLimbs(int count, Vector3 spawnPos, enemyType type) // function to grab random limb from possible limb drops
     {
+        switch (type)
+        {
+            case enemyType.grunt:
+                limbs = gruntLimbs;
+                break;
+            case enemyType.brute:
+                limbs = bruteLimbs;
+                break;
+            case enemyType.ranger:
+                limbs = rangerLimbs;
+                break;
+            default:
+                break;
+        }
         Debug.Log(count);
         for(int i = 0; i <= count - 1; i++)
         {
@@ -65,12 +83,10 @@ public class BodyPartContainer : MonoBehaviour
                     Debug.Log(limb.prefab + "CHOSEN!!!");
                     Instantiate(limb.prefab, SpawnPosition(i, count, spawnPos), Quaternion.identity, this.transform);
                     limb.selected = true;
-                }
-                else
-                {
-                    Debug.Log(limb.prefab + "DENIED!!");
+                    break;
                 }
             }
+            limbs[limbs.Count - 1].selected = false;
         }
         ResetSpawns();
     }
@@ -81,6 +97,7 @@ public class BodyPartContainer : MonoBehaviour
         {
             limb.selected = false;
         }
+        limbs.Clear();
     }
 
     private Vector3 SpawnPosition(int i, int x, Vector3 pos)

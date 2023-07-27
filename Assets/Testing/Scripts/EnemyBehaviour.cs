@@ -6,9 +6,17 @@ using UnityEngine.AI;
 [System.Serializable]
 public class Enemy // serializable class to store current enemy stats
 {
+    public enemyType enemyType;
     public float maxHealth;
     public float damage;
     public float speed;
+}
+
+public enum enemyType
+{
+    grunt,
+    brute,
+    ranger
 }
 
 public class EnemyBehaviour : MonoBehaviour
@@ -68,7 +76,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         int x = Random.Range(2, 5);
 
-        pile.GetComponent<BodyPartContainer>().DropLimbs(x, this.transform.position);
+        pile.GetComponent<BodyPartContainer>().DropLimbs(x, this.transform.position, enemy.enemyType);
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius

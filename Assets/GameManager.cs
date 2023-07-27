@@ -50,9 +50,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        int index = Random.Range(0, 99);
-        Debug.Log(index);
-        int choice = chance[index];
+        int choice = chance[Random.Range(0, 99)];
 
         chance.Clear();
 
