@@ -14,6 +14,6 @@ public class Healthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.localScale = new Vector3(eb.GetHealth() / eb.enemy.maxHealth, this.transform.localScale.y, this.transform.localScale.z);
+        this.transform.localScale = new Vector3(eb.GetHealth() / eb.enemy.maxHealth, this.transform.localScale.y, this.transform.localScale.z); // scales the health bar to be a % of original size based on % of health remaining
     }
 }

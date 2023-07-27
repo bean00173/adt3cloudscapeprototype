@@ -9,7 +9,7 @@ public class Character
     public float atkMultiplier;
     public float spdMultiplier;
 
-    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier)
+    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier) // constructor
     {
         Id = id;
         this.health = health;

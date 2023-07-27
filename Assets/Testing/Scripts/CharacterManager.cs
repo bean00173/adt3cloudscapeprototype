@@ -41,7 +41,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Start() // premade constructors for each individual character and their statistics (defined in inspector), adds all to list
     {
         AddCharacter(new Character(Character.CharacterId.rav, ravHealth, ravAtk, ravSpeed));
         AddCharacter(new Character(Character.CharacterId.abi, abiHealth, abiAtk, abiSpeed));
@@ -53,7 +53,7 @@ public class CharacterManager : MonoBehaviour
         characters.Add(character);
     }
 
-    public Character GetCurrentCharacter(CharacterId id)
+    public Character GetCurrentCharacter(CharacterId id) // return currently active character
     {
         return characters.Where(i => i.Id == id).FirstOrDefault();
     }
