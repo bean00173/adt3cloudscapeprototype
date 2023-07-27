@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DespawnTimer : MonoBehaviour
 {
-
+    public bool readyToDespawn { get; private set; }
     public float despawnTime;
     public float time { get; private set; }
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class DespawnTimer : MonoBehaviour
 
         if(time <= 0)
         {
-            Destroy(gameObject);
+            readyToDespawn = true;
         }
     }
 

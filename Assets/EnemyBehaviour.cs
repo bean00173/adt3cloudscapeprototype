@@ -61,13 +61,15 @@ public class EnemyBehaviour : MonoBehaviour
         health = 0;
         agent.speed = 0;
         CorpseExplode();
+
+        this.GetComponent<Renderer>().enabled = false;
     }
 
     private void CorpseExplode()
     {
         for(int i = 0; i < 5; i++)
         {
-            Instantiate(pile.GetComponent<BodyPartContainer>().limb, spawnPos(i + 1), Quaternion.identity, pile) ;
+            Instantiate(pile.GetComponent<BodyPartContainer>().RandomLimb(), spawnPos(i + 1), Quaternion.identity, pile) ;
         }
 
         Vector3 explosionPos = transform.position;
@@ -77,8 +79,10 @@ public class EnemyBehaviour : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)
-                rb.AddExplosionForce(2.0f, explosionPos, 1.0f, 3.0f);
+                rb.AddExplosionForce(Random.Range(5.0f, 10.0f), explosionPos, 1.0f, 3.0f); ;
         }
+
+        Destroy(this.gameObject);
     }
 
     private Vector3 spawnPos(int i)

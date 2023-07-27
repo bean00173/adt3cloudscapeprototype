@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 383295521}
   - component: {fileID: 383295523}
   - component: {fileID: 383295522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1802,7 +1802,7 @@ GameObject:
   - component: {fileID: 772874765}
   - component: {fileID: 772874764}
   - component: {fileID: 772874769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TempEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,7 +1987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f57cb1a6dbf99e4db6529d8c823aab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limb: {fileID: 5844812055023269438, guid: 310daaf885ad49f4f991874335fd40b2, type: 3}
+  limbs:
+  - {fileID: 5844812055023269438, guid: 310daaf885ad49f4f991874335fd40b2, type: 3}
+  - {fileID: 5844812055023269438, guid: 5b41e53ceccfcb9418af7a9401bffbd5, type: 3}
+  - {fileID: 5844812055023269438, guid: d2d2e74c2276ae848ac2a3c45723cba9, type: 3}
 --- !u!1 &870165046
 GameObject:
   m_ObjectHideFlags: 3
@@ -2125,7 +2128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981239125}
   - component: {fileID: 981239126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
