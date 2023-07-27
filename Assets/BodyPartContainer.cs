@@ -15,6 +15,16 @@ public class BodyPartContainer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.transform.childCount < 50f)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.GetComponent<DespawnTimer>().time <= 2.0f)
+                {
+                    Destroy(child);
+                }
+            }
+
+        }
     }
 }

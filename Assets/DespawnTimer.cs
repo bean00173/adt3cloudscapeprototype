@@ -6,7 +6,7 @@ public class DespawnTimer : MonoBehaviour
 {
 
     public float despawnTime;
-    private float time;
+    public float time { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,4 +23,5 @@ public class DespawnTimer : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

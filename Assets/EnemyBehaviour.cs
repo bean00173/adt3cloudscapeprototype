@@ -22,8 +22,6 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform pile;
     NavMeshAgent agent;
 
-    private Vector3 spawnPos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +33,6 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         agent.destination = goal.position;
-        spawnPos = new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, this.transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,7 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            Instantiate(pile.GetComponent<BodyPartContainer>().limb, spawnPos, Quaternion.identity, pile) ;
+            Instantiate(pile.GetComponent<BodyPartContainer>().limb, spawnPos(i + 1), Quaternion.identity, pile) ;
         }
 
         Vector3 explosionPos = transform.position;
@@ -82,6 +79,17 @@ public class EnemyBehaviour : MonoBehaviour
             if (rb != null)
                 rb.AddExplosionForce(2.0f, explosionPos, 1.0f, 3.0f);
         }
+    }
+
+    private Vector3 spawnPos(int i)
+    {
+        float rad = 2 * Mathf.PI / 5 * i;
+        float vert = Mathf.Sin(rad);
+        float hor = Mathf.Cos(rad);
+
+        Vector3 spawnDir = new Vector3(hor, 0, vert);
+
+        return transform.position + spawnDir * .5f;
     }
 
     public float GetHealth()
