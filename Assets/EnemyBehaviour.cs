@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public class Enemy
+{
+    public float health;
+    public float damage;
+    public float speed;
+}
+
 public class EnemyBehaviour : MonoBehaviour
 {
-    public float maxHealth;
-    public float dmg;
-    public float speed;
-    private float health;
+
+    public Enemy[] enemy;
 
     public Transform goal;
     NavMeshAgent agent;
