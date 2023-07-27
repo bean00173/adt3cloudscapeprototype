@@ -26,7 +26,7 @@ public class GreatswordCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)/* && CanAttack()*/)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack())
         {
             Attack();
         }
@@ -36,6 +36,7 @@ public class GreatswordCombat : MonoBehaviour
     {
 
         ac.SetTrigger("atk");
+        pm.transform.rotation = pm.orientation.rotation;
 
         StartCoroutine(EnableHit());
         //    AlternateIndex();
@@ -56,6 +57,7 @@ public class GreatswordCombat : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         hit.enabled = false;
         yield return new WaitForSeconds(.05f);
+
     }
 
     //IEnumerator comboTimer()
@@ -81,8 +83,15 @@ public class GreatswordCombat : MonoBehaviour
     //    }
     //}
 
-    //private bool CanAttack()
-    //{
-    //    return !ac.GetBool("atk");
-    //}
+    private bool CanAttack()
+    {
+        if(pm.state == PlayerMovement.MovementState.idle)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
