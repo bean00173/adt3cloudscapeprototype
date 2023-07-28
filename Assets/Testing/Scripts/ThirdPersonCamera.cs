@@ -47,8 +47,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
         Vector3 inputDir = -1 * orientation.forward * verticalInput + -1 * orientation.right * horizontalInput;
 
-        // If Input Direction is not Zero, change view direction to input direction
-        if (inputDir != Vector3.zero)
+        // If Input Direction is not Zero and movement is enabled, change view direction to input direction
+        if (inputDir != Vector3.zero && pc.canMove)
         {
             capsule.forward = Vector3.Slerp(capsule.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
@@ -56,7 +56,7 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
 
-    public void DoFov()
+    public void DoFov() // currently unused spare function that uses a dotween transition
     {
         if(i == 0)
         {

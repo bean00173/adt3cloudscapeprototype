@@ -19,8 +19,6 @@ public class GreatswordCombat : MonoBehaviour
 
     public float holdCd;
 
-    bool crRunning;
-
     float lastPressedTime;
     int comboIndex;
     public float comboTime = .25f;
@@ -30,15 +28,15 @@ public class GreatswordCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hitBoxes = hitbox.GetComponentsInChildren<Collider>();
+        hitBoxes = hitbox.GetComponentsInChildren<Collider>(); // gathering references
         ac = this.transform.root.GetComponent<Animator>();
         pm = this.GetComponent<PlayerMovement>();
         rb = this.GetComponent<Rigidbody>();
         pc = this.GetComponent<PlayableCharacter>();
 
-        foreach(Collider collider in hitBoxes)
+        foreach(Collider collider in hitBoxes) // gathers all 3 combo hit colliders [MIGHT NOT BE NECESSARY FOR ANY OTHER THAN FINAL HIT OF COMBO]
         {
-            collider.enabled = false;
+            collider.enabled = false; // disables collider and enables as trigger
             collider.isTrigger = true;
         }
     }
@@ -51,41 +49,41 @@ public class GreatswordCombat : MonoBehaviour
         //{
         //    Debug.Log("HOLDING ATTACK");
         //}
-        if (Input.GetKey(KeyCode.F) && readyToHold)
+        if (Input.GetKey(KeyCode.F) && readyToHold) // if holding down F key
         {
             //StartCoroutine(SpinAttackMov());
-            pm.MoveInterrupt(false);
+            pm.MoveInterrupt(false); // pause movement
             holding = true;
             readyToAtk = false;
-            hit = hitBoxes[0];
+            hit = hitBoxes[0]; // set hitbox to be sphere collider (hard coded)
             hit.enabled = true;
-            ac.SetBool("holdAtk", true);
+            ac.SetBool("holdAtk", true); // begin spinning attack animation
         }
-        else if(holding == true)
+        else if(holding == true) // if holding is true but key not pressed
         {
-            this.transform.rotation = pm.orientation.transform.rotation;
-            pm.MoveInterrupt(true);
-            ac.SetBool("holdAtk", false);
+            this.transform.rotation = pm.orientation.transform.rotation; // set rotation of player to be orientation rotation
+            pm.MoveInterrupt(true); // allow movement
+            ac.SetBool("holdAtk", false); // disable animation
             holding = false;
             hit = hitBoxes[0];
             hit.enabled = true;
             readyToAtk = true;
-            ac.SetTrigger("holdEnd");
+            ac.SetTrigger("holdEnd"); // begin ending animation
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk) // if mouse clicked
         {
             Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
-            lastPressedTime = Time.time;
-            if (firstAtk)
+            lastPressedTime = Time.time; // set recent click time 
+            if (firstAtk) // if one attack already done
             {
-                secondAtk = Time.time - lastPressedTime <= comboTime;
+                secondAtk = Time.time - lastPressedTime <= comboTime; // check time between now and last pressed, true if less than combo timer
                 if (secondAtk)
                 {
-                    bool thirdAtk = Time.time - lastPressedTime <= comboTime;
-                    if(comboIndex == 2 && thirdAtk)
+                    bool thirdAtk = Time.time - lastPressedTime <= comboTime; // same as before but for third attack
+                    if(comboIndex == 2 && thirdAtk) // if combo ready for last hit 
                     {
                         Debug.Log("Combo Finished");
-                        firstAtk = false;
+                        firstAtk = false; // reset bools
                         secondAtk = false;
                         
                     }
@@ -94,13 +92,13 @@ public class GreatswordCombat : MonoBehaviour
             }
             else
             {
-                firstAtk = true;
+                firstAtk = true; // first attack
             }
             pm.MoveInterrupt(false); // halts movement for attack
-            Attack();
-            readyToAtk = false;
+            Attack(); // call attack
+            readyToAtk = false; // disable interrupting attacks
         }
-        if((firstAtk || secondAtk) && Time.time - lastPressedTime > comboTime)
+        if((firstAtk || secondAtk) && Time.time - lastPressedTime > comboTime) // regardless of mouse click, if first or second click achieved + time has expired, fail combo, reset combo progress
         {
             Debug.Log("Combo Failed");
             secondAtk = false;
@@ -112,52 +110,12 @@ public class GreatswordCombat : MonoBehaviour
     void Attack()
     {
 
-        ac.SetTrigger("atk");
+        ac.SetTrigger("atk"); // if attack called, begin animations, set state of combo blend tree
         ac.SetFloat("atkIndex", comboIndex);
-        pm.transform.rotation = pm.orientation.rotation;
-
-        //StartCoroutine(ComboTimer());
-        StartCoroutine(EnableHit());
-        //    AlternateIndex();
-
-        //    if (crRunning == true)
-        //    {
-        //        StopAllCoroutines();
-        //    }
-
-        //    StartCoroutine(comboTimer());
+        pm.transform.rotation = pm.orientation.rotation; // set rotation of player to orientation rotation
+        StartCoroutine(EnableHit()); // run coroutine for enabling hitbox
 
     }
-
-    //IEnumerator ComboTimer()
-    //{
-    //    comboWait = true;
-    //    while (timer < comboTime)
-    //    {
-    //        yield return new WaitForSeconds(.1f);
-    //        timer += .1f;
-    //        if (Input.GetKeyDown(KeyCode.Mouse0)/* && readyToAtk*/)
-    //        {
-    //            if (comboIndex == 2)
-    //            {
-    //                comboIndex = 0;
-    //                timer = 0;
-    //                comboWait = false;
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                comboIndex += 1;
-    //                timer = 0;
-    //                comboWait = false;
-    //                break;
-    //            }
-    //        }
-    //    }
-    //    comboIndex = 0;
-    //    timer = 0;
-    //    comboWait = false;
-    //}
 
     IEnumerator SpinAttackMov()
     {
@@ -188,40 +146,16 @@ public class GreatswordCombat : MonoBehaviour
 
         yield return new WaitForSeconds(.3f); // end of attack
 
-        if(comboIndex == 2)
+        if(comboIndex == 2) // if combo index already maxed out, reset index
         {
             comboIndex = 0;
         }
-        else if (!secondAtk || comboIndex == 1)
+        else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
         {
             comboIndex += 1;
         }
-        //lastPressedTime = Time.time;
         pm.MoveInterrupt(true); // re-enables movement
-        readyToAtk = true;
+        readyToAtk = true; // re-enables attack capability
 
     }
-
-    //IEnumerator comboTimer()
-    //{
-    //    crRunning = true;
-
-    //    yield return new WaitForSeconds(.5f);
-
-    //    crRunning = false;
-    //    ac.SetBool("atk", false);
-    //    ac.SetFloat("atkIndex", 0);
-    //}
-
-    //private void AlternateIndex()
-    //{
-    //    if(ac.GetFloat("atkIndex") == 0)
-    //    {
-    //        ac.SetFloat("atkIndex", 1);
-    //    }
-    //    else
-    //    {
-    //        ac.SetFloat("atkIndex", 0);
-    //    }
-    //}
 }
