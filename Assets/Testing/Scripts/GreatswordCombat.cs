@@ -6,6 +6,7 @@ public class GreatswordCombat : MonoBehaviour
 {
     public Transform weapon;
     public Transform hitbox;
+    Collider[] hitBoxes;
     Collider hit;
     PlayableCharacter pc;
     Animator ac;
@@ -19,40 +20,47 @@ public class GreatswordCombat : MonoBehaviour
     int comboIndex;
     public float comboTime = .25f;
     bool firstAtk;
+    bool secondAtk;
 
     // Start is called before the first frame update
     void Start()
     {
-        hit = hitbox.GetComponent<Collider>();
+        hitBoxes = hitbox.GetComponentsInChildren<Collider>();
         ac = weapon.GetComponent<Animator>();
         pm = this.GetComponent<PlayerMovement>();
         rb = this.GetComponent<Rigidbody>();
         pc = this.GetComponent<PlayableCharacter>();
 
-        hit.enabled = false;
-        hit.isTrigger = true;
+        foreach(Collider collider in hitBoxes)
+        {
+            collider.enabled = false;
+            collider.isTrigger = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        hit = hitBoxes[comboIndex];
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk)
         {
+            Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
+            lastPressedTime = Time.time;
             if (firstAtk)
             {
-                bool secondAtk = Time.time - lastPressedTime <= comboTime;
-                if (secondAtk && comboIndex < 2)
+                secondAtk = Time.time - lastPressedTime <= comboTime;
+                if (secondAtk)
                 {
-                    comboIndex += 1;
-                    firstAtk = false;
+                    bool thirdAtk = Time.time - lastPressedTime <= comboTime;
+                    if(comboIndex == 2 && thirdAtk)
+                    {
+                        Debug.Log("Combo Finished");
+                        firstAtk = false;
+                        secondAtk = false;
+                        
+                    }
+                }
 
-                    Debug.Log("Combo Attack");
-                }
-                else
-                {
-                    Debug.Log("Combo Finished");
-                    comboIndex = 0;
-                }
             }
             else
             {
@@ -62,9 +70,10 @@ public class GreatswordCombat : MonoBehaviour
             Attack();
             readyToAtk = false;
         }
-        if(firstAtk && Time.time - lastPressedTime > comboTime)
+        if((firstAtk || secondAtk) && Time.time - lastPressedTime > comboTime)
         {
             Debug.Log("Combo Failed");
+            secondAtk = false;
             firstAtk = false;
             comboIndex = 0;
         }
@@ -139,8 +148,16 @@ public class GreatswordCombat : MonoBehaviour
 
 
         yield return new WaitForSeconds(.3f); // end of attack
-        
-        lastPressedTime = Time.time;
+
+        if(comboIndex == 2)
+        {
+            comboIndex = 0;
+        }
+        else if (!secondAtk || comboIndex == 1)
+        {
+            comboIndex += 1;
+        }
+        //lastPressedTime = Time.time;
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true;
 
