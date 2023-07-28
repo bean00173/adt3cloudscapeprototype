@@ -14,6 +14,11 @@ public class GreatswordCombat : MonoBehaviour
     Rigidbody rb;
 
     bool readyToAtk = true;
+    bool readyToHold = true;
+    bool holding;
+
+    public float holdCd;
+
     bool crRunning;
 
     float lastPressedTime;
@@ -26,7 +31,7 @@ public class GreatswordCombat : MonoBehaviour
     void Start()
     {
         hitBoxes = hitbox.GetComponentsInChildren<Collider>();
-        ac = weapon.GetComponent<Animator>();
+        ac = this.transform.root.GetComponent<Animator>();
         pm = this.GetComponent<PlayerMovement>();
         rb = this.GetComponent<Rigidbody>();
         pc = this.GetComponent<PlayableCharacter>();
@@ -42,6 +47,31 @@ public class GreatswordCombat : MonoBehaviour
     void Update()
     {
         hit = hitBoxes[comboIndex];
+        //if (Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    Debug.Log("HOLDING ATTACK");
+        //}
+        if (Input.GetKey(KeyCode.F) && readyToHold)
+        {
+            //StartCoroutine(SpinAttackMov());
+            pm.MoveInterrupt(false);
+            holding = true;
+            readyToAtk = false;
+            hit = hitBoxes[0];
+            hit.enabled = true;
+            ac.SetBool("holdAtk", true);
+        }
+        else if(holding == true)
+        {
+            this.transform.rotation = pm.orientation.transform.rotation;
+            pm.MoveInterrupt(true);
+            ac.SetBool("holdAtk", false);
+            holding = false;
+            hit = hitBoxes[0];
+            hit.enabled = true;
+            readyToAtk = true;
+            ac.SetTrigger("holdEnd");
+        }
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk)
         {
             Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
@@ -128,6 +158,15 @@ public class GreatswordCombat : MonoBehaviour
     //    timer = 0;
     //    comboWait = false;
     //}
+
+    IEnumerator SpinAttackMov()
+    {
+        while (holding)
+        {
+            yield return new WaitForSeconds(.25f);
+            rb.AddForce(Random.onUnitSphere * 10f * pm.walkSpeed, ForceMode.Force);
+        }
+    }
 
     IEnumerator EnableHit()
     {
