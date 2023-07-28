@@ -29,13 +29,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     Transform goal;
     NavMeshAgent agent;
-
     BodyPartContainer bpc;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = this.GetComponent<NavMeshAgent>();
+        rb = this.GetComponent<Rigidbody>();
         health = enemy.maxHealth;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
@@ -44,10 +45,9 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = goal.position; // set agent destination to be player target (set in inspector)
         agent.speed = enemy.speed;
 
-
+        RangeCheck(); // check if near player
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -56,6 +56,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Transform player = other.transform.root; // collect collider root (player)
             PlayableCharacter pCharacter = player.GetComponent<PlayableCharacter>();
+
+            //Vector3 moveDirection = pCharacter.transform.GetComponent<PlayerMovement>().orientation.transform.position - this.transform.position;
+            //rb.AddForce(moveDirection * -100f * pCharacter.knockBackModifier, ForceMode.Force);
+            //StartCoroutine(ToString());
 
             if (health <= pCharacter.attackModifier) // if current health will be 0 after swing, death
             {
@@ -68,6 +72,20 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
+    }
+
+    private void RangeCheck()
+    {
+        Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
+        Debug.DrawLine(origin, goal.position, Color.yellow);
+        if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
+        {
+            agent.destination = this.transform.position;
+        }
+        else
+        {
+            agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+        }
     }
 
     private void EnemyDeath() // separate function for death method
@@ -103,4 +121,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         return health;
     }
+
+    //    private IEnumerator KnockbackNullify()
+    //    {
+    //        yield return new WaitForSeconds(CharacterManager.instance.knockbackDuration);
+    //        rb.velocity = Vector3.zero;
+    //        rb.angularVelocity = Vector3.zero;
+    //    }
 }

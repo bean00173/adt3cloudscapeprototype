@@ -7,8 +7,10 @@ public class GreatswordCombat : MonoBehaviour
     public Transform weapon;
     public Transform hitbox;
     Collider hit;
+    PlayableCharacter pc;
     Animator ac;
     PlayerMovement pm;
+    Rigidbody rb;
 
     bool readyToAtk = true;
     bool crRunning;
@@ -19,6 +21,8 @@ public class GreatswordCombat : MonoBehaviour
         hit = hitbox.GetComponent<Collider>();
         ac = weapon.GetComponent<Animator>();
         pm = this.GetComponent<PlayerMovement>();
+        rb = this.GetComponent<Rigidbody>();
+        pc = this.GetComponent<PlayableCharacter>();
 
         hit.enabled = false;
         hit.isTrigger = true;
@@ -57,8 +61,18 @@ public class GreatswordCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f); // wait enough time for attack to start
         hit.enabled = true;
+
         yield return new WaitForSeconds(.8f); // turn hitbox on for most of attack duration
         hit.enabled = false;
+        //Collider[] colliders = Physics.OverlapSphere(this.transform.position, 5.0f); // finds all colliders within a radius
+        //foreach (Collider hit in colliders)
+        //{
+        //    Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+        //    if (rb != null)
+        //        rb.AddExplosionForce(pc.knockBackModifier, this.transform.position, 5.0f, 3.0f); // adds force to object rigidbody
+        //}
+
         yield return new WaitForSeconds(.3f); // end of attack
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true;

@@ -11,6 +11,7 @@ public class PlayableCharacter : MonoBehaviour
     public float healthModifier;
     public float attackModifier;
     public float speedModifier;
+    public float knockBackModifier;
 
     private void Start()
     {
@@ -24,5 +25,6 @@ public class PlayableCharacter : MonoBehaviour
         healthModifier = manager.GetCurrentCharacter(currentCharacter).health; // returns stats from class manager method to return current character based on enum ID
         attackModifier = manager.GetCurrentCharacter(currentCharacter).atkMultiplier;
         speedModifier = manager.GetCurrentCharacter(currentCharacter).spdMultiplier;
+        knockBackModifier = manager.GetCurrentCharacter(currentCharacter).knockbackForce;
     }
 }

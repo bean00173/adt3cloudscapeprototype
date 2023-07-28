@@ -13,16 +13,22 @@ public class CharacterManager : MonoBehaviour
     public float ravHealth;
     public float ravAtk;
     public float ravSpeed;
+    public float ravKnock;
 
     [Header("Abigail Stats")]
     public float abiHealth;
     public float abiAtk;
     public float abiSpeed;
+    public float abiKnock; 
 
     [Header("Sebastian Stats")]
     public float sebHealth;
     public float sebAtk;
     public float sebSpeed;
+    public float sebKnock;
+
+    [Header("Universal Knockback Duration")]
+    public float knockbackDuration;
 
     public List<Character> characters {  get; private set; } = new List<Character>();
 
@@ -43,9 +49,9 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start() // premade constructors for each individual character and their statistics (defined in inspector), adds all to list
     {
-        AddCharacter(new Character(Character.CharacterId.rav, ravHealth, ravAtk, ravSpeed));
-        AddCharacter(new Character(Character.CharacterId.abi, abiHealth, abiAtk, abiSpeed));
-        AddCharacter(new Character(Character.CharacterId.seb, sebHealth, sebAtk, sebSpeed));
+        AddCharacter(new Character(Character.CharacterId.rav, ravHealth, ravAtk, ravSpeed, ravKnock));
+        AddCharacter(new Character(Character.CharacterId.abi, abiHealth, abiAtk, abiSpeed, abiKnock));
+        AddCharacter(new Character(Character.CharacterId.seb, sebHealth, sebAtk, sebSpeed, sebKnock));
     }
 
     private void AddCharacter(Character character)

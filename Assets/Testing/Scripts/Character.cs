@@ -8,13 +8,15 @@ public class Character
     public float health;
     public float atkMultiplier;
     public float spdMultiplier;
+    public float knockbackForce;
 
-    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier) // constructor
+    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier, float knockbackForce) // constructor
     {
         Id = id;
         this.health = health;
         this.atkMultiplier = atkMultiplier;
         this.spdMultiplier = spdMultiplier;
+        this.knockbackForce = knockbackForce;
     }
 
 
