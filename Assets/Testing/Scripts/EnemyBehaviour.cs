@@ -10,6 +10,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public float maxHealth;
     public float damage;
     public float speed;
+    public float attackRadius;
 }
 
 public enum enemyType //stores current enemy type so when DropLimbs() is called, the BodyPartContainer can decide which list of limbs to use
@@ -44,6 +45,9 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+        agent.speed = enemy.speed;
+
+
     }
 
     private void OnTriggerEnter(Collider other) 

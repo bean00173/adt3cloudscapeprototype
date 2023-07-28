@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3671374607445589077}
   - component: {fileID: 8494441151483967170}
   m_Layer: 8
-  m_Name: TempEnemy
+  m_Name: TempGrunt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -145,11 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
+    enemyType: 0
     maxHealth: 75
     damage: 0
-    speed: 0
-  goal: {fileID: 0}
-  pile: {fileID: 0}
+    speed: 7.5
 --- !u!1 &8363561240081383309
 GameObject:
   m_ObjectHideFlags: 0
