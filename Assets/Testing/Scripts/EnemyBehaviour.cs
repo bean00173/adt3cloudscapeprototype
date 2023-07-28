@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class Enemy // serializable class to store current enemy stats
+public class Enemy // serializable class to store current enemy type & stats
 {
     public enemyType enemyType;
     public float maxHealth;
@@ -12,7 +12,7 @@ public class Enemy // serializable class to store current enemy stats
     public float speed;
 }
 
-public enum enemyType
+public enum enemyType //stores current enemy type so when DropLimbs() is called, the BodyPartContainer can decide which list of limbs to use
 {
     grunt,
     brute,
@@ -26,15 +26,18 @@ public class EnemyBehaviour : MonoBehaviour
     
     private float health;
 
-    public Transform goal;
-    public Transform pile;
+    Transform goal;
     NavMeshAgent agent;
+
+    BodyPartContainer bpc;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         health = enemy.maxHealth;
+        goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
+        bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
     }
 
     // Update is called once per frame
@@ -69,14 +72,14 @@ public class EnemyBehaviour : MonoBehaviour
         agent.speed = 0;
         CorpseExplode(); // call explosion
 
-        this.GetComponent<Renderer>().enabled = false; // turn off collider (not enemy as explosion references enemy transforms)
+        this.GetComponent<Renderer>().enabled = false; // turn off renderer (not object as explosion references its transforms) to make invisible
     }
 
     private void CorpseExplode()
     {
-        int x = Random.Range(2, 5);
+        int x = Random.Range(2, 5); // random number of body parts between 2 and 5
 
-        pile.GetComponent<BodyPartContainer>().DropLimbs(x, this.transform.position, enemy.enemyType);
+       bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius
@@ -88,7 +91,7 @@ public class EnemyBehaviour : MonoBehaviour
                 rb.AddExplosionForce(Random.Range(5.0f, 10.0f), explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
         }
 
-        Destroy(this.gameObject);
+        Destroy(this.gameObject); // once the explosion has occured, remove the enemy object as transforms no longer required
     }
 
 

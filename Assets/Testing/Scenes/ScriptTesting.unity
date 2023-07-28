@@ -2147,7 +2147,10 @@ MonoBehaviour:
     probability: 100
     selected: 0
   bruteLimbs: []
-  rangerLimbs: []
+  rangerLimbs:
+  - prefab: {fileID: 5844812055023269438, guid: 67a5302a703e53a42b8f78bfde49e9f6, type: 3}
+    probability: 100
+    selected: 0
   bodyParts: []
 --- !u!1 &870165046
 GameObject:
@@ -4290,6 +4293,10 @@ PrefabInstance:
       propertyPath: pile
       value: 
       objectReference: {fileID: 858523429}
+    - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
+      propertyPath: enemy.enemyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public bool RandomChance(int prob)
+    public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++) // loop through 100 times, adding 1 to the list prob amount of times (if prob is 67, the list will contain 67 1's and 33 0's)
         {
             if(prob != 0)
             {
@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        int choice = chance[Random.Range(0, 99)];
+        int choice = chance[Random.Range(0, 99)]; // randomly select an option from list
 
         chance.Clear();
 
-        if (choice == 1)
+        if (choice == 1) // if selected was a 1 return true, otherwise false
         {
             return true;
         }
