@@ -64,6 +64,8 @@ public class GreatswordCombat : MonoBehaviour
 
         yield return new WaitForSeconds(.8f); // turn hitbox on for most of attack duration
         hit.enabled = false;
+
+
         //Collider[] colliders = Physics.OverlapSphere(this.transform.position, 5.0f); // finds all colliders within a radius
         //foreach (Collider hit in colliders)
         //{
@@ -72,6 +74,7 @@ public class GreatswordCombat : MonoBehaviour
         //    if (rb != null)
         //        rb.AddExplosionForce(pc.knockBackModifier, this.transform.position, 5.0f, 3.0f); // adds force to object rigidbody
         //}
+
 
         yield return new WaitForSeconds(.3f); // end of attack
         pm.MoveInterrupt(true); // re-enables movement

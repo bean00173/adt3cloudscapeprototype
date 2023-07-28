@@ -61,6 +61,8 @@ public class EnemyBehaviour : MonoBehaviour
             //rb.AddForce(moveDirection * -100f * pCharacter.knockBackModifier, ForceMode.Force);
             //StartCoroutine(ToString());
 
+            // For Knockback Force, Animation is probably better
+
             if (health <= pCharacter.attackModifier) // if current health will be 0 after swing, death
             {
                 EnemyDeath();
