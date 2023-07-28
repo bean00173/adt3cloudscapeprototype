@@ -983,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -1388,7 +1388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -1457,7 +1457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -1770,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -1939,7 +1939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -2147,10 +2147,7 @@ MonoBehaviour:
     probability: 100
     selected: 0
   bruteLimbs: []
-  rangerLimbs:
-  - prefab: {fileID: 5844812055023269438, guid: 67a5302a703e53a42b8f78bfde49e9f6, type: 3}
-    probability: 100
-    selected: 0
+  rangerLimbs: []
   bodyParts: []
 --- !u!1 &870165046
 GameObject:
@@ -2333,7 +2330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -2481,7 +2478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -3265,7 +3262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -3461,7 +3458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: goal
@@ -4295,7 +4292,7 @@ PrefabInstance:
       objectReference: {fileID: 858523429}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: enemy.enemyType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

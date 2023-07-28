@@ -17,7 +17,6 @@ public class BodyPartContainer : MonoBehaviour
     public List<Limb> bruteLimbs = new List<Limb>();
     public List<Limb> rangerLimbs = new List<Limb>();
 
-    List<Limb> limbs = new List<Limb> ();
     public List<GameObject> bodyParts = new List<GameObject>();
 
     
@@ -59,16 +58,17 @@ public class BodyPartContainer : MonoBehaviour
 
     public void DropLimbs(int count, Vector3 spawnPos, enemyType type) // function to grab random limb from possible limb drops
     {
+        List<Limb> limbs = new List<Limb>();
         switch (type) // switch the list of limbs to be used based on received enemy type from function call
         {
             case enemyType.grunt:
-                limbs = gruntLimbs;
+                limbs = new List<Limb>(gruntLimbs); // this used to be limbs = gruntLimbs but that only stores a reference, not list data, so when the list gets cleared it was clearing gruntLimbs too, throwing up an exception
                 break;
             case enemyType.brute:
-                limbs = bruteLimbs;
+                limbs = new List<Limb>(bruteLimbs);
                 break;
             case enemyType.ranger:
-                limbs = rangerLimbs;
+                limbs = new List<Limb>(rangerLimbs);
                 break;
             default:
                 break;
@@ -92,10 +92,10 @@ public class BodyPartContainer : MonoBehaviour
             rather than have to follow a set of rules when creating the list itself
             */
         }
-        ResetSpawns();
+        ResetSpawns(limbs);
     }
 
-    private void ResetSpawns() // once all limbs have been spawned, make sure each selected is false so next of same type can still drop
+    private void ResetSpawns(List<Limb> limbs) // once all limbs have been spawned, make sure each selected is false so next of same type can still drop
     {
         foreach (Limb limb in limbs)
         {
