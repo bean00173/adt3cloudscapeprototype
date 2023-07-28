@@ -65,7 +65,6 @@ public class GreatswordCombat : MonoBehaviour
         yield return new WaitForSeconds(.8f); // turn hitbox on for most of attack duration
         hit.enabled = false;
 
-
         //Collider[] colliders = Physics.OverlapSphere(this.transform.position, 5.0f); // finds all colliders within a radius
         //foreach (Collider hit in colliders)
         //{
