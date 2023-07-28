@@ -4,9 +4,16 @@
 
 Follow the adventures of a trio of friends from the Desecrated Village of Devotio as they discover the unknown fate of the Lands of Anathema. Venture in to the clouds and explore roguelike towers, battling through warriors tainted by a mysterious curse.
 
+### Current Prototype Status : Combat Demo
+
+![Desktop 2023 07 28 - 14 00 59 01_1](https://github.com/bean00173/adt3cloudscapeprototype/assets/113889619/7fcf2a4d-3678-455a-bb28-035d8b81eda4)
+
+
 ### Using : [Unity Version 2022.3.5f1](https://unity.com/releases/editor/whats-new/2022.3.5)
 
 *Made by Cedric Lina and Ben Mead*
+
+***
 
 ## Guide to using GitHub with Unity
 
