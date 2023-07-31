@@ -103,7 +103,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         int x = Random.Range(2, 5); // random number of body parts between 2 and 5
 
-       bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
+        bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius

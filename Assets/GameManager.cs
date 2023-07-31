@@ -37,9 +37,11 @@ public class GameManager : MonoBehaviour
 
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
     {
+        //return UnityEngine.Random.value < prob; This is a much simpler way of doing things 
+
         for (int i = 0; i < 100; i++) // loop through 100 times, adding 1 to the list prob amount of times (if prob is 67, the list will contain 67 1's and 33 0's)
         {
-            if(prob != 0)
+            if (prob != 0)
             {
                 chance.Add(1);
                 prob--;
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        
+
     }
 
 }

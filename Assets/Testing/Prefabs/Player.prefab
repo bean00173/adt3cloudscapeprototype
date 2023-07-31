@@ -80,12 +80,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8875970709200867603}
+  - component: {fileID: 7810082808727946165}
   - component: {fileID: 6906048009083165719}
   - component: {fileID: 7288250908052302329}
   - component: {fileID: 1119023043122331229}
   - component: {fileID: 6601017848167067633}
   - component: {fileID: 6937646884463997805}
   - component: {fileID: 5562142956383237834}
+  - component: {fileID: 4745401735497595356}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -110,6 +112,23 @@ Transform:
   - {fileID: 6598918387094107894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7810082808727946165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967979791706106176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284bc1dea087911489155a5dce666f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCharacter: 2
+  healthModifier: 0
+  attackModifier: 0
+  speedModifier: 0
+  knockBackModifier: 0
 --- !u!114 &6906048009083165719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +221,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.48915341
-  m_Height: 1.9399848
+  m_Height: 1.9588041
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9952643, z: -0.010846585}
+  m_Center: {x: 0, y: 0.9858546, z: -0.010846585}
 --- !u!82 &6937646884463997805
 AudioSource:
   m_ObjectHideFlags: 0
@@ -314,8 +333,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1374171383281033274}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 6598918387094107894}
+  holdCd: 0
   comboTime: 2
+--- !u!95 &4745401735497595356
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967979791706106176}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35b0c57d7fb55dc448d52951fee78270, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2585028824118459162
 GameObject:
   m_ObjectHideFlags: 0
