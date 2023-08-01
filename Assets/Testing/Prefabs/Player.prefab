@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374171383281033274}
-  - component: {fileID: 6748157024407625713}
   - component: {fileID: 4720639155779582533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,27 +34,6 @@ Transform:
   - {fileID: 9118388862689941841}
   m_Father: {fileID: 6598918387094107894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6748157024407625713
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336703139215284454}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 35b0c57d7fb55dc448d52951fee78270, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4720639155779582533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,9 +66,9 @@ GameObject:
   - component: {fileID: 6937646884463997805}
   - component: {fileID: 5562142956383237834}
   - component: {fileID: 4745401735497595356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,13 +346,12 @@ GameObject:
   - component: {fileID: 6598918387094107894}
   - component: {fileID: 6480008961123931640}
   - component: {fileID: 8086528398679818710}
-  - component: {fileID: 8729070090345919037}
   - component: {fileID: 301931284908862547}
   - component: {fileID: 6888627699257532556}
   - component: {fileID: 7579351253706199900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
-  m_TagString: Player
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,27 +423,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &8729070090345919037
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585028824118459162}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!135 &301931284908862547
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -544,7 +500,7 @@ GameObject:
   - component: {fileID: 7103357945227643663}
   - component: {fileID: 6602667643403804809}
   - component: {fileID: 8955621580644505749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118158436371054196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 5561107890703097647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -680,7 +636,7 @@ GameObject:
   - component: {fileID: 5454925954515076805}
   - component: {fileID: 2941067171590193266}
   - component: {fileID: 4793643199668985772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +741,7 @@ GameObject:
   - component: {fileID: 5603326414891682352}
   - component: {fileID: 530633226180341652}
   - component: {fileID: 5581113669367326171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +830,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
