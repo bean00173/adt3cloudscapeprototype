@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6538413297533860732}
   - component: {fileID: 8247658097710003990}
   - component: {fileID: 2531889666672066404}
+  - component: {fileID: 1974613797335155137}
   m_Layer: 3
   m_Name: Blood
   m_TagString: Ground
@@ -128,3 +129,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1974613797335155137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715767794031142737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8106e6680606a649a815e5f530f6699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 6b478e3b71113454fa407942d877a349, type: 2}
+  - {fileID: 2100000, guid: 9c63c55baf95bf64a8477453925d6a6f, type: 2}
+  - {fileID: 2100000, guid: 6531ba2b12854674f98a2a341a1c8462, type: 2}
+  - {fileID: 2100000, guid: 7e020abbbb9aa3a4cb2396efec332a6d, type: 2}
+  - {fileID: 2100000, guid: 5c1964f4e84d4494cad9debe3b9d7896, type: 2}

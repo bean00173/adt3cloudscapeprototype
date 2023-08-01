@@ -20,12 +20,12 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Transform child in this.transform)
+        foreach(Transform child in this.transform) // gather list of spawn points
         {
             spawns.Add(child);
         }
         waveIndex = 0;
-        enemiesLeft = waves[0].enemyCount;
+        enemiesLeft = waves[0].enemyCount; // set current amount of enemies to spawn to be maximum for current wave
         player = GameObject.Find("Player").transform;
     }
 
@@ -33,11 +33,11 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
-        if (enemiesLeft == 0 && aliveEnemies == 0)
+        if (enemiesLeft == 0 && aliveEnemies == 0) // if there are no more enemies to spawn, and no more enemies alive...
         {
             Debug.Log("Wave Beaten");
             waveIndex++;
-            if(waveIndex <= waves.Count -1)
+            if(waveIndex <= waves.Count -1) // check if that was last wave, then continue to next wave if true, or end if false
             {
                enemiesLeft = waves[waveIndex].enemyCount;
             }
@@ -46,46 +46,68 @@ public class EnemySpawner : MonoBehaviour
                Debug.Log("No Waves Left");
             }
         }
-        else if(enemiesLeft <= 10)
+        else if(enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
         {
             SpawnEnemies(enemiesLeft, 5.0f);
         }
-        else if(aliveEnemies < 3 && enemiesLeft >= 15)
+        else if(aliveEnemies < 3 && enemiesLeft >= 15) // if the previous wave is about to be finished, spawn 5 more, however only if there are more than 15 left, due to the spawn last 10 together rule
         {
             SpawnEnemies(5, 2.0f);
         }
 
-        aliveEnemies = enemyContainer.childCount;
+        aliveEnemies = enemyContainer.childCount; // update alive enemies with those stored in heirarchy
     }
 
-    private void SpawnEnemies(int x, float radius)
+    private void SpawnEnemies(int x, float radius) 
     {
-        Transform spawnPoint = FindSpawnPoint();
-        for(int i = 0; i < x; i++)
+        Transform spawnPoint = FindSpawnPoint(); // gather spawn point
+        for(int i = 0; i < x; i++) // within number of enemies to be spawned, instantiate random enemy type, at randomised spawn point (using radial spawn)
         {
-            Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Count -1)], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+            if (SpawnBrute())
+            {
+                Debug.Log("Brute");
+                Instantiate(waves[waveIndex].enemies[waves[waveIndex].enemies.Count - 1], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+            }
+            else
+            {
+                Debug.Log("Grunt");
+                Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Count - 1)], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+            }
             enemiesLeft -= 1;
         }
     }
 
     private Transform FindSpawnPoint()
     {
-        foreach(Transform potentialSpawn in spawns)
+        foreach(Transform potentialSpawn in spawns) // for each stored spawn point
         {
             Debug.DrawLine(potentialSpawn.position, player.position, Color.yellow);
-            if(Vector3.Distance(potentialSpawn.position, player.position) > 15.0f)
+            if(Vector3.Distance(potentialSpawn.position, player.position) > 15.0f) // calculate if spawn point isn't in certain range of player
             {
-                validSpawns.Add(potentialSpawn);
+                validSpawns.Add(potentialSpawn); // add to valid spawn list
             }
         }
 
-        if (validSpawns.Count > 0)
+        if (validSpawns.Count > 0) // if there are some valid spawns
         {
-            return validSpawns[Random.Range(0, validSpawns.Count)];
+            return validSpawns[Random.Range(0, validSpawns.Count)]; // spawn using a random one of them
         }
-        else
+        else 
         {
-            return enemyContainer.transform;
+            return spawns[Random.Range(0, spawns.Count)]; // if not, spawn at a random invalidated spawn and pray for the best
         }
     }
+
+    private bool SpawnBrute() // bool method to check if allowed to spawn a brute
+    {
+        foreach (GameObject go in waves[waveIndex].enemies) // search potential enemy spawns
+        {
+            if (go.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute)
+            {
+                return GameManager.instance.RandomChance(10); // if brute enemy is found in list, use random chance to return true or false for spawning 
+            }
+        }
+        return false; // else no brute
+    }
+
 }

@@ -8,12 +8,20 @@ public class BloodSplatter : MonoBehaviour
     private Transform parent;
     RaycastHit hit;
 
+    //List<Material> materials = new List<Material>();
+
     bool splattered;
 
     // Start is called before the first frame update
     void Start()
     {
         parent = GameObject.Find("BloodContainer").transform;
+        //Material[] loadMats = Resources.LoadAll("Testing/Materials/BloodMaterials") as Material[];
+
+        //for(int i = 0; i < loadMats.Length; i++)
+        //{
+        //    materials.Add(loadMats[i]);
+        //}
     }
 
     // Update is called once per frame
@@ -24,7 +32,7 @@ public class BloodSplatter : MonoBehaviour
         {
             splattered = true; // if ground near, find point of contact, create vector pos and instantiate splatter
             Vector3 pos = new Vector3((float)hit.point.x, (float)hit.point.y + 0.1f, (float)hit.point.z);
-            Instantiate(bloodSplat, pos, Quaternion.identity, parent);
+            GameObject splatter = Instantiate(bloodSplat, pos, Quaternion.identity, parent);
 
         }
     }
