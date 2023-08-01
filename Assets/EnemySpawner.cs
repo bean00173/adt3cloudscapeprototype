@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public Transform enemyContainer, spawnCenter;
 
+    private int enemyCount;
+    private int currentWaveCount;
     
     // Start is called before the first frame update
     void Start()
