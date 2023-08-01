@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Wave
 {
-    public GameObject[] enemies;
-    public int enemyCount;
+    public List<GameObject> enemies = new List<GameObject>();
+    public int enemyCount; 
 }

@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Transform child in transform)
+        foreach(Transform child in this.transform)
         {
             spawns.Add(child);
         }
@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("No Waves Left");
+               Debug.Log("No Waves Left");
             }
         }
         else if(enemiesLeft <= 10)
@@ -60,9 +60,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies(int x, float radius)
     {
+        Transform spawnPoint = FindSpawnPoint();
         for(int i = 0; i < x; i++)
         {
-            Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Length - 1)], GameManager.instance.SpawnPosition(i, x, enemyContainer.position, radius), Quaternion.identity, enemyContainer);
+            Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Count -1)], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
             enemiesLeft -= 1;
         }
     }
@@ -72,15 +73,15 @@ public class EnemySpawner : MonoBehaviour
         foreach(Transform potentialSpawn in spawns)
         {
             Debug.DrawLine(potentialSpawn.position, player.position, Color.yellow);
-            if (Vector3.Distance(potentialSpawn.position, player.position) < 1.0f)
+            if(Vector3.Distance(potentialSpawn.position, player.position) > 15.0f)
             {
                 validSpawns.Add(potentialSpawn);
             }
         }
 
-        if(validSpawns != null)
+        if (validSpawns.Count > 0)
         {
-            return validSpawns[0];
+            return validSpawns[Random.Range(0, validSpawns.Count)];
         }
         else
         {

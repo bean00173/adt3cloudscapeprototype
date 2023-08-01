@@ -40,6 +40,8 @@ public class EnemyBehaviour : MonoBehaviour
         health = enemy.maxHealth;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
+
+        LimitSpawnVelocity();
     }
 
     // Update is called once per frame
@@ -124,10 +126,10 @@ public class EnemyBehaviour : MonoBehaviour
         return health;
     }
 
-    //    private IEnumerator KnockbackNullify()
-    //    {
-    //        yield return new WaitForSeconds(CharacterManager.instance.knockbackDuration);
-    //        rb.velocity = Vector3.zero;
-    //        rb.angularVelocity = Vector3.zero;
-    //    }
+    private IEnumerator LimitSpawnVelocity()
+    {
+        yield return new WaitForSeconds(.25f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 }
