@@ -81,7 +81,7 @@ public class BodyPartContainer : MonoBehaviour
                 if (GameManager.instance.RandomChance(limb.probability) && !limb.selected) // if RandomChance returns true based on limb probability, and that limb has not been selected previously
                 {
                     Debug.Log(limb.prefab + "CHOSEN!!!");
-                    Instantiate(limb.prefab, SpawnPosition(i, count, spawnPos), Quaternion.identity, this.transform); // instantiate limb 
+                    Instantiate(limb.prefab, GameManager.instance.SpawnPosition(i, count, spawnPos, .5f), Quaternion.identity, this.transform); // instantiate limb 
                     limb.selected = true; // selected = true so that limb cannot be spawned multiple times (two left legs wouldn't make sense)
                     break;
                 }
@@ -102,16 +102,5 @@ public class BodyPartContainer : MonoBehaviour
             limb.selected = false;
         }
         limbs.Clear(); // remove all elements from generic list in case next enemy is different type
-    }
-
-    private Vector3 SpawnPosition(int i, int x, Vector3 pos)
-    {
-        float rad = 2 * Mathf.PI / x * i + Random.Range(-1f, 1f); // divides radius by how many objects are instantiated and spaces them semi evenly (with a little sprinkle of randomisation)
-        float vert = Mathf.Sin(rad); // calculates x,z coordinates based on angle from origin
-        float hor = Mathf.Cos(rad);
-
-        Vector3 spawnDir = new Vector3(hor, 0, vert); // creates vector with coords
-
-        return pos + spawnDir * .5f; // return spawnPos
     }
 }

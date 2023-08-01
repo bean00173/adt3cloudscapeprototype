@@ -69,4 +69,15 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public Vector3 SpawnPosition(int currentObject, int totalObjects, Vector3 pos, float radius)
+    {
+        float rad = 2 * Mathf.PI / totalObjects * currentObject + Random.Range(-1f, 1f); // divides radius by how many objects are instantiated and spaces them semi evenly (with a little sprinkle of randomisation)
+        float vert = Mathf.Sin(rad); // calculates x,z coordinates based on angle from origin
+        float hor = Mathf.Cos(rad);
+
+        Vector3 spawnDir = new Vector3(hor, 0, vert); // creates vector with coords
+
+        return pos + spawnDir * radius; // return spawnPos
+    }
+
 }

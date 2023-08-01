@@ -66,7 +66,7 @@ public class GreatswordCombat : MonoBehaviour
             ac.SetBool("holdAtk", false); // disable animation
             holding = false;
             hit = hitBoxes[0];
-            hit.enabled = true;
+            hit.enabled = false;
             readyToAtk = true;
             ac.SetTrigger("holdEnd"); // begin ending animation
         }
