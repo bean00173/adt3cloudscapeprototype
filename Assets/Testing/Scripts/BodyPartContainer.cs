@@ -65,10 +65,10 @@ public class BodyPartContainer : MonoBehaviour
                 limbs = new List<Limb>(gruntLimbs); // this used to be limbs = gruntLimbs but that only stores a reference, not list data, so when the list gets cleared it was clearing gruntLimbs too, throwing up an exception
                 break;
             case enemyType.brute:
-                limbs = new List<Limb>(gruntLimbs); // [CHANGE] temporarily use grunt limbs for all others [CHANGE WHEN MORE ENEMY MODEL IMPLEMENTATION]
+                limbs = new List<Limb>(bruteLimbs);  // [CHANGE] temporarily use placeholder limbs for all others [CHANGE WHEN MORE ENEMY MODEL IMPLEMENTATION]
                 break;
             case enemyType.ranger:
-                limbs = new List<Limb>(gruntLimbs);
+                limbs = new List<Limb>(bruteLimbs);
                 break;
             default:
                 break;

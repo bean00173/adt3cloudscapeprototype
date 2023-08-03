@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7481038882546559627}
   - component: {fileID: 4335362394915829277}
   - component: {fileID: 710301258244807289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Blood_PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 2552951639885747195}
   - component: {fileID: 2670734691496447121}
   - component: {fileID: 8352794801144883408}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Blood_Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9687,7 +9687,7 @@ GameObject:
   - component: {fileID: 4784914106970878067}
   - component: {fileID: 1932722342147168340}
   - component: {fileID: 1462197228148571379}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14577,6 +14577,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4896517794277411054, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2884639134055194704, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -2511954419471665940, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -14584,6 +14592,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
       propertyPath: m_Name
       value: Grunt_Hand Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3574370609168984572, guid: 609815eb77809e64895cd48f36adf6a9, type: 3}
       propertyPath: m_Materials.Array.data[0]

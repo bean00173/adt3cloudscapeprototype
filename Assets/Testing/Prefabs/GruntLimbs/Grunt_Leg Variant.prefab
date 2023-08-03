@@ -14577,17 +14577,33 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7640558969779515294, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -6093592463355912122, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 82d87d7172195a74fb61eebbfc38a729, type: 2}
+    - target: {fileID: -5568371526223589888, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -5549881184921480897, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ae9a362bfdf47904a98719172d78cef1, type: 2}
+    - target: {fileID: -4100228563880407593, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
       propertyPath: m_Name
       value: Grunt_Leg Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: 2feb53986ccb0194d872302d4a6fb492, type: 3}
       propertyPath: m_Materials.Array.data[0]
