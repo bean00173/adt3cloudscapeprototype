@@ -113,8 +113,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            if (rb != null)
-                rb.AddExplosionForce(Random.Range(5.0f, 10.0f), explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
+            if (rb != null && rb.CompareTag("Drop"))
+                rb.AddExplosionForce(Random.Range(5.0f, 10.0f) * 50f, explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
         }
 
         Destroy(this.gameObject); // once the explosion has occured, remove the enemy object as transforms no longer required

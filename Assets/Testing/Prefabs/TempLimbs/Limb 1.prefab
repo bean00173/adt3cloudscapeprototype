@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &43604740088365374
+--- !u!1 &4372156556888026416
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3856783026586008196}
-  - component: {fileID: 6085823780785897405}
-  - component: {fileID: 1008875273781545961}
+  - component: {fileID: 2705925836157070689}
+  - component: {fileID: 5251732641212927490}
+  - component: {fileID: 7500849907756117496}
   m_Layer: 0
   m_Name: Blood_PS
   m_TagString: Untagged
@@ -18,30 +18,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3856783026586008196
+--- !u!4 &2705925836157070689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43604740088365374}
+  m_GameObject: {fileID: 4372156556888026416}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6072188036489106554}
-  - {fileID: 3610656815805550886}
+  - {fileID: 2455297873543048511}
+  - {fileID: 8081336200355412858}
   m_Father: {fileID: 1167178221627904433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &6085823780785897405
+--- !u!198 &5251732641212927490
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43604740088365374}
+  m_GameObject: {fileID: 4372156556888026416}
   serializedVersion: 8
   lengthInSec: 10
   simulationSpeed: 1
@@ -4758,14 +4758,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &1008875273781545961
+--- !u!199 &7500849907756117496
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43604740088365374}
+  m_GameObject: {fileID: 4372156556888026416}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4830,7 +4830,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &2407075905307330190
+--- !u!1 &4489266593646882811
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4838,9 +4838,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6072188036489106554}
-  - component: {fileID: 8107322508071750901}
-  - component: {fileID: 3199416073575003781}
+  - component: {fileID: 2455297873543048511}
+  - component: {fileID: 1510022249654517294}
+  - component: {fileID: 7274331326254642104}
   m_Layer: 0
   m_Name: Blood_Sparks
   m_TagString: Untagged
@@ -4848,28 +4848,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6072188036489106554
+--- !u!4 &2455297873543048511
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2407075905307330190}
+  m_GameObject: {fileID: 4489266593646882811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3856783026586008196}
+  m_Father: {fileID: 2705925836157070689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &8107322508071750901
+--- !u!198 &1510022249654517294
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2407075905307330190}
+  m_GameObject: {fileID: 4489266593646882811}
   serializedVersion: 8
   lengthInSec: 10
   simulationSpeed: 1
@@ -9604,14 +9604,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &3199416073575003781
+--- !u!199 &7274331326254642104
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2407075905307330190}
+  m_GameObject: {fileID: 4489266593646882811}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -9690,10 +9690,10 @@ GameObject:
   - component: {fileID: 245260380823896433}
   - component: {fileID: 7650980829931270464}
   - component: {fileID: 1450012917476909897}
-  - component: {fileID: 2028750110370335510}
+  - component: {fileID: 6414490939339916770}
   m_Layer: 3
-  m_Name: Limb 4
-  m_TagString: Untagged
+  m_Name: Limb 1
+  m_TagString: Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9711,7 +9711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3856783026586008196}
+  - {fileID: 2705925836157070689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4473997291385112382
@@ -9742,7 +9742,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64eaaa5a17fdc0a4785c8c079ffeb714, type: 2}
+  - {fileID: 2100000, guid: f94f6d8ea997c5f4e8dc03b20d4851d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9825,7 +9825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnTime: 5
---- !u!114 &2028750110370335510
+--- !u!114 &6414490939339916770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9838,7 +9838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 5715767794031142737, guid: 34dcf25bcaee1a74f85a48fb9b932565, type: 3}
---- !u!1 &6705722462752620221
+--- !u!1 &7407217651711434060
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9846,9 +9846,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3610656815805550886}
-  - component: {fileID: 5645297580178710685}
-  - component: {fileID: 6490220668761635018}
+  - component: {fileID: 8081336200355412858}
+  - component: {fileID: 2848926749074586440}
+  - component: {fileID: 8084714015286518360}
   m_Layer: 0
   m_Name: Blood
   m_TagString: Untagged
@@ -9856,28 +9856,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3610656815805550886
+--- !u!4 &8081336200355412858
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6705722462752620221}
+  m_GameObject: {fileID: 7407217651711434060}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3856783026586008196}
+  m_Father: {fileID: 2705925836157070689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &5645297580178710685
+--- !u!198 &2848926749074586440
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6705722462752620221}
+  m_GameObject: {fileID: 7407217651711434060}
   serializedVersion: 8
   lengthInSec: 10
   simulationSpeed: 1
@@ -14603,14 +14603,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &6490220668761635018
+--- !u!199 &8084714015286518360
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6705722462752620221}
+  m_GameObject: {fileID: 7407217651711434060}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
