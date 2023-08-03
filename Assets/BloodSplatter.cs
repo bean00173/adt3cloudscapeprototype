@@ -33,7 +33,11 @@ public class BloodSplatter : MonoBehaviour
             splattered = true; // if ground near, find point of contact, create vector pos and instantiate splatter
             Vector3 pos = new Vector3((float)hit.point.x, (float)hit.point.y + 0.1f, (float)hit.point.z);
             GameObject splatter = Instantiate(bloodSplat, pos, Quaternion.identity, parent);
-
+        }
+        else if(splattered)
+        {
+            this.transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // make sure body part doesnt continue to move after splatter
+            this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 

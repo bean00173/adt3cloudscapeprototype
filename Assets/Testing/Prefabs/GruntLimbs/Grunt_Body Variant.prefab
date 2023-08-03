@@ -14577,6 +14577,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4819223349682164798, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -14593,9 +14605,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ae166043726c8d24ca2640beec153f6a, type: 2}
+    - target: {fileID: -516098083770646512, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
       propertyPath: m_Name
       value: Grunt_Body Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8449996119470504636, guid: 29da344ecb9d363439e768f3c08236f3, type: 3}
       propertyPath: m_Materials.Array.data[0]
