@@ -54,8 +54,8 @@ public class GreatswordCombat : MonoBehaviour
             pm.MoveInterrupt(false); // pause movement
             holding = true;
             readyToAtk = false;
-            hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
             hit.enabled = true;
+            hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
             ac.SetBool("holdAtk", true); // begin spinning attack animation
         }
         else if(holding == true) // if holding is true but key not pressed
