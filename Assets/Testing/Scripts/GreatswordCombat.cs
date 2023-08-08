@@ -53,7 +53,7 @@ public class GreatswordCombat : MonoBehaviour
             //StartCoroutine(SpinAttackMov());
             pm.MoveInterrupt(false); // pause movement
             holding = true;
-            readyToAtk = false;
+            readyToAtk = false; 
             hit.enabled = true;
             hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
             ac.SetBool("holdAtk", true); // begin spinning attack animation
@@ -64,11 +64,13 @@ public class GreatswordCombat : MonoBehaviour
             pm.MoveInterrupt(true); // allow movement
             ac.SetBool("holdAtk", false); // disable animation
             holding = false;
+            readyToHold = true;
             hit = colliders[0];
             hit.enabled = false;
             readyToAtk = true;
             ac.SetTrigger("holdEnd"); // begin ending animation
         }
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk) // if mouse clicked
         {
             Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");

@@ -37,7 +37,7 @@ public class BodyPartContainer : MonoBehaviour
             }
         }
 
-        if(bodyParts.Count >= 50) //if there are too many bodyParts in the scene, need to remove oldest ones
+        if(bodyParts.Count >= 200) //if there are too many bodyParts in the scene, need to remove oldest ones
         {
             foreach (Transform child in transform)
             {
