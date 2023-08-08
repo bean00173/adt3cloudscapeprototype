@@ -11,6 +11,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public float damage;
     public float speed;
     public float attackRadius;
+    public int score;
 }
 
 public enum enemyType //stores current enemy type so when DropLimbs() is called, the BodyPartContainer can decide which list of limbs to use
@@ -31,22 +32,42 @@ public class EnemyBehaviour : MonoBehaviour
     NavMeshAgent agent;
     BodyPartContainer bpc;
     Rigidbody rb;
+    Animator ac;
+
+    public Transform hitbox;
+    Collider hit;
+
+    bool atkReady;
+
+    int hitInt;
 
     // Start is called before the first frame update
     void Start()
     {
+        ac = this.GetComponentInChildren<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
         health = enemy.maxHealth;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
+        hit = hitbox.GetComponent<Collider>();
+
+        hit.enabled = false;
+        hit.isTrigger = true;
 
         LimitSpawnVelocity();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
+
+        if (atkReady)
+        {
+            agent.speed = 0;
+            ac.SetTrigger("atkReady");
+        }
+
         agent.speed = enemy.speed;
 
         RangeCheck(); // check if near player
@@ -85,6 +106,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
         {
             agent.destination = this.transform.position;
+            atkReady = true;
         }
         else
         {
@@ -94,6 +116,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void EnemyDeath() // separate function for death method
     {
+        GameManager.instance.ScoreUp(this.enemy.score);
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion
@@ -131,5 +154,20 @@ public class EnemyBehaviour : MonoBehaviour
         yield return new WaitForSeconds(.25f);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    public void dohit()
+    {
+        if(hitInt == 0)
+        {
+            hit.enabled = true;
+            hitInt = 1;
+        }
+        else
+        {
+            hitInt = 0;
+            hit.enabled = false;
+        }
+        
     }
 }
