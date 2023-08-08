@@ -82,7 +82,7 @@ public class GreatswordCombat : MonoBehaviour
                     bool thirdAtk = Time.time - lastPressedTime <= comboTime; // same as before but for third attack
                     if(comboIndex == 2 && thirdAtk) // if combo ready for last hit 
                     {
-                        Debug.Log("Combo Finished");
+                        ac.SetTrigger("atkEnd");
                         firstAtk = false; // reset bools
                         secondAtk = false;
                         
@@ -101,6 +101,7 @@ public class GreatswordCombat : MonoBehaviour
         if((firstAtk || secondAtk) && Time.time - lastPressedTime > comboTime) // regardless of mouse click, if first or second click achieved + time has expired, fail combo, reset combo progress
         {
             Debug.Log("Combo Failed");
+            ac.SetTrigger("atkEnd");
             secondAtk = false;
             firstAtk = false;
             comboIndex = 0;
@@ -110,10 +111,10 @@ public class GreatswordCombat : MonoBehaviour
     void Attack()
     {
 
-        ac.SetTrigger("atk"); // if attack called, begin animations, set state of combo blend tree
+        ac.Play("Attack", -1, 0f); // if attack called, begin animations, set state of combo blend tree
         ac.SetFloat("atkIndex", comboIndex);
         pm.transform.rotation = pm.orientation.rotation; // set rotation of player to orientation rotation
-        StartCoroutine(EnableHit()); // run coroutine for enabling hitbox
+        //StartCoroutine(EnableHit()); // run coroutine for enabling hitbox
 
     }
 
@@ -126,29 +127,19 @@ public class GreatswordCombat : MonoBehaviour
         }
     }
 
-    IEnumerator EnableHit()
+    public void hitOn()
     {
-        yield return new WaitForSeconds(.6f); // wait enough time for attack to start
         hit.enabled = true;
+    }
 
-        yield return new WaitForSeconds(.3f); // turn hitbox on for near end of attack duration
+    public void hitOff()
+    {
         hit.enabled = false;
 
-        //Collider[] colliders = Physics.OverlapSphere(this.transform.position, 5.0f); // finds all colliders within a radius
-        //foreach (Collider hit in colliders)
-        //{
-        //    Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-        //    if (rb != null)
-        //        rb.AddExplosionForce(pc.knockBackModifier, this.transform.position, 5.0f, 3.0f); // adds force to object rigidbody
-        //}
-
-
-        yield return new WaitForSeconds(.3f); // end of attack
-
-        if(comboIndex == 2) // if combo index already maxed out, reset index
+        if (comboIndex == 2) // if combo index already maxed out, reset index
         {
             comboIndex = 0;
+            Debug.Log("Combo Finished");
         }
         else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
         {
@@ -156,6 +147,29 @@ public class GreatswordCombat : MonoBehaviour
         }
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true; // re-enables attack capability
-
     }
+
+    //IEnumerator EnableHit()
+    //{
+    //    yield return new WaitForSeconds(.6f); // wait enough time for attack to start
+    //    hit.enabled = true;
+
+    //    yield return new WaitForSeconds(.3f); // turn hitbox on for near end of attack duration
+    //    hit.enabled = false;
+
+    //    //Collider[] colliders = Physics.OverlapSphere(this.transform.position, 5.0f); // finds all colliders within a radius
+    //    //foreach (Collider hit in colliders)
+    //    //{
+    //    //    Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+    //    //    if (rb != null)
+    //    //        rb.AddExplosionForce(pc.knockBackModifier, this.transform.position, 5.0f, 3.0f); // adds force to object rigidbody
+    //    //}
+
+
+    //    yield return new WaitForSeconds(.3f); // end of attack
+
+        
+
+    //}
 }

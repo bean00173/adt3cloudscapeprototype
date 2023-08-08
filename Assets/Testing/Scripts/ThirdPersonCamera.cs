@@ -45,12 +45,12 @@ public class ThirdPersonCamera : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 inputDir = -1 * orientation.forward * verticalInput + -1 * orientation.right * horizontalInput;
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // If Input Direction is not Zero and movement is enabled, change view direction to input direction
         if (inputDir != Vector3.zero && pc.canMove)
         {
-            capsule.forward = Vector3.Slerp(capsule.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
     }
