@@ -5,8 +5,8 @@ using UnityEngine;
 public class GreatswordCombat : MonoBehaviour
 {
     public Transform weapon;
-    public Transform hitbox;
-    Collider[] hitBoxes;
+    public Transform hitContainer;
+    List<Collider> colliders = new List<Collider>();
     Collider hit;
     PlayableCharacter pc;
     Animator ac;
@@ -28,23 +28,22 @@ public class GreatswordCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hitBoxes = hitbox.GetComponentsInChildren<Collider>(); // gathering references
+        foreach(Collider col in hitContainer.GetComponentsInChildren<Collider>())
+        {
+            colliders.Add(col);
+            col.enabled = false; // disables collider and enables as trigger
+            col.isTrigger = true;
+        }
         ac = this.transform.root.GetComponent<Animator>();
         pm = this.GetComponent<PlayerMovement>();
         rb = this.GetComponent<Rigidbody>();
         pc = this.GetComponent<PlayableCharacter>();
-
-        foreach(Collider collider in hitBoxes) // gathers all 3 combo hit colliders [MIGHT NOT BE NECESSARY FOR ANY OTHER THAN FINAL HIT OF COMBO]
-        {
-            collider.enabled = false; // disables collider and enables as trigger
-            collider.isTrigger = true;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        hit = hitBoxes[comboIndex];
+        hit = colliders[comboIndex];
         //if (Input.GetKey(KeyCode.Mouse0))
         //{
         //    Debug.Log("HOLDING ATTACK");
@@ -55,7 +54,7 @@ public class GreatswordCombat : MonoBehaviour
             pm.MoveInterrupt(false); // pause movement
             holding = true;
             readyToAtk = false;
-            hit = hitBoxes[0]; // set hitbox to be sphere collider (hard coded)
+            hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
             hit.enabled = true;
             ac.SetBool("holdAtk", true); // begin spinning attack animation
         }
@@ -65,7 +64,7 @@ public class GreatswordCombat : MonoBehaviour
             pm.MoveInterrupt(true); // allow movement
             ac.SetBool("holdAtk", false); // disable animation
             holding = false;
-            hit = hitBoxes[0];
+            hit = colliders[0];
             hit.enabled = false;
             readyToAtk = true;
             ac.SetTrigger("holdEnd"); // begin ending animation
