@@ -11,6 +11,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public float damage;
     public float speed;
     public float attackRadius;
+    public int score;
 }
 
 public enum enemyType //stores current enemy type so when DropLimbs() is called, the BodyPartContainer can decide which list of limbs to use
@@ -94,6 +95,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void EnemyDeath() // separate function for death method
     {
+        GameManager.instance.ScoreUp(this.enemy.score);
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion

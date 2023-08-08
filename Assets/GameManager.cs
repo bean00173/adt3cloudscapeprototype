@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static int score { get; private set; }
 
     private List<int> chance = new List<int>();
     private int probIndex;
+
+    public TextMeshProUGUI scoreText;
 
     // Make this a singleton.
     public void Awake()
@@ -33,7 +38,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(scoreText.text != score.ToString())
+        {
+            scoreText.text = score.ToString();
+        }
     }
 
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
@@ -78,6 +86,11 @@ public class GameManager : MonoBehaviour
         Vector3 spawnDir = new Vector3(hor, 0, vert); // creates vector with coords
 
         return pos + spawnDir * radius; // return spawnPos
+    }
+
+    public void ScoreUp(int update)
+    {
+        score += update;
     }
 
 }
