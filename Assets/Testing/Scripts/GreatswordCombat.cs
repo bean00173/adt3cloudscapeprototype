@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GreatswordCombat : MonoBehaviour
 {
-    public Transform weapon;
     public Transform hitContainer;
+    Transform player;
     List<Collider> colliders = new List<Collider>();
     Collider hit;
     PlayableCharacter pc;
@@ -28,16 +28,17 @@ public class GreatswordCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = this.transform.root.GetChild(0);
         foreach(Collider col in hitContainer.GetComponentsInChildren<Collider>())
         {
             colliders.Add(col);
             col.enabled = false; // disables collider and enables as trigger
             col.isTrigger = true;
         }
-        ac = this.transform.root.GetComponent<Animator>();
-        pm = this.GetComponent<PlayerMovement>();
-        rb = this.GetComponent<Rigidbody>();
-        pc = this.GetComponent<PlayableCharacter>();
+        ac = this.GetComponent<Animator>();
+        pm = player.GetComponent<PlayerMovement>();
+        rb = player.GetComponent<Rigidbody>();
+        pc = player.GetComponent<PlayableCharacter>();
     }
 
     // Update is called once per frame
@@ -48,28 +49,28 @@ public class GreatswordCombat : MonoBehaviour
         //{
         //    Debug.Log("HOLDING ATTACK");
         //}
-        if (Input.GetKey(KeyCode.F) && readyToHold) // if holding down F key
-        {
-            //StartCoroutine(SpinAttackMov());
-            pm.MoveInterrupt(false); // pause movement
-            holding = true;
-            readyToAtk = false; 
-            hit.enabled = true;
-            hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
-            ac.SetBool("holdAtk", true); // begin spinning attack animation
-        }
-        else if(holding == true) // if holding is true but key not pressed
-        {
-            this.transform.rotation = pm.orientation.transform.rotation; // set rotation of player to be orientation rotation
-            pm.MoveInterrupt(true); // allow movement
-            ac.SetBool("holdAtk", false); // disable animation
-            holding = false;
-            readyToHold = true;
-            hit = colliders[0];
-            hit.enabled = false;
-            readyToAtk = true;
-            ac.SetTrigger("holdEnd"); // begin ending animation
-        }
+        //if (Input.GetKey(KeyCode.F) && readyToHold) // if holding down F key
+        //{
+        //    //StartCoroutine(SpinAttackMov());
+        //    pm.MoveInterrupt(false); // pause movement
+        //    holding = true;
+        //    readyToAtk = false; 
+        //    hit.enabled = true;
+        //    hit = colliders[0]; // set hitbox to be sphere collider (hard coded)
+        //    ac.SetBool("holdAtk", true); // begin spinning attack animation
+        //}
+        //else if(holding == true) // if holding is true but key not pressed
+        //{
+        //    this.transform.rotation = pm.orientation.transform.rotation; // set rotation of player to be orientation rotation
+        //    pm.MoveInterrupt(true); // allow movement
+        //    ac.SetBool("holdAtk", false); // disable animation
+        //    holding = false;
+        //    readyToHold = true;
+        //    hit = colliders[0];
+        //    hit.enabled = false;
+        //    readyToAtk = true;
+        //    ac.SetTrigger("holdEnd"); // begin ending animation
+        //}
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk) // if mouse clicked
         {
@@ -114,6 +115,7 @@ public class GreatswordCombat : MonoBehaviour
 
         ac.Play("Attack", -1, 0f); // if attack called, begin animations, set state of combo blend tree
         ac.SetFloat("atkIndex", comboIndex);
+        readyToHold = false;
         pm.transform.rotation = pm.orientation.rotation; // set rotation of player to orientation rotation
         //StartCoroutine(EnableHit()); // run coroutine for enabling hitbox
 
@@ -148,6 +150,7 @@ public class GreatswordCombat : MonoBehaviour
         }
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true; // re-enables attack capability
+        readyToHold = true; // re enable special atk capability
     }
 
     //IEnumerator EnableHit()

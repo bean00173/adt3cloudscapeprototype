@@ -77,8 +77,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon")) // if weapon trigger enter collider
         {
-            Transform player = other.transform.root; // collect collider root (player)
+            Transform player = other.transform.root.GetChild(0); // collect collider root (player)
             PlayableCharacter pCharacter = player.GetComponent<PlayableCharacter>();
+
+            Debug.Log("Hit for " + pCharacter.attackModifier + " Damage!");
 
             //Vector3 moveDirection = pCharacter.transform.GetComponent<PlayerMovement>().orientation.transform.position - this.transform.position;
             //rb.AddForce(moveDirection * -100f * pCharacter.knockBackModifier, ForceMode.Force);

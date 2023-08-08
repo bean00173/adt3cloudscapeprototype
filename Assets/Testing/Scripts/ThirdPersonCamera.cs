@@ -10,21 +10,13 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public Transform orientation;
     public Transform player;
-    public Transform capsule;
 
     public Transform camHolder;
 
     private CinemachineFreeLook cfl;
-    PlayerMovement pc;
-    public Rigidbody rb;
-
-    RaycastHit hitInfo;
-    Renderer lastHit;
+    PlayerMovement pm;
 
     public float rotationSpeed;
-
-    private float fov;
-    private Vector3 tilt;
     int i = 0;
 
     private void Start()
@@ -33,7 +25,12 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.visible = false;
 
         cfl = this.GetComponent<CinemachineFreeLook>();
-        pc = player.GetComponent<PlayerMovement>();
+        pm = player.GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void FixedUpdate()
@@ -48,7 +45,7 @@ public class ThirdPersonCamera : MonoBehaviour
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // If Input Direction is not Zero and movement is enabled, change view direction to input direction
-        if (inputDir != Vector3.zero && pc.canMove)
+        if (inputDir != Vector3.zero && pm.canMove)
         {
             player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
