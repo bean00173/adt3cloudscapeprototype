@@ -17,16 +17,9 @@ public class PlayableCharacter : MonoBehaviour
     private void Start()
     {
         manager = CharacterManager.instance; // gathers instance of character manager
-        GetStats();
-
     }
 
     private void Update()
-    {
-        GetStats();
-    }
-
-    public void GetStats()
     {
         healthModifier = manager.GetCurrentCharacter(currentCharacter).health; // returns stats from class manager method to return current character based on enum ID
         attackModifier = manager.GetCurrentCharacter(currentCharacter).atkMultiplier;

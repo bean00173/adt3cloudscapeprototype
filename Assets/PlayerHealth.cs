@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,9 +39,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (this.GetComponent<PlayerHealth>().enabled == false) return;
+        else
         {
-            takeDamage(other.GetComponent<EnemyBehaviour>().enemy.damage);
+            if (other.CompareTag("Enemy"))
+            {
+                Debug.Log("Taking Damage");
+                takeDamage(other.GetComponent<EnemyBehaviour>().enemy.damage);
+            }
         }
     }
 }
