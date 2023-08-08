@@ -1501,7 +1501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468337392}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09578751, y: -0.34848794, z: 0.09928649, w: 0.9271048}
+  m_LocalRotation: {x: 0.095787525, y: -0.34848797, z: 0.09928648, w: 0.9271048}
   m_LocalPosition: {x: 0, y: 0.0000011048407, z: 0.00000077350904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2903,7 +2903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158348780}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2524616, z: 0.10098463, w: 0.96232283}
+  m_LocalRotation: {x: -0, y: -0.25246164, z: 0.100984655, w: 0.9623229}
   m_LocalPosition: {x: -10.642494, y: 6.139441, z: 3.6474605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3313,11 +3313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower:
-    floors:
-    - waves:
-      - enemies:
-        - {fileID: 0}
-        enemyCount: 0
+    floors: []
 --- !u!1 &1408025764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,7 +3714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581295104}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.095787525, y: -0.34848797, z: 0.09928648, w: 0.9271048}
+  m_LocalRotation: {x: 0.09578754, y: -0.34848794, z: 0.09928649, w: 0.9271048}
   m_LocalPosition: {x: -0.00000023841858, y: 0.0000012290902, z: 0.0000014778902}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4509,7 +4505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005342137}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09578749, y: -0.3484879, z: 0.09928646, w: 0.9271047}
+  m_LocalRotation: {x: 0.09578751, y: -0.34848794, z: 0.09928649, w: 0.9271048}
   m_LocalPosition: {x: 0, y: 0.0000011048407, z: 0.00000077350904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
