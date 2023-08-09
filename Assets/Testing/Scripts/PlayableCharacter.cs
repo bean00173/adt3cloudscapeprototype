@@ -7,9 +7,7 @@ public class PlayableCharacter : MonoBehaviour
 {
     public Character.CharacterId currentCharacter;
 
-
     CharacterManager manager;
-
     public float healthModifier { get; private set; }
     public float attackModifier { get; private set; }
     public float speedModifier { get; private set; }
@@ -31,7 +29,6 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
-
     }
 
     private void Update()
@@ -40,6 +37,18 @@ public class PlayableCharacter : MonoBehaviour
         attackModifier = manager.GetCurrentCharacter(currentCharacter).atkMultiplier;
         speedModifier = manager.GetCurrentCharacter(currentCharacter).spdMultiplier;
         knockBackModifier = manager.GetCurrentCharacter(currentCharacter).knockbackForce;
+
+        Debug.DrawRay(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, Color.red, 1f);
+
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
+        {
+            GameManager.instance.promptText.SetActive(true);
+        }
+        else
+        {
+            GameManager.instance.promptText.SetActive(false);
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -64,6 +73,7 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+        //ReturnNextAliveCharacter().gameObject.SetActive(true);
                 
     }
 
@@ -79,4 +89,12 @@ public class PlayableCharacter : MonoBehaviour
 
         return null;
     }
+
+    //public Transform ReturnNextAliveCharacter()
+    //{
+    //    foreach(Transform character in characterContainer)
+    //    {
+
+    //    }
+    //}
 }

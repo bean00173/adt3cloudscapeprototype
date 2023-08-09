@@ -9,6 +9,7 @@ public class Character
     public float atkMultiplier;
     public float spdMultiplier;
     public float knockbackForce;
+    public bool isAlive;
 
     public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier, float knockbackForce) // constructor
     {

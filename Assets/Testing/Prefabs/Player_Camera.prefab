@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 7264351442032719945}
   m_Layer: 0
   m_Name: Player_Camera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1592,12 +1592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacter: 2
-  healthModifier: 0
-  attackModifier: 0
-  speedModifier: 0
-  knockBackModifier: 0
   characterContainer: {fileID: 7824498333873508811}
-  characterIndex: 0
 --- !u!54 &4509335079674756708
 Rigidbody:
   m_ObjectHideFlags: 0

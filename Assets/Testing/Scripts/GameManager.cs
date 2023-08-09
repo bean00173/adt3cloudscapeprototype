@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public static Tower towerData;
     public static int score { get; private set; }
 
     private List<int> chance = new List<int>();
     private int probIndex;
 
     public TextMeshProUGUI scoreText;
+    public GameObject promptText;
+
+    [HideInInspector]
+    public bool readyToLoad;
+
+    [Header("All events below will play when player interacts with a door")]
+    public UnityEvent onLevelLoad = new UnityEvent();
 
     // Make this a singleton.
     public void Awake()
@@ -41,6 +51,12 @@ public class GameManager : MonoBehaviour
         if(scoreText.text != score.ToString())
         {
             scoreText.text = score.ToString();
+        }
+
+        if (readyToLoad && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("SceneTransition");
+            onLevelLoad.Invoke();
         }
     }
 
@@ -91,6 +107,11 @@ public class GameManager : MonoBehaviour
     public void ScoreUp(int update)
     {
         score += update;
+    }
+
+    public void StoreTowerData(Tower tower)
+    {
+        towerData = tower;
     }
 
 }
