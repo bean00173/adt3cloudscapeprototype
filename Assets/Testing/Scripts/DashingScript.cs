@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollingScript : MonoBehaviour
+public class DashingScript : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
@@ -20,8 +20,6 @@ public class RollingScript : MonoBehaviour
 
     private Animator ac;
 
-    public Character.CharacterId currentCharacter;
-
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -33,8 +31,7 @@ public class RollingScript : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Dash();
         }

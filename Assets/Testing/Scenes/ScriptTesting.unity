@@ -384,8 +384,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 15
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 769326730}
-  m_Follow: {fileID: 769326730}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 75
@@ -483,11 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7acef0b9395743544810ffe92abd0cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 769326730}
+  orientation: {fileID: 0}
   player: {fileID: 769326733}
-  capsule: {fileID: 769326731}
   camHolder: {fileID: 1434181076}
-  rb: {fileID: 769326732}
   rotationSpeed: 50
 --- !u!114 &55706560
 MonoBehaviour:
@@ -674,9 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 0}
   player: {fileID: 0}
-  capsule: {fileID: 0}
   camHolder: {fileID: 1434181076}
-  rb: {fileID: 0}
   rotationSpeed: 50
 --- !u!1 &131692666
 GameObject:
@@ -1948,21 +1944,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f0f10651c33654b9b2c89209a225bd, type: 3}
---- !u!4 &769326730 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7995591509986731483, guid: 16f0f10651c33654b9b2c89209a225bd, type: 3}
-  m_PrefabInstance: {fileID: 769326729}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &769326731 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4988667820187810937, guid: 16f0f10651c33654b9b2c89209a225bd, type: 3}
-  m_PrefabInstance: {fileID: 769326729}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &769326732 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4044586462740063422, guid: 16f0f10651c33654b9b2c89209a225bd, type: 3}
-  m_PrefabInstance: {fileID: 769326729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &769326733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5573325912737140189, guid: 16f0f10651c33654b9b2c89209a225bd, type: 3}
@@ -3008,7 +2989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612626357}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18824731, y: -0.0935536, z: 0.018016774, w: 0.9774897}
+  m_LocalRotation: {x: 0.18824731, y: -0.0935536, z: 0.018016776, w: 0.9774897}
   m_LocalPosition: {x: 13.818393, y: 4.224, z: -4.251651}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
