@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public static Character activeCharacter;
     public static Tower towerData;
     public static int score { get; private set; }
 
@@ -112,6 +113,11 @@ public class GameManager : MonoBehaviour
     public void StoreTowerData(Tower tower)
     {
         towerData = tower;
+    }
+
+    public void StoreCharacterData(Character character)
+    {
+        activeCharacter = character;
     }
 
 }

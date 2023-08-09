@@ -9,12 +9,11 @@ public class TowerData : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.onLevelLoad.AddListener(sendData);
+        GameManager.instance.onLevelLoad.AddListener(sendTowerData);
     }
 
-    private void sendData()
+    private void sendTowerData()
     {
-        if()
         GameManager.instance.StoreTowerData(tower);
     }
 }

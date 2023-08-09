@@ -23,8 +23,8 @@ public class Character
 
     public enum CharacterId
     {
+        seb,
         rav,
-        abi,
-        seb
+        abi
     }
 }

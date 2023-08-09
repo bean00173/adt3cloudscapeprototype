@@ -14,18 +14,21 @@ public class CharacterManager : MonoBehaviour
     public float ravAtk;
     public float ravSpeed;
     public float ravKnock;
+    public bool ravAlive;
 
     [Header("Abigail Stats")]
     public float abiHealth;
     public float abiAtk;
     public float abiSpeed;
-    public float abiKnock; 
+    public float abiKnock;
+    public bool abiAlive;
 
     [Header("Sebastian Stats")]
     public float sebHealth;
     public float sebAtk;
     public float sebSpeed;
     public float sebKnock;
+    public bool sebAlive;
 
     [Header("Universal Knockback Duration")]
     public float knockbackDuration;

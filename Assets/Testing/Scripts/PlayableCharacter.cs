@@ -29,6 +29,8 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+
+        GameManager.instance.onLevelLoad.AddListener(SendCharacterData);
     }
 
     private void Update()
@@ -43,6 +45,7 @@ public class PlayableCharacter : MonoBehaviour
         if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
         {
             GameManager.instance.promptText.SetActive(true);
+            GameManager.instance.readyToLoad = true;
         }
         else
         {
@@ -88,6 +91,11 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SendCharacterData()
+    {
+        GameManager.instance.StoreCharacterData(manager.GetCurrentCharacter(currentCharacter));
     }
 
     //public Transform ReturnNextAliveCharacter()
