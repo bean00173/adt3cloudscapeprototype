@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private float currentHealth;
 
+    bool dead;
+
 
     private void Awake()
     {
@@ -36,12 +38,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        float healthScale = currentHealth / health;
-        healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+        if (!dead)
+        {
+            float healthScale = currentHealth / health;
+            healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+        }
 
         if (currentHealth <= 0)
         {
+            dead = true;
             Debug.Log("LOSE");
         }
     }
@@ -59,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
             if (other.CompareTag("Enemy"))
             {
                 Debug.Log("Taking Damage");
-                takeDamage(other.GetComponent<EnemyBehaviour>().enemy.damage);
+                takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
             }
         }
     }
