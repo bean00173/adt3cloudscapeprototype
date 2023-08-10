@@ -27,6 +27,7 @@ public class LoadingBehaviour : MonoBehaviour
             if(operation.progress >= .9f)
             {
                 continuePrompt.gameObject.SetActive(true);
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     operation.allowSceneActivation = true;

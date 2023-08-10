@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private List<int> chance = new List<int>();
 
-    private TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText;
     public Transform promptText;
 
     [HideInInspector]
@@ -42,15 +42,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (scoreText.text != score.ToString())
+        if (ReturnCurrentScene().name == "ScriptTesting")
         {
-            scoreText.text = score.ToString();
+            scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
+
+            if (scoreText.text != score.ToString())
+            {
+                scoreText.text = score.ToString();
+            }
         }
 
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
@@ -58,9 +63,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("SceneTransition");
             onLevelLoad.Invoke();
         }
-
-        scoreText = UIManager.instance.scoreText;
-        promptText = UIManager.instance.promptText;
     }
 
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
@@ -125,6 +127,24 @@ public class GameManager : MonoBehaviour
     public Tower ReturnTowerData()
     {
         return towerData;
+    }
+
+    public Scene ReturnCurrentScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+    }
+
+    public Transform ReturnUIComponent(string name)
+    {
+        foreach(Transform child in GameObject.Find("Canvas").transform)
+        {
+            if(child.name == name)
+            {
+                return child.transform;
+            }
+        }
+
+        return null;
     }
 
 }

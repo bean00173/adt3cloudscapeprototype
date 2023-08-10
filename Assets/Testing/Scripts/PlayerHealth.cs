@@ -14,9 +14,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "ScriptTesting")
+        if (GameManager.instance.ReturnCurrentScene().name == "ScriptTesting")
         {
-            healthBar = UIManager.instance.healthBar;
+            healthBar = GameManager.instance.ReturnUIComponent("health");
             this.enabled = true;
         }
         else
@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
 
         healthBar.localScale = Vector3.one;
-        health = this.GetComponent<PlayableCharacter>().healthModifier;
+        health = GameManager.activeCharacter.health;
         currentHealth = health;
     }
 
@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
     {
 
         float healthScale = currentHealth / health;
-        healthBar.localScale = new Vector3(1f, healthScale, 1f);
+        healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
 
         if (currentHealth <= 0)
         {

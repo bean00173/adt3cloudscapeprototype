@@ -58,16 +58,18 @@ public class PlayableCharacter : MonoBehaviour
             canSwitch = true;
         }
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
+        if(GameManager.instance.ReturnCurrentScene().name != "LoadingScene")
         {
-            GameManager.instance.promptText.GetChild(0).gameObject.SetActive(true);
-            GameManager.instance.readyToLoad = true;
-        }
-        else
-        {
-            GameManager.instance.promptText.GetChild(0).gameObject.SetActive(false);
-        }
-        
+            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
+            {
+                GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(true);
+                GameManager.instance.readyToLoad = true;
+            }
+            else
+            {
+                GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(false);
+            }
+        } 
 
         if (Input.GetKeyDown(KeyCode.Q) && canSwitch)
         {
