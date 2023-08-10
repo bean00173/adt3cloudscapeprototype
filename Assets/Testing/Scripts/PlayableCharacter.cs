@@ -7,6 +7,8 @@ public class PlayableCharacter : MonoBehaviour
 {
     public Character.CharacterId currentCharacter;
 
+    public Animator ac;
+
     CharacterManager manager;
     public float healthModifier { get; private set; }
     public float attackModifier { get; private set; }
@@ -36,6 +38,7 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
 
         GameManager.instance.onLevelLoad.AddListener(SendCharacterData);
     }
@@ -94,8 +97,10 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
+
         //ReturnNextAliveCharacter().gameObject.SetActive(true);
-                
+
     }
 
     public Transform ReturnCurrentCharacter()

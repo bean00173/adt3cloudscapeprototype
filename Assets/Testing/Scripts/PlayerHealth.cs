@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private float currentHealth;
 
+    Animator ac;
+
     bool dead;
 
 
@@ -29,15 +31,18 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         healthBar.localScale = Vector3.one;
         health = GameManager.activeCharacter.health;
         currentHealth = health;
+
+        ac = this.GetComponent<PlayableCharacter>().ac;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (ac != this.GetComponent<PlayableCharacter>().ac) ac = this.GetComponent<PlayableCharacter>().ac;
+
         if (!dead)
         {
             float healthScale = currentHealth / health;
@@ -48,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
         {
             dead = true;
             Debug.Log("LOSE");
+            ac.SetTrigger("Dead");
         }
     }
 
