@@ -11,25 +11,39 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private float currentHealth;
 
+
+    private void Awake()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "ScriptTesting")
+        {
+            healthBar = UIManager.instance.healthBar;
+            this.enabled = true;
+        }
+        else
+        {
+            this.enabled = false;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        //healthBar.localScale = Vector3.one;
-        //health = this.GetComponent<PlayableCharacter>().healthModifier;
-        //currentHealth = health;
+
+        healthBar.localScale = Vector3.one;
+        health = this.GetComponent<PlayableCharacter>().healthModifier;
+        currentHealth = health;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //float healthScale = currentHealth / health;
-        ////healthBar.localScale = new Vector3(1f, healthScale, 1f);
+        float healthScale = currentHealth / health;
+        healthBar.localScale = new Vector3(1f, healthScale, 1f);
 
-        //if(currentHealth <= 0)
-        //{
-        //    Debug.Log("LOSE");
-        //}
+        if (currentHealth <= 0)
+        {
+            Debug.Log("LOSE");
+        }
     }
 
     public void takeDamage(float damage)

@@ -11,13 +11,14 @@ public class Character
     public float knockbackForce;
     public bool isAlive;
 
-    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier, float knockbackForce) // constructor
+    public Character(CharacterId id, float health, float atkMultiplier, float spdMultiplier, float knockbackForce, bool alive) // constructor
     {
         Id = id;
         this.health = health;
         this.atkMultiplier = atkMultiplier;
         this.spdMultiplier = spdMultiplier;
         this.knockbackForce = knockbackForce;
+        this.isAlive = alive;
     }
 
 

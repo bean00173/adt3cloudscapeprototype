@@ -14,21 +14,21 @@ public class CharacterManager : MonoBehaviour
     public float ravAtk;
     public float ravSpeed;
     public float ravKnock;
-    public bool ravAlive;
+    public bool ravAlive = true;
 
     [Header("Abigail Stats")]
     public float abiHealth;
     public float abiAtk;
     public float abiSpeed;
     public float abiKnock;
-    public bool abiAlive;
+    public bool abiAlive = true;
 
     [Header("Sebastian Stats")]
     public float sebHealth;
     public float sebAtk;
     public float sebSpeed;
     public float sebKnock;
-    public bool sebAlive;
+    public bool sebAlive = true;
 
     [Header("Universal Knockback Duration")]
     public float knockbackDuration;
@@ -45,16 +45,16 @@ public class CharacterManager : MonoBehaviour
         else
         {
             instance = this;
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
     // Start is called before the first frame update
     void Start() // premade constructors for each individual character and their statistics (defined in inspector), adds all to list
     {
-        AddCharacter(new Character(Character.CharacterId.rav, ravHealth, ravAtk, ravSpeed, ravKnock));
-        AddCharacter(new Character(Character.CharacterId.abi, abiHealth, abiAtk, abiSpeed, abiKnock));
-        AddCharacter(new Character(Character.CharacterId.seb, sebHealth, sebAtk, sebSpeed, sebKnock));
+        AddCharacter(new Character(Character.CharacterId.rav, ravHealth, ravAtk, ravSpeed, ravKnock, ravAlive));
+        AddCharacter(new Character(Character.CharacterId.abi, abiHealth, abiAtk, abiSpeed, abiKnock, abiAlive));
+        AddCharacter(new Character(Character.CharacterId.seb, sebHealth, sebAtk, sebSpeed, sebKnock, sebAlive));
     }
 
     private void AddCharacter(Character character)

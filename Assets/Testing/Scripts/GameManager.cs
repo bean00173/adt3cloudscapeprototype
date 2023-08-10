@@ -15,10 +15,9 @@ public class GameManager : MonoBehaviour
     public static int score { get; private set; }
 
     private List<int> chance = new List<int>();
-    private int probIndex;
 
-    public TextMeshProUGUI scoreText;
-    public GameObject promptText;
+    private TextMeshProUGUI scoreText;
+    public Transform promptText;
 
     [HideInInspector]
     public bool readyToLoad;
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(scoreText.text != score.ToString())
+        if (scoreText.text != score.ToString())
         {
             scoreText.text = score.ToString();
         }
@@ -59,6 +58,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("SceneTransition");
             onLevelLoad.Invoke();
         }
+
+        scoreText = UIManager.instance.scoreText;
+        promptText = UIManager.instance.promptText;
     }
 
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
@@ -118,6 +120,11 @@ public class GameManager : MonoBehaviour
     public void StoreCharacterData(Character character)
     {
         activeCharacter = character;
+    }
+
+    public Tower ReturnTowerData()
+    {
+        return towerData;
     }
 
 }

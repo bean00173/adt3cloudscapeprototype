@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform enemyContainer;
     private List<Transform> spawns = new List<Transform>(); 
     private List<Transform> validSpawns = new List<Transform>();
-    public List<Wave> waves = new List<Wave>();
+    private List<Wave> waves = new List<Wave>();
 
     private Transform player;
     private int waveIndex;
@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waves = GameManager.instance.ReturnTowerData().floors[0].waves;
         foreach(Transform child in this.transform) // gather list of spawn points
         {
             spawns.Add(child);
@@ -37,20 +38,20 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("Wave Beaten");
             waveIndex++;
-            if(waveIndex <= waves.Count -1) // check if that was last wave, then continue to next wave if true, or end if false
+            if (waveIndex <= waves.Count - 1) // check if that was last wave, then continue to next wave if true, or end if false
             {
-               enemiesLeft = waves[waveIndex].enemyCount;
+                enemiesLeft = waves[waveIndex].enemyCount;
             }
             else
             {
-               Debug.Log("No Waves Left");
+                Debug.Log("No Waves Left");
             }
         }
-        else if(enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
+        else if (enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
         {
             SpawnEnemies(enemiesLeft, 5.0f);
         }
-        else if(aliveEnemies < 3 && enemiesLeft >= 15) // if the previous wave is about to be finished, spawn 5 more, however only if there are more than 15 left, due to the spawn last 10 together rule
+        else if (aliveEnemies < 3 && enemiesLeft >= 15) // if the previous wave is about to be finished, spawn 5 more, however only if there are more than 15 left, due to the spawn last 10 together rule
         {
             SpawnEnemies(5, 2.0f);
         }
@@ -63,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint = FindSpawnPoint(); // gather spawn point
         for(int i = 0; i < x; i++) // within number of enemies to be spawned, instantiate random enemy type, at randomised spawn point (using radial spawn)
         {
-            if (SpawnBrute())
+            if (CanSpawnBrute())
             {
                 Debug.Log("Brute");
                 Instantiate(waves[waveIndex].enemies[waves[waveIndex].enemies.Count - 1], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
@@ -98,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private bool SpawnBrute() // bool method to check if allowed to spawn a brute
+    private bool CanSpawnBrute() // bool method to check if allowed to spawn a brute
     {
         foreach (GameObject go in waves[waveIndex].enemies) // search potential enemy spawns
         {

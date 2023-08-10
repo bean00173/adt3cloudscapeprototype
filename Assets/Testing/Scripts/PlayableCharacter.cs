@@ -16,10 +16,17 @@ public class PlayableCharacter : MonoBehaviour
     public Transform characterContainer;
     private int characterIndex = 1;
 
+    bool canSwitch;
+
     private void Start()
     {
         manager = CharacterManager.instance; // gathers instance of character manager
         characterContainer = this.transform.GetChild(0);
+
+        if(GameManager.activeCharacter != null)
+        {
+            currentCharacter = GameManager.activeCharacter.Id;
+        }
 
         switch(currentCharacter)
         {
@@ -42,18 +49,27 @@ public class PlayableCharacter : MonoBehaviour
 
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, Color.red, 1f);
 
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "TowerTest")
+        {
+            canSwitch = false;
+        }
+        else
+        {
+            canSwitch = true;
+        }
+
         if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
         {
-            GameManager.instance.promptText.SetActive(true);
+            GameManager.instance.promptText.GetChild(0).gameObject.SetActive(true);
             GameManager.instance.readyToLoad = true;
         }
         else
         {
-            GameManager.instance.promptText.SetActive(false);
+            GameManager.instance.promptText.GetChild(0).gameObject.SetActive(false);
         }
         
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && canSwitch)
         {
             Debug.Log("Switching");
             SwitchCharacter();
