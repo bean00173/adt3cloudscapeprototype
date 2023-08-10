@@ -11,9 +11,11 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private float currentHealth;
 
+    public Transform blood;
+
     Animator ac;
 
-    bool dead;
+    public bool dead { get ; private set; }
 
 
     private void Awake()
@@ -46,19 +48,26 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
-            healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+            if(healthScale >= 0)
+            {
+                healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+            }
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !dead)
         {
             dead = true;
             Debug.Log("LOSE");
-            ac.SetTrigger("Dead");
+            ac.Play("Armature_Death", -1, 0f);
+
+            GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
+            splatter.transform.localScale = Vector3.one * 5;
         }
     }
 
     public void takeDamage(float damage)
     {
+        Debug.Log(currentHealth);
         currentHealth -= damage;
     }
 
@@ -67,10 +76,11 @@ public class PlayerHealth : MonoBehaviour
         if (this.GetComponent<PlayerHealth>().enabled == false) return;
         else
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("EnemyHit"))
             {
-                Debug.Log("Taking Damage");
+                Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
+                //Debug.Log("Taking " + other.GetComponentInParent<EnemyBehaviour>().enemy.damage + " Damage");
             }
         }
     }

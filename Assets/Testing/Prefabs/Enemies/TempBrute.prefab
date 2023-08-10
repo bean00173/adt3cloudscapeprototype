@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2b57bc9adc257234a923303003d38683, type: 2}
+    - target: {fileID: 7590603943412166329, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
+      propertyPath: m_TagString
+      value: EnemyHit
+      objectReference: {fileID: 0}
     - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: m_Name
       value: TempBrute

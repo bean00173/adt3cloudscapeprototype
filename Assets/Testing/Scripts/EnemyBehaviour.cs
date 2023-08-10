@@ -68,9 +68,17 @@ public class EnemyBehaviour : MonoBehaviour
             ac.SetTrigger("atkReady");
         }
 
-        agent.speed = enemy.speed;
+        if (!goal.GetComponent<PlayerHealth>().dead)
+        {
+            agent.speed = enemy.speed;
 
-        RangeCheck(); // check if near player
+            RangeCheck(); // check if near player
+        }
+        else
+        {
+            agent.speed = 0;
+        }
+
     }
 
     private void OnTriggerEnter(Collider other) 
