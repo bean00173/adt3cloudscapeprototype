@@ -107,7 +107,13 @@ public class EnemyBehaviour : MonoBehaviour
         Debug.DrawLine(origin, goal.position, Color.yellow);
         if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
         {
-            agent.destination = this.transform.position;
+            agent.destination = this.transform.position; // stop agent at current position
+
+            Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+
             atkReady = true;
         }
         else
