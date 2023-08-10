@@ -124,6 +124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempBrute
       objectReference: {fileID: 0}
+    - target: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8494441151483967170, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
       propertyPath: enemy.score
       value: 25
