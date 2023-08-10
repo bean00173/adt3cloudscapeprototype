@@ -21,7 +21,7 @@ public class LoadingBehaviour : MonoBehaviour
 
         while(!operation.isDone)
         {
-            progressBar.transform.localScale = new Vector3(operation.progress, 1, 1);
+            progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
             progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
 
             if(operation.progress >= .9f)
