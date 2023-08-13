@@ -60,7 +60,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
+
+        ac.SetFloat("speed", agent.speed);
 
         if (atkReady)
         {
@@ -70,6 +72,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (!goal.GetComponent<PlayerHealth>().dead)
         {
+
             agent.speed = enemy.speed;
 
             RangeCheck(); // check if near player
