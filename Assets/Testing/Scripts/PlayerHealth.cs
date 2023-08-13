@@ -59,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
             dead = true;
             Debug.Log("LOSE");
             ac.Play("Armature_Death", -1, 0f);
+            this.GetComponent<PlayerMovement>().MoveInterrupt(false);
             healthBar.localScale = new Vector3(0f, this.transform.localScale.y, this.transform.localScale.z);
             GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
             splatter.transform.localScale = Vector3.one * 5;
