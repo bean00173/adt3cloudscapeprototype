@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,7 @@ public enum enemyType //stores current enemy type so when DropLimbs() is called,
     ranger
 }
 
+
 public class EnemyBehaviour : MonoBehaviour
 {
 
@@ -39,7 +41,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     bool atkReady;
 
+    bool attacking;
+
     int hitInt;
+
+    Vector3 aimTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -62,25 +68,50 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
 
-        ac.SetFloat("speed", agent.speed);
+        
 
-        if (atkReady)
+        //if (atkReady)
+        //{
+        //    agent.speed = 0;
+        //    ac.SetTrigger("atkReady");
+        //}
+
+        //if (!goal.GetComponent<PlayerHealth>().dead)
+        //{
+
+        //    agent.speed = enemy.speed;
+
+        //    RangeCheck(); // check if near player
+        //}
+        //else
+        //{
+        //    agent.speed = 0;
+        //}
+
+        if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead)
         {
             agent.speed = 0;
             ac.SetTrigger("atkReady");
+
+            agent.destination = this.transform.position; // stop agent at current position
+
+            Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
         }
-
-        if (!goal.GetComponent<PlayerHealth>().dead)
-        {
-
-            agent.speed = enemy.speed;
-
-            RangeCheck(); // check if near player
-        }
-        else
+        else if (InRange() || goal.GetComponent<PlayerHealth>().dead)
         {
             agent.speed = 0;
         }
+        else
+        {
+            agent.speed = enemy.speed;
+            HandleMove();
+        }
+
+        ac.SetFloat("speed", agent.speed);
+
 
     }
 
@@ -112,26 +143,39 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void RangeCheck()
+    private bool InRange()
     {
         Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
         Debug.DrawLine(origin, goal.position, Color.yellow);
-        if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
-        {
-            agent.destination = this.transform.position; // stop agent at current position
 
-            Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
-            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
-
-            atkReady = true;
-        }
-        else
-        {
-            agent.destination = goal.position; // set agent destination to be player target (set in inspector)
-        }
+        return Vector3.Distance(origin, goal.position) < enemy.attackRadius;
     }
+
+    private void HandleMove()
+    {
+        agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+    }
+
+    //private void RangeCheck()
+    //{
+    //    Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
+    //    Debug.DrawLine(origin, goal.position, Color.yellow);
+    //    if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
+    //    {
+    //        agent.destination = this.transform.position; // stop agent at current position
+
+    //        Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+    //        Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+    //        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+
+    //        atkReady = true;
+    //    }
+    //    else
+    //    {
+    //        agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+    //    }
+    //}
 
     private void EnemyDeath() // separate function for death method
     {
@@ -188,5 +232,14 @@ public class EnemyBehaviour : MonoBehaviour
             hit.enabled = false;
         }
         
+    }
+
+    public void doRangeAtk()
+    {
+        Vector3 target = goal.position - transform.position;
+        Quaternion aimDir = Quaternion.LookRotation(target);
+        Vector3 velocity = target.normalized * 10f;
+        GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir, this.transform);
+        projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
     }
 }

@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
-            if(healthScale >= 0)
+            if (healthScale >= 0)
             {
                 healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
             }
@@ -82,6 +82,12 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
                 //Debug.Log("Taking " + other.GetComponentInParent<EnemyBehaviour>().enemy.damage + " Damage");
+            }
+            else if (other.CompareTag("Projectile"))
+            {
+                Debug.Log(other.gameObject);
+                takeDamage(other.GetComponentInParent<ProjectileData>().damage);
+                Destroy(other.transform.parent.gameObject);
             }
         }
     }
