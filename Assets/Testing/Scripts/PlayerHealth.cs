@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        if (GameManager.instance.ReturnCurrentScene().name == "ScriptTesting")
+        if (GameManager.instance.ReturnCurrentScene().name == "LevelTest")
         {
             healthBar = GameManager.instance.ReturnUIComponent("health");
             this.enabled = true;

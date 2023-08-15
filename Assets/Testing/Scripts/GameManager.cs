@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public static Character activeCharacter;
     public static Tower towerData;
+    public static int floorIndex;
     public static int score { get; private set; }
 
     private List<int> chance = new List<int>();
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ReturnCurrentScene().name == "ScriptTesting")
+        if (ReturnCurrentScene().name == "LevelTest")
         {
             scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
 
@@ -132,6 +133,22 @@ public class GameManager : MonoBehaviour
     public Scene ReturnCurrentScene()
     {
         return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+    }
+
+    public void NextFloor()
+    {
+        if(floorIndex == 0)
+        {
+            Debug.Log("Game Over");
+            Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
+            winLight.enabled = true;
+            winLight.intensity = Mathf.Lerp(0, 15, 3);
+        }
+        else
+        {
+            floorIndex += 1;
+        }
+        
     }
 
     public Transform ReturnUIComponent(string name)
