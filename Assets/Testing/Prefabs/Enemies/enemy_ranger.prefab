@@ -148,10 +148,11 @@ MonoBehaviour:
   enemy:
     enemyType: 2
     maxHealth: 100
-    damage: 15
+    damage: 5
     speed: 5
     attackRadius: 15
-    score: 20
+    attackCd: 3
+    score: 10
   hitbox: {fileID: 430797504374859333, guid: d499f681b56724f48b86f5e137bffbc9, type: 3}
 --- !u!1 &8363561240081383309
 GameObject:

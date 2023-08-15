@@ -72,6 +72,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
     }
 
+    public void Heal()
+    {
+        Debug.Log(currentHealth);
+        currentHealth += this.health * 0.05f;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (this.GetComponent<PlayerHealth>().enabled == false) return;
@@ -88,6 +94,12 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<ProjectileData>().damage);
                 Destroy(other.transform.parent.gameObject);
+            }
+            else if (other.CompareTag("HealthOrb"))
+            {
+                Debug.Log(other.gameObject);
+                Heal();
+                Destroy(other.transform.parent.gameObject) ;
             }
         }
     }

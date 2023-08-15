@@ -205,6 +205,7 @@ MonoBehaviour:
     damage: 5
     speed: 7.5
     attackRadius: 1.5
+    attackCd: 2
     score: 5
   hitbox: {fileID: 8722341447999193598}
 --- !u!1 &8363561240081383309

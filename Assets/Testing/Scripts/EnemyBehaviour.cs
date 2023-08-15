@@ -12,6 +12,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public float damage;
     public float speed;
     public float attackRadius;
+    public float attackCd;
     public int score;
 }
 
@@ -39,13 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform hitbox;
     Collider hit;
 
-    bool atkReady;
-
-    bool attacking;
-
-    int hitInt;
-
-    Vector3 aimTarget;
+    bool atkReady = true;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +83,7 @@ public class EnemyBehaviour : MonoBehaviour
         //    agent.speed = 0;
         //}
 
-        if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead)
+        if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
             ac.SetTrigger("atkReady");
@@ -192,6 +187,7 @@ public class EnemyBehaviour : MonoBehaviour
         int x = Random.Range(2, 5); // random number of body parts between 2 and 5
 
         bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
+        bpc.HealthDrop(this.transform.position);
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius
@@ -221,25 +217,42 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void dohit()
     {
-        if(hitInt == 0)
+        if (atkReady)
         {
+            atkReady = false;
+
             hit.enabled = true;
-            hitInt = 1;
         }
         else
         {
-            hitInt = 0;
             hit.enabled = false;
         }
-        
+
+        StartCoroutine(AtkCD());
+
     }
 
     public void doRangeAtk()
     {
-        Vector3 target = goal.position - transform.position;
-        Quaternion aimDir = Quaternion.LookRotation(target);
-        Vector3 velocity = target.normalized * 10f;
-        GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir, this.transform);
-        projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
+        if (atkReady)
+        {
+            atkReady = false;
+
+            Vector3 aimTarget = goal.position;
+            Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
+            Quaternion aimDir = Quaternion.LookRotation(target);
+            target.Normalize();
+            Vector3 velocity = target * 60f;
+            GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir);
+            projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
+
+            StartCoroutine(AtkCD());
+        }
+    }
+
+    private IEnumerator AtkCD()
+    {
+        yield return new WaitForSeconds(this.enemy.attackCd);
+        atkReady = true;
     }
 }

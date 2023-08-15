@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public class Limb
+public class Drop
 {
     public GameObject prefab;
     public int probability;
@@ -13,11 +14,13 @@ public class Limb
 public class BodyPartContainer : MonoBehaviour
 {
 
-    public List<Limb> gruntLimbs = new List<Limb> ();
-    public List<Limb> bruteLimbs = new List<Limb>();
-    public List<Limb> rangerLimbs = new List<Limb>();
+    public List<Drop> gruntLimbs = new List<Drop> ();
+    public List<Drop> bruteLimbs = new List<Drop>();
+    public List<Drop> rangerLimbs = new List<Drop>();
 
-    public List<GameObject> bodyParts = new List<GameObject>();
+    public Drop healthOrb = new Drop();
+
+    List<GameObject> bodyParts = new List<GameObject>();
 
     
     // Start is called before the first frame update
@@ -58,17 +61,17 @@ public class BodyPartContainer : MonoBehaviour
 
     public void DropLimbs(int count, Vector3 spawnPos, enemyType type) // function to grab random limb from possible limb drops
     {
-        List<Limb> limbs = new List<Limb>();
+        List<Drop> limbs = new List<Drop>();
         switch (type) // switch the list of limbs to be used based on received enemy type from function call
         {
             case enemyType.grunt:
-                limbs = new List<Limb>(gruntLimbs); // this used to be limbs = gruntLimbs but that only stores a reference, not list data, so when the list gets cleared it was clearing gruntLimbs too, throwing up an exception
+                limbs = new List<Drop>(gruntLimbs); // this used to be limbs = gruntLimbs but that only stores a reference, not list data, so when the list gets cleared it was clearing gruntLimbs too, throwing up an exception
                 break;
             case enemyType.brute:
-                limbs = new List<Limb>(bruteLimbs);  // [CHANGE] temporarily use placeholder limbs for all others [CHANGE WHEN MORE ENEMY MODEL IMPLEMENTATION]
+                limbs = new List<Drop>(bruteLimbs);  // [CHANGE] temporarily use placeholder limbs for all others [CHANGE WHEN MORE ENEMY MODEL IMPLEMENTATION]
                 break;
             case enemyType.ranger:
-                limbs = new List<Limb>(bruteLimbs);
+                limbs = new List<Drop>(bruteLimbs);
                 break;
             default:
                 break;
@@ -76,7 +79,7 @@ public class BodyPartContainer : MonoBehaviour
         Debug.Log(count);
         for(int i = 0; i <= count - 1; i++) // loop through amount of times based on how many limbs are to be spawned
         {
-            foreach (Limb limb in limbs) // check each limb in list
+            foreach (Drop limb in limbs) // check each limb in list
             {
                 if (GameManager.instance.RandomChance(limb.probability) && !limb.selected) // if RandomChance returns true based on limb probability, and that limb has not been selected previously
                 {
@@ -95,12 +98,17 @@ public class BodyPartContainer : MonoBehaviour
         ResetSpawns(limbs);
     }
 
-    private void ResetSpawns(List<Limb> limbs) // once all limbs have been spawned, make sure each selected is false so next of same type can still drop
+    private void ResetSpawns(List<Drop> limbs) // once all limbs have been spawned, make sure each selected is false so next of same type can still drop
     {
-        foreach (Limb limb in limbs)
+        foreach (Drop limb in limbs)
         {
             limb.selected = false;
         }
         limbs.Clear(); // remove all elements from generic list in case next enemy is different type
+    }
+
+    public void HealthDrop(Vector3 spawnPos)
+    {
+        if (GameManager.instance.RandomChance(healthOrb.probability)) Instantiate(healthOrb.prefab, spawnPos, Quaternion.identity, this.transform);
     }
 }
