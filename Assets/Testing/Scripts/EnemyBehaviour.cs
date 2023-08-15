@@ -243,9 +243,8 @@ public class EnemyBehaviour : MonoBehaviour
             Quaternion aimDir = Quaternion.LookRotation(target);
             target.Normalize();
             Vector3 velocity = target * 60f;
-            GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir);
+            GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir, this.transform);
             projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
-
             StartCoroutine(AtkCD());
         }
     }
