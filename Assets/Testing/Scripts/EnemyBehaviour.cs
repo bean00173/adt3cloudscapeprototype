@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public float damage;
     public float speed;
     public float attackRadius;
+    public float attackCd;
     public int score;
 }
 
@@ -20,6 +22,7 @@ public enum enemyType //stores current enemy type so when DropLimbs() is called,
     brute,
     ranger
 }
+
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -37,9 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform hitbox;
     Collider hit;
 
-    bool atkReady;
-
-    int hitInt;
+    bool atkReady = true;
 
     // Start is called before the first frame update
     void Start()
@@ -60,17 +61,53 @@ public class EnemyBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
 
-        if (atkReady)
+        
+
+        //if (atkReady)
+        //{
+        //    agent.speed = 0;
+        //    ac.SetTrigger("atkReady");
+        //}
+
+        //if (!goal.GetComponent<PlayerHealth>().dead)
+        //{
+
+        //    agent.speed = enemy.speed;
+
+        //    RangeCheck(); // check if near player
+        //}
+        //else
+        //{
+        //    agent.speed = 0;
+        //}
+
+        if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
             ac.SetTrigger("atkReady");
+
+            agent.destination = this.transform.position; // stop agent at current position
+
+            Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+        }
+        else if (InRange() || goal.GetComponent<PlayerHealth>().dead)
+        {
+            agent.speed = 0;
+        }
+        else
+        {
+            agent.speed = enemy.speed;
+            HandleMove();
         }
 
-        agent.speed = enemy.speed;
+        ac.SetFloat("speed", agent.speed);
 
-        RangeCheck(); // check if near player
+
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -101,26 +138,39 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void RangeCheck()
+    private bool InRange()
     {
         Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
         Debug.DrawLine(origin, goal.position, Color.yellow);
-        if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
-        {
-            agent.destination = this.transform.position; // stop agent at current position
 
-            Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
-            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
-
-            atkReady = true;
-        }
-        else
-        {
-            agent.destination = goal.position; // set agent destination to be player target (set in inspector)
-        }
+        return Vector3.Distance(origin, goal.position) < enemy.attackRadius;
     }
+
+    private void HandleMove()
+    {
+        agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+    }
+
+    //private void RangeCheck()
+    //{
+    //    Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
+    //    Debug.DrawLine(origin, goal.position, Color.yellow);
+    //    if (Vector3.Distance(origin, goal.position) < enemy.attackRadius) // check if distance between this and player is less than attack radius
+    //    {
+    //        agent.destination = this.transform.position; // stop agent at current position
+
+    //        Vector3 delta = new Vector3(goal.position.x - this.transform.position.x, 0f, goal.position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+    //        Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+    //        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+
+    //        atkReady = true;
+    //    }
+    //    else
+    //    {
+    //        agent.destination = goal.position; // set agent destination to be player target (set in inspector)
+    //    }
+    //}
 
     private void EnemyDeath() // separate function for death method
     {
@@ -137,6 +187,7 @@ public class EnemyBehaviour : MonoBehaviour
         int x = Random.Range(2, 5); // random number of body parts between 2 and 5
 
         bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
+        bpc.HealthDrop(this.transform.position);
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius
@@ -166,16 +217,42 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void dohit()
     {
-        if(hitInt == 0)
+        if (atkReady)
         {
+            atkReady = false;
+
             hit.enabled = true;
-            hitInt = 1;
         }
         else
         {
-            hitInt = 0;
             hit.enabled = false;
         }
-        
+
+        StartCoroutine(AtkCD());
+
+    }
+
+    public void doRangeAtk()
+    {
+        if (atkReady)
+        {
+            atkReady = false;
+
+            Vector3 aimTarget = goal.position;
+            Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
+            Quaternion aimDir = Quaternion.LookRotation(target);
+            target.Normalize();
+            Vector3 velocity = target * 60f;
+            GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir);
+            projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
+
+            StartCoroutine(AtkCD());
+        }
+    }
+
+    private IEnumerator AtkCD()
+    {
+        yield return new WaitForSeconds(this.enemy.attackCd);
+        atkReady = true;
     }
 }

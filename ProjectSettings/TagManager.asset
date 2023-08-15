@@ -8,6 +8,9 @@ TagManager:
   - Weapon
   - Drop
   - Enemy
+  - EnemyHit
+  - Projectile
+  - HealthOrb
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Player
   - Enemy
   - Door
-  - 
+  - Projectile
   - 
   - 
   - 

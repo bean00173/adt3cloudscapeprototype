@@ -11,9 +11,11 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private float currentHealth;
 
+    public Transform blood;
+
     Animator ac;
 
-    bool dead;
+    public bool dead { get ; private set; }
 
 
     private void Awake()
@@ -46,20 +48,34 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
-            healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+            if (healthScale >= 0)
+            {
+                healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+            }
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !dead)
         {
             dead = true;
             Debug.Log("LOSE");
-            ac.SetTrigger("Dead");
+            ac.Play("Armature_Death", -1, 0f);
+            this.GetComponent<PlayerMovement>().MoveInterrupt(false);
+            healthBar.localScale = new Vector3(0f, this.transform.localScale.y, this.transform.localScale.z);
+            GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
+            splatter.transform.localScale = Vector3.one * 5;
         }
     }
 
     public void takeDamage(float damage)
     {
+        Debug.Log(currentHealth);
         currentHealth -= damage;
+    }
+
+    public void Heal()
+    {
+        Debug.Log(currentHealth);
+        currentHealth += this.health * 0.05f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,10 +83,23 @@ public class PlayerHealth : MonoBehaviour
         if (this.GetComponent<PlayerHealth>().enabled == false) return;
         else
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("EnemyHit"))
             {
-                Debug.Log("Taking Damage");
+                Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
+                //Debug.Log("Taking " + other.GetComponentInParent<EnemyBehaviour>().enemy.damage + " Damage");
+            }
+            else if (other.CompareTag("Projectile"))
+            {
+                Debug.Log(other.gameObject);
+                takeDamage(other.GetComponentInParent<ProjectileData>().damage);
+                Destroy(other.transform.parent.gameObject);
+            }
+            else if (other.CompareTag("HealthOrb"))
+            {
+                Debug.Log(other.gameObject);
+                Heal();
+                Destroy(other.transform.parent.gameObject) ;
             }
         }
     }
