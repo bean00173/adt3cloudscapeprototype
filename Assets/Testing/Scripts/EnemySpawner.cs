@@ -16,11 +16,12 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeft;
     private int aliveEnemies;
 
+    bool nextFloor;
     
     // Start is called before the first frame update
     void Start()
     {
-        waves = GameManager.instance.ReturnTowerData().floors[0].waves;
+        waves = GameManager.instance.ReturnTowerData().floors[GameManager.floorIndex].waves;
         foreach(Transform child in this.transform) // gather list of spawn points
         {
             spawns.Add(child);
@@ -42,9 +43,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemiesLeft = waves[waveIndex].enemyCount;
             }
-            else
+            else if (!nextFloor)
             {
+                nextFloor = true;
                 Debug.Log("No Waves Left");
+                GameManager.instance.NextFloor();
             }
         }
         else if (enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
