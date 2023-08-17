@@ -9,6 +9,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [Header("References")]
 
     public Transform orientation;
+
     public Transform player;
 
     public Transform camHolder;
@@ -17,6 +18,7 @@ public class ThirdPersonCamera : MonoBehaviour
     PlayerMovement pm;
 
     public float rotationSpeed;
+    public bool canRot;
     int i = 0;
 
     private void Start()
@@ -35,21 +37,23 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
-
-        // rotate player object
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        // If Input Direction is not Zero and movement is enabled, change view direction to input direction
-        if (inputDir != Vector3.zero && pm.canMove)
+        if (canRot)
         {
-            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-        }
+            Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+            orientation.forward = viewDir.normalized;
 
+            // rotate player object
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+            // If Input Direction is not Zero and movement is enabled, change view direction to input direction
+            if (inputDir != Vector3.zero && pm.canMove)
+            {
+                player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            }
+        }
     }
 
 
