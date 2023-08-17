@@ -42,6 +42,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     bool atkReady = true;
 
+    Transform projectileSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             hit.enabled = false;
             hit.isTrigger = true;
+        }
+        else
+        {
+            projectileSpawn = this.transform.GetChild(2);
         }
         
 
@@ -247,7 +253,7 @@ public class EnemyBehaviour : MonoBehaviour
             Quaternion aimDir = Quaternion.LookRotation(target);
             target.Normalize();
             Vector3 velocity = target * 60f;
-            GameObject projectile = Instantiate(hit.gameObject, transform.position, aimDir, this.transform);
+            GameObject projectile = Instantiate(hitbox.gameObject, projectileSpawn.position, aimDir, this.transform);
             projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
             StartCoroutine(AtkCD());
         }
