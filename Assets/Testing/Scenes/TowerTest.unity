@@ -170,6 +170,7 @@ MonoBehaviour:
   scoreText: {fileID: 172277231}
   promptText: {fileID: 172277230}
   readyToLoad: 0
+  timeSlow: 0
   onLevelLoad:
     m_PersistentCalls:
       m_Calls:
@@ -2546,19 +2547,19 @@ MonoBehaviour:
   ravHealth: 1
   ravAtk: 2
   ravSpeed: 3
-  ravKnock: 0
+  ravAbDuration: 0
   ravAlive: 1
   abiHealth: 4
   abiAtk: 5
   abiSpeed: 6
-  abiKnock: 0
+  abiAbDuration: 0
   abiAlive: 1
   sebHealth: 300
   sebAtk: 60
   sebSpeed: 5
-  sebKnock: 2
+  sebAbDuration: 3
   sebAlive: 1
-  knockbackDuration: 2
+  timeSlowChance: 15
 --- !u!1 &1967244690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,15 +3163,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000023841858
+      value: -0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000856342
+      value: -0.000002486193
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00000063525334
+      value: 0.0000023753473
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w

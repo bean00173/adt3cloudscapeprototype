@@ -23,8 +23,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool readyToLoad;
 
+    [HideInInspector]
+    public bool timeSlow;
+
     [Header("All events below will play when player interacts with a door")]
     public UnityEvent onLevelLoad = new UnityEvent();
+
+    public delegate void TestDelegate();
+    public TestDelegate slowTimeMethod;
 
     // Make this a singleton.
     public void Awake()
@@ -43,7 +49,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        slowTimeMethod = ResumeNormalTimeScale;
     }
 
     // Update is called once per frame
@@ -162,6 +168,27 @@ public class GameManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SlowTime(float duration)
+    {
+        timeSlow = true;
+
+        Time.timeScale = 0.5f;
+        StartCoroutine(Timer(duration, slowTimeMethod));
+
+    }
+
+    public void ResumeNormalTimeScale()
+    {
+        timeSlow = false;
+        Time.timeScale = 1;
+    }
+
+    public IEnumerator Timer(float time, TestDelegate method)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        method();
     }
 
 }

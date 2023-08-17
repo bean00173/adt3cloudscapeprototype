@@ -137,7 +137,7 @@ public class EnemyBehaviour : MonoBehaviour
 
             if (health <= pCharacter.attackModifier) // if current health will be 0 after swing, death
             {
-                EnemyDeath();
+                EnemyDeath(player);
             }
             else
             {
@@ -182,9 +182,11 @@ public class EnemyBehaviour : MonoBehaviour
     //    }
     //}
 
-    private void EnemyDeath() // separate function for death method
+    private void EnemyDeath(Transform player) // separate function for death method
     {
         GameManager.instance.ScoreUp(this.enemy.score);
+        if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().abilityChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().abDuration);
+
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion

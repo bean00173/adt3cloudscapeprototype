@@ -13,7 +13,8 @@ public class PlayableCharacter : MonoBehaviour
     public float healthModifier { get; private set; }
     public float attackModifier { get; private set; }
     public float speedModifier { get; private set; }
-    public float knockBackModifier { get; private set; }
+    public float abDuration { get; private set; }
+    public int abilityChance { get; private set; }
 
     public Transform characterContainer;
     private int characterIndex = 1;
@@ -48,7 +49,8 @@ public class PlayableCharacter : MonoBehaviour
         healthModifier = manager.GetCurrentCharacter(currentCharacter).health; // returns stats from class manager method to return current character based on enum ID
         attackModifier = manager.GetCurrentCharacter(currentCharacter).atkMultiplier;
         speedModifier = manager.GetCurrentCharacter(currentCharacter).spdMultiplier;
-        knockBackModifier = manager.GetCurrentCharacter(currentCharacter).knockbackForce;
+        abDuration = manager.GetCurrentCharacter(currentCharacter).abilityDuration;
+        abilityChance = manager.timeSlowChance;
 
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, Color.red, 1f);
 
