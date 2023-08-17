@@ -53,8 +53,12 @@ public class EnemyBehaviour : MonoBehaviour
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
         hit = hitbox.GetComponent<Collider>();
 
-        hit.enabled = false;
-        hit.isTrigger = true;
+        if (enemy.enemyType != enemyType.ranger)
+        {
+            hit.enabled = false;
+            hit.isTrigger = true;
+        }
+        
 
         LimitSpawnVelocity();
     }

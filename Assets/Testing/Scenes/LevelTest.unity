@@ -9105,15 +9105,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.124414116
+      value: -0.12441413
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.012854337
+      value: -0.012854338
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9541766
+      value: 0.95417655
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -9910,22 +9910,37 @@ MonoBehaviour:
     probability: 100
     selected: 0
   bruteLimbs:
-  - prefab: {fileID: 5844812055023269438, guid: 310daaf885ad49f4f991874335fd40b2, type: 3}
+  - prefab: {fileID: 8194495264389816312, guid: d2af798c43a0d6b419b5ef55dbb75c57, type: 3}
     probability: 60
     selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: 5b41e53ceccfcb9418af7a9401bffbd5, type: 3}
+  - prefab: {fileID: 7957924981347672740, guid: 14323b759ba04044ab6aa50de117b038, type: 3}
     probability: 40
     selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: d2d2e74c2276ae848ac2a3c45723cba9, type: 3}
-    probability: 20
+  - prefab: {fileID: 5682798195036598369, guid: 3f23521e046f9014fb5fb6f9cc06f558, type: 3}
+    probability: 10
     selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: d703bed34992e7f4097353673da71ad5, type: 3}
+  - prefab: {fileID: 1788846870466154716, guid: c2cc061d6af3be6479314ab895dc5502, type: 3}
     probability: 5
     selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: 67a5302a703e53a42b8f78bfde49e9f6, type: 3}
+  - prefab: {fileID: 3552778337536416187, guid: 5457ff8a7993e634ca09ff30305e1ed5, type: 3}
     probability: 100
     selected: 0
-  rangerLimbs: []
+  rangerLimbs:
+  - prefab: {fileID: 8194495264389816312, guid: 7a7f2ddc461c2fa43ac1bdf0c78b3ee2, type: 3}
+    probability: 60
+    selected: 0
+  - prefab: {fileID: 7957924981347672740, guid: 8bf6d1791e67ade468018a2a74c9303a, type: 3}
+    probability: 40
+    selected: 0
+  - prefab: {fileID: 5682798195036598369, guid: 3f23521e046f9014fb5fb6f9cc06f558, type: 3}
+    probability: 10
+    selected: 0
+  - prefab: {fileID: 1788846870466154716, guid: c2cc061d6af3be6479314ab895dc5502, type: 3}
+    probability: 5
+    selected: 0
+  - prefab: {fileID: 3552778337536416187, guid: 8a734b6cdf5753b459ec9c9eefdd5cbd, type: 3}
+    probability: 100
+    selected: 0
   healthOrb:
     prefab: {fileID: 1894791112103360131, guid: 478d6b669f413af409d7dbaab9e8d68e, type: 3}
     probability: 33

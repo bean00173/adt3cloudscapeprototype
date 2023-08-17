@@ -71,7 +71,7 @@ public class BodyPartContainer : MonoBehaviour
                 limbs = new List<Drop>(bruteLimbs);  // [CHANGE] temporarily use placeholder limbs for all others [CHANGE WHEN MORE ENEMY MODEL IMPLEMENTATION]
                 break;
             case enemyType.ranger:
-                limbs = new List<Drop>(bruteLimbs);
+                limbs = new List<Drop>(rangerLimbs);
                 break;
             default:
                 break;
