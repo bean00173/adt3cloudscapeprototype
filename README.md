@@ -7,7 +7,7 @@ Follow the adventures of a trio of friends from the Desecrated Village of Devoti
 ### Current Prototype Status : Combat Demo
 
 ### Airship Movement
-![Airship Movement]((https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/AirshipMovement.gif))
+![Airship Movement](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/AirshipMovement.gif)
 ### Enter Dungeons
 ![Entering Dungeon](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/EnterDungeon.gif)
 ### Loading Screens
