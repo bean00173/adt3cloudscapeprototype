@@ -7,19 +7,19 @@ Follow the adventures of a trio of friends from the Desecrated Village of Devoti
 ### Current Prototype Status : Combat Demo
 
 ### Airship Movement
-![Airship Movement](AirshipMovement.gif)
+[Airship Movement](AirshipMovement.gif)
 ### Enter Dungeons
-![Entering Dungeon](EnterDungeon.gif)
+[Entering Dungeon](EnterDungeon.gif)
 ### Loading Screens
-![Loading Screen](LoadingScreen'.gif)
+[Loading Screen](LoadingScreen'.gif)
 ### Attack Enenmies
-![Hit Enemy](HitEnemies.gif)
+[Hit Enemy](HitEnemies.gif)
 ### BLOOD AND GUTS
-![Gore](Gore.gif)
+[Gore](Gore.gif)
 ### Execute Combos
-![Executing Combos](Combo.gif)
+[Executing Combos](Combo.gif)
 ### Unique Enemy Types
-![Fighting Brutes](BruteFighting.gif)
+[Fighting Brutes](BruteFighting.gif)
 
 
 
