@@ -7,19 +7,19 @@ Follow the adventures of a trio of friends from the Desecrated Village of Devoti
 ### Current Prototype Status : Combat Demo
 
 ### Airship Movement
-[Airship Movement](AirshipMovement.gif)
+![Airship Movement]([AirshipMovement.gif](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/AirshipMovement.gif))
 ### Enter Dungeons
-[Entering Dungeon](EnterDungeon.gif)
+![Entering Dungeon](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/EnterDungeon.gif)
 ### Loading Screens
-[Loading Screen](LoadingScreen'.gif)
+![Loading Screen](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/LoadingScreen'.gif)
 ### Attack Enenmies
-[Hit Enemy](HitEnemies.gif)
+![Hit Enemy](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/HitEnemies.gif)
 ### BLOOD AND GUTS
-[Gore](Gore.gif)
+![Gore](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/Gore.gif)
 ### Execute Combos
-[Executing Combos](Combo.gif)
+![Executing Combos](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/Combo.gif)
 ### Unique Enemy Types
-[Fighting Brutes](BruteFighting.gif)
+![Fighting Brutes](https://github.com/bean00173/adt3cloudscapeprototype/blob/main/Assets/Presentation/Gifs/BruteFighting.gif)
 
 
 
