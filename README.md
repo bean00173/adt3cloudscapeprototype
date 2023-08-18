@@ -6,7 +6,22 @@ Follow the adventures of a trio of friends from the Desecrated Village of Devoti
 
 ### Current Prototype Status : Combat Demo
 
-![Desktop 2023 07 28 - 14 00 59 01_1](https://github.com/bean00173/adt3cloudscapeprototype/assets/113889619/7fcf2a4d-3678-455a-bb28-035d8b81eda4)
+### Airship Movement
+![Airship Movement](AirshipMovement.gif)
+### Enter Dungeons
+![Entering Dungeon](EnterDungeon.gif)
+### Loading Screens
+![Loading Screen](LoadingScreen'.gif)
+### Attack Enenmies
+![Hit Enemy](HitEnemies.gif)
+### BLOOD AND GUTS
+![Gore](Gore.gif)
+### Execute Combos
+![Executing Combos](Combo.gif)
+### Unique Enemy Types
+![Fighting Brutes](BruteFighting.gif)
+
+
 
 
 ### Using : [Unity Version 2022.3.5f1](https://unity.com/releases/editor/whats-new/2022.3.5)
