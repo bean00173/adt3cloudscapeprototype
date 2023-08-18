@@ -25,7 +25,7 @@ public class AirshipMovement : MonoBehaviour
         vert = Input.GetAxisRaw("Vertical");
 
         DoMove();
-        DoRot();
+        //DoRot();
 
         if (vert == 0)
         {
@@ -36,27 +36,25 @@ public class AirshipMovement : MonoBehaviour
 
     private void DoMove()
     {
-        // Calculating Movement Direction, always walk in the direction you're looking
-        Vector3 moveDirection = transform.forward * vert + transform.right * hor;
+        //// Calculating Movement Direction, always walk in the direction you're looking
+        //Vector3 moveDirection = transform.forward * vert;
 
-        //ac.SetFloat("moveSpeed", rb.velocity.magnitude);
+        ////ac.SetFloat("moveSpeed", rb.velocity.magnitude);
 
-        // Adding Force to the Player Rigidbody if on Ground
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        //// Adding Force to the Player Rigidbody if on Ground
+        //rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        transform.Rotate(0, hor * 10 * Time.deltaTime, 0);
+        transform.Translate(0, 0, vert * 10 * Time.deltaTime * moveSpeed);
 
-    }
+        if (Input.GetKey(KeyCode.Space)&& transform.position.y < 50)
+        {
+            transform.Translate(0, 10 * Time.deltaTime * moveSpeed, 0);
 
-    private void DoRot()
-    {
-        Vector3 current = transform.position;
-        Vector3 input = new Vector3(hor, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.C) && transform.position.y > -50)
+        {
+            transform.Translate(0, -10 * Time.deltaTime * moveSpeed, 0);
+        }
 
-        input += current;
-
-        Quaternion target = Quaternion.LookRotation(input - current);
-
-        Debug.Log(target);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, rotSpeed);
     }
 }
