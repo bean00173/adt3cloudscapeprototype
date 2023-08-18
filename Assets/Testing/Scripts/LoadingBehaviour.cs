@@ -15,26 +15,54 @@ public class LoadingBehaviour : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad);
-
-        operation.allowSceneActivation = false;
-
-        while(!operation.isDone)
+        if (LoadingData.sceneToLoad == "TowerTest")
         {
-            progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
-            progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
+            GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
 
-            if(operation.progress >= .9f)
+            while (progressBar.transform.localScale != new Vector3(1,1,1))
             {
-                continuePrompt.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1f);
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    operation.allowSceneActivation = true;
-                }
+                progressBar.transform.localScale = new Vector3(.1f, 1, 1);
+                progressText.text = "(" + (.1 * 100).ToString() + "%)";
             }
+
+            continuePrompt.gameObject.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
+                
+            }
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
 
             yield return null;
         }
+        else
+        {
+            AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+
+            operation.allowSceneActivation = false;
+
+            while (!operation.isDone)
+            {
+                progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
+                progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
+
+                if (operation.progress >= .9f)
+                {
+                    GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
+
+                    continuePrompt.gameObject.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        operation.allowSceneActivation = true;
+                        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+                    }
+                }
+                yield return null;
+            }
+        }        
     }
 }

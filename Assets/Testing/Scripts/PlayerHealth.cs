@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -15,29 +16,37 @@ public class PlayerHealth : MonoBehaviour
 
     Animator ac;
 
+    public UnityEvent onDeath = new UnityEvent();
+
     public bool dead { get ; private set; }
 
 
     private void Awake()
     {
-        if (GameManager.instance.ReturnCurrentScene().name == "LevelTest")
+        if (GameManager.instance.currentScene.name == "LevelTest")
         {
-            healthBar = GameManager.instance.ReturnUIComponent("health");
+            //healthBar = GameManager.instance.ReturnUIComponent("health");
             this.enabled = true;
         }
         else
         {
             this.enabled = false;
         }
+
+        healthBar.localScale = Vector3.one;
+        health = CharacterManager.instance.GetCurrentCharacter(GetComponent<PlayableCharacter>().currentCharacter).health;
+        currentHealth = health;
+
+        ac = this.GetComponent<PlayableCharacter>().ac;
     }
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.localScale = Vector3.one;
-        health = GameManager.activeCharacter.health;
-        currentHealth = health;
+        //healthBar.localScale = Vector3.one;
+        //health = CharacterManager.instance.GetCurrentCharacter(GetComponent<PlayableCharacter>().currentCharacter).health;
+        //currentHealth = health;
 
-        ac = this.GetComponent<PlayableCharacter>().ac;
+        //ac = this.GetComponent<PlayableCharacter>().ac;
     }
 
     // Update is called once per frame
@@ -54,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        if (currentHealth <= 0 && !dead)
+        if (currentHealth <= 0 && !dead && GameManager.instance.capableOfDying)
         {
             dead = true;
             Debug.Log("LOSE");
@@ -63,6 +72,10 @@ public class PlayerHealth : MonoBehaviour
             healthBar.localScale = new Vector3(0f, this.transform.localScale.y, this.transform.localScale.z);
             GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
             splatter.transform.localScale = Vector3.one * 5;
+
+            SceneManager.instance.LoadScene("TowerTest");
+
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
         }
     }
 

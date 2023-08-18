@@ -42,6 +42,7 @@ public class PlayableCharacter : MonoBehaviour
         ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
 
         GameManager.instance.onLevelLoad.AddListener(SendCharacterData);
+
     }
 
     private void Update()
@@ -54,7 +55,7 @@ public class PlayableCharacter : MonoBehaviour
 
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, Color.red, 1f);
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "TowerTest")
+        if (GameManager.instance.currentScene.name != "TowerTest")
         {
             canSwitch = false;
         }
@@ -63,7 +64,7 @@ public class PlayableCharacter : MonoBehaviour
             canSwitch = true;
         }
 
-        if(GameManager.instance.ReturnCurrentScene().name != "LoadingScene")
+        if(GameManager.instance.currentScene.name != "LoadingScene")
         {
             if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
             {

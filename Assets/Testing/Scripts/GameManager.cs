@@ -26,11 +26,18 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool timeSlow;
 
-    [Header("All events below will play when player interacts with a door")]
+    //[Header("All events below will play when player interacts with a door")]
+    [HideInInspector]
     public UnityEvent onLevelLoad = new UnityEvent();
 
     public delegate void TestDelegate();
     public TestDelegate slowTimeMethod;
+    public TestDelegate dyingEnable;
+
+    public bool capableOfDying;
+    bool towerFinished;
+
+    public Scene currentScene { get; private set; }
 
     // Make this a singleton.
     public void Awake()
@@ -50,14 +57,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         slowTimeMethod = ResumeNormalTimeScale;
+        currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ReturnCurrentScene().name == "LevelTest")
+        if (currentScene.name == "LevelTest")
         {
             scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
+
+            dyingEnable = CanDie;
+
+            StartCoroutine(Timer(1f, dyingEnable));
 
             if (scoreText.text != score.ToString())
             {
@@ -67,8 +79,23 @@ public class GameManager : MonoBehaviour
 
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
         {
+
+            if (towerFinished)
+            {
+                //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
+                SceneManager.instance.LoadScene("TowerTest");
+            }
+            else
+            {
+                onLevelLoad.Invoke();
+
+                //currentScene = UnityEngine.SceneManagement.SceneManager.("LevelTest");
+                SceneManager.instance.LoadScene("LevelTest");
+            }
+
+            
+
             Debug.Log("SceneTransition");
-            onLevelLoad.Invoke();
         }
     }
 
@@ -136,25 +163,33 @@ public class GameManager : MonoBehaviour
         return towerData;
     }
 
-    public Scene ReturnCurrentScene()
+    public void CanDie()
     {
-        return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        capableOfDying = true;
     }
 
     public void NextFloor()
     {
-        if(floorIndex == 0)
+        if(floorIndex < towerData.floors.Count - 1)
         {
-            Debug.Log("Game Over");
+            Debug.Log("Next Floor");
             Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
             winLight.enabled = true;
             winLight.intensity = Mathf.Lerp(0, 15, 3);
+
+            floorIndex += 1;
         }
         else
         {
-            floorIndex += 1;
+            Debug.Log("Game Over");
+            towerFinished = true;
         }
         
+    }
+
+    public void UpdateCurrentScene(string name)
+    {
+        currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(name);
     }
 
     public Transform ReturnUIComponent(string name)
@@ -185,10 +220,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+
     public IEnumerator Timer(float time, TestDelegate method)
     {
         yield return new WaitForSecondsRealtime(time);
         method();
     }
+
 
 }
