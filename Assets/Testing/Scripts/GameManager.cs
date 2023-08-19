@@ -80,10 +80,13 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(Timer(1f, dyingEnable));
 
-            if (scoreText.text != score.ToString() && scoreText != null)
+            if(scoreText != null)
             {
-                scoreText.text = score.ToString();
-            }
+                if (scoreText.text != score.ToString())
+                {
+                    scoreText.text = score.ToString();
+                }
+            } 
         }
 
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
@@ -203,7 +206,11 @@ public class GameManager : MonoBehaviour
 
     public Transform ReturnUIComponent(string name)
     {
-        foreach(Transform child in GameObject.Find("Canvas").transform)
+        GameObject[] sceneObjects = currentScene.GetRootGameObjects();
+        List<GameObject> objects = new List<GameObject>(sceneObjects);
+        Transform canvas = objects.Find((x) => x.name == "Canvas").transform;
+
+        foreach(Transform child in canvas)
         {
             if(child.name == name)
             {

@@ -20,6 +20,8 @@ public class DashingScript : MonoBehaviour
 
     private Animator ac;
 
+    public bool canDash;
+
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -31,7 +33,7 @@ public class DashingScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canDash)
         {
             Dash();
         }

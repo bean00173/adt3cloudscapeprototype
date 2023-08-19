@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, whatIsGround);
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down, Color.red, 0.2f);
 
+        this.GetComponent<PlayableCharacter>().ac.SetFloat("speed", movementSpeed);
+
         // Calling Input Function & Speed Control on Every Frame Update
 
         if (canMove)
