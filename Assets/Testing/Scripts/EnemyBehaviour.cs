@@ -185,7 +185,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void EnemyDeath(Transform player) // separate function for death method
     {
         GameManager.instance.ScoreUp(this.enemy.score);
-        if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().abilityChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().abDuration);
+        if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().slowMoChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().slowMoDuration);
 
         health = 0;
         agent.speed = 0;

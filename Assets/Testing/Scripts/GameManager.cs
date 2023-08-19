@@ -65,13 +65,22 @@ public class GameManager : MonoBehaviour
     {
         if (currentScene.name == "LevelTest")
         {
-            scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
+            try
+            {
+                scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
+            }
+            catch(System.Exception e)
+            {
+                Debug.Log(e);
+                scoreText = null;
+            }
+            
 
             dyingEnable = CanDie;
 
             StartCoroutine(Timer(1f, dyingEnable));
 
-            if (scoreText.text != score.ToString())
+            if (scoreText.text != score.ToString() && scoreText != null)
             {
                 scoreText.text = score.ToString();
             }

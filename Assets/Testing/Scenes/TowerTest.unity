@@ -2151,19 +2151,20 @@ MonoBehaviour:
   ravHealth: 1
   ravAtk: 2
   ravSpeed: 3
-  ravAbDuration: 0
+  ravAbilityCd: 0
   ravAlive: 1
   abiHealth: 4
   abiAtk: 5
   abiSpeed: 6
-  abiAbDuration: 0
+  abiAbilityCd: 0
   abiAlive: 1
   sebHealth: 300
   sebAtk: 60
   sebSpeed: 5
-  sebAbDuration: 3
+  sebAbilityCd: 10
   sebAlive: 1
-  timeSlowChance: 15
+  slowMoChance: 0
+  slowMoDuration: 0
 --- !u!1 &1967244690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,15 +2701,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000023841858
+      value: -0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000856342
+      value: -0.000002486193
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00000063525334
+      value: 0.0000023753473
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2716,7 +2717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.055678833
+      value: 0.055678863
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2724,7 +2725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.23030645
+      value: 0.23030642
       objectReference: {fileID: 0}
     - target: {fileID: 6925495201256219899, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_Layer

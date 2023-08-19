@@ -25,6 +25,8 @@ public class GreatswordCombat : MonoBehaviour
     bool firstAtk;
     bool secondAtk;
 
+    public bool abilityReady;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,8 @@ public class GreatswordCombat : MonoBehaviour
         pm = player.GetComponent<PlayerMovement>();
         rb = player.GetComponent<Rigidbody>();
         pc = player.GetComponent<PlayableCharacter>();
+
+        abilityReady = true;
     }
 
     // Update is called once per frame
@@ -71,6 +75,11 @@ public class GreatswordCombat : MonoBehaviour
         //    readyToAtk = true;
         //    ac.SetTrigger("holdEnd"); // begin ending animation
         //}
+
+        if (Input.GetKeyDown(KeyCode.X) && abilityReady)
+        {
+            StartCoroutine(Ability());
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk) // if mouse clicked
         {
@@ -109,7 +118,6 @@ public class GreatswordCombat : MonoBehaviour
             comboIndex = 0;
         }
     }
-
     void Attack()
     {
 
@@ -151,6 +159,53 @@ public class GreatswordCombat : MonoBehaviour
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true; // re-enables attack capability
         readyToHold = true; // re enable special atk capability
+    }
+
+    IEnumerator Ability()
+    {
+        DoAbility();
+        abilityReady = false;
+        yield return StartCoroutine(Timer(this.GetComponent<PlayableCharacter>().abilityCd));
+        abilityReady = true;
+    }
+
+    private void DoAbility()
+    {
+        BodyPartContainer bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
+        foreach(Transform child in bpc.gameObject.transform)
+        {
+            if (child.gameObject.tag == "HealthOrb")
+            {
+                StartCoroutine(OrbMagnet(child.gameObject));
+            }
+        }
+
+
+    }
+    
+    private IEnumerator OrbMagnet(GameObject go)
+    {
+        float duration = 3;
+
+        float time = 0;
+        Vector3 startPosition = go.transform.position;
+        while (time < duration)
+        {
+            if(go == null)
+            {
+                time = duration;
+                yield return null;
+            }
+            go.transform.position = Vector3.Lerp(startPosition, this.transform.position, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        go.transform.position = this.transform.position;
+    }
+
+    IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     //IEnumerator EnableHit()
