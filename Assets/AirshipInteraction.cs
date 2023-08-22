@@ -10,13 +10,19 @@ public class AirshipInteraction : MonoBehaviour
     bool promptReady;
     bool readyToDock;
     bool docked;
+    bool goingToDock;
     float leastDist;
 
     Transform closest;
-
+    Transform current;
     Transform currentTower;
 
+    string targetName;
+
     RaycastHit hit;
+    private bool docking;
+    float startTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +37,17 @@ public class AirshipInteraction : MonoBehaviour
 
         if (docked)
         {
+
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        if (docking)
+        {
+            Vector3 delta = new Vector3(current.GetChild(0).position.x - this.transform.position.x, 0f, current.GetChild(0).position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
+            Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
         }
 
         if(readyToDock && Input.GetKeyDown(KeyCode.E))
@@ -41,26 +56,31 @@ public class AirshipInteraction : MonoBehaviour
             Transform container = currentTower.GetComponent<TowerData>().navPointContainer;
             currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
 
-            float duration = 1.0f;
-            float time = 0;
+            StartCoroutine(DoDockingProcedure(container));
 
-            Vector3 target = NavToPoint(container).position;
-            Vector3 startPos = this.transform.position;
+            //while (current.gameObject.name != "homePoint" && !docking)
+            //{
+            //    if (current.gameObject.name == "Point")
+            //    {
+            //        targetName = "Point (2)";
+            //    }
+            //    else if (current.gameObject.name == "Point (1)" || current.gameObject.name == "Point (2)")
+            //    {
+            //        targetName = "homePoint";
+            //    }
 
-            while (time < duration)
-            {
-                this.transform.position = Vector3.Lerp(startPos, target, time / duration);
-                time += Time.deltaTime;
-            }
+            //    foreach (Transform child in container)
+            //    {
+            //        if (child.name == targetName)
+            //        {
+            //            ContinueDocking(child);
+            //            docking = true;
+            //        }
+            //    }
+            //}
 
             docked = true;
 
-            Quaternion start = transform.rotation;
-
-            Vector3 aimTarget = currentTower.position;
-            Vector3 tar = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
-            Quaternion aimDir = Quaternion.LookRotation(tar);
-            transform.rotation = Quaternion.Slerp(start, aimDir, Time.deltaTime * 1.0f);
 
             readyToDock = false;
             promptReady = false;
@@ -114,4 +134,56 @@ public class AirshipInteraction : MonoBehaviour
 
         return closest;
     }
+
+    private void CurrentDockPos(Transform child)
+    {
+        current = child;
+    }
+
+    private IEnumerator DoDockingProcedure(Transform container)
+    {
+        startTime = Time.time;
+
+        docking = true;
+        float duration = 3.0f;
+        float time = 0;
+
+        Transform child = NavToPoint(container);
+        Vector3 endPos = child.position; // using function to receive target transform from closest child gameobject inside container
+        Vector3 startPos = this.transform.position;
+
+        CurrentDockPos(child);
+
+        while (time < duration)
+        {
+            this.transform.position = Vector3.Lerp(startPos, endPos, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        docking = false;
+    }
+
+    //private IEnumerator ContinueDocking(Transform next)
+    //{
+    //    docking = true;
+    //    startTime = Time.time;
+    //    float duration = 1.0f;
+    //    float time = 0;
+
+    //    Vector3 target = next.position; // using function to receive target transform from closest child gameobject inside container
+    //    Vector3 startPos = this.transform.position;
+
+    //    CurrentDockPos(next);
+    //    docking = false;
+
+    //    while (time < duration)
+    //    {
+    //        this.transform.position = Vector3.Lerp(startPos, target, time / duration);
+    //        time += Time.deltaTime;
+    //        yield return null;
+    //    }
+
+
+    //}
 }
