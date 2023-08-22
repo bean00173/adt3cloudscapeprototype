@@ -12,29 +12,36 @@ public class AirshipMovement : MonoBehaviour
     Rigidbody rb;
     Animator ac;
 
+    bool canMove;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         ac = GetComponentInChildren<Animator>();
+
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        hor = Input.GetAxisRaw("Horizontal");
-        vert = Input.GetAxisRaw("Vertical");
-
-        ac.SetFloat("horizontalInput", hor);
-
-        DoMove();
-        //DoRot();
-
-        if (vert == 0)
+        if(canMove)
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            hor = Input.GetAxisRaw("Horizontal");
+            vert = Input.GetAxisRaw("Vertical");
+
+            ac.SetFloat("horizontalInput", hor);
+
+            DoMove();
+            //DoRot();
+
+            if (vert == 0)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
         }
     }
 
@@ -73,5 +80,17 @@ public class AirshipMovement : MonoBehaviour
             ac.SetFloat("elevation", -1);
         }
 
+    }
+
+    public void DisableMovement(bool disabled)
+    {
+        if(disabled)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 }
