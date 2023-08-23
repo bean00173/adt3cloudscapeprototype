@@ -47,10 +47,10 @@ public class SceneManager : MonoBehaviour
             GatherObjects();
             ToggleObjects(false);
         }
-        else
-        {
-            ToggleObjects(true);
-        }
+        //else
+        //{
+        //    ToggleObjects(true);
+        //}
 
         LoadingData.sceneToLoad = sceneName;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Additive);

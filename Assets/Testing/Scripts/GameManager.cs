@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -35,9 +36,11 @@ public class GameManager : MonoBehaviour
     public TestDelegate dyingEnable;
 
     public bool capableOfDying;
-    bool towerFinished;
+    public bool towerFinished { get; private set; }
 
     public Scene currentScene { get; private set; }
+
+    private string sceneName;
 
     // Make this a singleton.
     public void Awake()
@@ -57,12 +60,28 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         slowTimeMethod = ResumeNormalTimeScale;
-        currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach(Scene scene in GetOpenScenes())
+        {
+            if(GetOpenScenes().Length == 1)
+            {
+                currentScene = scene;
+            }
+        }
+
+        if(currentScene.name == "TowerTest" || currentScene.name == "LevelTest")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         if (currentScene.name == "LevelTest")
         {
             try
@@ -96,6 +115,7 @@ public class GameManager : MonoBehaviour
             {
                 //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
                 SceneManager.instance.LoadScene("TowerTest");
+
             }
             else
             {
@@ -110,6 +130,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SceneTransition");
         }
     }
+
 
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
     {
@@ -142,6 +163,19 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+    
+    public Scene[] GetOpenScenes()
+    {
+        int countLoaded = UnityEngine.SceneManagement.SceneManager.loadedSceneCount;
+        Scene[] scenes = new Scene[countLoaded];
+
+        for(int i = 0; i < countLoaded; i++)
+        {
+            scenes[i]= UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+        }
+
+        return scenes;
     }
 
     public Vector3 SpawnPosition(int currentObject, int totalObjects, Vector3 pos, float radius)
@@ -182,13 +216,13 @@ public class GameManager : MonoBehaviour
 
     public void NextFloor()
     {
-        if(floorIndex < towerData.floors.Count - 1)
+        Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
+        winLight.enabled = true;
+        winLight.intensity = Mathf.Lerp(0, 15, 3);
+
+        if (floorIndex < towerData.floors.Count - 1)
         {
             Debug.Log("Next Floor");
-            Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
-            winLight.enabled = true;
-            winLight.intensity = Mathf.Lerp(0, 15, 3);
-
             floorIndex += 1;
         }
         else
