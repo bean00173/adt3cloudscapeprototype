@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
             GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
             splatter.transform.localScale = Vector3.one * 5;
 
-            SceneManager.instance.LoadScene("TowerTest");
+            GameManager.instance.ReturnUIComponent("YouDied").gameObject.SetActive(true);
         }
     }
 
