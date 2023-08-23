@@ -82,11 +82,23 @@ public class AirshipMovement : MonoBehaviour
 
     }
 
+    public void IslandRepel(Transform island, float force)
+    {
+        Vector3 aimTarget = island.position;
+        Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
+        target.Normalize();
+        Vector3 velocity = target * -force;
+        rb.AddForce(velocity);
+    }
+
     public void DisableMovement(bool disabled)
     {
         if(disabled)
         {
             canMove = false;
+
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
         else
         {

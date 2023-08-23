@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class PlayableCharacter : MonoBehaviour
 {
     public Character.CharacterId currentCharacter;
 
     public Animator ac;
+    Rigidbody rb;
 
     CharacterManager manager;
     public float healthModifier { get; private set; }
@@ -25,6 +27,9 @@ public class PlayableCharacter : MonoBehaviour
 
     private void Start()
     {
+        this.transform.parent.GetComponentInChildren<CinemachineFreeLook>().Priority = 20;
+
+        rb = this.GetComponent<Rigidbody>();
         manager = CharacterManager.instance; // gathers instance of character manager
         characterContainer = this.transform.GetChild(0);
 
@@ -86,6 +91,15 @@ public class PlayableCharacter : MonoBehaviour
             SwitchCharacter();
         }
     }
+
+    //public void CanMove()
+    //{
+    //    rb.useGravity = true;
+    //    rb.constraints = RigidbodyConstraints.None;
+
+    //    this.GetComponent<PlayerMovement>().enabled = true;
+    //    
+    //}
 
     private void SwitchCharacter()
     {

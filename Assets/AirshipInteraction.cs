@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class AirshipInteraction : MonoBehaviour
 {
+
+    public GameObject player;
+    Camera mainCamera;
+
+    public Transform airshipObject;
     AirshipMovement am;
     Rigidbody rb;
     bool promptReady;
     bool readyToDock;
     bool docked;
+    bool aligned;
     bool goingToDock;
     float leastDist;
 
@@ -35,19 +41,47 @@ public class AirshipInteraction : MonoBehaviour
     {
         currentTower = GameObject.Find("Tower").transform;
 
-        if (docked)
+        if (docked && aligned)
         {
-
+            Debug.Log("Docked");
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+
+            //GetComponentInChildren<PlayableCharacter>().CanMove();
+            am.enabled = false;
+            airshipObject.GetComponent<Animator>().SetBool("moving", false);
+
+            if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
+            {
+                GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+                character.GetComponentInChildren<GreatswordCombat>().enabled = false; // Change this when all characters are playable
+            }
         }
 
-        if (docking)
+        if (docking && !aligned)
         {
             Vector3 delta = new Vector3(current.GetChild(0).position.x - this.transform.position.x, 0f, current.GetChild(0).position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
             Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+
+            float diff = transform.rotation.eulerAngles.y - target.eulerAngles.y;
+            float dergee = 5;
+            if (Mathf.Abs(diff) <= dergee)
+            {
+                Debug.Log("Aligned");
+                aligned = true;
+            }
+        }
+
+        if(readyToDock && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Dont want to enter");
+            rb.AddForce(-Vector3.left * 100000f);
+            am.DisableMovement(false);
+
+            readyToDock = false;
+            promptReady = false;
         }
 
         if(readyToDock && Input.GetKeyDown(KeyCode.E))
@@ -96,17 +130,30 @@ public class AirshipInteraction : MonoBehaviour
             GameManager.instance.ReturnUIComponent("PromptParent").GetChild(1).gameObject.SetActive(false);
         }
 
-        if (Physics.SphereCast(this.transform.position, 3.0f, transform.forward, out hit, 3.0f) && !promptReady)
+        //if (Physics.SphereCast(this.transform.position, 3.0f, transform.forward, out hit, 3.0f) && !promptReady)
+        //{
+        //    if (hit.collider.CompareTag("Tower"))
+        //    {
+        //        am.DisableMovement(true);
+        //        promptReady = true;
+        //    }
+        //    else
+        //    {
+        //        promptReady = false;
+        //    }
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Tower"))
         {
-            if (hit.collider.CompareTag("Tower"))
-            {
-                am.DisableMovement(true);
-                promptReady = true;
-            }
-            else
-            {
-                promptReady = false;
-            }
+            am.DisableMovement(true);
+            promptReady = true;
+        }
+        else
+        {
+            promptReady = false;
         }
     }
 
@@ -160,6 +207,9 @@ public class AirshipInteraction : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         docking = false;
     }
