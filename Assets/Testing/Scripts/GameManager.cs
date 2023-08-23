@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         if (currentScene.name == "LevelTest")
