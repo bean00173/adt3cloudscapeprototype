@@ -19,6 +19,7 @@ public class PlayableCharacter : MonoBehaviour
     public float abilityCd { get; private set; }
     public float slowMoDuration { get; private set; }
     public int slowMoChance { get; private set; }
+    public bool charLoaded { get ; private set; }
 
     public Transform characterContainer;
     private int characterIndex = 1;
@@ -46,6 +47,9 @@ public class PlayableCharacter : MonoBehaviour
         }
 
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+
+        charLoaded = true;
+
         ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
 
         GameManager.instance.onLevelLoad.AddListener(SendCharacterData);

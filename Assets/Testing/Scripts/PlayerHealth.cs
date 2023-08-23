@@ -74,8 +74,6 @@ public class PlayerHealth : MonoBehaviour
             splatter.transform.localScale = Vector3.one * 5;
 
             SceneManager.instance.LoadScene("TowerTest");
-
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
         }
     }
 
@@ -88,7 +86,18 @@ public class PlayerHealth : MonoBehaviour
     public void Heal()
     {
         Debug.Log(currentHealth);
-        currentHealth += this.health * 0.05f;
+
+        if(currentHealth < health)
+        {
+            if((currentHealth += this.health * 0.05f) > (health - currentHealth))
+            {
+                currentHealth = health;
+            }
+            else
+            {
+                currentHealth += this.health * 0.05f;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -59,7 +59,7 @@ public class AirshipInteraction : MonoBehaviour
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
                     GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
-                    character.GetComponentInChildren<GreatswordCombat>().enabled = false; // Change this when all characters are playable
+                    StartCoroutine(DeactivateCombat(character));
                 }
             }
         }
@@ -218,6 +218,31 @@ public class AirshipInteraction : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         docking = false;
+    }
+
+    private IEnumerator DeactivateCombat(GameObject character)
+    {
+        //bool characterLoaded = false;
+        Character.CharacterId characterId;
+
+        //while (!characterLoaded)
+        //{
+        //    foreach(Transform child in character.GetComponentInChildren<PlayableCharacter>().characterContainer)
+        //    {
+        //        if(child.gameObject.activeSelf)
+        //        {
+        //            characterLoaded = true; break;
+        //        }
+        //    }
+        //}
+
+        yield return new WaitUntil(() => character.GetComponentInChildren<PlayableCharacter>().charLoaded);
+
+        characterId = character.GetComponentInChildren<PlayableCharacter>().currentCharacter;
+
+        // WHEN MORE CHARACTERS AVAILABLE ADD SWITCH STATEMENT HERE
+
+        character.GetComponentInChildren<PlayableCharacter>().ReturnCurrentCharacter().GetComponent<GreatswordCombat>().enabled = false; // Change this when all characters are playable
     }
 
     //private IEnumerator ContinueDocking(Transform next)

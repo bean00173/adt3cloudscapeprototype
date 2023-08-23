@@ -21,13 +21,15 @@ public class LoadingBehaviour : MonoBehaviour
 
             GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
 
-            while (progressBar.transform.localScale != new Vector3(1,1,1))
-            {
-                yield return new WaitForSeconds(1f);
+            //while (progressBar.transform.localScale != new Vector3(1,1,1))
+            //{
+            //    yield return new WaitForSeconds(1f);
 
-                progressBar.transform.localScale = new Vector3(.1f, 1, 1);
-                progressText.text = "(" + (.1 * 100).ToString() + "%)";
-            }
+                
+            //}
+
+            progressBar.transform.localScale = new Vector3(1, 1, 1);
+            progressText.text = "(100%)";
 
             continuePrompt.gameObject.SetActive(true);
 

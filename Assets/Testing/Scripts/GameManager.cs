@@ -121,13 +121,9 @@ public class GameManager : MonoBehaviour
             else
             {
                 onLevelLoad.Invoke();
-
                 //currentScene = UnityEngine.SceneManagement.SceneManager.("LevelTest");
                 SceneManager.instance.LoadScene("LevelTest");
             }
-
-            
-
             Debug.Log("SceneTransition");
         }
     }
@@ -276,6 +272,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         method();
+    }
+
+    public void ResetGame()
+    {
+        capableOfDying = false;
+        readyToLoad = false;
+        towerFinished = false;
+        floorIndex = 0;
+        towerData = null;
+        score = 0;
     }
 
 
