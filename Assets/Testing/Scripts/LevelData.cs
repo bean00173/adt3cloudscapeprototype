@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class WaveEnemy
+{
+    public GameObject enemy;
+    public int maxCount;
+}
+[System.Serializable]
 public class Wave
 {
-    public List<GameObject> enemies = new List<GameObject>();
-    public int enemyCount;
+    public List<WaveEnemy> enemies = new List<WaveEnemy>();
+    public int waveEnemyCount;
 }
 [System.Serializable]
 public class Floor

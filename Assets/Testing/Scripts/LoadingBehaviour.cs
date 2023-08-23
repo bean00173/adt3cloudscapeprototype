@@ -17,6 +17,8 @@ public class LoadingBehaviour : MonoBehaviour
     {
         if (LoadingData.sceneToLoad == "TowerTest")
         {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
+
             GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
 
             while (progressBar.transform.localScale != new Vector3(1,1,1))
@@ -29,13 +31,14 @@ public class LoadingBehaviour : MonoBehaviour
 
             continuePrompt.gameObject.SetActive(true);
 
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
-                
-            }
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
 
+                SceneManager.instance.ToggleObjects(true);
+            }
             yield return null;
         }
         else

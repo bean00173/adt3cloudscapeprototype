@@ -15,6 +15,20 @@ public class TowerData : MonoBehaviour
         GameManager.instance.onLevelLoad.AddListener(sendTowerData);
     }
 
+    private void Update()
+    {
+        if(GameManager.instance.towerFinished && GameManager.instance.ReturnTowerData() == this.tower)
+        {
+            towerBeaten = true;
+
+
+            // DEMO ONLY FUNCTION
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameWin");
+
+        }
+    }
+
     private void sendTowerData()
     {
         GameManager.instance.StoreTowerData(tower);

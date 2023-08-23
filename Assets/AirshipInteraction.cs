@@ -15,6 +15,7 @@ public class AirshipInteraction : MonoBehaviour
     bool promptReady;
     bool readyToDock;
     bool docked;
+    bool dockingComplete;
     bool aligned;
     bool goingToDock;
     float leastDist;
@@ -43,18 +44,23 @@ public class AirshipInteraction : MonoBehaviour
 
         if (docked && aligned)
         {
-            Debug.Log("Docked");
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            //GetComponentInChildren<PlayableCharacter>().CanMove();
-            am.enabled = false;
-            airshipObject.GetComponent<Animator>().SetBool("moving", false);
-
-            if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
+            if (!dockingComplete)
             {
-                GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
-                character.GetComponentInChildren<GreatswordCombat>().enabled = false; // Change this when all characters are playable
+                dockingComplete = true;
+
+                Debug.Log("Docked");
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                //GetComponentInChildren<PlayableCharacter>().CanMove();
+                am.enabled = false;
+                airshipObject.GetComponent<Animator>().SetBool("moving", false);
+
+                if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
+                {
+                    GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+                    character.GetComponentInChildren<GreatswordCombat>().enabled = false; // Change this when all characters are playable
+                }
             }
         }
 
@@ -66,8 +72,8 @@ public class AirshipInteraction : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
 
             float diff = transform.rotation.eulerAngles.y - target.eulerAngles.y;
-            float dergee = 5;
-            if (Mathf.Abs(diff) <= dergee)
+            float degree = 5;
+            if (Mathf.Abs(diff) <= degree)
             {
                 Debug.Log("Aligned");
                 aligned = true;

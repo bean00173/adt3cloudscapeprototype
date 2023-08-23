@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
             spawns.Add(child);
         }
         waveIndex = 0;
-        enemiesLeft = waves[0].enemyCount; // set current amount of enemies to spawn to be maximum for current wave
+        enemiesLeft = waves[0].waveEnemyCount; // set current amount of enemies to spawn to be maximum for current wave
         player = GameObject.Find("Player").transform;
     }
 
@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
             waveIndex++;
             if (waveIndex <= waves.Count - 1) // check if that was last wave, then continue to next wave if true, or end if false
             {
-                enemiesLeft = waves[waveIndex].enemyCount;
+                enemiesLeft = waves[waveIndex].waveEnemyCount;
             }
             else if (!nextFloor)
             {
@@ -50,35 +50,79 @@ public class EnemySpawner : MonoBehaviour
                 GameManager.instance.NextFloor();
             }
         }
-        else if (enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
+        //else if (enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
+        //{
+        //    SpawnEnemies(enemiesLeft, 5.0f);
+        //}
+        //else if (aliveEnemies < 3 && enemiesLeft >= 15) // if the previous wave is about to be finished, spawn 5 more, however only if there are more than 15 left, due to the spawn last 10 together rule
+        //{
+        //    SpawnEnemies(5, 2.0f);
+        //}
+
+        if(enemiesLeft > 0)
         {
-            SpawnEnemies(enemiesLeft, 5.0f);
-        }
-        else if (aliveEnemies < 3 && enemiesLeft >= 15) // if the previous wave is about to be finished, spawn 5 more, however only if there are more than 15 left, due to the spawn last 10 together rule
-        {
-            SpawnEnemies(5, 2.0f);
+            foreach (WaveEnemy enemy in waves[waveIndex].enemies)
+            {
+
+                Debug.Log(enemy.enemy.name);
+
+                int currentOfType = 0;
+
+                foreach (Transform enemyTransform in enemyContainer)
+                {
+                    if (enemyTransform.GetComponent<EnemyBehaviour>().enemy.enemyType == enemy.enemy.GetComponent<EnemyBehaviour>().enemy.enemyType)
+                    {
+                        Debug.Log("Existing Enemy Found");
+                        currentOfType += 1;
+                    }
+                }
+
+                Debug.Log(enemy.maxCount - currentOfType);
+
+                int spawnNum = enemy.maxCount - currentOfType;
+                if (spawnNum > enemiesLeft) spawnNum = enemiesLeft;
+
+                if (spawnNum > 0)
+                {
+                    SpawnEnemies(enemy.enemy, spawnNum);
+                }
+            }
         }
 
         aliveEnemies = enemyContainer.childCount; // update alive enemies with those stored in heirarchy
     }
 
-    private void SpawnEnemies(int x, float radius) 
+    //private void SpawnEnemies(int x, float radius) 
+    //{
+    //    Transform spawnPoint = FindSpawnPoint(); // gather spawn point
+    //    for(int i = 0; i < x; i++) // within number of enemies to be spawned, instantiate random enemy type, at randomised spawn point (using radial spawn)
+    //    {
+    //        if (CanSpawnBrute())
+    //        {
+    //            Debug.Log("Brute");
+    //            Instantiate(waves[waveIndex].enemies[waves[waveIndex].enemies.Count - 1], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Grunt");
+    //            Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Count - 1)], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+    //        }
+    //        enemiesLeft -= 1;
+    //    }
+    //}
+
+    private void SpawnEnemies(GameObject enemy, int count)
     {
-        Transform spawnPoint = FindSpawnPoint(); // gather spawn point
-        for(int i = 0; i < x; i++) // within number of enemies to be spawned, instantiate random enemy type, at randomised spawn point (using radial spawn)
+        Transform spawnPoint = FindSpawnPoint();
+        float radius = enemy.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute ? radius = 5.0f : radius = 2.0f;
+
+        for (int i = 0; i < count; i++)
         {
-            if (CanSpawnBrute())
-            {
-                Debug.Log("Brute");
-                Instantiate(waves[waveIndex].enemies[waves[waveIndex].enemies.Count - 1], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
-            }
-            else
-            {
-                Debug.Log("Grunt");
-                Instantiate(waves[waveIndex].enemies[Random.Range(0, waves[waveIndex].enemies.Count - 1)], GameManager.instance.SpawnPosition(i, x, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
-            }
+            Debug.Log("Spawning Enemy");
+            Instantiate(enemy, GameManager.instance.SpawnPosition(i, count, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
             enemiesLeft -= 1;
         }
+
     }
 
     private Transform FindSpawnPoint()
@@ -102,16 +146,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private bool CanSpawnBrute() // bool method to check if allowed to spawn a brute
-    {
-        foreach (GameObject go in waves[waveIndex].enemies) // search potential enemy spawns
-        {
-            if (go.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute)
-            {
-                return GameManager.instance.RandomChance(10); // if brute enemy is found in list, use random chance to return true or false for spawning 
-            }
-        }
-        return false; // else no brute
-    }
+    //private bool CanSpawnBrute() // bool method to check if allowed to spawn a brute
+    //{
+    //    //foreach (GameObject go in waves[waveIndex].enemies) // search potential enemy spawns
+    //    //{
+    //    //    if (go.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute)
+    //    //    {
+    //    //        return GameManager.instance.RandomChance(10); // if brute enemy is found in list, use random chance to return true or false for spawning 
+    //    //    }
+    //    //}
+    //    //return false; // else no brute
+    //}
 
 }
