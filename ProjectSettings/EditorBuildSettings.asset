@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Testing/Scenes/MainMenu.unity
+    guid: fe311a470acb7694ab7036f5d437f53b
+  - enabled: 1
     path: Assets/Testing/Scenes/TowerTest.unity
     guid: 83fa10e8a0a0bb1419f4d5bdc79be1d5
   - enabled: 1
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Testing/Scenes/LevelTest.unity
     guid: 8d4b56618833d7f4ba41dfa6885bccdb
-  - enabled: 1
-    path: Assets/Testing/Scenes/MainMenu.unity
-    guid: fe311a470acb7694ab7036f5d437f53b
   - enabled: 1
     path: Assets/Testing/Scenes/GameWin.unity
     guid: ac70ff5252698ca428488ff2a203cff6
