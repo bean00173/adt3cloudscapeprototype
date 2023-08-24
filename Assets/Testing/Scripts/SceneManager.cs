@@ -38,7 +38,7 @@ public class SceneManager : MonoBehaviour
         
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, LoadSceneMode mode)
     {
         Debug.Log("Loading");
 
@@ -53,6 +53,7 @@ public class SceneManager : MonoBehaviour
         //}
 
         LoadingData.sceneToLoad = sceneName;
+        LoadingData.mode = mode;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Additive);
 
     }
