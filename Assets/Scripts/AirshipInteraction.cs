@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AirshipInteraction : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AirshipInteraction : MonoBehaviour
     public GameObject player;
     Camera mainCamera;
 
-    public Transform airshipObject;
+    public Transform airshipObject, dockPrompt;
     AirshipMovement am;
     Rigidbody rb;
     bool promptReady;
@@ -81,6 +82,8 @@ public class AirshipInteraction : MonoBehaviour
 
                 Debug.Log("Docked");
 
+                dockPrompt.parent.gameObject.SetActive(false);
+
                 //GetComponentInChildren<PlayableCharacter>().CanMove();
                 am.enabled = false;
 
@@ -118,7 +121,7 @@ public class AirshipInteraction : MonoBehaviour
             promptReady = false;
         }
 
-        if(readyToDock && Input.GetKeyDown(KeyCode.E))
+        if(readyToDock && Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("Entering Island");
             Transform container = currentTower.GetComponent<TowerData>().navPointContainer;
@@ -157,12 +160,12 @@ public class AirshipInteraction : MonoBehaviour
 
         if (promptReady)
         {
-            GameManager.instance.ReturnUIComponent("PromptParent").GetChild(1).gameObject.SetActive(true);
+            dockPrompt.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             readyToDock = true;
         }
         else
         {
-            GameManager.instance.ReturnUIComponent("PromptParent").GetChild(1).gameObject.SetActive(false);
+            dockPrompt.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         }
 
         //if (Physics.SphereCast(this.transform.position, 3.0f, transform.forward, out hit, 3.0f) && !promptReady)
