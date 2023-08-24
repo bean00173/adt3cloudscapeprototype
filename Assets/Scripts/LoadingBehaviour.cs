@@ -70,6 +70,34 @@ public class LoadingBehaviour : MonoBehaviour
             }
             yield return null;
         }
+        else if(LoadingData.sceneToLoad == "LevelTest" && GameManager.instance.currentScene.name == "LevelTest")
+        {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
+
+            AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad, LoadingData.mode);
+
+            operation.allowSceneActivation = false;
+
+            while (!operation.isDone)
+            {
+                progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
+                progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
+
+                if (operation.progress >= .9f)
+                {
+                    GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
+
+                    continuePrompt.gameObject.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        operation.allowSceneActivation = true;
+                        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+                    }
+                }
+                yield return null;
+            }
+        }
         else
         {
             AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad, LoadingData.mode);

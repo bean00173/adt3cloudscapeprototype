@@ -47,9 +47,16 @@ public class EnemySpawner : MonoBehaviour
             else if (!nextFloor)
             {
                 nextFloor = true;
+
+                player.GetComponent<PlayableCharacter>().canInteract = true;
                 Debug.Log("No Waves Left");
                 GameManager.instance.NextFloor();
             }
+        }
+
+        if(aliveEnemies > 0)
+        {
+            player.GetComponent<PlayableCharacter>().canInteract = false;
         }
         //else if (enemiesLeft <= 10) // if the wave is down to its last 10, spawn all at once, with a greater radius
         //{
@@ -62,9 +69,10 @@ public class EnemySpawner : MonoBehaviour
 
         if(enemiesLeft > 0)
         {
+
             foreach (WaveEnemy enemy in waves[waveIndex].enemies)
             {
-
+                
                 Debug.Log(enemy.enemy.name);
 
                 int currentOfType = 0;

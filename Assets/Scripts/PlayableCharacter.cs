@@ -24,6 +24,9 @@ public class PlayableCharacter : MonoBehaviour
     public Transform characterContainer;
     private int characterIndex = 1;
 
+    [HideInInspector]
+    public bool canInteract = true;
+
     bool canSwitch;
 
     private void Start()
@@ -74,11 +77,12 @@ public class PlayableCharacter : MonoBehaviour
         else
         {
             canSwitch = true;
+            canInteract = true;
         }
 
         if(GameManager.instance.currentScene.name != "LoadingScene")
         {
-            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")))
+            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")) && canInteract)
             {
                 GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(true);
                 GameManager.instance.readyToLoad = true;
