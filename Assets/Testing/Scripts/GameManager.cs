@@ -68,15 +68,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(Scene scene in GetOpenScenes())
+        foreach (Scene scene in GetOpenScenes())
         {
-            if(GetOpenScenes().Length == 1)
+            if (GetOpenScenes().Length == 1)
             {
                 currentScene = scene;
             }
         }
 
-        if(currentScene.name == "TowerTest" || currentScene.name == "LevelTest")
+        if (currentScene.name == "TowerTest" || currentScene.name == "LevelTest")
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
             {
                 scoreText = ReturnUIComponent("score").GetComponent<TextMeshProUGUI>();
             }
-            catch(System.Exception e)
+            catch (System.Exception e)
             {
                 Debug.Log(e);
                 scoreText = null;
@@ -118,13 +118,13 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(Timer(1f, dyingEnable));
 
-            if(scoreText != null)
+            if (scoreText != null)
             {
                 if (scoreText.text != score.ToString())
                 {
                     scoreText.text = score.ToString();
                 }
-            } 
+            }
         }
 
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
@@ -179,15 +179,15 @@ public class GameManager : MonoBehaviour
 
 
     }
-    
+
     public Scene[] GetOpenScenes()
     {
         int countLoaded = UnityEngine.SceneManagement.SceneManager.loadedSceneCount;
         Scene[] scenes = new Scene[countLoaded];
 
-        for(int i = 0; i < countLoaded; i++)
+        for (int i = 0; i < countLoaded; i++)
         {
-            scenes[i]= UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+            scenes[i] = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
         }
 
         return scenes;
@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game Over");
             towerFinished = true;
         }
-        
+
     }
 
     public void UpdateCurrentScene(string name)
@@ -259,9 +259,9 @@ public class GameManager : MonoBehaviour
         List<GameObject> objects = new List<GameObject>(sceneObjects);
         Transform canvas = objects.Find((x) => x.name == "Canvas").transform;
 
-        foreach(Transform child in canvas)
+        foreach (Transform child in canvas)
         {
-            if(child.name == name)
+            if (child.name == name)
             {
                 return child.transform;
             }
@@ -310,5 +310,10 @@ public class GameManager : MonoBehaviour
         deathListener = false;
     }
 
+    public void ExitApplication()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 
 }

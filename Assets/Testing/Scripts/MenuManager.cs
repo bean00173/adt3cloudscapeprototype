@@ -25,4 +25,5 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.instance.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
+
 }
