@@ -28,7 +28,7 @@ public class GreatswordCombat : MonoBehaviour
 
     public bool abilityReady;
 
-    public GameObject abilityText, abilityProgress, abilityPS;
+    public GameObject abilityText, abilityProgress, abilityPS, shakeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +96,7 @@ public class GreatswordCombat : MonoBehaviour
                     bool thirdAtk = Time.time - lastPressedTime <= comboTime; // same as before but for third attack
                     if(comboIndex == 2 && thirdAtk) // if combo ready for last hit 
                     {
+
                         ac.SetTrigger("atkEnd");
                         firstAtk = false; // reset bools
                         secondAtk = false;

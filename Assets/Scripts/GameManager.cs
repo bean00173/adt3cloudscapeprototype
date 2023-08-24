@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     private string sceneName;
 
+    public Transform fadeImg;
+
     // Make this a singleton.
     public void Awake()
     {
@@ -312,6 +314,20 @@ public class GameManager : MonoBehaviour
 
     public void ExitApplication()
     {
+        StartCoroutine(CloseApplication());
+    }
+
+    private IEnumerator CloseApplication()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        if(currentScene.name == "MainMenu")
+        {
+            fadeImg.gameObject.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
         Debug.Log("Quit");
         Application.Quit();
     }

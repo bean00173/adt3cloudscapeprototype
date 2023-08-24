@@ -28,7 +28,7 @@ public class DoFade : MonoBehaviour
         while (alpha != 1)
         {
             alpha += 0.01f;
-            image.color += new Color(1, 1, 1, alpha);
+            image.color += new Color(image.color.r, image.color.g, image.color.b, alpha);
             yield return new WaitForSeconds(0.015f);
         }
 
