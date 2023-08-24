@@ -37,6 +37,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Alpha_Clipping: 1.42
+    - _Cloud_Alpha: 4.01
+    - _Cloud_Density: 0.32
+    - _Cloud_Size: 9.65
+    m_Colors:
+    - _Color_1: {r: 0.9056604, g: 0.6536134, b: 0.7847361, a: 0}
   m_BuildTextureStacks: []
