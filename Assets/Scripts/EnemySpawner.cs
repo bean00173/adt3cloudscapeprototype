@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private List<Wave> waves = new List<Wave>();
 
     private Transform player;
+    private Transform furthest;
     private int waveIndex;
     private int enemiesLeft;
     private int aliveEnemies;
@@ -127,23 +128,40 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform FindSpawnPoint()
     {
-        foreach(Transform potentialSpawn in spawns) // for each stored spawn point
+        float furthestDist = 0;
+        //foreach(Transform potentialSpawn in spawns) // for each stored spawn point
+        //{
+        //    if(Vector3.Distance(potentialSpawn.position, player.position) > 30.0f) // calculate if spawn point isn't in certain range of player
+        //    {
+        //        validSpawns.Add(potentialSpawn); // add to valid spawn list
+        //    }
+        //}
+
+        //if (validSpawns.Count > 0) // if there are some valid spawns
+        //{
+        //    return validSpawns[Random.Range(0, validSpawns.Count)]; // spawn using a random one of them
+        //}
+        //else 
+        //{
+        //    return spawns[Random.Range(0, spawns.Count)]; // if not, spawn at a random invalidated spawn and pray for the best
+        //}
+        foreach (Transform child in spawns)
         {
-            Debug.DrawLine(potentialSpawn.position, player.position, Color.yellow);
-            if(Vector3.Distance(potentialSpawn.position, player.position) > 15.0f) // calculate if spawn point isn't in certain range of player
+            float dist = Vector3.Distance(player.transform.position, child.transform.position);
+            Debug.Log(child.name + " " + dist);
+            if (furthestDist == 0)
             {
-                validSpawns.Add(potentialSpawn); // add to valid spawn list
+                furthestDist = dist;
+                furthest = child;
+            }
+            else if (dist > furthestDist)
+            {
+                furthestDist = dist;
+                furthest = child;
             }
         }
 
-        if (validSpawns.Count > 0) // if there are some valid spawns
-        {
-            return validSpawns[Random.Range(0, validSpawns.Count)]; // spawn using a random one of them
-        }
-        else 
-        {
-            return spawns[Random.Range(0, spawns.Count)]; // if not, spawn at a random invalidated spawn and pray for the best
-        }
+        return furthest;
     }
 
     //private bool CanSpawnBrute() // bool method to check if allowed to spawn a brute
