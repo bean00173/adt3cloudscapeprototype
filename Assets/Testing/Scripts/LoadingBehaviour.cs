@@ -33,7 +33,7 @@ public class LoadingBehaviour : MonoBehaviour
         }
         else
         {
-            bg.GetComponent<Image>().sprite = backgrounds[0];
+            bg.GetComponent<Image>().sprite = backgrounds[1];
         }
     }
 
