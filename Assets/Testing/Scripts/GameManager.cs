@@ -133,14 +133,14 @@ public class GameManager : MonoBehaviour
             if (towerFinished)
             {
                 //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
-                SceneManager.instance.LoadScene("TowerTest");
+                SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
 
             }
             else
             {
                 onLevelLoad.Invoke();
                 //currentScene = UnityEngine.SceneManagement.SceneManager.("LevelTest");
-                SceneManager.instance.LoadScene("LevelTest");
+                SceneManager.instance.LoadScene("LevelTest", LoadSceneMode.Additive);
             }
             Debug.Log("SceneTransition");
         }
@@ -300,11 +300,12 @@ public class GameManager : MonoBehaviour
         floorIndex = 0;
         towerData = null;
         score = 0;
+        deathListener = false;
     }
 
     private void DiedInGame()
     {
-        SceneManager.instance.LoadScene("TowerTest");
+        SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
 
         deathListener = false;
     }

@@ -2,21 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class LoadingBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject progressBar, continuePrompt;
+    [SerializeField] private GameObject progressBar, continuePrompt, bg;
     [SerializeField] private TextMeshProUGUI progressText;
+
+    public List<Sprite> backgrounds = new List<Sprite>();
 
     private void Start()
     {
         StartCoroutine(LoadSceneAsync());
     }
 
+    private void ChooseBG()
+    {
+        if((LoadingData.sceneToLoad == "TowerTest" && GameManager.instance.currentScene.name == "LevelTest") ||(LoadingData.sceneToLoad == "LevelTest"))
+        {
+            int bgIndex = 0;
+            switch (GameManager.activeCharacter.Id)
+            {
+                case Character.CharacterId.seb: bgIndex = 0; break;
+                case Character.CharacterId.rav: bgIndex = 0; break; // CHANGE WHEN MORE CHARACTERS
+                case Character.CharacterId.abi: bgIndex = 0; break;
+            }
+            bg.GetComponent<Image>().sprite = backgrounds[bgIndex];
+            
+        }
+        else
+        {
+            bg.GetComponent<Image>().sprite = backgrounds[0];
+        }
+    }
+
     IEnumerator LoadSceneAsync()
     {
-        if (LoadingData.sceneToLoad == "TowerTest")
+        ChooseBG();
+
+        if (LoadingData.sceneToLoad == "TowerTest" && GameManager.instance.currentScene.name == "LevelTest")
         {
+
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
 
             GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
@@ -45,7 +72,7 @@ public class LoadingBehaviour : MonoBehaviour
         }
         else
         {
-            AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LoadingData.sceneToLoad, LoadingData.mode);
 
             operation.allowSceneActivation = false;
 

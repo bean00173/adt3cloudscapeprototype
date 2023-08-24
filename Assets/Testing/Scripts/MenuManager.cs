@@ -20,4 +20,9 @@ public class MenuManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
+
+    public void LoadWithIntermission(string sceneName)
+    {
+        SceneManager.instance.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
 }
