@@ -30,6 +30,8 @@ public class AirshipInteraction : MonoBehaviour
     private bool docking;
     float startTime;
 
+    float dist;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,21 +42,35 @@ public class AirshipInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (current != null)
+        {
+            dist = Vector3.Distance(this.transform.position, current.position);
+            Debug.DrawLine(this.transform.position, current.position, Color.yellow);
+            Debug.Log(dist);
+
+            if (dist < 0.5f)
+            {
+                docked = true;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+        }
+
         currentTower = GameObject.Find("Tower").transform;
 
         if (docked && aligned)
         {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
             if (!dockingComplete)
             {
                 dockingComplete = true;
 
                 Debug.Log("Docked");
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
 
                 //GetComponentInChildren<PlayableCharacter>().CanMove();
                 am.enabled = false;
-                airshipObject.GetComponent<Animator>().SetBool("moving", false);
 
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
@@ -69,11 +85,11 @@ public class AirshipInteraction : MonoBehaviour
             Vector3 delta = new Vector3(current.GetChild(0).position.x - this.transform.position.x, 0f, current.GetChild(0).position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
             Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 10.0f); // slerp rotation based on time multiplied by a constant speed
 
             float diff = transform.rotation.eulerAngles.y - target.eulerAngles.y;
             float degree = 5;
-            if (Mathf.Abs(diff) <= degree)
+            if (Mathf.Abs(diff) <= degree && docked)
             {
                 Debug.Log("Aligned");
                 aligned = true;
@@ -95,6 +111,8 @@ public class AirshipInteraction : MonoBehaviour
             Debug.Log("Entering Island");
             Transform container = currentTower.GetComponent<TowerData>().navPointContainer;
             currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
+            airshipObject.GetComponent<Animator>().SetBool("moving", false);
+
 
             StartCoroutine(DoDockingProcedure(container));
 
@@ -118,8 +136,7 @@ public class AirshipInteraction : MonoBehaviour
             //        }
             //    }
             //}
-
-            docked = true;
+            
 
 
             readyToDock = false;
@@ -213,6 +230,8 @@ public class AirshipInteraction : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
+        yield return new WaitUntil(() => Vector3.Distance(startPos, endPos) < .5f);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
