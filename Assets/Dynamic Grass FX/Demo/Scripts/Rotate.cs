@@ -8,6 +8,6 @@ public class Rotate : MonoBehaviour
 
 	void Update ()
 	{
-		transform.Rotate(Angle * 24 * Time.deltaTime);
+		transform.Rotate(Angle * 24 * Time.deltaTime, Space.Self);
 	}
 }
