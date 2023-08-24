@@ -19,7 +19,10 @@ public class GameManager : MonoBehaviour
     private List<int> chance = new List<int>();
 
     public TextMeshProUGUI scoreText;
+    private GameObject youDied;
     public Transform promptText;
+
+    bool deathListener;
 
     [HideInInspector]
     public bool readyToLoad;
@@ -87,14 +90,29 @@ public class GameManager : MonoBehaviour
         {
             try
             {
-                scoreText = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
+                scoreText = ReturnUIComponent("score").GetComponent<TextMeshProUGUI>();
             }
             catch(System.Exception e)
             {
                 Debug.Log(e);
                 scoreText = null;
             }
-            
+
+            try
+            {
+                youDied = ReturnUIComponent("YouDied").gameObject;
+                if (!deathListener)
+                {
+                    youDied.GetComponent<InvokeEvent>().playableEvent.AddListener(DiedInGame);
+                    deathListener = true;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+                youDied = null;
+            }
+
 
             dyingEnable = CanDie;
 
@@ -282,6 +300,13 @@ public class GameManager : MonoBehaviour
         floorIndex = 0;
         towerData = null;
         score = 0;
+    }
+
+    private void DiedInGame()
+    {
+        SceneManager.instance.LoadScene("TowerTest");
+
+        deathListener = false;
     }
 
 
