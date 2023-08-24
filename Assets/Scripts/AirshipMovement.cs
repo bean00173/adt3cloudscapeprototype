@@ -34,13 +34,41 @@ public class AirshipMovement : MonoBehaviour
 
             ac.SetFloat("horizontalInput", hor);
 
+            //DoMove();
+            ////DoRot();
+
+            //if (vert == 0)
+            //{
+            //    rb.velocity = Vector3.zero;
+            //    rb.angularVelocity = Vector3.zero;
+            //}
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (canMove)
+        {
+            //hor = Input.GetAxisRaw("Horizontal");
+            //vert = Input.GetAxisRaw("Vertical");
+
+            //ac.SetFloat("horizontalInput", hor);
+
             DoMove();
             //DoRot();
 
             if (vert == 0)
             {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+                if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.C))
+                {
+                    Debug.Log("MOVING YEAHH BABY");
+                }
+                else
+                {
+                    Debug.Log("NotMoving");
+                    rb.velocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+                }
             }
         }
     }
@@ -54,6 +82,7 @@ public class AirshipMovement : MonoBehaviour
 
         //// Adding Force to the Player Rigidbody if on Ground
         //rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
         if(vert != 0)
         {
             ac.SetBool("moving", true);
@@ -63,36 +92,29 @@ public class AirshipMovement : MonoBehaviour
             ac.SetBool("moving", false);
         }
 
-        transform.Rotate(0, hor * 10 * Time.deltaTime, 0);
-        transform.Translate(0, 0, vert * 10 * Time.deltaTime * moveSpeed);
+        //transform.Rotate(0, hor * 10 * Time.deltaTime, 0);
+        //transform.Translate(0, 0, vert * 10 * Time.deltaTime * moveSpeed);
 
+        Vector3 dir = transform.TransformDirection(new Vector3(0, 0, vert * 10 * Time.fixedDeltaTime));
+        rb.velocity = dir * 50 * moveSpeed;
 
-        //Vector3 moveDirection = transform.forward * vert * moveSpeed * 10f;
-        //rb.AddForce(moveDirection, ForceMode.Force);
-
-        //float rotationAmount = hor * 10 * Time.deltaTime;
-        //rb.AddTorque(Vector3.up * rotationAmount, ForceMode.Force);
-
-        //Quaternion deltaRot = Quaternion.Euler(new Vector3(0, hor * 10 * Time.fixedDeltaTime, 0));
-        //rb.MoveRotation(rb.rotation * deltaRot);
-
-        //Vector3 moveDir = new Vector3(0, 0, vert * 10 * Time.fixedDeltaTime * moveSpeed);
-        //moveDir = rb.rotation * moveDir;
-        //rb.MovePosition(this.transform.position + moveDir);
+        Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, hor * rotSpeed * Time.fixedDeltaTime, 0));
+        rb.MoveRotation(rb.rotation * deltaRotation);
 
         ac.SetFloat("elevation", 0);
 
-        if (Input.GetKey(KeyCode.Space)&& transform.position.y < 50)
+        if (Input.GetKey(KeyCode.Space) && transform.position.y < 50)
         {
-            //rb.MovePosition(new Vector3(0, 10 * Time.fixedDeltaTime * moveSpeed, 0));
-            transform.Translate(0, 10 * Time.deltaTime * moveSpeed, 0);
+            Vector3 vertDir = new Vector3(0, moveSpeed * 10 * Time.fixedDeltaTime, 0);
+            Debug.Log(vertDir);
+            rb.velocity += vertDir * 50f;
             ac.SetFloat("elevation", 1);
 
         }
         else if (Input.GetKey(KeyCode.C) && transform.position.y > -50)
         {
-            //rb.MovePosition(new Vector3(0, -10 * Time.fixedDeltaTime * moveSpeed, 0));
-            transform.Translate(0, -10 * Time.deltaTime * moveSpeed, 0);
+            Vector3 vertDir = transform.TransformDirection(new Vector3(0, moveSpeed * -10 * Time.fixedDeltaTime, 0));
+            rb.velocity += vertDir * 50f;
             ac.SetFloat("elevation", -1);
         }
 

@@ -42,6 +42,20 @@ public class AirshipInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        currentTower = GameObject.Find("Tower").transform;
+        Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
+        Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
+
+        if (Vector3.Distance(this.transform.position, currentTower.position) < 200.0f && !(docking || docked))
+        {
+            promptReady = true;
+        }
+        else
+        {
+            promptReady = false;
+        }
+
         if (current != null)
         {
             dist = Vector3.Distance(this.transform.position, current.position);
@@ -55,8 +69,6 @@ public class AirshipInteraction : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
             }
         }
-
-        currentTower = GameObject.Find("Tower").transform;
 
         if (docked && aligned)
         {
@@ -110,7 +122,7 @@ public class AirshipInteraction : MonoBehaviour
         {
             Debug.Log("Entering Island");
             Transform container = currentTower.GetComponent<TowerData>().navPointContainer;
-            currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
+            //currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
             airshipObject.GetComponent<Animator>().SetBool("moving", false);
 
 
@@ -183,21 +195,21 @@ public class AirshipInteraction : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Tower"))
-        {
-            am.DisableMovement(true);
-            if (!promptReady)
-            {
-                promptReady = true;
-            }
-        }
-        else
-        {
-            promptReady = false;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Tower"))
+    //    {
+    //        am.DisableMovement(true);
+    //        if (!promptReady)
+    //        {
+    //            promptReady = true;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        promptReady = false;
+    //    }
+    //}
 
     private Transform NavToPoint(Transform container)
     {
