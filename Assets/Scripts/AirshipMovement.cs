@@ -66,6 +66,13 @@ public class AirshipMovement : MonoBehaviour
         transform.Rotate(0, hor * 10 * Time.deltaTime, 0);
         transform.Translate(0, 0, vert * 10 * Time.deltaTime * moveSpeed);
 
+
+        //Vector3 moveDirection = transform.forward * vert * moveSpeed * 10f;
+        //rb.AddForce(moveDirection, ForceMode.Force);
+
+        //float rotationAmount = hor * 10 * Time.deltaTime;
+        //rb.AddTorque(Vector3.up * rotationAmount, ForceMode.Force);
+
         //Quaternion deltaRot = Quaternion.Euler(new Vector3(0, hor * 10 * Time.fixedDeltaTime, 0));
         //rb.MoveRotation(rb.rotation * deltaRot);
 
