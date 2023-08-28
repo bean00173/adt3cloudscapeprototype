@@ -175,6 +175,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   capableOfDying: 0
+  fadeImg: {fileID: 0}
 --- !u!4 &48884361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4804833480269588746, guid: de912b9fe826d9b459b6316166e3e599, type: 3}
@@ -3193,6 +3194,7 @@ MonoBehaviour:
         - enemy: {fileID: 9217863194353377077, guid: 0f5f6dbc6306fdc4fa7e470943fb0247, type: 3}
           maxCount: 2
         waveEnemyCount: 10
+    - waves:
       - enemies:
         - enemy: {fileID: 7867481929056565818, guid: 403e595bb6eac7d489c5c097f6cbad78, type: 3}
           maxCount: 10
@@ -4440,6 +4442,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 416386656469751746, guid: 9175d08a6bdddeb48afa15d1b714d918, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 5826582559400492653, guid: 9175d08a6bdddeb48afa15d1b714d918, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.7489
@@ -4499,6 +4505,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 416386656469751746, guid: 9175d08a6bdddeb48afa15d1b714d918, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2017092475}
+    - targetCorrespondingSourceObject: {fileID: 416386656469751746, guid: 9175d08a6bdddeb48afa15d1b714d918, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2017092476}
   m_SourcePrefab: {fileID: 100100000, guid: 9175d08a6bdddeb48afa15d1b714d918, type: 3}
 --- !u!1 &1834857663
 GameObject:
@@ -4945,6 +4954,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4080145, y: 2.2950897, z: 0.29553434}
   m_Center: {x: 0.000000029802322, y: 1.1481464, z: 0.028115734}
+--- !u!114 &2017092476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017092471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749390793db8f024685eff3677771358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: {fileID: 1645141815}
+  promptMsg: {fileID: 0}
 --- !u!4 &2038880805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4804833480269588746, guid: de912b9fe826d9b459b6316166e3e599, type: 3}

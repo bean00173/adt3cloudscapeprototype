@@ -46,7 +46,7 @@ public class AirshipInteraction : MonoBehaviour
         
         currentTower = GameObject.Find("Tower").transform;
         Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
-        Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
+        //Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
 
         if (Vector3.Distance(this.transform.position, currentTower.position) < 200.0f && !(docking || docked))
         {
@@ -61,7 +61,7 @@ public class AirshipInteraction : MonoBehaviour
         {
             dist = Vector3.Distance(this.transform.position, current.position);
             Debug.DrawLine(this.transform.position, current.position, Color.yellow);
-            Debug.Log(dist);
+            //Debug.Log(dist);
 
             if (dist < 0.5f)
             {

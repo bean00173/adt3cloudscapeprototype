@@ -7,9 +7,19 @@ using UnityEngine.SceneManagement;
 public class SceneManager : MonoBehaviour
 {
     public static SceneManager instance;
-
+    public static scene currentScene;
     GameObject[] allObjects; 
     List<GameObject> objectsToDisable = new List<GameObject>();
+
+
+    public enum scene
+    {
+        loading,
+        level,
+        openWorld,
+        menu,
+        gameWin
+    }
 
     // Make this a singleton.
     public void Awake()
@@ -61,7 +71,10 @@ public class SceneManager : MonoBehaviour
     public void ToggleObjects(bool toggle)
     {
         foreach(GameObject a in objectsToDisable){
-            a.SetActive(toggle);
+            if(a != null)
+            {
+                a.SetActive(toggle);
+            }
         }
     }
 
@@ -76,6 +89,18 @@ public class SceneManager : MonoBehaviour
             {
                 objectsToDisable.Remove(a);
             }
+        }
+    }
+
+    public void UpdateCurrentScene(string scene)
+    {
+        switch (scene)
+        {
+            case "MainMenu": currentScene = SceneManager.scene.menu; break;
+            case "LevelTest": currentScene = SceneManager.scene.level; break;
+            case "TowerTest": currentScene = SceneManager.scene.openWorld; break;
+            case "LoadingScreen": currentScene = SceneManager.scene.loading; break;
+            case "GameWin": currentScene = SceneManager.scene.gameWin; break;
         }
     }
 }

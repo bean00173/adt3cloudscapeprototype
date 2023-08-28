@@ -28,6 +28,9 @@ public class PlayableCharacter : MonoBehaviour
     public bool canInteract = true;
 
     bool canSwitch;
+    RaycastHit hit;
+    GameObject hitObject;
+    bool hitting = false;
 
     private void Start()
     {
@@ -80,18 +83,23 @@ public class PlayableCharacter : MonoBehaviour
             canInteract = true;
         }
 
-        if(GameManager.instance.currentScene.name != "LoadingScene")
-        {
-            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, 1f, LayerMask.GetMask("Door")) && canInteract)
-            {
-                GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(true);
-                GameManager.instance.readyToLoad = true;
-            }
-            else
-            {
-                GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(false);
-            }
-        } 
+        //if (GameManager.instance.currentScene.name != "LoadingScene")
+        //{
+        //    if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
+        //    {
+        //        hit.transform.SendMessage("PlayerNear");
+        //        GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(true);
+        //        GameManager.instance.readyToLoad = true;
+        //    }
+        //    else
+        //    {
+        //        GameManager.instance.ReturnUIComponent("PromptParent").GetChild(0).gameObject.SetActive(false);
+        //    }
+
+
+        //}
+
+        DoRaycast();
 
         if (Input.GetKeyDown(KeyCode.Q) && canSwitch)
         {
@@ -147,6 +155,45 @@ public class PlayableCharacter : MonoBehaviour
     public void SendCharacterData()
     {
         GameManager.instance.StoreCharacterData(manager.GetCurrentCharacter(currentCharacter));
+    }
+
+    public void DoRaycast()
+    {
+        Debug.Log("Cast");
+        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
+        {
+            if(hit.transform.tag == "Door")
+            {
+                GameObject go = hit.transform.gameObject;
+
+                // If no registred hitobject => Entering
+                if (hitObject == null)
+                {
+                    go.SendMessage("PlayerAtDoor");
+                }
+                // If hit object is the same as the registered one => Stay
+                else if (hitObject.GetInstanceID() == go.GetInstanceID())
+                {
+                    //hitObject.SendMessage("OnHitStay");
+                    Debug.Log("Still At Door");
+                }
+                // If new object hit => Exit last + Enter new
+                else
+                {
+                    hitObject.SendMessage("OnHitExit");
+                    go.SendMessage("OnHitEnter");
+                }
+
+                hitting = true;
+                hitObject = go;
+            }
+        }
+        else if (hitting)
+        {
+            hitObject.SendMessage("PlayerNotAtDoor");
+            hitting = false;
+            hitObject = null;
+        }
     }
 
     //public Transform ReturnNextAliveCharacter()
