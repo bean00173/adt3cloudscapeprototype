@@ -52,15 +52,15 @@ public class SceneManager : MonoBehaviour
     {
         Debug.Log("Loading");
 
-        if(sceneName != "TowerTest")
+        if(GameManager.instance.currentScene.name == "TowerTest")
         {
             GatherObjects();
             ToggleObjects(false);
         }
-        //else
-        //{
-        //    ToggleObjects(true);
-        //}
+        else if(sceneName == "TowerTest")
+        {
+            ToggleObjects(true);
+        }
 
         LoadingData.sceneToLoad = sceneName;
         LoadingData.mode = mode;
@@ -68,7 +68,7 @@ public class SceneManager : MonoBehaviour
 
     }
 
-    public void ToggleObjects(bool toggle)
+    public void ToggleObjects(bool toggle) 
     {
         foreach(GameObject a in objectsToDisable){
             if(a != null)
