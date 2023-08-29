@@ -24,9 +24,9 @@ public class TowerData : MonoBehaviour
 
             // DEMO ONLY FUNCTION
 
-            GameManager.instance.ResetGame();
+            //GameManager.instance.ResetGame();
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameWin");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("GameWin");
 
         }
     }

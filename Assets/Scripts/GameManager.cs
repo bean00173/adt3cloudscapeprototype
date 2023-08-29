@@ -333,4 +333,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void NextTower()
+    {
+        towerFinished = false;
+    }
+
 }

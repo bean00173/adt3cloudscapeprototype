@@ -24,7 +24,12 @@ public class Door : MonoBehaviour
         {
             promptMsg.text = GameManager.instance.towerFinished ? "Leave Tower ?" : "Next Floor ?";
         }
-        
+
+        if (GameManager.instance.currentScene.name == "TowerTest" && promptMsg != null)
+        {
+            promptMsg.text = GameManager.instance.towerFinished ? "Dungeon Finished." : "Enter Tower ?";
+        }
+
 
         if (active)
         {
