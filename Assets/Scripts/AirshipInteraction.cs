@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class AirshipInteraction : MonoBehaviour
 {
 
     public GameObject player;
+    GameObject character;
     Camera mainCamera;
 
     public Transform airshipObject, dockPrompt;
@@ -27,6 +29,8 @@ public class AirshipInteraction : MonoBehaviour
 
     string targetName;
 
+    List<GameObject> doors;
+
     RaycastHit hit;
     private bool docking;
     float startTime;
@@ -38,6 +42,8 @@ public class AirshipInteraction : MonoBehaviour
     {
         am = GetComponent<AirshipMovement>();
         rb = GetComponentInChildren<Rigidbody>();
+
+        doors = FindObjectsOfType<AirshipDoor>().Select(ad => ad.gameObject).ToList();
     }
 
     // Update is called once per frame
@@ -85,12 +91,14 @@ public class AirshipInteraction : MonoBehaviour
 
                 dockPrompt.parent.gameObject.SetActive(false);
 
+                current.GetChild(2).gameObject.SetActive(true);
+
                 //GetComponentInChildren<PlayableCharacter>().CanMove();
                 am.enabled = false;
 
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
-                    GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+                    character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
                     StartCoroutine(DeactivateCombat(character));
                 }
             }
@@ -321,4 +329,27 @@ public class AirshipInteraction : MonoBehaviour
 
 
     //}
+
+    public void LeaveTower()
+    {
+        Destroy(character);
+        character = null;
+
+        am.enabled = true;
+
+        doors = null;
+
+        promptReady = false;
+        readyToDock = false;
+        docked = false;
+        dockingComplete = false;
+        aligned = false;
+        
+        Destroy(currentTower);
+        currentTower = null;
+        doors = FindObjectsOfType<AirshipDoor>().Select(ad => ad.gameObject).ToList();
+
+        current = null;
+        closest = null;
+    }
 }

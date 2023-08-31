@@ -344,8 +344,6 @@ public class GameManager : MonoBehaviour
         GameObject tower = towerPrefabs[Random.Range(0, towerPrefabs.Count - 1)];
         towerPrefabs.Remove(tower);
 
-
-
         return tower;
     }
 }

@@ -161,7 +161,7 @@ public class PlayableCharacter : MonoBehaviour
     {
         if(Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
         {
-            if(hit.transform.tag == "Door")
+            if(hit.transform.tag == "Door" || hit.transform.tag == "AirshipDoor")
             {
                 GameObject go = hit.transform.gameObject;
 
