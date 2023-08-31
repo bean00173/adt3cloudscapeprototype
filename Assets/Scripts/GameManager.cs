@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public TestDelegate dyingEnable;
 
     public bool capableOfDying;
+
+    public bool towerLeft;
     public bool towerFinished { get; private set; }
 
     public Scene currentScene { get; private set; }
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
     public Transform fadeImg;
 
     public List<GameObject> towerPrefabs;
+    public GameObject bossTower;
+    public bool bossUI;
 
     // Make this a singleton.
     public void Awake()
@@ -78,6 +82,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (towerLeft) towerFinished = false; towerLeft = false;
         scaleIndex = 1 + (.1f * towersBeaten);
 
         foreach (Scene scene in GetOpenScenes())
@@ -346,7 +352,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject NextTower()
     {
-        towerFinished = false;
+        towerFinished = true;
+        if(towerPrefabs == null)
+        {
+            bossUI = true;
+            return bossTower;
+        }
 
         GameObject tower = towerPrefabs[Random.Range(0, towerPrefabs.Count - 1)];
         towerPrefabs.Remove(tower);

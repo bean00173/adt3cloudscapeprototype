@@ -17,7 +17,7 @@ public class Compass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTower = FindObjectOfType<TowerData>().transform;
+        currentTower = TowerManager.instance.currentTower.transform;
 
         Vector3 aimTarget = currentTower.position;
         Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);

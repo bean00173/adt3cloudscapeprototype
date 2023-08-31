@@ -46,7 +46,7 @@ public class AirshipInteraction : MonoBehaviour
     void Update()
     {
 
-        currentTower = FindObjectOfType<TowerData>().transform;
+        currentTower = TowerManager.instance.currentTower.transform;
 
         Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
         //Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
@@ -330,8 +330,11 @@ public class AirshipInteraction : MonoBehaviour
     {
         promptReady = false;
         readyToDock = false;
+        docking = false;
         docked = false;
         dockingComplete = false;
         aligned = false;
+        current = null;
+        closest = null;
     }
 }

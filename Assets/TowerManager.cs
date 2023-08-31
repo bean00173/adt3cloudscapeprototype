@@ -8,7 +8,8 @@ public class TowerManager : MonoBehaviour
 {
     public static TowerManager instance;
 
-    public GameObject previousTower, currentTower;
+    public GameObject previousTower { get; private set; }
+    public GameObject currentTower { get; private set; }
 
     public GameObject shipPrompt, doorPrompt;
     public TextMeshProUGUI shipPromptText, doorPromptText;
@@ -16,7 +17,7 @@ public class TowerManager : MonoBehaviour
     public GameObject airship;
 
     bool listenersAdded;
-    List<GameObject> shipDoors = new List<GameObject>();
+    List<Transform> shipDoors = new List<Transform>();
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class TowerManager : MonoBehaviour
     void Start()
     {
         currentTower = GameObject.Find("Tower");
-        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>().Select(ad => ad.gameObject).ToList();
+        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>(true).Select(ad => ad.transform).ToList();
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class TowerManager : MonoBehaviour
     {
         if(previousTower != currentTower && !listenersAdded)
         {
-            foreach(GameObject door in shipDoors)
+            foreach(Transform door in shipDoors)
             {
                 door.GetComponent<AirshipDoor>().leaveIsland.AddListener(LeaveTower);
             }
@@ -58,15 +59,19 @@ public class TowerManager : MonoBehaviour
         listenersAdded = false;
 
         shipDoors = null;
-        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>().Select(ad => ad.gameObject).ToList();
+        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>().Select(ad => ad.transform).ToList();
     }
 
     public void LeaveTower()
     {
+        GameManager.instance.towerLeft = true;
+
         airship.GetComponent<AirshipMovement>().enabled = true;
         airship.GetComponent<AirshipInteraction>().ResetDockStatus();
 
         Destroy(airship.GetComponent<AirshipInteraction>().character);
         Destroy(previousTower);
+
+        airship.GetComponent<AirshipInteraction>().dockPrompt.parent.gameObject.SetActive(true);
     }
 }

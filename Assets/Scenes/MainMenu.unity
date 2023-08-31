@@ -35251,11 +35251,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   capableOfDying: 0
+  towerLeft: 0
   fadeImg: {fileID: 1365270640}
   towerPrefabs:
-  - {fileID: 2069738686680544260, guid: d8ffeb79611fcd54093ae7fdf84fd5cf, type: 3}
-  - {fileID: 2069738686680544260, guid: bb2d5e5be12550c4db94357788a5c700, type: 3}
-  - {fileID: 2069738686680544260, guid: 057113b08e786204cba1c4ce3ccaedb1, type: 3}
+  - {fileID: 2069738686680544260, guid: 384224704395a2547a7a95e468a6fa27, type: 3}
+  - {fileID: 2069738686680544260, guid: ae08c8564b3b19441afa55bea63335bc, type: 3}
+  - {fileID: 2069738686680544260, guid: 20b37de3387ab61478671d1d93b675ae, type: 3}
+  bossTower: {fileID: 2069738686680544260, guid: 384224704395a2547a7a95e468a6fa27, type: 3}
+  bossUI: 0
 --- !u!1001 &2069118459
 PrefabInstance:
   m_ObjectHideFlags: 0

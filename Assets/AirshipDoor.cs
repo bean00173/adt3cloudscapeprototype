@@ -57,6 +57,8 @@ public class AirshipDoor : MonoBehaviour
             {
                 this.enabled = false;
                 leaveIsland.Invoke();
+
+                prompt.SetActive(false);
             }
         }
     }

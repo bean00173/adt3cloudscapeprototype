@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
     private int aliveEnemies;
 
     bool nextFloor;
+
+    public GameObject bossUI;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (GameManager.instance.bossUI)
+        {
+            bossUI.SetActive(true);
+        }
 
         if (enemiesLeft == 0 && aliveEnemies == 0) // if there are no more enemies to spawn, and no more enemies alive...
         {
