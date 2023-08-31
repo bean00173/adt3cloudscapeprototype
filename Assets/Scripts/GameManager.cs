@@ -6,12 +6,16 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEditor.PackageManager;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public static Character activeCharacter;
+    public static float characterHealth;
+    public static float scaleIndex;
+    public static int towersBeaten;
     public static Tower towerData;
     public static int floorIndex;
     public static int score { get; private set; }
@@ -74,6 +78,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scaleIndex = 1 + (.1f * towersBeaten);
+
         foreach (Scene scene in GetOpenScenes())
         {
             if (GetOpenScenes().Length == 1)
@@ -251,6 +257,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Game Over");
             towerFinished = true;
+            towersBeaten += 1;
         }
 
     }

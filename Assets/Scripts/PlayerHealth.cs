@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth < health)
         {
-            if((currentHealth += this.health * 0.05f) > (health - currentHealth))
+            if((currentHealth += this.health * 0.05f) >= health)
             {
                 currentHealth = health;
             }

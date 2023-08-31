@@ -13,7 +13,11 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(GameManager.instance.currentScene.name == "TowerTest")
+        {
+            prompt = TowerManager.instance.doorPrompt;
+            promptMsg = TowerManager.instance.doorPromptText;
+        }
     }
 
     // Update is called once per frame

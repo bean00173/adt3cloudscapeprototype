@@ -9,7 +9,7 @@ public class AirshipInteraction : MonoBehaviour
 {
 
     public GameObject player;
-    GameObject character;
+    public GameObject character { get; private set; }
     Camera mainCamera;
 
     public Transform airshipObject, dockPrompt;
@@ -29,8 +29,6 @@ public class AirshipInteraction : MonoBehaviour
 
     string targetName;
 
-    List<GameObject> doors;
-
     RaycastHit hit;
     private bool docking;
     float startTime;
@@ -42,8 +40,6 @@ public class AirshipInteraction : MonoBehaviour
     {
         am = GetComponent<AirshipMovement>();
         rb = GetComponentInChildren<Rigidbody>();
-
-        doors = FindObjectsOfType<AirshipDoor>().Select(ad => ad.gameObject).ToList();
     }
 
     // Update is called once per frame
@@ -330,26 +326,12 @@ public class AirshipInteraction : MonoBehaviour
 
     //}
 
-    public void LeaveTower()
+    public void ResetDockStatus()
     {
-        Destroy(character);
-        character = null;
-
-        am.enabled = true;
-
-        doors = null;
-
         promptReady = false;
         readyToDock = false;
         docked = false;
         dockingComplete = false;
         aligned = false;
-        
-        Destroy(currentTower);
-        currentTower = null;
-        doors = FindObjectsOfType<AirshipDoor>().Select(ad => ad.gameObject).ToList();
-
-        current = null;
-        closest = null;
     }
 }

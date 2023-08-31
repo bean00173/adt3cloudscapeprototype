@@ -8,8 +8,9 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class AirshipDoor : MonoBehaviour
 {
-    public GameObject prompt;
-    public TextMeshProUGUI promptMsg;
+    private GameObject prompt;
+    private TextMeshProUGUI promptMsg;
+    
     public UnityEvent leaveIsland;
     
 
@@ -19,7 +20,8 @@ public class AirshipDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        prompt = TowerManager.instance.shipPrompt;
+        promptMsg = TowerManager.instance.shipPromptText;
     }
 
     // Update is called once per frame

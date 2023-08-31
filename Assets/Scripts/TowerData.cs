@@ -24,6 +24,8 @@ public class TowerData : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
             GameObject newTower = Instantiate(GameManager.instance.NextTower(), GameManager.instance.SpawnPosition(Random.Range(0, 24), 24, this.transform.position, 5000f), rotation);
 
+            TowerManager.instance.NewCurrentTower(newTower);
+
             // DEMO ONLY FUNCTION
 
             //GameManager.instance.ResetGame();
