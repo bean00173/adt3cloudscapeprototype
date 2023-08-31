@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
         {
             prompt = TowerManager.instance.doorPrompt;
             promptMsg = TowerManager.instance.doorPromptText;
+
         }
     }
 
@@ -24,7 +25,7 @@ public class Door : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(active);
+        //Debug.LogWarning("Door prompt active : " + active + ", Current Scene is : " + GameManager.instance.currentScene.name);
 
         if(GameManager.instance.currentScene.name == "TowerTest")
         {
@@ -37,9 +38,11 @@ public class Door : MonoBehaviour
         //{
         //    canInteract = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
         //}
-        
 
-        prompt.SetActive(active);
+        if(TowerManager.instance.previousTower == null)
+        {
+            prompt.SetActive(active);
+        }
 
         if (GameManager.instance.currentScene.name == "LevelTest" && promptMsg != null)
         {
@@ -56,7 +59,7 @@ public class Door : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && canInteract)
             {
-                this.enabled = false;
+                canInteract = false;
             }
             else if (!canInteract)
             {
@@ -75,7 +78,7 @@ public class Door : MonoBehaviour
 
     private void PlayerAtDoor()
     {
-        Debug.Log("AT DOOR");
+        Debug.LogWarning("AT DOOR");
         if (GameManager.instance.currentScene.name == "LevelTest")
         {
             active = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
@@ -88,7 +91,7 @@ public class Door : MonoBehaviour
 
     private void PlayerNotAtDoor()
     {
-        Debug.Log("LEFT DOOR");
+        Debug.LogWarning("LEFT DOOR");
         active = false;
     }
 }

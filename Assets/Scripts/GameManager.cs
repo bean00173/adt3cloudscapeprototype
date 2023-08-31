@@ -83,7 +83,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (towerLeft) towerFinished = false; towerLeft = false;
+        if (towerLeft) towerFinished = false;
+
         scaleIndex = 1 + (.1f * towersBeaten);
 
         foreach (Scene scene in GetOpenScenes())
