@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform player;
     private Transform furthest;
     private int waveIndex;
-    private int enemiesLeft;
+    public int enemiesLeft { get; private set; }
     private int aliveEnemies;
 
     bool nextFloor;

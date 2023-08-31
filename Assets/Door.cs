@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     public GameObject prompt;
     public TextMeshProUGUI promptMsg;
     bool active;
+    bool canInteract = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,22 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(active);
+
+        if(GameManager.instance.currentScene.name == "TowerTest")
+        {
+            if (this.GetComponentInParent<TowerData>().towerBeaten == true)
+            {
+                canInteract = false;
+            }
+        }
+        //else if (GameManager.instance.currentScene.name == "LevelTest")
+        //{
+        //    canInteract = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
+        //}
+        
+
         prompt.SetActive(active);
 
         if (GameManager.instance.currentScene.name == "LevelTest" && promptMsg != null)
@@ -33,19 +50,36 @@ public class Door : MonoBehaviour
 
         if (active)
         {
-            GameManager.instance.readyToLoad = true;
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && canInteract)
             {
                 this.enabled = false;
             }
+            else if (!canInteract)
+            {
+                GameManager.instance.readyToLoad = false;
+            }
+            else
+            {
+                GameManager.instance.readyToLoad = true;
+            }
+        }
+        else
+        {
+            GameManager.instance.readyToLoad = false;
         }
     }
 
     private void PlayerAtDoor()
     {
         Debug.Log("AT DOOR");
-        active = true;
+        if (GameManager.instance.currentScene.name == "LevelTest")
+        {
+            active = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
+        }
+        else
+        {
+            active = true;
+        }
     }
 
     private void PlayerNotAtDoor()

@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
 
     public Transform fadeImg;
 
+    public List<GameObject> towerPrefabs;
+
     // Make this a singleton.
     public void Awake()
     {
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         slowTimeMethod = ResumeNormalTimeScale;
+         
+        
     }
 
     // Update is called once per frame
@@ -333,9 +337,15 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void NextTower()
+    public GameObject NextTower()
     {
         towerFinished = false;
-    }
 
+        GameObject tower = towerPrefabs[Random.Range(0, towerPrefabs.Count - 1)];
+        towerPrefabs.Remove(tower);
+
+
+
+        return tower;
+    }
 }

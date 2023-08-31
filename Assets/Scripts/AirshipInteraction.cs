@@ -43,8 +43,9 @@ public class AirshipInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        currentTower = GameObject.Find("Tower").transform;
+
+        currentTower = FindObjectOfType<TowerData>().transform;
+
         Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
         //Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
 
