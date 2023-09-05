@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1802973251998387997}
   - component: {fileID: 5071474093854547709}
   - component: {fileID: 5941434658298453034}
-  - component: {fileID: 667446953776434115}
   m_Layer: 0
   m_Name: LowClouds
   m_TagString: Untagged
@@ -276,28 +275,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2540220055156174324}
   m_Mesh: {fileID: 0}
---- !u!64 &667446953776434115
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2540220055156174324}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &6488286240305391044
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7859175042055956664}
+  - component: {fileID: 6666165143715166622}
   m_Layer: 0
   m_Name: CloudTile
   m_TagString: Untagged
@@ -324,13 +302,25 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9810, y: -261, z: -8069}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.36339986, y: 0.36339986, z: 0.36339986}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4515801641817127042}
   - {fileID: 5973655670065557567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6666165143715166622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6488286240305391044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f117b8074a02f0246863db8f9e26142d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7608801183196232681
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +334,6 @@ GameObject:
   - component: {fileID: 2621392364135367564}
   - component: {fileID: 6366037815845573723}
   - component: {fileID: 1142122983425382390}
-  - component: {fileID: 8813469792274314614}
   m_Layer: 0
   m_Name: LowerClouds
   m_TagString: Untagged
@@ -606,26 +595,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7608801183196232681}
-  m_Mesh: {fileID: 0}
---- !u!64 &8813469792274314614
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608801183196232681}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
