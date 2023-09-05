@@ -42,9 +42,11 @@ public class TowerManager : MonoBehaviour
     {
         if(previousTower != currentTower && !listenersAdded)
         {
+            Debug.Log("Grabbing Doors");
             foreach(Transform door in shipDoors)
             {
                 door.GetComponent<AirshipDoor>().leaveIsland.AddListener(LeaveTower);
+                Debug.Log(door.name);
             }
 
             listenersAdded = true;
@@ -59,7 +61,8 @@ public class TowerManager : MonoBehaviour
         listenersAdded = false;
 
         shipDoors = null;
-        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>().Select(ad => ad.transform).ToList();
+        shipDoors = currentTower.GetComponentsInChildren<AirshipDoor>(true).Select(ad => ad.transform).ToList();
+
     }
 
     public void LeaveTower()

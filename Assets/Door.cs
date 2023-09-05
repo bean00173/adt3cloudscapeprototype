@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
 
         //Debug.LogWarning("Door prompt active : " + active + ", Current Scene is : " + GameManager.instance.currentScene.name);
 
-        if(GameManager.instance.currentScene.name == "TowerTest")
+        if(GameManager.instance.currentScene.name == "TowerTest" && this.GetComponentInParent<TowerData>() != null)
         {
             if (this.GetComponentInParent<TowerData>().towerBeaten == true)
             {
@@ -39,7 +39,7 @@ public class Door : MonoBehaviour
         //    canInteract = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
         //}
 
-        if(TowerManager.instance.previousTower == null)
+        if(TowerManager.instance.previousTower == null || (TowerManager.instance.previousTower == this.GetComponentInParent<TowerData>().gameObject))
         {
             prompt.SetActive(active);
         }

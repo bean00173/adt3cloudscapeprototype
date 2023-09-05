@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour
     public GameObject NextTower()
     {
         towerFinished = true;
-        if(towerPrefabs == null)
+        if(towerPrefabs.Count == 0)
         {
             bossUI = true;
             return bossTower;

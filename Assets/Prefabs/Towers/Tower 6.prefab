@@ -587,7 +587,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1770090480323291578}
   - component: {fileID: 6902447585164106755}
-  - component: {fileID: 2688862068703133556}
   m_Layer: 0
   m_Name: Tower 6
   m_TagString: Tower
@@ -635,28 +634,6 @@ MonoBehaviour:
         waveEnemyCount: 25
   towerBeaten: 0
   navPointContainer: {fileID: 1759882849994930783}
-  AirshipHitbox: {fileID: 0}
---- !u!114 &2688862068703133556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069738686680544260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a9dcc39a1ffe7543a41872401a5a6d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower:
-    floors:
-    - waves:
-      - enemies:
-        - enemy: {fileID: 9217863194353377077, guid: 0f5f6dbc6306fdc4fa7e470943fb0247, type: 3}
-          maxCount: 5
-        waveEnemyCount: 25
-  towerBeaten: 0
-  navPointContainer: {fileID: 1759882849994930783, guid: e0da2d4a3b1d519408cf5c07e3de3bd5, type: 3}
   AirshipHitbox: {fileID: 0}
 --- !u!1 &3240137397055453868
 GameObject:

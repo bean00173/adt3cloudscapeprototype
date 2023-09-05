@@ -133,6 +133,7 @@ public class AirshipInteraction : MonoBehaviour
             //currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
             airshipObject.GetComponent<Animator>().SetBool("moving", false);
 
+            GameManager.instance.towerLeft = false;
 
             StartCoroutine(DoDockingProcedure(container));
 
@@ -235,10 +236,6 @@ public class AirshipInteraction : MonoBehaviour
                 leastDist = dist;
                 closest = child;
             }
-            else if(dist == leastDist && child.gameObject.name == "homePoint")
-            {
-                closest = child;
-            }
         }
 
         return closest;
@@ -335,6 +332,8 @@ public class AirshipInteraction : MonoBehaviour
         dockingComplete = false;
         aligned = false;
         current = null;
+        leastDist = 0;
+        dist = 0;
         closest = null;
     }
 }
