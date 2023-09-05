@@ -6,12 +6,16 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEditor.PackageManager;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public static Character activeCharacter;
+    public static float characterHealth;
+    public static float scaleIndex;
+    public static int towersBeaten;
     public static Tower towerData;
     public static int floorIndex;
     public static int score { get; private set; }
@@ -39,6 +43,8 @@ public class GameManager : MonoBehaviour
     public TestDelegate dyingEnable;
 
     public bool capableOfDying;
+
+    public bool towerLeft;
     public bool towerFinished { get; private set; }
 
     public Scene currentScene { get; private set; }
@@ -46,6 +52,10 @@ public class GameManager : MonoBehaviour
     private string sceneName;
 
     public Transform fadeImg;
+
+    public List<GameObject> towerPrefabs;
+    public GameObject bossTower;
+    public bool bossUI;
 
     // Make this a singleton.
     public void Awake()
@@ -65,11 +75,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         slowTimeMethod = ResumeNormalTimeScale;
+         
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (towerLeft) towerFinished = false;
+
+        scaleIndex = 1 + (.1f * towersBeaten);
+
         foreach (Scene scene in GetOpenScenes())
         {
             if (GetOpenScenes().Length == 1)
@@ -247,6 +264,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Game Over");
             towerFinished = true;
+            towersBeaten += 1;
         }
 
     }
@@ -333,9 +351,18 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void NextTower()
+    public GameObject NextTower()
     {
-        towerFinished = false;
-    }
+        towerFinished = true;
+        if(towerPrefabs.Count == 0)
+        {
+            bossUI = true;
+            return bossTower;
+        }
 
+        GameObject tower = towerPrefabs[Random.Range(0, towerPrefabs.Count - 1)];
+        towerPrefabs.Remove(tower);
+
+        return tower;
+    }
 }

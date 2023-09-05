@@ -8,17 +8,41 @@ public class Door : MonoBehaviour
     public GameObject prompt;
     public TextMeshProUGUI promptMsg;
     bool active;
+    bool canInteract = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(GameManager.instance.currentScene.name == "TowerTest")
+        {
+            prompt = TowerManager.instance.doorPrompt;
+            promptMsg = TowerManager.instance.doorPromptText;
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        prompt.SetActive(active);
+
+        //Debug.LogWarning("Door prompt active : " + active + ", Current Scene is : " + GameManager.instance.currentScene.name);
+
+        if(GameManager.instance.currentScene.name == "TowerTest" && this.GetComponentInParent<TowerData>() != null)
+        {
+            if (this.GetComponentInParent<TowerData>().towerBeaten == true)
+            {
+                canInteract = false;
+            }
+        }
+        //else if (GameManager.instance.currentScene.name == "LevelTest")
+        //{
+        //    canInteract = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
+        //}
+
+        if(TowerManager.instance.previousTower == null || (TowerManager.instance.previousTower == this.GetComponentInParent<TowerData>().gameObject))
+        {
+            prompt.SetActive(active);
+        }
 
         if (GameManager.instance.currentScene.name == "LevelTest" && promptMsg != null)
         {
@@ -33,24 +57,41 @@ public class Door : MonoBehaviour
 
         if (active)
         {
-            GameManager.instance.readyToLoad = true;
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && canInteract)
             {
-                this.enabled = false;
+                canInteract = false;
             }
+            else if (!canInteract)
+            {
+                GameManager.instance.readyToLoad = false;
+            }
+            else
+            {
+                GameManager.instance.readyToLoad = true;
+            }
+        }
+        else
+        {
+            GameManager.instance.readyToLoad = false;
         }
     }
 
     private void PlayerAtDoor()
     {
-        Debug.Log("AT DOOR");
-        active = true;
+        Debug.LogWarning("AT DOOR");
+        if (GameManager.instance.currentScene.name == "LevelTest")
+        {
+            active = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
+        }
+        else
+        {
+            active = true;
+        }
     }
 
     private void PlayerNotAtDoor()
     {
-        Debug.Log("LEFT DOOR");
+        Debug.LogWarning("LEFT DOOR");
         active = false;
     }
 }

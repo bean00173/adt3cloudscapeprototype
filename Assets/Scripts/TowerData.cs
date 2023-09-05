@@ -10,6 +10,8 @@ public class TowerData : MonoBehaviour
     public Transform navPointContainer;
     public Collider AirshipHitbox;
 
+    bool spawned;
+
     private void Start()
     {
         GameManager.instance.onLevelLoad.AddListener(sendTowerData);
@@ -17,10 +19,16 @@ public class TowerData : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.instance.towerFinished && GameManager.instance.ReturnTowerData() == this.tower)
+        if (GameManager.instance.towerFinished && GameManager.instance.ReturnTowerData() == this.tower && !spawned)
         {
             towerBeaten = true;
 
+            Quaternion rotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
+            GameObject newTower = Instantiate(GameManager.instance.NextTower(), GameManager.instance.SpawnPosition(Random.Range(0, 24), 24, this.transform.position, 2000f), rotation);
+
+            TowerManager.instance.NewCurrentTower(newTower);
+
+            spawned = true;
 
             // DEMO ONLY FUNCTION
 

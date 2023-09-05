@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class AirshipInteraction : MonoBehaviour
 {
 
     public GameObject player;
+    public GameObject character { get; private set; }
     Camera mainCamera;
 
     public Transform airshipObject, dockPrompt;
@@ -43,8 +45,9 @@ public class AirshipInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        currentTower = GameObject.Find("Tower").transform;
+
+        currentTower = TowerManager.instance.currentTower.transform;
+
         Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
         //Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
 
@@ -84,12 +87,14 @@ public class AirshipInteraction : MonoBehaviour
 
                 dockPrompt.parent.gameObject.SetActive(false);
 
+                current.GetChild(2).gameObject.SetActive(true);
+
                 //GetComponentInChildren<PlayableCharacter>().CanMove();
                 am.enabled = false;
 
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
-                    GameObject character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+                    character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
                     StartCoroutine(DeactivateCombat(character));
                 }
             }
@@ -128,6 +133,7 @@ public class AirshipInteraction : MonoBehaviour
             //currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
             airshipObject.GetComponent<Animator>().SetBool("moving", false);
 
+            GameManager.instance.towerLeft = false;
 
             StartCoroutine(DoDockingProcedure(container));
 
@@ -230,10 +236,6 @@ public class AirshipInteraction : MonoBehaviour
                 leastDist = dist;
                 closest = child;
             }
-            else if(dist == leastDist && child.gameObject.name == "homePoint")
-            {
-                closest = child;
-            }
         }
 
         return closest;
@@ -320,4 +322,18 @@ public class AirshipInteraction : MonoBehaviour
 
 
     //}
+
+    public void ResetDockStatus()
+    {
+        promptReady = false;
+        readyToDock = false;
+        docking = false;
+        docked = false;
+        dockingComplete = false;
+        aligned = false;
+        current = null;
+        leastDist = 0;
+        dist = 0;
+        closest = null;
+    }
 }
