@@ -38,10 +38,12 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Alpha_Clipping: 1.42
-    - _Cloud_Alpha: 4.01
-    - _Cloud_Density: 0.32
-    - _Cloud_Size: 9.65
+    - _Alpha_Clipping: 1.38
+    - _Cloud_Alpha: 3.8
+    - _Cloud_Density: 0.4
+    - _Cloud_Size: 59.54
+    - _Cloud_Speed: 0.0002
     m_Colors:
+    - _Cloud_Height: {r: 0, g: 0.01, b: 0, a: 0}
     - _Color_1: {r: 0.9056604, g: 0.6536134, b: 0.7847361, a: 0}
   m_BuildTextureStacks: []
