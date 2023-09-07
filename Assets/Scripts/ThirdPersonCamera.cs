@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Cinemachine;
 
 public class ThirdPersonCamera : MonoBehaviour
@@ -15,10 +16,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private CinemachineFreeLook cfl;
     PlayerMovement pm;
+    AirshipMovement am;
 
     public float rotationSpeed;
     public bool canRot;
     int i = 0;
+    bool canMove;
 
     private void Start()
     {
@@ -27,11 +30,19 @@ public class ThirdPersonCamera : MonoBehaviour
 
         cfl = this.GetComponent<CinemachineFreeLook>();
         pm = player.GetComponent<PlayerMovement>();
+        am = player.GetComponent<AirshipMovement>();
     }
 
     private void Update()
     {
-        
+        if (pm != null) // checks whether script is on player vs airship then updates canMove
+        {
+            canMove = pm.canMove;
+        }
+        else if (am != null)
+        {
+            canMove = am.canMove;
+        }
     }
 
     private void FixedUpdate()
@@ -48,7 +59,7 @@ public class ThirdPersonCamera : MonoBehaviour
             Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
             // If Input Direction is not Zero and movement is enabled, change view direction to input direction
-            if (inputDir != Vector3.zero && pm.canMove)
+            if (inputDir != Vector3.zero && canMove)
             {
                 player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
             }

@@ -63,6 +63,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_9ebd7cca2a624c8c858bb37500221630_Out_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: 0c83b4e609262b743b11081acb64bdd5, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -91,7 +95,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.19339621, b: 0.19339621, a: 1}
+    - _Color: {r: 1, g: 0.75150704, b: 0.3537736, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

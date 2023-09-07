@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
 
         winLight.enabled = true;
-        winLight.intensity = Mathf.Lerp(0, 15, 3);
+        winLight.intensity = Mathf.Lerp(0, 7.5f, 3);
 
         if (floorIndex < towerData.floors.Count - 1)
         {

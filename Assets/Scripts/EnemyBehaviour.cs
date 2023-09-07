@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,10 +29,11 @@ public class EnemyBehaviour : MonoBehaviour
 {
 
     public Enemy enemy = new Enemy(); // creating new enemy
-    
+    public Transform healthbar;
     private float health;
 
-    Transform goal;
+    [HideInInspector]
+    public Transform goal;
     NavMeshAgent agent;
     BodyPartContainer bpc;
     Rigidbody rb;
@@ -143,6 +145,12 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 health -= pCharacter.attackModifier; // if not, remove health and lower speed because injured people aren't as fast as they once were
                 agent.speed = agent.speed * (health / enemy.maxHealth);
+
+                MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
+                foreach(MeshRenderer renderer in mr)
+                {
+                    StartCoroutine(ColourDamage(renderer, .1f));
+                }
             }
         }
 
@@ -187,6 +195,8 @@ public class EnemyBehaviour : MonoBehaviour
         GameManager.instance.ScoreUp(this.enemy.score);
         if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().slowMoChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().slowMoDuration);
 
+        Destroy(healthbar.gameObject); healthbar = null;
+
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion
@@ -210,7 +220,6 @@ public class EnemyBehaviour : MonoBehaviour
             if (rb != null && rb.CompareTag("Drop"))
                 rb.AddExplosionForce(Random.Range(5.0f, 10.0f) * 50f, explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
         }
-
         Destroy(this.gameObject); // once the explosion has occured, remove the enemy object as transforms no longer required
     }
 
@@ -218,6 +227,11 @@ public class EnemyBehaviour : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return health / enemy.maxHealth;
     }
 
     private IEnumerator LimitSpawnVelocity()
@@ -265,5 +279,38 @@ public class EnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(this.enemy.attackCd);
         atkReady = true;
+    }
+
+    public void SetupHealthBar(Transform parent)
+    {
+        healthbar.transform.parent = parent;
+        healthbar.GetComponent<Healthbar>().eb = this;
+    }
+
+    private IEnumerator ColourDamage(MeshRenderer renderer, float fadeTime)
+    {
+        float time = 0;
+
+        while(time < fadeTime)
+        {
+            renderer.material.color = Color.Lerp(Color.white, Color.red, time/fadeTime);
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+
+        renderer.material.color = Color.red;
+
+        time = 0;
+
+        while (time < (fadeTime * 2))
+        {
+            renderer.material.color = Color.Lerp(Color.red, Color.white, time / (fadeTime * 2));
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        renderer.material.color = Color.white;
+
     }
 }
