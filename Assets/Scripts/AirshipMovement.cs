@@ -12,7 +12,8 @@ public class AirshipMovement : MonoBehaviour
     Rigidbody rb;
     Animator ac;
 
-    bool canMove;
+    [HideInInspector]
+    public bool canMove;
 
 
     // Start is called before the first frame update

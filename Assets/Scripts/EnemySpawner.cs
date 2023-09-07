@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     bool nextFloor;
 
-    public GameObject bossUI;
+    public GameObject bossUI, hbCanvas;
     
     // Start is called before the first frame update
     void Start()
@@ -135,7 +134,8 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Debug.Log("Spawning Enemy");
-            Instantiate(enemy, GameManager.instance.SpawnPosition(i, count, spawnPoint.position, radius), Quaternion.identity, enemyContainer);
+            Transform agent = Instantiate(enemy, GameManager.instance.SpawnPosition(i, count, spawnPoint.position, radius), Quaternion.identity, enemyContainer).transform;
+            agent.GetComponent<EnemyBehaviour>().SetupHealthBar(hbCanvas.transform);
             enemiesLeft -= 1;
         }
 
