@@ -22,7 +22,15 @@ public class Floor
 [System.Serializable]
 public class Tower
 {
+    public towerType type;
     public List<Floor> floors = new List<Floor>();
+}
+[System.Serializable]
+public enum towerType
+{
+    small,
+    medium,
+    large
 }
 
 public class LevelData : MonoBehaviour

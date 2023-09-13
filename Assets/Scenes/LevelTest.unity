@@ -3323,7 +3323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0f6465546a999be42ae1b858c3967cc9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4672158991757413732, guid: 0f6465546a999be42ae1b858c3967cc9, type: 3}
       propertyPath: m_Layer
@@ -16238,13 +16238,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148638920}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.20530261, y: -0.0026683877, z: -0.011261744, w: -0.9786301}
-  m_LocalPosition: {x: -2.5, y: 4.895, z: 26.737999}
+  m_LocalRotation: {x: -0.09486125, y: -0.0039079185, z: -0.010893842, w: -0.9954233}
+  m_LocalPosition: {x: -2.5, y: 3.42, z: -3.2000008}
   m_LocalScale: {x: 2.4999998, y: 2.5, z: 2.5000005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 29665954}
-  m_LocalEulerAnglesHint: {x: -336.311, y: 0.616, z: 1.448}
+  m_LocalEulerAnglesHint: {x: -349.119, y: 0.575, z: 1.309}
 --- !u!108 &1148638922
 Light:
   m_ObjectHideFlags: 0
@@ -16259,8 +16259,8 @@ Light:
   m_Color: {r: 1, g: 0.8507198, b: 0.427451, a: 1}
   m_Intensity: 0
   m_Range: 31.753424
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 42.047848
+  m_InnerSpotAngle: 17.784685
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -18895,6 +18895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379670519}
+  - component: {fileID: 1379670520}
   m_Layer: 0
   m_Name: TowerLevels
   m_TagString: Untagged
@@ -18924,6 +18925,25 @@ Transform:
   - {fileID: 191029739}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379670520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379670518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c4d7ed5fde4364b8ba2c16145507cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _small: {fileID: 191029739}
+  _genericLow: {fileID: 508331212}
+  _genericMidBot: {fileID: 1298611485}
+  _medTop: {fileID: 6016265}
+  _tallMidHigh: {fileID: 480903879}
+  _tallTop: {fileID: 494522420}
+  _kingChamber: {fileID: 654143903}
 --- !u!1001 &1380906450
 PrefabInstance:
   m_ObjectHideFlags: 0

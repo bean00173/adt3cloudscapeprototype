@@ -283,7 +283,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void SetupHealthBar(Transform parent)
     {
-        healthbar.transform.parent = parent;
+        healthbar.transform.SetParent(parent);
         healthbar.GetComponent<Healthbar>().eb = this;
     }
 
