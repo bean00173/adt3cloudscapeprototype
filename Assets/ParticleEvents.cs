@@ -9,6 +9,7 @@ public class ParticleEvents : MonoBehaviour
     private int _currentNumberOfParticles = 0;
 
     public UnityEvent onBirth = new UnityEvent();
+    public UnityEvent onBurst = new UnityEvent();
     public UnityEvent onDeath = new UnityEvent();
 
     [Tooltip("Set this to be the same as the time between particle start and max size from SizeOverLifetime")]
@@ -29,7 +30,7 @@ public class ParticleEvents : MonoBehaviour
     void Update()
     {
         Debug.LogWarning(_system.particleCount + " : " + _currentNumberOfParticles);
-
+        
         if (_system.particleCount < _currentNumberOfParticles)
         {
             Timer(sfxDelay);
@@ -37,7 +38,13 @@ public class ParticleEvents : MonoBehaviour
             Debug.Log("Playing Birth Sound/s");
         }
 
-        if (_system.particleCount > _currentNumberOfParticles)
+        if (_system.particleCount > _currentNumberOfParticles + 5)
+        {
+            Timer(sfxDelay);
+            onBurst.Invoke();
+            Debug.Log("Playing Birth Sound/s");
+        }
+        else if (_system.particleCount > _currentNumberOfParticles)
         {
             Timer(sfxDelay);
             onBirth.Invoke();
