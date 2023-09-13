@@ -11,29 +11,35 @@ public class ParticleEvents : MonoBehaviour
     public UnityEvent onBirth = new UnityEvent();
     public UnityEvent onDeath = new UnityEvent();
 
+    [Tooltip("Set this to be the same as the time between particle start and max size from SizeOverLifetime")]
+    public float sfxDelay;
+
     // Start is called before the first frame update
     void Start()
     {
         _system = this.GetComponent<ParticleSystem>();
-        if( _system == null)
+        if (_system == null)
         {
             Debug.LogError("Missing Particle System!", this);
         }
+
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        int amount = Mathf.Abs(_currentNumberOfParticles - _system.particleCount);
+        Debug.LogWarning(_system.particleCount + " : " + _currentNumberOfParticles);
 
-        if(_system.particleCount < _currentNumberOfParticles)
+        if (_system.particleCount < _currentNumberOfParticles)
         {
+            Timer(sfxDelay);
             onDeath.Invoke();
             Debug.Log("Playing Birth Sound/s");
         }
 
-        if(_system.particleCount > _currentNumberOfParticles)
+        if (_system.particleCount > _currentNumberOfParticles)
         {
+            Timer(sfxDelay);
             onBirth.Invoke();
             Debug.Log("Playing Death Sound/s");
         }
@@ -41,5 +47,8 @@ public class ParticleEvents : MonoBehaviour
         _currentNumberOfParticles = _system.particleCount;
     }
 
-
+    private IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
 }

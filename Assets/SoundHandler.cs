@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SoundClip
+public class ClipList
 {
     public string name;
-    public AudioClip clip;
+    public SoundList clip;
+}
+[System.Serializable]
+public class SoundList
+{
+    public List<AudioClip> clips;
 }
 
 public class SoundHandler : MonoBehaviour
 {
     AudioSource source;
     //public SoundClip[] soundClips;
-    public List<SoundClip> soundClipsList;
+    public List<ClipList> soundClipsList;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +39,13 @@ public class SoundHandler : MonoBehaviour
 
     public void PlaySound(string clip)
     {
-        source.clip = soundClipsList.Find(x => x.name == clip).clip;
+        //if(source.clip != soundClipsList.Find(x => x.name == clip).clip){
+        //    source.clip = soundClipsList.Find(x => x.name == clip).clip;
+        //}
+
+        SoundList soundList = soundClipsList.Find(x => x.name == clip).clip;
+
+        source.clip = soundList.clips[Random.Range(0, soundList.clips.Count)];
         
         source.Play();
     }
