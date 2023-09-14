@@ -52,7 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
         ac = this.GetComponentInChildren<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
-        health = enemy.maxHealth;
+        health = enemy.maxHealth * GameManager.scaleIndex;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
         hit = hitbox.GetComponent<Collider>();

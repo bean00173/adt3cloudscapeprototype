@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
         healthBar.localScale = Vector3.one;
         health = CharacterManager.instance.GetCurrentCharacter(GetComponent<PlayableCharacter>().currentCharacter).health;
-        currentHealth = health;
+        currentHealth = health * GameManager.instance.ReturnCharacterHealth();
 
         ac = this.GetComponent<PlayableCharacter>().ac;
     }
@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
     public void takeDamage(float damage)
     {
         Debug.Log(currentHealth);
-        currentHealth -= damage;
+        currentHealth -= damage * GameManager.scaleIndex;
     }
 
     public void Heal()
@@ -124,5 +124,10 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(other.transform.parent.gameObject) ;
             }
         }
+    }
+
+    public float ReturnHealth()
+    {
+        return currentHealth / health;
     }
 }
