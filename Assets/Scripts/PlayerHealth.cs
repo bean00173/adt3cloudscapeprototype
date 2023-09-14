@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
             float healthScale = currentHealth / health;
             if (healthScale >= 0)
             {
-                healthBar.localScale = new Vector3(healthScale, this.transform.localScale.y, this.transform.localScale.z);
+                healthBar.GetComponent<Image>().fillAmount = healthScale;
             }
         }
 
