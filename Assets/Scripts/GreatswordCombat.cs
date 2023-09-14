@@ -29,7 +29,7 @@ public class GreatswordCombat : MonoBehaviour
 
     public bool abilityReady;
 
-    public GameObject abilityText, abilityIcon, abilityProgress, abilityPS, shakeManager;
+    public GameObject abilityText,/* abilityIcon,*/ abilityProgress, abilityPS, shakeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -172,8 +172,8 @@ public class GreatswordCombat : MonoBehaviour
 
         Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
 
-        Image image = abilityIcon.GetComponent<Image>();
-        image.color = new Color(image.color.r, image.color.g, image.color.b, .5f);
+        //Image image = abilityIcon.GetComponent<Image>();
+        //image.color = new Color(image.color.r, image.color.g, image.color.b, .5f);
         abilityReady = false;
         yield return StartCoroutine(Timer(pc.abilityCd));
         abilityReady = true;
@@ -233,8 +233,8 @@ public class GreatswordCombat : MonoBehaviour
             abilityText.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(time - currentTime) + "s";
             currentTime += .1f;
         }
-        Image image = abilityIcon.GetComponent<Image>();
-        image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+        //Image image = abilityIcon.GetComponent<Image>();
+        //image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
         abilityProgress.GetComponent<Image>().fillAmount = 0;
         abilityText.GetComponent<TextMeshProUGUI>().text = "";
 

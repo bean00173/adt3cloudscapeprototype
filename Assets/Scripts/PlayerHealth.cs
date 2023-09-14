@@ -59,11 +59,10 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
-            float hbShift = (healthBarMax - healthBarMin) - (healthBarMax - healthBarMin * healthScale);
-            Debug.Log(hbShift);
+            Debug.Log(healthScale);
             if (healthScale >= 0)
             {
-                healthBar.GetComponent<RectTransform>().position = new Vector2(hbShift, healthBar.GetComponent<RectTransform>().position.y);
+                healthBar.GetComponent<Image>().fillAmount = healthScale;
             }
         }
 
@@ -73,7 +72,8 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("LOSE");
             ac.Play("Armature_Death", -1, 0f);
             this.GetComponent<PlayerMovement>().MoveInterrupt(false);
-            healthBar.localScale = new Vector3(0f, this.transform.localScale.y, this.transform.localScale.z);
+
+            healthBar.GetComponent<Image>().fillAmount = 0;
             GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
             splatter.transform.localScale = Vector3.one * 5;
 
