@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GreatswordCombat : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GreatswordCombat : MonoBehaviour
 
     public bool abilityReady;
 
-    public GameObject abilityText, abilityProgress, abilityPS, shakeManager;
+    public GameObject abilityText, abilityIcon, abilityProgress, abilityPS, shakeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -171,7 +172,7 @@ public class GreatswordCombat : MonoBehaviour
 
         Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
 
-        Image image = abilityText.GetComponent<Image>();
+        Image image = abilityIcon.GetComponent<Image>();
         image.color = new Color(image.color.r, image.color.g, image.color.b, .5f);
         abilityReady = false;
         yield return StartCoroutine(Timer(pc.abilityCd));
@@ -224,15 +225,18 @@ public class GreatswordCombat : MonoBehaviour
     IEnumerator Timer(float time)
     {
         float currentTime = 0;
-        while(currentTime < time)
+        abilityText.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(time - currentTime) + "s";
+        while (currentTime < time)
         {
             yield return new WaitForSeconds(0.1f);
-            abilityProgress.GetComponent<Image>().fillAmount = currentTime / time;
+            abilityProgress.GetComponent<Image>().fillAmount = 1 - (currentTime / time);
+            abilityText.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(time - currentTime) + "s";
             currentTime += .1f;
         }
-        Image image = abilityText.GetComponent<Image>();
+        Image image = abilityIcon.GetComponent<Image>();
         image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
         abilityProgress.GetComponent<Image>().fillAmount = 0;
+        abilityText.GetComponent<TextMeshProUGUI>().text = "";
 
     }
 

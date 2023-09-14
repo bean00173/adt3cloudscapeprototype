@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
             {
                 if (scoreText.text != score.ToString())
                 {
-                    scoreText.text = "Score : " + score.ToString();
+                    scoreText.text = score.ToString();
                 }
             }
         }

@@ -9,6 +9,8 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour
 {
     public Transform healthBar;
+    [Tooltip("Insert the Width of the HealthBar Component Here")]
+    public float healthBarMax, healthBarMin;
     private float health;
     private float currentHealth;
 
@@ -33,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
             this.enabled = false;
         }
 
-        healthBar.localScale = Vector3.one;
+        //healthBar.localScale = Vector3.one;
         health = CharacterManager.instance.GetCurrentCharacter(GetComponent<PlayableCharacter>().currentCharacter).health;
         currentHealth = health * GameManager.instance.ReturnCharacterHealth();
 
@@ -57,9 +59,11 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
+            float hbShift = (healthBarMax - healthBarMin) - (healthBarMax - healthBarMin * healthScale);
+            Debug.Log(hbShift);
             if (healthScale >= 0)
             {
-                healthBar.GetComponent<Image>().fillAmount = healthScale;
+                healthBar.GetComponent<RectTransform>().position = new Vector2(hbShift, healthBar.GetComponent<RectTransform>().position.y);
             }
         }
 
