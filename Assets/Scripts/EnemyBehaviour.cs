@@ -64,7 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            projectileSpawn = this.transform.GetChild(2);
+            projectileSpawn = this.transform.GetChild(1);
         }
         
 
@@ -258,7 +258,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    public void doRangeAtk()
+    public void DoRangeAtk()
     {
         if (atkReady)
         {
@@ -289,6 +289,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator ColourDamage(MeshRenderer renderer, float fadeTime)
     {
+        if (renderer == null) yield break;
+
         float time = 0;
 
         while(time < fadeTime)

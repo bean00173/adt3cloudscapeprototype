@@ -267,6 +267,8 @@ public class GameManager : MonoBehaviour
             towerFinished = true;
             towersBeaten += 1;
 
+            floorIndex = 0;
+
             characterHealth = 1;
 
             UpdateScale();
