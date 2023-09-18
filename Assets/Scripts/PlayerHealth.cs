@@ -73,6 +73,8 @@ public class PlayerHealth : MonoBehaviour
             ac.Play("Armature_Death", -1, 0f);
             this.GetComponent<PlayerMovement>().MoveInterrupt(false);
 
+            CharacterManager.instance.CharacterDied(this.GetComponent<PlayableCharacter>().currentCharacter);
+
             healthBar.GetComponent<Image>().fillAmount = 0;
             GameObject splatter = Instantiate(blood.gameObject, this.transform.position, Quaternion.identity, GameObject.Find("BloodContainer").transform);
             splatter.transform.localScale = Vector3.one * 5;

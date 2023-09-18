@@ -52,6 +52,15 @@ public class PlayableCharacter : MonoBehaviour
             case Character.CharacterId.abi: characterIndex = 2; break;
         }
 
+        if (CharacterManager.instance.CharIsAlive(currentCharacter))
+        {
+            characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+        }
+        else
+        {
+            SwitchCharacter();
+        }
+
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
 
         charLoaded = true;
@@ -123,7 +132,31 @@ public class PlayableCharacter : MonoBehaviour
         {
             character.gameObject.SetActive(false);
         }
-        if(characterIndex < 2)
+
+        bool switched = false;
+
+        while (!switched)
+        {
+            IncrementCharIndex();
+
+            Transform newChar = characterContainer.GetChild(characterIndex);
+
+            if (CharacterManager.instance.CharIsAlive(newChar.GetComponent<CharacterIdentity>().id))
+            {
+                characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+                switched = true;
+            }
+        }
+
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
+
+        //ReturnNextAliveCharacter().gameObject.SetActive(true);
+
+    }
+
+    private void IncrementCharIndex()
+    {
+        if (characterIndex < 2)
         {
             characterIndex++;
         }
@@ -131,12 +164,6 @@ public class PlayableCharacter : MonoBehaviour
         {
             characterIndex = 0;
         }
-
-        characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
-        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
-
-        //ReturnNextAliveCharacter().gameObject.SetActive(true);
-
     }
 
     public Transform ReturnCurrentCharacter()
