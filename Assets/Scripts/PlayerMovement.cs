@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
 
     private float movementSpeed;
-    public float walkSpeed;
-    public float sprintSpeed;
+    public float walkMultiplier;
+    public float sprintMultiplier;
     public float groundDrag;
 
     public float dashSpeed;
@@ -71,12 +71,12 @@ public class PlayerMovement : MonoBehaviour
         else if (grounded && Input.GetKey(KeyCode.LeftShift) && (horizontalInput != 0 || verticalInput != 0))
         {
             state = MovementState.sprinting;
-            movementSpeed = sprintSpeed;
+            movementSpeed = sprintMultiplier * this.GetComponent<PlayableCharacter>().speedModifier;
         } // Mode - Walking
         else if (grounded && (horizontalInput != 0 || verticalInput != 0))
         {
             state = MovementState.walking;
-            movementSpeed = walkSpeed;
+            movementSpeed = walkMultiplier * this.GetComponent<PlayableCharacter>().speedModifier;
         }
         else if (grounded) // Mode - Idle
         {
@@ -110,9 +110,16 @@ public class PlayerMovement : MonoBehaviour
         // Checking if the player is grounded
 
         grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, whatIsGround);
+        this.GetComponent<PlayableCharacter>().ac.SetBool("grounded", grounded);
+
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down, Color.red, 0.2f);
 
-        this.GetComponent<PlayableCharacter>().ac.SetFloat("speed", movementSpeed);
+        switch (state)
+        {
+            case MovementState.walking: this.GetComponent<PlayableCharacter>().ac.SetFloat("speed", 1f); break;
+            case MovementState.sprinting: this.GetComponent<PlayableCharacter>().ac.SetFloat("speed", 2f); break;
+            default: this.GetComponent<PlayableCharacter>().ac.SetFloat("speed", 0f); break;
+        }
 
         // Calling Input Function & Speed Control on Every Frame Update
 

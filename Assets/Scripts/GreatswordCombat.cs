@@ -140,7 +140,7 @@ public class GreatswordCombat : MonoBehaviour
         while (holding)
         {
             yield return new WaitForSeconds(.25f);
-            rb.AddForce(Random.onUnitSphere * 10f * pm.walkSpeed, ForceMode.Force);
+            rb.AddForce(Random.onUnitSphere * 10f * pm.walkMultiplier * pc.speedModifier, ForceMode.Force);
         }
     }
 
