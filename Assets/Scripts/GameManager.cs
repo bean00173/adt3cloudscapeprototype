@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEditor.PackageManager;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -391,5 +392,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("CHARACTER HEALTH LEFTOVER : " + characterHealth);
             return characterHealth;
         }
+    }
+
+    public IEnumerator DoCameraShake(CinemachineFreeLook cfl, float shakeDuration)
+    {
+        cfl.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 5f;
+        yield return new WaitForSeconds(shakeDuration);
+        cfl.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 }

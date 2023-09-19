@@ -25,6 +25,8 @@ public class PlayableCharacter : MonoBehaviour
     public Transform characterContainer;
     private int characterIndex = 1;
 
+    public float switchCooldown;
+
     [HideInInspector]
     public bool canInteract = true;
 
@@ -32,6 +34,8 @@ public class PlayableCharacter : MonoBehaviour
     RaycastHit hit;
     GameObject hitObject;
     bool hitting = false;
+
+    bool notCd = true;
 
     private void Start()
     {
@@ -115,10 +119,12 @@ public class PlayableCharacter : MonoBehaviour
 
         DoRaycast();
 
-        if (Input.GetKeyDown(KeyCode.Q) && canSwitch)
+        if (Input.GetKeyDown(KeyCode.Q) && canSwitch && notCd)
         {
             Debug.Log("Switching");
             SwitchCharacter();
+
+            StartCoroutine(SwitchCooldown(switchCooldown));
         }
     }
 
@@ -230,6 +236,13 @@ public class PlayableCharacter : MonoBehaviour
         }
     }
 
+
+    private IEnumerator SwitchCooldown(float time)
+    {
+        notCd = false;
+        yield return new WaitForSeconds(time);
+        notCd = true;
+    }
     //public Transform ReturnNextAliveCharacter()
     //{
     //    foreach(Transform character in characterContainer)

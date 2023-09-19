@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public class GreatswordCombat : MonoBehaviour
 {
@@ -146,6 +147,8 @@ public class GreatswordCombat : MonoBehaviour
     public void hitOn()
     {
         hit.enabled = true;
+
+        StartCoroutine(GameManager.instance.DoCameraShake(shakeManager.GetComponentInChildren<CinemachineFreeLook>(), .25f));
     }
 
     public void hitOff()
