@@ -52,15 +52,6 @@ public class PlayableCharacter : MonoBehaviour
             case Character.CharacterId.abi: characterIndex = 2; break;
         }
 
-        if (CharacterManager.instance.CharIsAlive(currentCharacter))
-        {
-            characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
-        }
-        else
-        {
-            SwitchCharacter();
-        }
-
         characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
 
         charLoaded = true;
@@ -90,6 +81,16 @@ public class PlayableCharacter : MonoBehaviour
         {
             canSwitch = true;
             canInteract = true;
+        }
+
+        if (CharacterManager.instance.CharIsAlive(currentCharacter) && canSwitch)
+        {
+            characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+            currentCharacter = characterContainer.GetChild(characterIndex).GetComponent<CharacterIdentity>().id;
+        }
+        else if(canSwitch)
+        {
+            SwitchCharacter();
         }
 
         //if (GameManager.instance.currentScene.name != "LoadingScene")
@@ -144,6 +145,7 @@ public class PlayableCharacter : MonoBehaviour
             if (CharacterManager.instance.CharIsAlive(newChar.GetComponent<CharacterIdentity>().id))
             {
                 characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+                currentCharacter = newChar.GetComponent<CharacterIdentity>().id;
                 switched = true;
             }
         }
