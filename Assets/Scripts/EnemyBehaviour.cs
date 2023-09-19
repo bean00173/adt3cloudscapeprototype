@@ -98,6 +98,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
+
             ac.SetTrigger("atkReady");
 
             agent.destination = this.transform.position; // stop agent at current position

@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.TextCore.Text;
 
 public class PlayableCharacter : MonoBehaviour
 {
@@ -83,14 +84,17 @@ public class PlayableCharacter : MonoBehaviour
             canInteract = true;
         }
 
-        if (CharacterManager.instance.CharIsAlive(currentCharacter) && canSwitch)
-        {
-            characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
-            currentCharacter = characterContainer.GetChild(characterIndex).GetComponent<CharacterIdentity>().id;
-        }
-        else if(canSwitch)
+        if (!CharacterManager.instance.CharIsAlive(currentCharacter) && canSwitch)
         {
             SwitchCharacter();
+        }
+
+        foreach(Transform character in characterContainer.transform)
+        {
+            if (character.GetComponent<CharacterIdentity>().id != currentCharacter)
+            {
+                character.gameObject.SetActive(false);
+            }
         }
 
         //if (GameManager.instance.currentScene.name != "LoadingScene")
@@ -132,6 +136,7 @@ public class PlayableCharacter : MonoBehaviour
         foreach(Transform character in characterContainer)
         {
             character.gameObject.SetActive(false);
+            Debug.Log("Disabling " + character.name);
         }
 
         bool switched = false;
@@ -146,6 +151,7 @@ public class PlayableCharacter : MonoBehaviour
             {
                 characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
                 currentCharacter = newChar.GetComponent<CharacterIdentity>().id;
+                Debug.Log("Enabling " + currentCharacter.ToString());
                 switched = true;
             }
         }
