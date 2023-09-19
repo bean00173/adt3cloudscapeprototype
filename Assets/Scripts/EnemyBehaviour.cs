@@ -52,7 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
         ac = this.GetComponentInChildren<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
-        health = enemy.maxHealth;
+        health = enemy.maxHealth * GameManager.scaleIndex;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
         hit = hitbox.GetComponent<Collider>();
@@ -64,7 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            projectileSpawn = this.transform.GetChild(2);
+            projectileSpawn = this.transform.GetChild(1);
         }
         
 
@@ -98,6 +98,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
+
             ac.SetTrigger("atkReady");
 
             agent.destination = this.transform.position; // stop agent at current position
@@ -258,7 +259,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    public void doRangeAtk()
+    public void DoRangeAtk()
     {
         if (atkReady)
         {
@@ -283,12 +284,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void SetupHealthBar(Transform parent)
     {
-        healthbar.transform.parent = parent;
+        healthbar.transform.SetParent(parent);
         healthbar.GetComponent<Healthbar>().eb = this;
     }
 
     private IEnumerator ColourDamage(MeshRenderer renderer, float fadeTime)
     {
+        if (renderer == null) yield break;
+
         float time = 0;
 
         while(time < fadeTime)

@@ -55,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
                 nextFloor = true;
 
                 player.GetComponent<PlayableCharacter>().canInteract = true;
+                GameManager.characterHealth = player.GetComponent<PlayerHealth>().ReturnHealth();
                 Debug.Log("No Waves Left");
                 GameManager.instance.NextFloor();
             }

@@ -57,6 +57,14 @@ public class CharacterManager : MonoBehaviour
         AddCharacter(new Character(Character.CharacterId.seb, sebHealth, sebAtk, sebSpeed, sebAbilityCd, sebAlive));
     }
 
+    private void Update()
+    {
+        if(!sebAlive && !abiAlive && !ravAlive)
+        {
+            Debug.Log("GAME OVER BIG TIME");
+        }
+    }
+
     private void AddCharacter(Character character)
     {
         characters.Add(character);
@@ -65,5 +73,27 @@ public class CharacterManager : MonoBehaviour
     public Character GetCurrentCharacter(CharacterId id) // return currently active character
     {
         return characters.Where(i => i.Id == id).FirstOrDefault();
+    }
+
+    public void CharacterDied(CharacterId id)
+    {
+        switch (id)
+        {
+            case CharacterId.seb: sebAlive = false; break;
+            case CharacterId.abi: abiAlive = false; break;
+            case CharacterId.rav: ravAlive = false; break;
+        }
+    }
+
+    public bool CharIsAlive(CharacterId id)
+    {
+        switch (id)
+        {
+            case CharacterId.seb: if (sebAlive) return true; break;
+            case CharacterId.abi: if (abiAlive) return true; break;
+            case CharacterId.rav: if (ravAlive) return true; break;
+        }
+
+        return false;
     }
 }

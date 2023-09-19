@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     public GameObject bossTower;
     public bool bossUI;
 
+
+
     // Make this a singleton.
     public void Awake()
     {
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         slowTimeMethod = ResumeNormalTimeScale;
-         
+        scaleIndex = 1;
         
     }
 
@@ -85,7 +87,6 @@ public class GameManager : MonoBehaviour
 
         if (towerLeft) towerFinished = false;
 
-        scaleIndex = 1 + (.1f * towersBeaten);
 
         foreach (Scene scene in GetOpenScenes())
         {
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
             {
                 if (scoreText.text != score.ToString())
                 {
-                    scoreText.text = "Score : " + score.ToString();
+                    scoreText.text = score.ToString();
                 }
             }
         }
@@ -262,11 +263,24 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Over");
+            
             towerFinished = true;
             towersBeaten += 1;
+
+            floorIndex = 0;
+
+            characterHealth = 1;
+
+            UpdateScale();
+
+            Debug.Log("Tower Beaten, Scale Index = " + scaleIndex);
         }
 
+    }
+
+    private void UpdateScale()
+    {
+        scaleIndex = 1 + (.1f * towersBeaten);
     }
 
     public void UpdateCurrentScene(string name)
@@ -364,5 +378,18 @@ public class GameManager : MonoBehaviour
         towerPrefabs.Remove(tower);
 
         return tower;
+    }
+
+    public float ReturnCharacterHealth()
+    {
+        if(floorIndex == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            Debug.Log("CHARACTER HEALTH LEFTOVER : " + characterHealth);
+            return characterHealth;
+        }
     }
 }

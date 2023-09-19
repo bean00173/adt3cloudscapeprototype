@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.TextCore.Text;
 
 public class PlayableCharacter : MonoBehaviour
 {
@@ -83,6 +84,19 @@ public class PlayableCharacter : MonoBehaviour
             canInteract = true;
         }
 
+        if (!CharacterManager.instance.CharIsAlive(currentCharacter) && canSwitch)
+        {
+            SwitchCharacter();
+        }
+
+        foreach(Transform character in characterContainer.transform)
+        {
+            if (character.GetComponent<CharacterIdentity>().id != currentCharacter)
+            {
+                character.gameObject.SetActive(false);
+            }
+        }
+
         //if (GameManager.instance.currentScene.name != "LoadingScene")
         //{
         //    if (Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
@@ -122,8 +136,35 @@ public class PlayableCharacter : MonoBehaviour
         foreach(Transform character in characterContainer)
         {
             character.gameObject.SetActive(false);
+            Debug.Log("Disabling " + character.name);
         }
-        if(characterIndex < 2)
+
+        bool switched = false;
+
+        while (!switched)
+        {
+            IncrementCharIndex();
+
+            Transform newChar = characterContainer.GetChild(characterIndex);
+
+            if (CharacterManager.instance.CharIsAlive(newChar.GetComponent<CharacterIdentity>().id))
+            {
+                characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
+                currentCharacter = newChar.GetComponent<CharacterIdentity>().id;
+                Debug.Log("Enabling " + currentCharacter.ToString());
+                switched = true;
+            }
+        }
+
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
+
+        //ReturnNextAliveCharacter().gameObject.SetActive(true);
+
+    }
+
+    private void IncrementCharIndex()
+    {
+        if (characterIndex < 2)
         {
             characterIndex++;
         }
@@ -131,12 +172,6 @@ public class PlayableCharacter : MonoBehaviour
         {
             characterIndex = 0;
         }
-
-        characterContainer.GetChild(characterIndex).gameObject.SetActive(true);
-        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
-
-        //ReturnNextAliveCharacter().gameObject.SetActive(true);
-
     }
 
     public Transform ReturnCurrentCharacter()
