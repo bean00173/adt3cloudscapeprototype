@@ -61,7 +61,7 @@ public class PlayableCharacter : MonoBehaviour
 
         charLoaded = true;
 
-        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponentInChildren<Animator>();
 
         GameManager.instance.onLevelLoad.AddListener(SendCharacterData);
 
@@ -162,7 +162,7 @@ public class PlayableCharacter : MonoBehaviour
             }
         }
 
-        ac = characterContainer.GetChild(characterIndex).transform.GetComponent<Animator>();
+        ac = characterContainer.GetChild(characterIndex).transform.GetComponentInChildren<Animator>();
 
         //ReturnNextAliveCharacter().gameObject.SetActive(true);
 
