@@ -132,10 +132,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0, -9.81f, 0);
             rb.angularVelocity = Vector3.zero;
+
+            //transform.position = this.GetComponent<PlayableCharacter>().ac.deltaPosition;
+            //transform.rotation = this.GetComponent<PlayableCharacter>().ac.deltaRotation;
         }
 
         StateHandler();
         //ac.SetFloat("verticalSpeed", rb.velocity.y);
+
     }
 
     private void FixedUpdate()

@@ -62,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log(healthScale);
             if (healthScale >= 0)
             {
-                healthBar.GetComponent<Image>().fillAmount = healthScale;
+                healthBar.GetComponentInChildren<Image>().fillAmount = healthScale;
             }
         }
 

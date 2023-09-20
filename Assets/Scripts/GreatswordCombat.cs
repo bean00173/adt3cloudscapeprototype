@@ -42,7 +42,7 @@ public class GreatswordCombat : MonoBehaviour
             col.enabled = false; // disables collider and enables as trigger
             col.isTrigger = true;
         }
-        ac = this.GetComponent<Animator>();
+        ac = this.GetComponentInChildren<Animator>();
         pm = player.GetComponent<PlayerMovement>();
         rb = player.GetComponent<Rigidbody>();
         pc = player.GetComponent<PlayableCharacter>();

@@ -297,7 +297,7 @@ public class AirshipInteraction : MonoBehaviour
 
         // WHEN MORE CHARACTERS AVAILABLE ADD SWITCH STATEMENT HERE
 
-        character.GetComponentInChildren<PlayableCharacter>().ReturnCurrentCharacter().GetComponent<GreatswordCombat>().enabled = false; // Change this when all characters are playable
+        character.GetComponentInChildren<PlayableCharacter>().ReturnCurrentCharacter().GetComponentInChildren<GreatswordCombat>().enabled = false; // Change this when all characters are playable
     }
 
     //private IEnumerator ContinueDocking(Transform next)
