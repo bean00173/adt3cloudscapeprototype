@@ -86,7 +86,7 @@ public class GreatswordCombat : MonoBehaviour
             StartCoroutine(Ability());
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk) // if mouse clicked
+        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
         {
             Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
             lastPressedTime = Time.time; // set recent click time 
