@@ -200,7 +200,7 @@ public class PlayableCharacter : MonoBehaviour
 
     public void DoRaycast()
     {
-        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
+        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 2f))
         {
             if(hit.transform.tag == "Door" || hit.transform.tag == "AirshipDoor")
             {
