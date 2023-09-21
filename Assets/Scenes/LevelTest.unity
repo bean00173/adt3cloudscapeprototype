@@ -9274,6 +9274,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 759744336646623484, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityText
+      value: 
+      objectReference: {fileID: 1257230534}
+    - target: {fileID: 759744336646623484, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityProgress
+      value: 
+      objectReference: {fileID: 1157673585}
     - target: {fileID: 804327095213773214, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_Name
       value: player_character

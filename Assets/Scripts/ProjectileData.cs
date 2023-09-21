@@ -11,7 +11,9 @@ public class ProjectileData : MonoBehaviour
     public bool player;
 
     Transform target;
+    BowCombat bowArrow;
     Vector3 spawn;
+
 
     private void Start()
     {
@@ -24,7 +26,16 @@ public class ProjectileData : MonoBehaviour
 
         if (player)
         {
-            transform.position = Vector3.Slerp(spawn, target.position, 1f);
+            float time = 0;
+            float duration = 1.5f;
+
+            target = bowArrow.FindNearestEnemy();
+
+            while (time < duration)
+            {
+                transform.position = Vector3.Lerp(spawn, target.position, time / duration);
+                time += Time.deltaTime;
+            }
         }
         else
         {
@@ -37,11 +48,11 @@ public class ProjectileData : MonoBehaviour
         motion = mot;
     }
 
-    public void PlayerShot(float dmg, Transform tgt)
+    public void PlayerShot(float dmg, BowCombat bow)
     {
         damage = dmg;
-        target = tgt;
         player = true;
+        this.bowArrow = bow;
     }
 
 }

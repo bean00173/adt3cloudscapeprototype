@@ -131,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.CompareTag("Weapon")) // if weapon trigger enter collider
+        if (other.CompareTag("Weapon") && health > 0) // if weapon trigger enter collider
         {
 
             if(other.GetComponent<ProjectileData>() != null)
@@ -139,6 +139,8 @@ public class EnemyBehaviour : MonoBehaviour
                 damage = other.GetComponent<ProjectileData>().damage;
 
                 Debug.Log("Hit for " + damage + " Damage!");
+
+                Destroy(other);
             }
             else
             {
@@ -164,6 +166,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 health -= damage; // if not, remove health and lower speed because injured people aren't as fast as they once were
                 agent.speed = agent.speed * (health / enemy.maxHealth);
+
 
                 MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
                 foreach(MeshRenderer renderer in mr)

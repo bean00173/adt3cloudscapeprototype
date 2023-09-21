@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   motion: {x: 0, y: 0, z: 0}
+  player: 0
 --- !u!114 &2559492748950957036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +117,10 @@ PrefabInstance:
     - target: {fileID: 5563065912918198178, guid: d9c4e0b2b7f2706428e902904ed6ee14, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563065912918198178, guid: d9c4e0b2b7f2706428e902904ed6ee14, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5310630403505658345, guid: d9c4e0b2b7f2706428e902904ed6ee14, type: 3}

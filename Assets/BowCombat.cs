@@ -14,6 +14,12 @@ public class BowCombat : Combat
     // Start is called before the first frame update
     public override void Start()
     {
+
+        if(GameManager.instance.currentScene.name == "TowerTest")
+        {
+            this.enabled = false;
+        }
+
         base.Start();
 
         abilityMethod = BowAbility;
@@ -25,7 +31,7 @@ public class BowCombat : Combat
         base.Update();
     }
 
-    public void Shoot(GameObject arrowPrefab, float damageMult = 1)
+    private void Shoot(GameObject arrowPrefab, float damageMult = 1)
     {
         Transform enemy = FindNearestEnemy();
         Vector3 aimTarget = enemy.position;
@@ -33,21 +39,15 @@ public class BowCombat : Combat
         Quaternion aimDir = Quaternion.LookRotation(target);
         target.Normalize();
 
-        Transform arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir, this.transform).transform;
-        arw.GetComponent<ProjectileData>().PlayerShot(this.GetComponent<PlayableCharacter>().attackModifier * damageMult * (1 + (0.5f * comboIndex)), enemy);
+        GameObject arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir, this.transform);
+        arw.GetComponent<ProjectileData>().PlayerShot(pc.attackModifier * damageMult * (1 + (0.5f * comboIndex)), this);
+
+        pm.MoveInterrupt(true);
+        readyToAtk = true;
     }
 
-    public void ShootNormal()
-    {
-        Shoot(arrow, 1);
-    }
 
-    private void BowAbility()
-    {
-        Shoot(abilityArrow, 500);
-    }
-
-    private Transform FindNearestEnemy()
+    public Transform FindNearestEnemy()
     {
         foreach (Transform enemy in enemyContainer)
         {
@@ -67,4 +67,16 @@ public class BowCombat : Combat
 
         return closest;
     }
+
+    public void ShootNormal()
+    {
+        Shoot(arrow, 1);
+    }
+
+    private void BowAbility()
+    {
+        Shoot(abilityArrow, 500);
+    }
+
+
 }
