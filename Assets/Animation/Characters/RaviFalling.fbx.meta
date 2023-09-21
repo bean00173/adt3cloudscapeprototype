@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8bd5cee6aa6dfa4e8f31cd9e3f8bf92
+guid: f752485e464de364887ed1f955c4bca8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,14 +17,21 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 33.608112 mm\n\t'mixamorig:LeftLeg' : position error = 49.479698
+      mm\n\t'mixamorig:LeftFoot' : position error = 14.706994 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 35.495892 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 34.032310 mm\n\t'mixamorig:RightLeg' : position error = 49.474640 mm\n\t'mixamorig:RightFoot'
+      : position error = 14.948887 mm\n\t'mixamorig:RightToeBase' : position error
+      = 34.536831 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -33,18 +40,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Armature|mixamo.com|Layer0
+      name: asdasd
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: -4791504522942941401
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -62,40 +69,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Armature|mixamo.com|Layer0.001
-      takeName: Armature|Armature|mixamo.com|Layer0.001
-      internalID: 6165553400957861818
+      name: falling
+      takeName: mixamo.com
+      internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 217
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: idle
-      takeName: Armature|Armature|mixamo.com|Layer0.002
-      internalID: 3591740854655688942
-      firstFrame: 0
-      lastFrame: 160
+      lastFrame: 214
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

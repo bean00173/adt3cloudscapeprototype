@@ -5,43 +5,36 @@ using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 
-public class GreatswordCombat : MonoBehaviour
+public class Combat : MonoBehaviour
 {
-    public Transform hitContainer;
-    Transform player;
-    List<Collider> colliders = new List<Collider>();
-    Collider hit;
-    PlayableCharacter pc;
-    Animator ac;
-    PlayerMovement pm;
-    Rigidbody rb;
-
-    bool readyToAtk = true;
-    bool readyToHold = true;
-    bool holding;
+    protected Transform player;
+    protected PlayableCharacter pc;
+    protected Animator ac;
+    protected PlayerMovement pm;
+    protected Rigidbody rb;
 
     public float holdCd;
 
-    float lastPressedTime;
-    int comboIndex;
+    protected float lastPressedTime;
+    protected int comboIndex;
     public float comboTime = .25f;
-    bool firstAtk;
-    bool secondAtk;
+    protected bool firstAtk;
+    protected bool secondAtk;
+
+    protected bool readyToAtk = true;
+
+    public delegate void TestDelegate();
+    public TestDelegate abilityMethod;
 
     public bool abilityReady;
 
     public GameObject abilityText,/* abilityIcon,*/ abilityProgress, abilityPS, shakeManager;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         player = this.transform.root.GetChild(0);
-        foreach(Collider col in hitContainer.GetComponentsInChildren<Collider>())
-        {
-            colliders.Add(col);
-            col.enabled = false; // disables collider and enables as trigger
-            col.isTrigger = true;
-        }
+
         ac = this.GetComponentInChildren<Animator>();
         pm = player.GetComponent<PlayerMovement>();
         rb = player.GetComponent<Rigidbody>();
@@ -51,9 +44,10 @@ public class GreatswordCombat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        hit = colliders[comboIndex];
+
+
         //if (Input.GetKey(KeyCode.Mouse0))
         //{
         //    Debug.Log("HOLDING ATTACK");
@@ -81,9 +75,9 @@ public class GreatswordCombat : MonoBehaviour
         //    ac.SetTrigger("holdEnd"); // begin ending animation
         //}
 
-        if (Input.GetKeyDown(KeyCode.X) && abilityReady)
+        if (Input.GetKeyDown(KeyCode.X) && abilityReady) // universal
         {
-            StartCoroutine(Ability());
+            StartCoroutine(Ability(abilityMethod));
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
@@ -129,49 +123,16 @@ public class GreatswordCombat : MonoBehaviour
 
         ac.Play("Attack", -1, 0f); // if attack called, begin animations, set state of combo blend tree
         ac.SetFloat("atkIndex", comboIndex);
-        readyToHold = false;
         pm.transform.rotation = pm.orientation.rotation; // set rotation of player to orientation rotation
         //StartCoroutine(EnableHit()); // run coroutine for enabling hitbox
 
     }
 
-    IEnumerator SpinAttackMov()
+
+    IEnumerator Ability(TestDelegate method) // universal
     {
-        while (holding)
-        {
-            yield return new WaitForSeconds(.25f);
-            rb.AddForce(Random.onUnitSphere * 10f * pm.walkMultiplier * pc.speedModifier, ForceMode.Force);
-        }
-    }
-
-    public void hitOn()
-    {
-        hit.enabled = true;
-
-        StartCoroutine(GameManager.instance.DoCameraShake(shakeManager.GetComponentInChildren<CinemachineFreeLook>(), .25f));
-    }
-
-    public void hitOff()
-    {
-        hit.enabled = false;
-
-        if (comboIndex == 2) // if combo index already maxed out, reset index
-        {
-            comboIndex = 0;
-            Debug.Log("Combo Finished");
-        }
-        else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
-        {
-            comboIndex += 1;
-        }
-        pm.MoveInterrupt(true); // re-enables movement
-        readyToAtk = true; // re-enables attack capability
-        readyToHold = true; // re enable special atk capability
-    }
-
-    IEnumerator Ability()
-    {
-        DoAbility();
+        ac.Play("Ability", -1, 0f);
+        method();
 
         Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
 
@@ -182,50 +143,9 @@ public class GreatswordCombat : MonoBehaviour
         abilityReady = true;
     }
 
-    private void DoAbility()
-    {
-        BodyPartContainer bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
-        foreach(Transform child in bpc.gameObject.transform)
-        {
-            if (child.gameObject.tag == "HealthOrb")
-            {
-                StartCoroutine(OrbMagnet(child.gameObject));
-            }
-        }
 
 
-    }
-    
-    private IEnumerator OrbMagnet(GameObject go)
-    {
-        float duration = 1;
-
-        float time = 0;
-        Vector3 startPosition = go.transform.position;
-        while (time < duration)
-        {
-            if(go == null)
-            {
-                time = duration;
-                break;
-            }
-            go.transform.position = Vector3.Lerp(startPosition, this.transform.position, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        if(go != null)
-        {
-            go.transform.position = this.transform.position;
-        }
-        else
-        {
-            yield return null;
-        }
-        
-    }
-
-    IEnumerator Timer(float time)
+    IEnumerator Timer(float time) // universal
     {
         float currentTime = 0;
         abilityText.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(time - currentTime) + "s";

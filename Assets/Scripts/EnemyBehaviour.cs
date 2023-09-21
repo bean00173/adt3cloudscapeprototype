@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.TextCore.Text;
 
 [System.Serializable]
 public class Enemy // serializable class to store current enemy type & stats
@@ -38,6 +40,10 @@ public class EnemyBehaviour : MonoBehaviour
     BodyPartContainer bpc;
     Rigidbody rb;
     Animator ac;
+
+    Transform player;
+    PlayableCharacter pCharacter;
+    float damage;
 
     public Transform hitbox;
     Collider hit;
@@ -127,10 +133,22 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon")) // if weapon trigger enter collider
         {
-            Transform player = other.transform.root.GetChild(0); // collect collider root (player)
-            PlayableCharacter pCharacter = player.GetComponent<PlayableCharacter>();
 
-            Debug.Log("Hit for " + pCharacter.attackModifier + " Damage!");
+            if(other.GetComponent<ProjectileData>() != null)
+            {
+                damage = other.GetComponent<ProjectileData>().damage;
+
+                Debug.Log("Hit for " + damage + " Damage!");
+            }
+            else
+            {
+                player = other.transform.root.GetChild(0); // collect collider root (player)
+                pCharacter = player.GetComponent<PlayableCharacter>();
+
+                damage = pCharacter.attackModifier;
+                
+                Debug.Log("Hit for " + pCharacter.attackModifier + " Damage!");
+            }
 
             //Vector3 moveDirection = pCharacter.transform.GetComponent<PlayerMovement>().orientation.transform.position - this.transform.position;
             //rb.AddForce(moveDirection * -100f * pCharacter.knockBackModifier, ForceMode.Force);
@@ -138,13 +156,13 @@ public class EnemyBehaviour : MonoBehaviour
 
             // For Knockback Force, Animation is probably better
 
-            if (health <= pCharacter.attackModifier) // if current health will be 0 after swing, death
+            if (health <= damage) // if current health will be 0 after swing, death
             {
                 EnemyDeath(player);
             }
             else
             {
-                health -= pCharacter.attackModifier; // if not, remove health and lower speed because injured people aren't as fast as they once were
+                health -= damage; // if not, remove health and lower speed because injured people aren't as fast as they once were
                 agent.speed = agent.speed * (health / enemy.maxHealth);
 
                 MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();

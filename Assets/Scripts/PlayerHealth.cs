@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
         {
             dead = true;
             Debug.Log("LOSE");
-            ac.Play("Armature_Death", -1, 0f);
+            ac.Play("Death", -1, 0f);
             this.GetComponent<PlayerMovement>().MoveInterrupt(false);
 
             CharacterManager.instance.CharacterDied(this.GetComponent<PlayableCharacter>().currentCharacter);

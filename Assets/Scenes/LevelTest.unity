@@ -9322,6 +9322,18 @@ PrefabInstance:
       propertyPath: abilityProgress
       value: 
       objectReference: {fileID: 1157673585}
+    - target: {fileID: 4545908584193383137, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityText
+      value: 
+      objectReference: {fileID: 28105053}
+    - target: {fileID: 4545908584193383137, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: enemyContainer
+      value: 
+      objectReference: {fileID: 2000228584}
+    - target: {fileID: 4545908584193383137, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityProgress
+      value: 
+      objectReference: {fileID: 1356809314}
     - target: {fileID: 6148554107930630237, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_XAxis.Value
       value: -180
