@@ -35,20 +35,17 @@ public class ParticleEvents : MonoBehaviour
         {
             Timer(sfxDelay);
             onDeath.Invoke();
-            Debug.Log("Playing Birth Sound/s");
         }
 
         if (_system.particleCount > _currentNumberOfParticles + 5)
         {
             Timer(sfxDelay);
             onBurst.Invoke();
-            Debug.Log("Playing Birth Sound/s");
         }
         else if (_system.particleCount > _currentNumberOfParticles)
         {
             Timer(sfxDelay);
             onBirth.Invoke();
-            Debug.Log("Playing Death Sound/s");
         }
 
         _currentNumberOfParticles = _system.particleCount;

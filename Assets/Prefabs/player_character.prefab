@@ -1255,7 +1255,7 @@ Transform:
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
   m_LocalRotation: {x: 0.011398032, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.9999351}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0000005524204, z: 0.00000038675452}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3111,11 +3111,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdCd: 0
-  comboTime: 0.25
+  comboTime: 2
   abilityReady: 0
   abilityText: {fileID: 0}
   abilityProgress: {fileID: 0}
-  abilityPS: {fileID: 0}
+  abilityPS: {fileID: 6237827061040652056, guid: 757c0a4cde030734fbfaad3656e63903, type: 3}
   shakeManager: {fileID: 8291708679281383084}
   enemyContainer: {fileID: 0}
   spawnPoint: {fileID: 1170892339209941336}

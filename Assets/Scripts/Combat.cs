@@ -121,7 +121,8 @@ public class Combat : MonoBehaviour
     void Attack()
     {
 
-        ac.Play("Attack", -1, 0f); // if attack called, begin animations, set state of combo blend tree
+        /*ac.Play("Attack", -1, 0f);*/ // if attack called, begin animations, set state of combo blend tree
+        ac.SetTrigger("atk");
         ac.SetFloat("atkIndex", comboIndex);
         pm.transform.rotation = pm.orientation.rotation; // set rotation of player to orientation rotation
         //StartCoroutine(EnableHit()); // run coroutine for enabling hitbox

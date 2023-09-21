@@ -31,11 +31,22 @@ public class ProjectileData : MonoBehaviour
 
             target = bowArrow.FindNearestEnemy();
 
+            Debug.LogError(target);
+
             while (time < duration)
             {
+                if (target == null)
+                {
+                    Destroy(this.gameObject);
+                    break;
+                }
+
                 transform.position = Vector3.Lerp(spawn, target.position, time / duration);
                 time += Time.deltaTime;
+
             }
+
+            
         }
         else
         {
