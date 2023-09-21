@@ -82,7 +82,7 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
         {
-            Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
+            
             lastPressedTime = Time.time; // set recent click time 
             if (firstAtk) // if one attack already done
             {
@@ -92,7 +92,6 @@ public class Combat : MonoBehaviour
                     bool thirdAtk = Time.time - lastPressedTime <= comboTime; // same as before but for third attack
                     if(comboIndex == 2 && thirdAtk) // if combo ready for last hit 
                     {
-
                         ac.SetTrigger("atkEnd");
                         firstAtk = false; // reset bools
                         secondAtk = false;

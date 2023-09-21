@@ -44,9 +44,6 @@ public class BowCombat : Combat
 
             GameObject arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir, this.transform);
             arw.GetComponent<ProjectileData>().PlayerShot(pc.attackModifier * damageMult * (1 + (0.5f * comboIndex)), this);
-
-            pm.MoveInterrupt(true);
-            readyToAtk = true;
         }
     }
 
@@ -74,6 +71,26 @@ public class BowCombat : Combat
     public void ShootNormal()
     {
         Shoot(arrow, 1);
+
+        Debug.Log("Combo Attack : " + (comboIndex + 1) + " / 3");
+
+        bool incrementCombo = ac.GetCurrentAnimatorStateInfo(0).IsName("attack1") && comboIndex >= 1 ? false : true;
+
+        if (incrementCombo)
+        {
+            if (comboIndex == 2) // if combo index already maxed out, reset index
+            {
+                comboIndex = 0;
+                Debug.Log("Combo Finished");
+            }
+            else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
+            {
+                comboIndex += 1;
+            }
+        }
+
+        pm.MoveInterrupt(true);
+        readyToAtk = true;
     }
 
     private void BowAbility()

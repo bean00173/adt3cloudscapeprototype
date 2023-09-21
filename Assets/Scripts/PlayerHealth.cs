@@ -59,7 +59,6 @@ public class PlayerHealth : MonoBehaviour
         if (!dead)
         {
             float healthScale = currentHealth / health;
-            Debug.Log(healthScale);
             if (healthScale >= 0)
             {
                 healthBar.GetComponentInChildren<Image>().fillAmount = healthScale;
