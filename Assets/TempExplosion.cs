@@ -24,9 +24,11 @@ public class TempExplosion : MonoBehaviour
 
     private IEnumerator Explode()
     {
-        yield return new WaitForSeconds(5f);
+        //yield return new WaitForSeconds(5f);
 
-        this.GetComponent<Collider>().enabled = false;
+        Collider mainCol = this.GetComponent<Collider>();
+        mainCol.enabled = false;
+
         this.GetComponent<Rigidbody>().useGravity = false;
 
         Collider[] colliders = GetComponentsInChildren<Collider>(true);
@@ -35,16 +37,21 @@ public class TempExplosion : MonoBehaviour
 
         foreach (Collider hit in colliders)
         {
-            hit.enabled = true;
+            if(hit != mainCol)
+            {
+                hit.enabled = true;
 
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            rb.isKinematic = false;
-            rb.useGravity = true;
+                rb.isKinematic = false;
+                rb.useGravity = true;
 
-            rb.AddExplosionForce(explosionForce, this.transform.root.position, radius, upwardsForce);
+                rb.AddExplosionForce(explosionForce, this.transform.root.position, radius, upwardsForce);
 
-            Debug.Log($"Added Explosion Force to {rb.name}.");
+                Debug.Log($"Added Explosion Force to {rb.name}.");
+            }
         }
+
+        yield return null;
     }
 }
