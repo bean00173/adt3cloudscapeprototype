@@ -65,6 +65,8 @@ public class BowCombat : Combat
             }
         }
 
+        leastDist = 0;
+
         return closest;
     }
 
@@ -93,9 +95,20 @@ public class BowCombat : Combat
         readyToAtk = true;
     }
 
+    public void ShootNormNoCombo()
+    {
+        Shoot(arrow, 1);
+
+        pm.MoveInterrupt(true);
+        readyToAtk = true;
+    }
+
     private void BowAbility()
     {
         Shoot(abilityArrow, 500);
+
+        pm.MoveInterrupt(true);
+        readyToAtk = true;
     }
 
 

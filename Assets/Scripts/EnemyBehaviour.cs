@@ -140,7 +140,7 @@ public class EnemyBehaviour : MonoBehaviour
 
                 Debug.Log("Hit for " + damage + " Damage!");
 
-                Destroy(other.gameObject);
+                other.GetComponent<ProjectileData>().enabled = false;
             }
             else
             {

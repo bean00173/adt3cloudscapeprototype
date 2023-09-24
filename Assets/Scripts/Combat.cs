@@ -21,7 +21,7 @@ public class Combat : MonoBehaviour
     protected bool firstAtk;
     protected bool secondAtk;
 
-    protected bool readyToAtk = true;
+    public bool readyToAtk = true;
 
     public delegate void TestDelegate();
     public TestDelegate abilityMethod;
