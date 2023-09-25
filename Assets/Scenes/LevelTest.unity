@@ -9355,6 +9355,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 226635809}
     - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: fieldHealthUi
+      value: 
+      objectReference: {fileID: 439402962}
+    - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: abilityProgress
       value: 
       objectReference: {fileID: 1501677094}
@@ -11258,7 +11262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &439402963
 RectTransform:
   m_ObjectHideFlags: 0
