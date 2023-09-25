@@ -14,6 +14,8 @@ public class ProjectileData : MonoBehaviour
     BowCombat bowArrow;
     Vector3 spawn;
 
+    float time;
+    float duration;
 
     private void Start()
     {
@@ -26,12 +28,10 @@ public class ProjectileData : MonoBehaviour
 
         if (player)
         {
-            float time = 0;
-            float duration = 1.5f;
+            time = 0;
+            duration = 1.5f;
 
             target = bowArrow.FindNearestEnemy();
-
-            Debug.LogError(target);
 
             while (time < duration)
             {
@@ -64,6 +64,11 @@ public class ProjectileData : MonoBehaviour
         damage = dmg;
         player = true;
         this.bowArrow = bow;
+    }
+
+    private void StopMove()
+    {
+        time = duration;
     }
 
 }

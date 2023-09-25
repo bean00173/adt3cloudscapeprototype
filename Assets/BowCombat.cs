@@ -22,7 +22,7 @@ public class BowCombat : Combat
 
         base.Start();
 
-        abilityMethod = BowAbility;
+        abilityMethod = Dash;
     }
 
     // Update is called once per frame
@@ -111,5 +111,9 @@ public class BowCombat : Combat
         readyToAtk = true;
     }
 
+    private void Dash()
+    {
+        pc.GetComponent<DashingScript>().Dash();
+    }
 
 }

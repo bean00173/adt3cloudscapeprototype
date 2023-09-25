@@ -44,7 +44,7 @@ public class DashingScript : MonoBehaviour
         }
     }
 
-    private void Dash()
+    public void Dash()
     {
 
         if (rollCdTimer > 0) { return; }

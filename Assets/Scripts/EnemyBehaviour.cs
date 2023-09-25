@@ -136,10 +136,14 @@ public class EnemyBehaviour : MonoBehaviour
 
             if(other.GetComponent<ProjectileData>() != null)
             {
+                player = other.transform.root.GetChild(0);
+
                 damage = other.GetComponent<ProjectileData>().damage;
+                other.gameObject.SendMessage("StopMove");
 
                 Debug.Log("Hit for " + damage + " Damage!");
 
+                other.transform.SetParent(this.transform);
                 other.GetComponent<ProjectileData>().enabled = false;
             }
             else
@@ -313,11 +317,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (renderer == null) yield break;
 
+        Color start = renderer.material.color != Color.white ? renderer.material.color : Color.white;
+
         float time = 0;
 
         while(time < fadeTime)
         {
-            renderer.material.color = Color.Lerp(Color.white, Color.red, time/fadeTime);
+            renderer.material.color = Color.Lerp(start, Color.red, time/fadeTime);
             time += Time.deltaTime;
 
             yield return null;
@@ -329,12 +335,12 @@ public class EnemyBehaviour : MonoBehaviour
 
         while (time < (fadeTime * 2))
         {
-            renderer.material.color = Color.Lerp(Color.red, Color.white, time / (fadeTime * 2));
+            renderer.material.color = Color.Lerp(Color.red, start, time / (fadeTime * 2));
             time += Time.deltaTime;
             yield return null;
         }
 
-        renderer.material.color = Color.white;
+        renderer.material.color = start;
 
     }
 }
