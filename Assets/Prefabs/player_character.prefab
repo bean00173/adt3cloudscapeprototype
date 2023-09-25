@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 8999175774736102575}
   - component: {fileID: 6148554107930630237}
   - component: {fileID: 1535049183143733630}
+  - component: {fileID: 4297411066758612334}
   m_Layer: 0
   m_Name: ThirdPersonCamera
   m_TagString: Untagged
@@ -1029,6 +1030,29 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &4297411066758612334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156214532738085431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &4755729948203380528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1279,7 @@ Transform:
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
   m_LocalRotation: {x: 0.011398032, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.9999351}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00000011920929, y: 0.0000015330118, z: 0.0000004558824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2900,7 +2924,7 @@ MonoBehaviour:
   abilityPS: {fileID: 0}
   shakeManager: {fileID: 0}
   _potionBottle: {fileID: 0}
-  _forceField: {fileID: 5889310675742707932, guid: d4b861b47302eda41889dce436cf4a59, type: 3}
+  _forceField: {fileID: 1914699598212718718, guid: 6b41aab1618039d4a90aacd0cc73a900, type: 3}
 --- !u!114 &6167971094299999983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3027,6 +3051,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c3e452da75f73c4cb90ebfc2e7e4176, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9195145469950438451}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c3e452da75f73c4cb90ebfc2e7e4176, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3223978126827937560}
   m_SourcePrefab: {fileID: 100100000, guid: 8c3e452da75f73c4cb90ebfc2e7e4176, type: 3}
 --- !u!1 &5175483854970449908 stripped
 GameObject:
@@ -3091,6 +3118,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+--- !u!114 &3223978126827937560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175483854970449908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 3
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.5
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!4 &5519393931776243022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c3e452da75f73c4cb90ebfc2e7e4176, type: 3}

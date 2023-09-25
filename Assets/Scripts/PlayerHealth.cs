@@ -120,7 +120,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<ProjectileData>().damage);
-                Destroy(other.transform.parent.gameObject);
+                Destroy(other.gameObject);
             }
             else if (other.CompareTag("HealthOrb"))
             {

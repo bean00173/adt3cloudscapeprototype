@@ -295,8 +295,9 @@ public class EnemyBehaviour : MonoBehaviour
             Quaternion aimDir = Quaternion.LookRotation(target);
             target.Normalize();
             Vector3 velocity = target * 60f;
-            GameObject projectile = Instantiate(hitbox.gameObject, projectileSpawn.position, aimDir, this.transform);
+            GameObject projectile = Instantiate(hitbox.gameObject, projectileSpawn.position, aimDir);
             projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(projectile, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
             StartCoroutine(AtkCD());
         }
     }
