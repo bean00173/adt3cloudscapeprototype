@@ -267,7 +267,7 @@ public class AirshipInteraction : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitUntil(() => Vector3.Distance(startPos, endPos) < .5f);
+        yield return new WaitUntil(() => Vector3.Distance(startPos, endPos) < 5.0f);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

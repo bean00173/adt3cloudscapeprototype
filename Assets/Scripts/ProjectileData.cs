@@ -8,7 +8,7 @@ public class ProjectileData : MonoBehaviour
     [HideInInspector] public Vector3 motion;
     [HideInInspector] public BowCombat bowArrow;
 
-    public float speed;
+    public float duration;
     public bool player;
 
     Transform target;
@@ -16,7 +16,6 @@ public class ProjectileData : MonoBehaviour
     Vector3 spawn;
 
     float time;
-    float duration;
 
     private void Start()
     {
@@ -53,7 +52,7 @@ public class ProjectileData : MonoBehaviour
         }
         else
         {
-            transform.position += motion * Time.deltaTime;
+            //transform.position += motion * Time.deltaTime;
         }
     }
     public void ProjectileDamage(float dmg, Vector3 mot)
@@ -77,7 +76,6 @@ public class ProjectileData : MonoBehaviour
     private IEnumerator Move()
     {
         time = 0;
-        duration = 2f / speed;
 
         target = bowArrow.FindNearestEnemy();
 

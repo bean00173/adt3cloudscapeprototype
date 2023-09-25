@@ -5,6 +5,7 @@ using UnityEngine;
 public class BowCombat : Combat
 {
     public Transform enemyContainer;
+    public Transform arrowContainer;
     public Transform spawnPoint;
     public GameObject arrow, abilityArrow;
 
@@ -42,7 +43,8 @@ public class BowCombat : Combat
             Quaternion aimDir = Quaternion.LookRotation(target);
             target.Normalize();
 
-            GameObject arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir, this.transform);
+            GameObject arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(arw, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
             arw.GetComponent<ProjectileData>().PlayerShot(pc.attackModifier * damageMult * (1 + (0.5f * comboIndex)), this);
         }
     }

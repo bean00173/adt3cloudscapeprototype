@@ -62,11 +62,10 @@ public class AirshipMovement : MonoBehaviour
             {
                 if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.C))
                 {
-                    Debug.Log("MOVING YEAHH BABY");
+
                 }
                 else
                 {
-                    Debug.Log("NotMoving");
                     rb.velocity = Vector3.zero;
                     rb.angularVelocity = Vector3.zero;
                 }
