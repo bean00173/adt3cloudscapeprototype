@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static Tower towerData;
     public static int floorIndex;
     public static int score { get; private set; }
+    public static int totalScore { get; private set; }
 
     private List<int> chance = new List<int>();
 
@@ -268,6 +269,9 @@ public class GameManager : MonoBehaviour
             towerFinished = true;
             towersBeaten += 1;
 
+            totalScore += score;
+            score = 0;
+
             floorIndex = 0;
 
             characterHealth = 1;
@@ -342,7 +346,7 @@ public class GameManager : MonoBehaviour
     private void DiedInGame()
     {
         SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
-
+        score = 0;
         deathListener = false;
     }
 

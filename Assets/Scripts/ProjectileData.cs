@@ -52,7 +52,7 @@ public class ProjectileData : MonoBehaviour
         }
         else
         {
-            //transform.position += motion * Time.deltaTime;
+            transform.position += motion * Time.deltaTime;
         }
     }
     public void ProjectileDamage(float dmg, Vector3 mot)

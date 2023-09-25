@@ -116,7 +116,7 @@ public class PlayerHealth : MonoBehaviour
                 takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
                 //Debug.Log("Taking " + other.GetComponentInParent<EnemyBehaviour>().enemy.damage + " Damage");
             }
-            else if (other.CompareTag("Projectile"))
+            else if (other.CompareTag("EnemyProjectile"))
             {
                 Debug.Log(other.gameObject);
                 takeDamage(other.GetComponentInParent<ProjectileData>().damage);

@@ -9342,6 +9342,22 @@ PrefabInstance:
       propertyPath: abilityProgress
       value: 
       objectReference: {fileID: 1356809314}
+    - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityPS
+      value: 
+      objectReference: {fileID: 6237827061040652056, guid: 757c0a4cde030734fbfaad3656e63903, type: 3}
+    - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityText
+      value: 
+      objectReference: {fileID: 318830526}
+    - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: shakeManager
+      value: 
+      objectReference: {fileID: 226635809}
+    - target: {fileID: 4693536705549857696, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+      propertyPath: abilityProgress
+      value: 
+      objectReference: {fileID: 1501677094}
     - target: {fileID: 6148554107930630237, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_XAxis.Value
       value: -180
@@ -9471,6 +9487,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+--- !u!1 &226635809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8291708679281383084, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
+  m_PrefabInstance: {fileID: 226635808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &240693923
 PrefabInstance:
   m_ObjectHideFlags: 0

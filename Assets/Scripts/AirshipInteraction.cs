@@ -135,6 +135,8 @@ public class AirshipInteraction : MonoBehaviour
 
             GameManager.instance.towerLeft = false;
 
+            am.canMove = false;
+
             StartCoroutine(DoDockingProcedure(container));
 
             //while (current.gameObject.name != "homePoint" && !docking)
@@ -251,6 +253,7 @@ public class AirshipInteraction : MonoBehaviour
         startTime = Time.time;
 
         docking = true;
+
         float duration = 3.0f;
         float time = 0;
 
@@ -325,6 +328,7 @@ public class AirshipInteraction : MonoBehaviour
 
     public void ResetDockStatus()
     {
+        am.canMove = true;
         promptReady = false;
         readyToDock = false;
         docking = false;

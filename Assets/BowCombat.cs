@@ -5,7 +5,6 @@ using UnityEngine;
 public class BowCombat : Combat
 {
     public Transform enemyContainer;
-    public Transform arrowContainer;
     public Transform spawnPoint;
     public GameObject arrow, abilityArrow;
 
