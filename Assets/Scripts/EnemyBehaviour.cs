@@ -136,7 +136,7 @@ public class EnemyBehaviour : MonoBehaviour
 
             if(other.GetComponent<ProjectileData>() != null)
             {
-                player = other.transform.root.GetChild(0);
+                player = other.GetComponent<ProjectileData>().bowArrow.transform.root.GetChild(0);
 
                 damage = other.GetComponent<ProjectileData>().damage;
                 other.gameObject.SendMessage("StopMove");
