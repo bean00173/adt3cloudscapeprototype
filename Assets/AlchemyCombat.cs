@@ -15,8 +15,9 @@ public class AlchemyCombat : Combat
 
     Rigidbody bottleRb;
 
-    public float throwStrength;
-    public float upwardsForce;
+    private float throwStrength;
+    private float upwardsForce;
+    public float travelTime;
 
     LineRenderer lr;
     public int maxSteps;
@@ -86,8 +87,18 @@ public class AlchemyCombat : Combat
         Debug.LogError(hitInfo.point);
 
         pointer.transform.position = hitInfo.point;
-
         
+    }
+
+    private Vector3 CalcluateForce(Vector3 target)
+    {
+        float distance = Vector3.Distance(new Vector3(this.transform.position.x, handPos.position.y, this.transform.position.z), target);
+        float deltaVx = distance / travelTime;
+        Vector3 velocityX = deltaVx * pm.orientation.forward;
+
+        Vector3 velocityY = distance * Vector3.up;
+
+        return velocityX + velocityY;
     }
 
     public void ThrowPotion()
@@ -95,17 +106,17 @@ public class AlchemyCombat : Combat
         potion.GetComponent<Collider>().enabled = true;
         potion.transform.parent = null;
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(potion, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-        potion.GetComponent<Rigidbody>().AddForce(pm.orientation.forward * throwStrength + Vector3.up * upwardsForce, ForceMode.Impulse);
+        potion.GetComponent<Rigidbody>().AddForce(CalcluateForce(hitInfo.point), ForceMode.Impulse);
 
         if (comboIndex == 2) // if combo index already maxed out, reset index
         {
-            potion.GetComponent<Potion>().StoreData(type.flame, pc.attackModifier, player);
+            potion.GetComponent<Potion>().StoreData(type.flame, pc.attackModifier, player, hitInfo.point, travelTime);
             comboIndex = 0;
             Debug.Log("Combo Finished");
         }
         else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
         {
-            potion.GetComponent<Potion>().StoreData(type.explosive, pc.attackModifier, player);
+            potion.GetComponent<Potion>().StoreData(type.explosive, pc.attackModifier, player, hitInfo.point, travelTime);
             comboIndex += 1;
         }
 

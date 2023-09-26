@@ -14,7 +14,10 @@ public class Potion : MonoBehaviour
 {
     private type _potionType;
     private float _damage;
+    private Vector3 target;
 
+    public float maxHeight;
+    public float timeToTarget;
     public float flameRadius;
     public float flameDuration;
     private float tickDmgModifier = .5f;
@@ -25,13 +28,17 @@ public class Potion : MonoBehaviour
 
     [HideInInspector] public Transform _player;
 
+    Vector3 startPos;
     Vector3 endPos;
     bool hit;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        startPos = this.transform.position;
+
+        //StartCoroutine(DoMoveHor());
+        //StartCoroutine(DoMoveVert());
     }
 
     // Update is called once per frame
@@ -41,14 +48,15 @@ public class Potion : MonoBehaviour
         {
             this.transform.position = endPos;
         }
-
     }
 
-    public void StoreData(type potionType, float damage, Transform player)
+    public void StoreData(type potionType, float damage, Transform player, Vector3 target, float time)
     {
         this._damage = damage;
         this._potionType = potionType;
         this._player = player;
+        this.target = target;
+        this.timeToTarget = time;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -118,5 +126,43 @@ public class Potion : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-    
+
+    private IEnumerator DoMoveHor()
+    {
+        float time = 0;
+        float duration = timeToTarget;
+
+        while(time < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, target, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator DoMoveVert()
+    {
+        float time = 0;
+        float duration = timeToTarget / 2;
+
+        float initY = transform.position.y;
+
+
+        while (time < duration)
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(initY, maxHeight, time / duration), transform.position.z);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        duration = timeToTarget / 2;
+
+        while (time < duration)
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(maxHeight, target.y, time / duration), transform.position.z);
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }
