@@ -95,12 +95,13 @@ public class AirshipInteraction : MonoBehaviour
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
                     character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+                    character.GetComponentInChildren<PlayableCharacter>().fell.AddListener(RedoSpawn);
                     StartCoroutine(DeactivateCombat(character));
                 }
             }
         }
 
-        if (docking && !aligned)
+        if ((docking || docked) && !aligned)
         {
             Vector3 delta = new Vector3(current.GetChild(0).position.x - this.transform.position.x, 0f, current.GetChild(0).position.z - this.transform.position.z);  // calculate x/z position difference between agent and player
             Quaternion target = Quaternion.LookRotation(delta); // create new target location based off of x/z diff
@@ -188,6 +189,20 @@ public class AirshipInteraction : MonoBehaviour
         //        promptReady = false;
         //    }
         //}
+    }
+
+    public void RedoSpawn()
+    {
+        am.ac.Play("Startup");
+        character = null;
+        Invoke(nameof(Spawn), 2.0f);
+    }
+
+    private void Spawn()
+    {
+        character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+        character.GetComponentInChildren<PlayableCharacter>().fell.AddListener(RedoSpawn);
+        StartCoroutine(DeactivateCombat(character));
     }
 
     //private void OnCollisionEnter(Collision collision)

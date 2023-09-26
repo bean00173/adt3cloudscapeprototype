@@ -15,6 +15,7 @@ public class TowerManager : MonoBehaviour
     public TextMeshProUGUI shipPromptText, doorPromptText;
 
     public GameObject airship;
+    public GameObject cloudImage;
 
     bool listenersAdded;
     List<Transform> shipDoors = new List<Transform>();
@@ -76,5 +77,11 @@ public class TowerManager : MonoBehaviour
         Destroy(previousTower);
 
         airship.GetComponent<AirshipInteraction>().dockPrompt.parent.gameObject.SetActive(true);
+    }
+
+
+    public void CloudTransition()
+    {
+        cloudImage.SetActive(true);
     }
 }

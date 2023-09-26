@@ -108,6 +108,7 @@ public class AlchemyCombat : Combat
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(potion, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
         //potion.GetComponent<Rigidbody>().AddForce(CalculateVelocity(hitInfo.point), ForceMode.Impulse);
         potion.GetComponent<Rigidbody>().velocity = CalculateVelocity(hitInfo.point);
+
         if (comboIndex == 2) // if combo index already maxed out, reset index
         {
             potion.GetComponent<Potion>().StoreData(type.flame, pc.attackModifier, player, hitInfo.point, travelTime);

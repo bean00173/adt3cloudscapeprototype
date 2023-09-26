@@ -10,7 +10,7 @@ public class AirshipMovement : MonoBehaviour
     float hor, vert;
 
     Rigidbody rb;
-    Animator ac;
+    public Animator ac;
 
     [HideInInspector]
     public bool canMove;

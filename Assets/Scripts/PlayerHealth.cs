@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log(currentHealth);
         currentHealth -= damage * GameManager.scaleIndex;
@@ -113,20 +113,20 @@ public class PlayerHealth : MonoBehaviour
             if (other.CompareTag("EnemyHit"))
             {
                 Debug.Log(other.gameObject);
-                takeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
+                TakeDamage(other.GetComponentInParent<EnemyBehaviour>().enemy.damage);
                 //Debug.Log("Taking " + other.GetComponentInParent<EnemyBehaviour>().enemy.damage + " Damage");
             }
             else if (other.CompareTag("EnemyProjectile"))
             {
                 Debug.Log(other.gameObject);
-                takeDamage(other.GetComponentInParent<ProjectileData>().damage);
+                TakeDamage(other.GetComponentInParent<ProjectileData>().damage);
                 Destroy(other.gameObject);
             }
             else if (other.CompareTag("HealthOrb"))
             {
                 Debug.Log(other.gameObject);
                 Heal();
-                Destroy(other.transform.parent.gameObject) ;
+                Destroy(other.transform.parent.gameObject);
             }
         }
     }

@@ -16,7 +16,8 @@ public class Potion : MonoBehaviour
     private float _damage;
     private Vector3 target;
 
-    public float maxHeight;
+    public GameObject explodePS, flamePS;
+
     public float timeToTarget;
     public float flameRadius;
     public float flameDuration;
@@ -88,8 +89,13 @@ public class Potion : MonoBehaviour
 
     private void Explode()
     {
+
         onExplode.Invoke();
 
+        GameObject ps = Instantiate(explodePS, this.transform.position, Quaternion.identity);
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ps, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
+
+        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(2f);
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, explosionRadius);
         foreach (Collider col in colliders)
         {
@@ -97,6 +103,10 @@ public class Potion : MonoBehaviour
             {
                 col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage, _player);
                 Debug.Log($"{col.gameObject} took {_damage} damage!");
+            }
+            else if(col.gameObject.GetComponent<PlayerHealth>() != null)
+            {
+                col.gameObject.GetComponent<PlayerHealth>().TakeDamage(_damage);
             }
         }
 
@@ -106,11 +116,16 @@ public class Potion : MonoBehaviour
     private IEnumerator FirePool()
     {
         onFlame.Invoke();
+
+        GameObject ps = Instantiate(flamePS, this.transform.position, Quaternion.identity);
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ps, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
+
         yield return new WaitForSeconds(.75f);
         float time = 0;
 
         while(time < flameDuration)
         {
+            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, flameRadius);
             foreach(Collider col in colliders)
             {
@@ -126,43 +141,4 @@ public class Potion : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-
-    private IEnumerator DoMoveHor()
-    {
-        float time = 0;
-        float duration = timeToTarget;
-
-        while(time < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, target, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    private IEnumerator DoMoveVert()
-    {
-        float time = 0;
-        float duration = timeToTarget / 2;
-
-        float initY = transform.position.y;
-
-
-        while (time < duration)
-        {
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(initY, maxHeight, time / duration), transform.position.z);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        duration = timeToTarget / 2;
-
-        while (time < duration)
-        {
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(maxHeight, target.y, time / duration), transform.position.z);
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
-
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using Cinemachine;
 using UnityEngine.TextCore.Text;
@@ -35,7 +36,12 @@ public class PlayableCharacter : MonoBehaviour
     GameObject hitObject;
     bool hitting = false;
 
+    GameObject worldBox;
+
+    [HideInInspector] public UnityEvent fell = new UnityEvent();
+
     bool notCd = true;
+    private bool falling;
 
     private void Start()
     {
@@ -78,7 +84,7 @@ public class PlayableCharacter : MonoBehaviour
 
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, Color.red, 1f);
 
-        if (GameManager.instance.currentScene.name != "TowerTest")
+        if (GameManager.instance.currentScene.name != "TowerTest" || falling)
         {
             canSwitch = false;
         }
@@ -236,6 +242,30 @@ public class PlayableCharacter : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("WorldPlane"))
+        {
+            falling = true;
+            Debug.Log("Fell out of world");
+            worldBox = collision.gameObject;
+            worldBox.SetActive(false);
+            ac.Play("Falling");
+
+            canSwitch = false;
+
+            Invoke(nameof(Fell), 5.0f);
+
+            TowerManager.instance.Invoke(nameof(TowerManager.instance.CloudTransition), 3.0f);
+        }
+    }
+
+    private void Fell()
+    {
+        fell.Invoke();
+        worldBox.SetActive(true);
+        Destroy(this.transform.root.gameObject);
+    }
 
     private IEnumerator SwitchCooldown(float time)
     {
