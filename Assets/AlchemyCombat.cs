@@ -14,6 +14,7 @@ public class AlchemyCombat : Combat
     Rigidbody bottleRb;
 
     public float throwStrength;
+    public float upwardsForce;
 
     LineRenderer lr;
     public int maxSteps;
@@ -51,7 +52,7 @@ public class AlchemyCombat : Combat
         lr.positionCount = Mathf.CeilToInt(maxSteps / timeBetweenSteps) + 1;
 
         Vector3 startPosition = handPos.position;
-        Vector3 startVelocity = throwStrength * pm.orientation.forward/ bottleRb.mass;
+        Vector3 startVelocity = throwStrength * pm.orientation.forward + Vector3.up * upwardsForce;
 
         int i = 0;
         lr.SetPosition(i, startPosition);
@@ -60,7 +61,7 @@ public class AlchemyCombat : Combat
         {
             i++;
             Vector3 point = startPosition + time * startVelocity;
-            point.y = startPosition.y + startVelocity.y * time + (-Physics.gravity.y * .5f * Mathf.Pow(time, 2));
+            point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y * .5f * Mathf.Pow(time, 2));
 
             lr.SetPosition(i, point);
         }
@@ -68,17 +69,20 @@ public class AlchemyCombat : Combat
 
     public void ThrowPotion()
     {
+        potion.GetComponent<Collider>().enabled = true;
         potion.transform.parent = null;
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(potion, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-        potion.GetComponent<Rigidbody>().AddForce(pm.orientation.forward * throwStrength, ForceMode.Impulse);
+        potion.GetComponent<Rigidbody>().AddForce(pm.orientation.forward * throwStrength + Vector3.up * upwardsForce, ForceMode.Impulse);
 
         if (comboIndex == 2) // if combo index already maxed out, reset index
         {
+            potion.GetComponent<Potion>().StoreData(type.flame, pc.attackModifier, player);
             comboIndex = 0;
             Debug.Log("Combo Finished");
         }
         else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
         {
+            potion.GetComponent<Potion>().StoreData(type.explosive, pc.attackModifier, player);
             comboIndex += 1;
         }
 
@@ -90,6 +94,7 @@ public class AlchemyCombat : Combat
     {
         
         potion = Instantiate(_potionBottle, handPos.position, Quaternion.identity, handPos.transform);
+        potion.GetComponent<Collider>().enabled = false;
         potion.transform.localPosition = Vector3.zero;
     }
 

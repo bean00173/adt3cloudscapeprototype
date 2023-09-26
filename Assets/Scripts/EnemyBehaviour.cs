@@ -133,27 +133,29 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon") && health > 0) // if weapon trigger enter collider
         {
-
-            if(other.GetComponent<ProjectileData>() != null)
+            if(other.GetComponent<Potion>() == null)
             {
-                player = other.GetComponent<ProjectileData>().bowArrow.transform.root.GetChild(0);
+                if (other.GetComponent<ProjectileData>() != null)
+                {
+                    player = other.GetComponent<ProjectileData>().bowArrow.transform.root.GetChild(0);
 
-                damage = other.GetComponent<ProjectileData>().damage;
-                other.gameObject.SendMessage("StopMove");
+                    damage = other.GetComponent<ProjectileData>().damage;
+                    other.gameObject.SendMessage("StopMove");
 
-                Debug.Log("Hit for " + damage + " Damage!");
+                    Debug.Log("Hit for " + damage + " Damage!");
 
-                other.transform.SetParent(this.transform);
-                other.GetComponent<ProjectileData>().enabled = false;
-            }
-            else
-            {
-                player = other.transform.root.GetChild(0); // collect collider root (player)
-                pCharacter = player.GetComponent<PlayableCharacter>();
+                    other.transform.SetParent(this.transform);
+                    other.GetComponent<ProjectileData>().enabled = false;
+                }
+                else
+                {
+                    player = other.transform.root.GetChild(0); // collect collider root (player)
+                    pCharacter = player.GetComponent<PlayableCharacter>();
 
-                damage = pCharacter.attackModifier;
-                
-                Debug.Log("Hit for " + pCharacter.attackModifier + " Damage!");
+                    damage = pCharacter.attackModifier;
+
+                    Debug.Log("Hit for " + pCharacter.attackModifier + " Damage!");
+                }
             }
 
             //Vector3 moveDirection = pCharacter.transform.GetComponent<PlayerMovement>().orientation.transform.position - this.transform.position;
@@ -162,24 +164,31 @@ public class EnemyBehaviour : MonoBehaviour
 
             // For Knockback Force, Animation is probably better
 
-            if (health <= damage) // if current health will be 0 after swing, death
-            {
-                EnemyDeath(player);
-            }
-            else
-            {
-                health -= damage; // if not, remove health and lower speed because injured people aren't as fast as they once were
-                agent.speed = agent.speed * (health / enemy.maxHealth);
-
-
-                MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
-                foreach(MeshRenderer renderer in mr)
-                {
-                    StartCoroutine(ColourDamage(renderer, .1f));
-                }
-            }
+            TakeDamage(damage, player);
         }
 
+    }
+
+    public void TakeDamage(float dmg, Transform player)
+    {
+        if(this.player == null) this.player = player;
+
+        if (health <= dmg) // if current health will be 0 after swing, death
+        {
+            EnemyDeath(player);
+        }
+        else
+        {
+            health -= dmg; // if not, remove health and lower speed because injured people aren't as fast as they once were
+            agent.speed = agent.speed * (health / enemy.maxHealth);
+
+
+            MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer renderer in mr)
+            {
+                StartCoroutine(ColourDamage(renderer, .1f));
+            }
+        }
     }
 
     private bool InRange()
@@ -221,7 +230,7 @@ public class EnemyBehaviour : MonoBehaviour
         GameManager.instance.ScoreUp(this.enemy.score);
         if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().slowMoChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().slowMoDuration);
 
-        Destroy(healthbar.gameObject); healthbar = null;
+        if(healthbar.gameObject != null) Destroy(healthbar.gameObject); healthbar = null;
 
         health = 0;
         agent.speed = 0;
