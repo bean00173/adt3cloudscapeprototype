@@ -63,7 +63,7 @@ public class GreatswordCombat : Combat
     {
         hit.enabled = true;
 
-        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce((comboIndex + 1) / 2);
+        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce((comboIndex + 1));
 
         //StartCoroutine(GameManager.instance.DoCameraShake(shakeManager.GetComponentInChildren<CinemachineFreeLook>(), .25f));
     }

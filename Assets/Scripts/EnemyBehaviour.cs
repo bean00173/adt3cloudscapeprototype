@@ -230,7 +230,7 @@ public class EnemyBehaviour : MonoBehaviour
         GameManager.instance.ScoreUp(this.enemy.score);
         if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().slowMoChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().slowMoDuration);
 
-        if(healthbar.gameObject != null) Destroy(healthbar.gameObject); healthbar = null;
+        if(healthbar != null && healthbar.gameObject != null) Destroy(healthbar.gameObject); healthbar = null;
 
         health = 0;
         agent.speed = 0;

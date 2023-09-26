@@ -17,7 +17,7 @@ public class Potion : MonoBehaviour
 
     public float flameRadius;
     public float flameDuration;
-    private float tickDmgModifier = .25f;
+    private float tickDmgModifier = .5f;
     public float explosionRadius;
 
     public UnityEvent onExplode = new UnityEvent();
@@ -98,7 +98,7 @@ public class Potion : MonoBehaviour
     private IEnumerator FirePool()
     {
         onFlame.Invoke();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.75f);
         float time = 0;
 
         while(time < flameDuration)
@@ -112,8 +112,8 @@ public class Potion : MonoBehaviour
                     Debug.Log($"{col.gameObject} took {_damage * tickDmgModifier} flame damage!");
                 }
             }
-            time += Time.deltaTime;
-            yield return null;
+            time += 1.0f;
+            yield return new WaitForSeconds(1.0f);
         }
 
         Destroy(this.gameObject);

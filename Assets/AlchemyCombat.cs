@@ -9,7 +9,9 @@ public class AlchemyCombat : Combat
     public Transform handPos;
 
     public GameObject fieldHealthUi;
+    public LayerMask target;
 
+    public GameObject pointer;
 
     Rigidbody bottleRb;
 
@@ -21,6 +23,8 @@ public class AlchemyCombat : Combat
     public float timeBetweenSteps;
 
     GameObject potion;
+
+    RaycastHit hitInfo;
 
     // Start is called before the first frame update
     public override void Start()
@@ -41,30 +45,49 @@ public class AlchemyCombat : Combat
     // Update is called once per frame
     public override void Update()
     {
-        CastArc();
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            CastArc();
+        }
+        else
+        {
+            //lr.enabled = false;
+            pointer.SetActive(false);
+        }
+
+        
 
         base.Update();
     }
 
     private void CastArc()
     {
-        lr.enabled = true;
-        lr.positionCount = Mathf.CeilToInt(maxSteps / timeBetweenSteps) + 1;
+        pointer.SetActive(true);
+        //lr.enabled = true;
+        //lr.positionCount = Mathf.CeilToInt(maxSteps / timeBetweenSteps) + 1;
 
-        Vector3 startPosition = handPos.position;
-        Vector3 startVelocity = throwStrength * pm.orientation.forward + Vector3.up * upwardsForce;
+        //Vector3 startPosition = handPos.position;
+        //Vector3 startVelocity = throwStrength * pm.orientation.forward + Vector3.up * upwardsForce;
 
-        int i = 0;
-        lr.SetPosition(i, startPosition);
+        //int i = 0;
+        //lr.SetPosition(i, startPosition);
 
-        for (float time = 0; time < maxSteps; time += timeBetweenSteps)
-        {
-            i++;
-            Vector3 point = startPosition + time * startVelocity;
-            point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y * .5f * Mathf.Pow(time, 2));
+        //for (float time = 0; time < maxSteps; time += timeBetweenSteps)
+        //{
+        //    Vector3 point = startPosition + time * startVelocity;
+        //    point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y * .5f * Mathf.Pow(time, 2));
 
-            lr.SetPosition(i, point);
-        }
+        //    lr.SetPosition(i, point);
+        //    i++;
+        //}
+
+        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, Mathf.Infinity, target);
+        Debug.DrawLine(Camera.main.transform.position, hitInfo.point, Color.magenta);
+        Debug.LogError(hitInfo.point);
+
+        pointer.transform.position = hitInfo.point;
+
+        
     }
 
     public void ThrowPotion()
