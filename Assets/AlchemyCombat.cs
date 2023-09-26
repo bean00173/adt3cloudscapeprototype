@@ -90,13 +90,13 @@ public class AlchemyCombat : Combat
         
     }
 
-    private Vector3 CalcluateForce(Vector3 target)
+    private Vector3 CalculateVelocity(Vector3 target)
     {
         float distance = Vector3.Distance(new Vector3(this.transform.position.x, handPos.position.y, this.transform.position.z), target);
         float deltaVx = distance / travelTime;
         Vector3 velocityX = deltaVx * pm.orientation.forward;
 
-        Vector3 velocityY = distance * Vector3.up;
+        Vector3 velocityY = Mathf.Abs(Physics.gravity.y) * (travelTime / 2) * Vector3.up;
 
         return velocityX + velocityY;
     }
@@ -106,8 +106,8 @@ public class AlchemyCombat : Combat
         potion.GetComponent<Collider>().enabled = true;
         potion.transform.parent = null;
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(potion, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-        potion.GetComponent<Rigidbody>().AddForce(CalcluateForce(hitInfo.point), ForceMode.Impulse);
-
+        //potion.GetComponent<Rigidbody>().AddForce(CalculateVelocity(hitInfo.point), ForceMode.Impulse);
+        potion.GetComponent<Rigidbody>().velocity = CalculateVelocity(hitInfo.point);
         if (comboIndex == 2) // if combo index already maxed out, reset index
         {
             potion.GetComponent<Potion>().StoreData(type.flame, pc.attackModifier, player, hitInfo.point, travelTime);

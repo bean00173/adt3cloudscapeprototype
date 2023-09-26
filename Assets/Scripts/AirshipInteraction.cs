@@ -66,7 +66,7 @@ public class AirshipInteraction : MonoBehaviour
             Debug.DrawLine(this.transform.position, current.position, Color.yellow);
             //Debug.Log(dist);
 
-            if (dist < 0.5f)
+            if (dist < 2.0f)
             {
                 docked = true;
                 rb.velocity = Vector3.zero;
@@ -265,13 +265,15 @@ public class AirshipInteraction : MonoBehaviour
 
         while (time < duration)
         {
+            Debug.LogError(Vector3.Distance(this.transform.position, endPos));
             this.transform.position = Vector3.Lerp(startPos, endPos, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
 
-        yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 10.0f);
+        yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 2.0f);
 
+        Debug.LogError("DOCKING COMPLETIONATIONATED");
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
