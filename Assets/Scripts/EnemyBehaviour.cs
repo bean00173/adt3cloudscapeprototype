@@ -31,11 +31,11 @@ public class EnemyBehaviour : MonoBehaviour
 {
 
     public Enemy enemy = new Enemy(); // creating new enemy
+    public Transform healthbar;
     private float health;
 
-    [HideInInspector] public Transform goal;
-    [HideInInspector] public Transform healthbar;
-    [HideInInspector] public Transform hitbox;
+    [HideInInspector]
+    public Transform goal;
     NavMeshAgent agent;
     BodyPartContainer bpc;
     Rigidbody rb;
@@ -45,7 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
     PlayableCharacter pCharacter;
     float damage;
 
-    
+    public Transform hitbox;
     Collider hit;
 
     bool atkReady = true;
@@ -55,6 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ac = this.GetComponentInChildren<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
         health = enemy.maxHealth * GameManager.scaleIndex;
@@ -71,9 +72,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             projectileSpawn = this.transform.GetChild(1);
         }
-
-        SwitchEnemy();
-        UpdateRefs();
+        
 
         LimitSpawnVelocity();
     }
@@ -184,7 +183,7 @@ public class EnemyBehaviour : MonoBehaviour
             agent.speed = agent.speed * (health / enemy.maxHealth);
 
 
-            MeshRenderer[] mr = GetActiveChild().GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer renderer in mr)
             {
                 StartCoroutine(ColourDamage(renderer, .1f));
@@ -353,47 +352,5 @@ public class EnemyBehaviour : MonoBehaviour
 
         renderer.material.color = start;
 
-    }
-
-    private void SwitchEnemy()
-    {
-        Transform pl = GameObject.FindObjectOfType<PlayableCharacter>().transform;
-        switch (pl.GetComponent<PlayableCharacter>().currentCharacter)
-        {
-            case Character.CharacterId.seb:
-                this.transform.GetChild(0).gameObject.SetActive(true);
-                break;
-            case Character.CharacterId.rav:
-                this.transform.GetChild(1).gameObject.SetActive(true);
-                break;
-            case Character.CharacterId.abi:
-                this.transform.GetChild(2).gameObject.SetActive(true);
-                break;
-        }
-    }
-
-    private void UpdateRefs()
-    {
-        foreach(Transform child in transform)
-        {
-            if (child.gameObject.activeSelf == true)
-            {
-                healthbar = child.GetComponent<EnemyIdentity>().healthbar;
-                hitbox = child.GetComponent<EnemyIdentity>().hitbox;
-                ac = child.GetComponentInChildren<Animator>();
-            }
-        }
-    }
-
-    private Transform GetActiveChild()
-    {
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.activeSelf == true)
-            {
-                return child;
-            }
-        }
-        return null;
     }
 }

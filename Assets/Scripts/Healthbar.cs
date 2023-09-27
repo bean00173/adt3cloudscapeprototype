@@ -23,14 +23,8 @@ public class Healthbar : MonoBehaviour
             this.transform.GetChild(1).GetComponent<Image>().fillAmount = eb.GetHealthPercentage();
         }
 
-        if (eb != null)
-        {
-            this.transform.position = eb.transform.position + new Vector3(0, 2.5f, 0);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        this.transform.position = eb.transform.position + new Vector3(0, 2.5f, 0);
+
     }
 
     private void LateUpdate()
