@@ -48,34 +48,30 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected Collider hit;
 
-    protected bool atkReady = true;
+    protected bool atkReady;
 
     protected Transform projectileSpawn;
 
     protected int hitIndex;
 
-    protected bool queueing;
-
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         ac = this.GetComponentInChildren<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
         health = enemy.maxHealth * GameManager.scaleIndex;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
-        bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();       
+        bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
 
         LimitSpawnVelocity();
+
+        StartCoroutine(AtkCD());
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        if (queueing)
-        {
-            agent.speed = 0;
-        }
         //if (atkReady)
         //{
         //    agent.speed = 0;
@@ -93,8 +89,9 @@ public class EnemyBehaviour : MonoBehaviour
         //{
         //    agent.speed = 0;
         //}
+        LookAtTarget();
 
-        if (InRange() && !goal.GetComponent<PlayerHealth>().dead && atkReady)
+        if (InRange(enemy.attackRadius) && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
 
@@ -109,7 +106,7 @@ public class EnemyBehaviour : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5.0f); // slerp rotation based on time multiplied by a constant speed
         }
-        else if (InRange() || goal.GetComponent<PlayerHealth>().dead)
+        else if (InRange(enemy.attackRadius) || goal.GetComponent<PlayerHealth>().dead)
         {
             agent.speed = 0;
         }
@@ -124,9 +121,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void LookAtTarget()
     {
-        queueing = collision.collider.CompareTag("Enemy") ? true : false;
+        Vector3 aimTarget = goal.position;
+        Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
+        Quaternion aimDir = Quaternion.LookRotation(target);
+        transform.rotation = Quaternion.Slerp(transform.rotation, aimDir, Time.deltaTime * 2.0f);
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -171,6 +171,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(float dmg, Transform player)
     {
+        agent.speed = 0f;
+
+        ac.Play("Hit", -1, 0f);
+
         if(this.player == null) this.player = player;
 
         if (health <= dmg) // if current health will be 0 after swing, death
@@ -180,7 +184,7 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             health -= dmg; // if not, remove health and lower speed because injured people aren't as fast as they once were
-            agent.speed = agent.speed * (health / enemy.maxHealth);
+            agent.speed = enemy.speed * (health / enemy.maxHealth);
 
 
             MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
@@ -191,23 +195,29 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private bool InRange()
+    protected bool InRange(float range)
     {
-        
+
         //Vector3 origin = checkPos.position;
         //Debug.DrawLine(origin, goal.position, Color.yellow);
         //Debug.DrawRay(origin, transform.forward * enemy.attackRadius, Color.green);
 
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, enemy.attackRadius);
-        foreach (Collider col in colliders)
-        {
-            if(col.GetComponent<PlayableCharacter>() != null)
-            {
-                return true;
-            }
-        }
+        Vector3 start = new Vector3(this.transform.position.x, 0f, this.transform.position.z);
+        Vector3 end = new Vector3(goal.transform.position.x, 0f, goal.transform.position.z);
 
-        return false;
+        Debug.DrawLine(start, end, Color.yellow);
+        return Vector3.Distance(start, end) < range;
+
+        //Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
+        //foreach (Collider col in colliders)
+        //{
+        //    if(col.GetComponent<PlayableCharacter>() != null)
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //return false;
     }
 
     private void HandleMove()
