@@ -53724,28 +53724,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f57cb1a6dbf99e4db6529d8c823aab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gruntLimbs:
-  - prefab: {fileID: 5844812055023269438, guid: 310daaf885ad49f4f991874335fd40b2, type: 3}
-    probability: 60
-    selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: 5b41e53ceccfcb9418af7a9401bffbd5, type: 3}
-    probability: 40
-    selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: d2d2e74c2276ae848ac2a3c45723cba9, type: 3}
-    probability: 20
-    selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: d703bed34992e7f4097353673da71ad5, type: 3}
-    probability: 5
-    selected: 0
-  - prefab: {fileID: 5844812055023269438, guid: 67a5302a703e53a42b8f78bfde49e9f6, type: 3}
-    probability: 100
-    selected: 0
-  bruteLimbs: []
-  rangerLimbs: []
   healthOrb:
     prefab: {fileID: 0}
     probability: 0
     selected: 0
+  bruteDolls: []
+  gruntDolls: []
+  rangerDolls: []
 --- !u!4 &1463327692
 Transform:
   m_ObjectHideFlags: 0
@@ -71690,6 +71675,63 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1473564922632514276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.418766
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917687308987422731, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424990148250989281, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
+      propertyPath: m_Name
+      value: PS_Molotov
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e9751ec0a0882d4d999d0a9d172e0e7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -71705,3 +71747,4 @@ SceneRoots:
   - {fileID: 1167009854}
   - {fileID: 2140192303}
   - {fileID: 1161932293}
+  - {fileID: 1473564922632514276}

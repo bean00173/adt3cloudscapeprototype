@@ -95,7 +95,7 @@ public class Potion : MonoBehaviour
         GameObject ps = Instantiate(explodePS, this.transform.position, Quaternion.identity);
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ps, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
 
-        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(2f);
+        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, explosionRadius);
         foreach (Collider col in colliders)
         {
@@ -117,22 +117,23 @@ public class Potion : MonoBehaviour
     {
         onFlame.Invoke();
 
+        this.transform.eulerAngles = Vector3.zero;
         GameObject ps = Instantiate(flamePS, this.transform.position, Quaternion.identity);
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ps, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
 
-        yield return new WaitForSeconds(.75f);
+        //yield return new WaitForSeconds(.75f);
         float time = 0;
 
         while(time < flameDuration)
         {
-            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
+            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(.1f);
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, flameRadius);
             foreach(Collider col in colliders)
             {
                 if (col.gameObject.GetComponent<EnemyBehaviour>() != null)
                 {
                     col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage * tickDmgModifier, _player);
-                    Debug.Log($"{col.gameObject} took {_damage * tickDmgModifier} flame damage!");
+                    Debug.LogError($"{col.gameObject} took {_damage * tickDmgModifier} flame damage!");
                 }
             }
             time += 1.0f;

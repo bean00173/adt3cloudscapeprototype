@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
@@ -9,10 +10,14 @@ public class Healthbar : MonoBehaviour
     public bool functional;
     public Transform cam;
 
+    private Vector3 startPos;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("MainCamera").transform;
+
+        startPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -23,8 +28,8 @@ public class Healthbar : MonoBehaviour
             this.transform.GetChild(1).GetComponent<Image>().fillAmount = eb.GetHealthPercentage();
         }
 
-        this.transform.position = eb.transform.position + new Vector3(0, 2.5f, 0);
-
+        //this.transform.position = eb.transform.position + ((eb.GetComponent<NavMeshAgent>().height + 5.0f) * Vector3.up);
+        this.transform.position = new Vector3(eb.transform.position.x, startPos.y, eb.transform.position.z);
     }
 
     private void LateUpdate()
