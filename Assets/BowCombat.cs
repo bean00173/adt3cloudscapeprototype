@@ -38,7 +38,7 @@ public class BowCombat : Combat
         if(enemy != null)
         {
             Vector3 aimTarget = enemy.position;
-            Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
+            Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 1f, aimTarget.z - this.transform.position.z);
             Quaternion aimDir = Quaternion.LookRotation(target);
             target.Normalize();
 

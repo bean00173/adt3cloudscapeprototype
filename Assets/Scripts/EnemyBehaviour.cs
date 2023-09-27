@@ -32,25 +32,26 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Enemy enemy = new Enemy(); // creating new enemy
     public Transform healthbar;
-    private float health;
+    protected float health;
 
     [HideInInspector]
     public Transform goal;
-    NavMeshAgent agent;
-    BodyPartContainer bpc;
-    Rigidbody rb;
-    Animator ac;
+    protected NavMeshAgent agent;
+    protected BodyPartContainer bpc;
+    protected Rigidbody rb;
+    protected Animator ac;
 
-    Transform player;
-    PlayableCharacter pCharacter;
-    float damage;
+    protected Transform player;
+    protected PlayableCharacter pCharacter;
+    protected float damage;
 
-    public Transform hitbox;
-    Collider hit;
+    protected Collider hit;
 
-    bool atkReady = true;
+    protected bool atkReady = true;
 
-    Transform projectileSpawn;
+    protected Transform projectileSpawn;
+
+    protected int hitIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -60,19 +61,7 @@ public class EnemyBehaviour : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         health = enemy.maxHealth * GameManager.scaleIndex;
         goal = GameObject.Find("Player").transform; // changed to be GameObject.Find() because a prefab cannot store a reference to something in the heirarchy, and the enemies will be instantiated rather than already in heirarchy
-        bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
-        hit = hitbox.GetComponent<Collider>();
-
-        if (enemy.enemyType != enemyType.ranger)
-        {
-            hit.enabled = false;
-            hit.isTrigger = true;
-        }
-        else
-        {
-            projectileSpawn = this.transform.GetChild(1);
-        }
-        
+        bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();       
 
         LimitSpawnVelocity();
     }
@@ -101,7 +90,7 @@ public class EnemyBehaviour : MonoBehaviour
         //    agent.speed = 0;
         //}
 
-        if (InRange() && !ac.GetCurrentAnimatorStateInfo(0).IsName("Armature_Attack") && !goal.GetComponent<PlayerHealth>().dead && atkReady)
+        if (InRange() && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
 
@@ -235,15 +224,14 @@ public class EnemyBehaviour : MonoBehaviour
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion
-
-        this.GetComponent<Renderer>().enabled = false; // turn off renderer (not object as explosion references its transforms) to make invisible
+         // turn off renderer (not object as explosion references its transforms) to make invisible
     }
 
     private void CorpseExplode()
     {
         int x = Random.Range(2, 5); // random number of body parts between 2 and 5
 
-        bpc.DropLimbs(x, this.transform.position, enemy.enemyType);// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
+        /*bpc.DropLimbs(x, this.transform.position, enemy.enemyType);*/// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
         bpc.HealthDrop(this.transform.position);
 
         Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
@@ -276,42 +264,8 @@ public class EnemyBehaviour : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    public void dohit()
-    {
-        if (atkReady)
-        {
-            atkReady = false;
 
-            hit.enabled = true;
-        }
-        else
-        {
-            hit.enabled = false;
-        }
-
-        StartCoroutine(AtkCD());
-
-    }
-
-    public void DoRangeAtk()
-    {
-        if (atkReady)
-        {
-            atkReady = false;
-
-            Vector3 aimTarget = goal.position;
-            Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
-            Quaternion aimDir = Quaternion.LookRotation(target);
-            target.Normalize();
-            Vector3 velocity = target * 60f;
-            GameObject projectile = Instantiate(hitbox.gameObject, projectileSpawn.position, aimDir);
-            projectile.GetComponent<ProjectileData>().ProjectileDamage(this.enemy.damage, velocity);
-            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(projectile, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-            StartCoroutine(AtkCD());
-        }
-    }
-
-    private IEnumerator AtkCD()
+    protected IEnumerator AtkCD()
     {
         yield return new WaitForSeconds(this.enemy.attackCd);
         atkReady = true;
