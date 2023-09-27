@@ -77,13 +77,15 @@ public class GreatswordCombat : Combat
             comboIndex = 0;
             Debug.Log("Combo Finished");
         }
-        else if (!secondAtk || comboIndex == 1) // if combo index not 2 or only on first attack, increase index by one
+        else /*if (!secondAtk || comboIndex == 1)*/ // if combo index not 2 or only on first attack, increase index by one
         {
             comboIndex += 1;
         }
         pm.MoveInterrupt(true); // re-enables movement
         readyToAtk = true; // re-enables attack capability
         readyToHold = true; // re enable special atk capability
+
+        Debug.LogError(comboIndex);
     }
 
     private IEnumerator OrbMagnet(GameObject go) //gs

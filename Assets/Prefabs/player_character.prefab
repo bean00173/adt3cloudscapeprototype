@@ -787,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4082902199016594518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10277195, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.994705}
+  m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
   m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_Duration: 1
-    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+    m_NoiseOffsets: {x: 692.4369, y: 941.5851, z: -823.6527}
 --- !u!1 &4755729948203380528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,8 +1279,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10277195, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.994705}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
+  m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12725,7 +12725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7f94c422df5b9224d82640a5e44c8b30, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 7f94c422df5b9224d82640a5e44c8b30, type: 3}
       propertyPath: m_Controller
@@ -12780,7 +12780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdCd: 0
-  comboTime: 2
+  comboTime: 3
   readyToAtk: 1
   abilityReady: 0
   abilityText: {fileID: 0}
@@ -13176,7 +13176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdCd: 0
-  comboTime: 2
+  comboTime: 3
   readyToAtk: 1
   abilityReady: 0
   abilityText: {fileID: 0}

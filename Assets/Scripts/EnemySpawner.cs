@@ -88,7 +88,6 @@ public class EnemySpawner : MonoBehaviour
                 {
                     if (enemyTransform.GetComponent<EnemyBehaviour>().enemy.enemyType == enemy.enemy.GetComponent<EnemyBehaviour>().enemy.enemyType)
                     {
-                        Debug.Log("Existing Enemy Found");
                         currentOfType += 1;
                     }
                 }

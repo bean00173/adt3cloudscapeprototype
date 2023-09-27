@@ -98,7 +98,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             agent.speed = 0;
 
-            Debug.LogError($"IN RANGE !! : {InRange()}");
+            //Debug.LogError($"IN RANGE !! : {InRange()}");
 
             ac.SetTrigger("atkReady");
 
