@@ -64,27 +64,9 @@ public class AlchemyCombat : Combat
     private void CastArc()
     {
         pointer.SetActive(true);
-        //lr.enabled = true;
-        //lr.positionCount = Mathf.CeilToInt(maxSteps / timeBetweenSteps) + 1;
-
-        //Vector3 startPosition = handPos.position;
-        //Vector3 startVelocity = throwStrength * pm.orientation.forward + Vector3.up * upwardsForce;
-
-        //int i = 0;
-        //lr.SetPosition(i, startPosition);
-
-        //for (float time = 0; time < maxSteps; time += timeBetweenSteps)
-        //{
-        //    Vector3 point = startPosition + time * startVelocity;
-        //    point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y * .5f * Mathf.Pow(time, 2));
-
-        //    lr.SetPosition(i, point);
-        //    i++;
-        //}
 
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, Mathf.Infinity, target);
         Debug.DrawLine(Camera.main.transform.position, hitInfo.point, Color.magenta);
-        Debug.LogError(hitInfo.point);
 
         pointer.transform.position = hitInfo.point;
         
