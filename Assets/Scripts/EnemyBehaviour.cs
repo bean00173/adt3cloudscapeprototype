@@ -32,6 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Enemy enemy = new Enemy(); // creating new enemy
     public Transform healthbar;
+    public Transform checkPos;
     protected float health;
 
     [HideInInspector]
@@ -53,6 +54,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected int hitIndex;
 
+    protected bool queueing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,9 +72,10 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-
+        if (queueing)
+        {
+            agent.speed = 0;
+        }
         //if (atkReady)
         //{
         //    agent.speed = 0;
@@ -93,6 +97,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (InRange() && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
             agent.speed = 0;
+
+            Debug.LogError($"IN RANGE !! : {InRange()}");
 
             ac.SetTrigger("atkReady");
 
@@ -116,6 +122,11 @@ public class EnemyBehaviour : MonoBehaviour
         ac.SetFloat("speed", agent.speed);
 
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        queueing = collision.collider.CompareTag("Enemy") ? true : false;
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -182,10 +193,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool InRange()
     {
-        Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * this.transform.localScale.y), this.transform.position.z);
-        Debug.DrawLine(origin, goal.position, Color.yellow);
+        
+        //Vector3 origin = checkPos.position;
+        //Debug.DrawLine(origin, goal.position, Color.yellow);
+        //Debug.DrawRay(origin, transform.forward * enemy.attackRadius, Color.green);
 
-        return Vector3.Distance(origin, goal.position) < enemy.attackRadius;
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, enemy.attackRadius);
+        foreach (Collider col in colliders)
+        {
+            if(col.GetComponent<PlayableCharacter>() != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void HandleMove()
@@ -269,6 +291,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(this.enemy.attackCd);
         atkReady = true;
+
+        if (this.enemy.enemyType != enemyType.ranger)
+        {
+            hitIndex = hitIndex == 0 ? 1 : 0;
+            ac.SetFloat("hitIndex", hitIndex);
+        }
     }
 
     public void SetupHealthBar(Transform parent)
