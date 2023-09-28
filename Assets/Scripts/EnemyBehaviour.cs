@@ -137,7 +137,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon") && health > 0) // if weapon trigger enter collider
         {
-            explodePos = other.transform.position;
+            if(other.transform.root.GetChild(0).TryGetComponent(out GreatswordCombat gc))
+            {
+                explodePos = gc.sword.position;
+            }
+            else
+            {
+                explodePos = other.transform.position;
+            }
 
             if(other.GetComponent<Potion>() == null)
             {
@@ -290,7 +297,7 @@ public class EnemyBehaviour : MonoBehaviour
                 Destroy(deathWeapon.GetComponent<Collider>());
                 deathWeapon.SetParent(ReturnSkeletonBase(ragdoll.transform));
             }
-            else
+            else if(deathWeapon.GetComponent<Potion>() != null)
             {
                 deathWeapon.SetParent(ragdoll.transform.GetChild(ragdoll.transform.childCount - 1));
             }
