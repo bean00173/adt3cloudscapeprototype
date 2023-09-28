@@ -47,7 +47,8 @@ public class EnemyBehaviour : MonoBehaviour
     protected PlayableCharacter pCharacter;
     protected float damage;
 
-    protected Vector3 deathWeapon;
+    protected Transform deathWeapon;
+    protected Vector3 explodePos;
 
     protected Collider hit;
 
@@ -136,6 +137,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Weapon") && health > 0) // if weapon trigger enter collider
         {
+            explodePos = other.transform.position;
+
             if(other.GetComponent<Potion>() == null)
             {
                 if (other.GetComponent<ProjectileData>() != null)
@@ -190,15 +193,15 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (health <= dmg) // if current health will be 0 after swing, death
         {
+            deathWeapon = weapon;
             EnemyDeath(player);
-            deathWeapon = weapon.position;
         }
         else
         {
             health -= dmg; // if not, remove health and lower speed because injured people aren't as fast as they once were
             agent.speed = enemy.speed * (health / enemy.maxHealth);
 
-            deathWeapon = Vector3.zero;
+            deathWeapon = null;
 
             MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer renderer in mr)
@@ -277,12 +280,25 @@ public class EnemyBehaviour : MonoBehaviour
         /*int x = Random.Range(2, 5);*/ // random number of body parts between 2 and 5
 
         /*bpc.DropLimbs(x, this.transform.position, enemy.enemyType);*/// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
-        GameObject ragdoll = bpc.SpawnRagdoll(this.transform.position, enemy.enemyType);
+        GameObject ragdoll = bpc.SpawnRagdoll(this.transform.position, this.transform.rotation, enemy.enemyType);
         bpc.HealthDrop(this.transform.position);
+        if(deathWeapon != null)
+        {
+            if(deathWeapon.GetComponent<ProjectileData>() != null)
+            {
+                Destroy(deathWeapon.GetComponent<Rigidbody>());
+                Destroy(deathWeapon.GetComponent<Collider>());
+                deathWeapon.SetParent(ReturnSkeletonBase(ragdoll.transform));
+            }
+            else
+            {
+                deathWeapon.SetParent(ragdoll.transform.GetChild(ragdoll.transform.childCount - 1));
+            }
+        }
         Rigidbody[] rbs = ragdoll.GetComponentsInChildren<Rigidbody>();
         foreach(Rigidbody rb in rbs)
         {
-            rb.AddExplosionForce(10000f, deathWeapon, 25f, 1000f);
+            rb.AddExplosionForce(500f, explodePos, 25f, 50f);
         }
 
         //Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
@@ -363,5 +379,15 @@ public class EnemyBehaviour : MonoBehaviour
 
         renderer.material.color = start;
 
+    }
+
+    private Transform ReturnSkeletonBase(Transform ragdoll)
+    {
+        foreach(Transform transform in ragdoll.GetChild(0))
+        {
+            if(transform.childCount > 0) return transform;
+        }
+
+        return null;
     }
 }

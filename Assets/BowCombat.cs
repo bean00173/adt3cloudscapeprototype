@@ -75,8 +75,6 @@ public class BowCombat : Combat
     {
         Shoot(arrow, 1);
 
-        Debug.LogError("Combo Attack : " + (comboIndex + 1) + " / 3");
-
         //bool incrementCombo = ac.GetCurrentAnimatorStateInfo(0).IsName("attack1") && comboIndex > 0 ? false : true;
 
         //if (incrementCombo)
@@ -87,7 +85,6 @@ public class BowCombat : Combat
         if (comboIndex == 2) // if combo index already maxed out, reset index
         {
             comboIndex = 0;
-            Debug.LogError("Combo Finished");
         }
         else // if combo index not 2 or only on first attack, increase index by one
         {
@@ -96,8 +93,6 @@ public class BowCombat : Combat
 
         pm.MoveInterrupt(true);
         readyToAtk = true;
-
-        Debug.LogError(comboIndex);
     }
 
     public void ShootNormNoCombo()

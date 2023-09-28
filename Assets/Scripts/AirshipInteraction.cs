@@ -280,7 +280,6 @@ public class AirshipInteraction : MonoBehaviour
 
         while (time < duration)
         {
-            Debug.LogError(Vector3.Distance(this.transform.position, endPos));
             this.transform.position = Vector3.Lerp(startPos, endPos, time / duration);
             time += Time.deltaTime;
             yield return null;
@@ -288,7 +287,6 @@ public class AirshipInteraction : MonoBehaviour
 
         yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 2.0f);
 
-        Debug.LogError("DOCKING COMPLETIONATIONATED");
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 

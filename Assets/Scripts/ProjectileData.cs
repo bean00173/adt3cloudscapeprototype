@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ProjectileData : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ProjectileData : MonoBehaviour
 
     public float duration;
     public bool player;
+    public GameObject arrowPs;
+    public GameObject bloodPs;
 
     Transform target;
 
@@ -71,6 +74,8 @@ public class ProjectileData : MonoBehaviour
     private void StopMove()
     {
         time = duration;
+        arrowPs.SetActive(false);
+        bloodPs.SetActive(true);
     }
 
     private IEnumerator Move()
@@ -79,6 +84,8 @@ public class ProjectileData : MonoBehaviour
 
         target = bowArrow.FindNearestEnemy();
 
+        Vector3 startPos = spawn;
+
         while(time < duration)
         {
             if(target == null)
@@ -86,8 +93,9 @@ public class ProjectileData : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
             }
+            Vector3 movePos = new Vector3(target.position.x, spawn.y + (target.GetComponent<NavMeshAgent>().height / 2), target.position.z);
 
-            transform.position = Vector3.Lerp(spawn, target.position, time / duration);
+            transform.position = Vector3.Lerp(spawn, movePos, time / duration);
             time += Time.deltaTime;
             yield return null;
         }

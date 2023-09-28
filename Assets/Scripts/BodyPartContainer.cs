@@ -69,7 +69,7 @@ public class BodyPartContainer : MonoBehaviour
         //}
     }
 
-    public GameObject SpawnRagdoll(Vector3 spawnPos, enemyType type)
+    public GameObject SpawnRagdoll(Vector3 spawnPos, Quaternion rotation, enemyType type)
     {
         List<Ragdoll> dolls = new List<Ragdoll>();
         switch (type)
@@ -97,7 +97,7 @@ public class BodyPartContainer : MonoBehaviour
                     if (GameManager.instance.RandomChance(rd.probability) && !spawned)
                     {
                         Debug.Log($"Current character is {GameManager.activeCharacter.Id}, so {rd.prefab.name} was chosen!");
-                        return Instantiate(rd.prefab, spawnPos, Quaternion.identity, this.transform);
+                        return Instantiate(rd.prefab, spawnPos, rotation, this.transform);
                     }
                 }
             }
