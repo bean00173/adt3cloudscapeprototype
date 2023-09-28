@@ -32,6 +32,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: deepflesh
+    second: {fileID: 2100000, guid: 3b73e249bdac9e647b44ef43ac7bbaef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: monster flesh
     second: {fileID: 2100000, guid: 24c0a9f3d8c1a02419f7acf5c5ae7dcf, type: 2}
   - first:
