@@ -12,6 +12,8 @@ public class GreatswordCombat : Combat
     bool readyToHold = true;
     bool holding;
 
+    public Transform sword;
+
     // Start is called before the first frame update
     public override void Start()
     {

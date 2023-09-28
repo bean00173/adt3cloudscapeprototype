@@ -9312,11 +9312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000248295
+      value: 0.00000028475642
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000684754
+      value: -0.00000007914564
       objectReference: {fileID: 0}
     - target: {fileID: 2179903050763079805, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: healthBar
@@ -9416,7 +9416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7264351442032719945, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7264351442032719945, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13400,13 +13400,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516229056}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.013515603, y: -0.9595394, z: 0.2768798, w: 0.04938713}
+  m_LocalRotation: {x: 0.019293692, y: -0.5935243, z: 0.8031857, w: 0.047429044}
   m_LocalPosition: {x: 0, y: 25.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 32.007, y: -173.074, z: 3.603}
+  m_LocalEulerAnglesHint: {x: 72.795, y: -4.908, z: 169.622}
 --- !u!1001 &524214420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24049,9 +24049,12 @@ MonoBehaviour:
     probability: 33
     selected: 0
   bruteDolls:
-  - prefab: {fileID: 0}
+  - prefab: {fileID: 969993879523563284, guid: e643ba450aa343e4cb1cd5989f432738, type: 3}
     correspondingChar: 0
-    probability: 0
+    probability: 50
+  - prefab: {fileID: 1455533198131762743, guid: 0e0b37ae2c86f8b42aac6bce69cdf22e, type: 3}
+    correspondingChar: 0
+    probability: 50
   gruntDolls: []
   rangerDolls: []
 --- !u!1 &865817884
@@ -25810,7 +25813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &971151732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47690,8 +47693,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887106847}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000003791401, y: 0.9819564, z: -0.18910751, w: -0.000000019687164}
-  m_LocalPosition: {x: 0.25000054, y: 4.84, z: 2}
+  m_LocalRotation: {x: -0.000000011685595, y: 0.9819564, z: -0.18910751, w: -0.00000006067843}
+  m_LocalPosition: {x: 0.25000054, y: 3.6399999, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

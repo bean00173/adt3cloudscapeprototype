@@ -9,11 +9,13 @@ public class TempExplosion : MonoBehaviour
     public float explosionForce;
     public float radius;
     public float upwardsForce;
+    public bool explode;
+    public bool solo;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Explode());
+        StartCoroutine(ActivateRb());
     }
 
     // Update is called once per frame
@@ -22,36 +24,39 @@ public class TempExplosion : MonoBehaviour
         
     }
 
-    private IEnumerator Explode()
+    private IEnumerator ActivateRb()
     {
         //yield return new WaitForSeconds(5f);
 
-        Collider mainCol = this.GetComponent<Collider>();
-        mainCol.enabled = false;
-
-        this.GetComponent<Rigidbody>().useGravity = false;
-
-        Collider[] colliders = GetComponentsInChildren<Collider>(true);
-
-        Debug.Log($"{name} {GetInstanceID()} has {colliders.Length} children colliders.");
-
-        foreach (Collider hit in colliders)
+        if (!solo)
         {
-            if(hit != mainCol)
+            Collider mainCol = this.GetComponent<Collider>();
+            mainCol.enabled = false;
+
+            this.GetComponent<Rigidbody>().useGravity = false;
+
+            Collider[] colliders = GetComponentsInChildren<Collider>(true);
+
+            Debug.Log($"{name} {GetInstanceID()} has {colliders.Length} children colliders.");
+
+            foreach (Collider hit in colliders)
             {
-                hit.enabled = true;
+                if (hit != mainCol)
+                {
+                    hit.enabled = true;
 
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                    Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-                rb.isKinematic = false;
-                rb.useGravity = true;
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
 
-                rb.AddExplosionForce(explosionForce, this.transform.root.position, radius, upwardsForce);
+                    if (explode) rb.AddExplosionForce(explosionForce, this.transform.root.position, radius, upwardsForce);
 
-                Debug.Log($"Added Explosion Force to {rb.name}.");
+                    Debug.Log($"Added Explosion Force to {rb.name}.");
+                }
             }
-        }
 
-        yield return null;
+            yield return null;
+        }        
     }
 }

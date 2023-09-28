@@ -54,11 +54,12 @@ MonoBehaviour:
   enemy:
     enemyType: 1
     maxHealth: 200
-    damage: 50
-    speed: 2.5
+    damage: 65
+    interruptResist: 75
+    speed: 3
     attackRadius: 2.5
-    attackCd: 5
-    score: 25
+    attackCd: 2
+    score: 30
   healthbar: {fileID: 8412293550683728120}
   checkPos: {fileID: 5091837670684151580}
   goal: {fileID: 0}

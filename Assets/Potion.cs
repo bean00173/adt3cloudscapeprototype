@@ -101,7 +101,7 @@ public class Potion : MonoBehaviour
         {
             if(col.gameObject.GetComponent<EnemyBehaviour>() != null)
             {
-                col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage, _player);
+                col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage, _player, this.transform);
                 Debug.Log($"{col.gameObject} took {_damage} damage!");
             }
             else if(col.gameObject.GetComponent<PlayerHealth>() != null)
@@ -132,7 +132,7 @@ public class Potion : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyBehaviour>() != null)
                 {
-                    col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage * tickDmgModifier, _player);
+                    col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage * tickDmgModifier, _player, this.transform);
                     Debug.LogError($"{col.gameObject} took {_damage * tickDmgModifier} flame damage!");
                 }
             }

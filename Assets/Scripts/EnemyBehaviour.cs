@@ -13,6 +13,7 @@ public class Enemy // serializable class to store current enemy type & stats
     public enemyType enemyType;
     public float maxHealth;
     public float damage;
+    [Range(0, 100)] public int interruptResist;
     public float speed;
     public float attackRadius;
     public float attackCd;
@@ -45,6 +46,8 @@ public class EnemyBehaviour : MonoBehaviour
     protected Transform player;
     protected PlayableCharacter pCharacter;
     protected float damage;
+
+    protected Vector3 deathWeapon;
 
     protected Collider hit;
 
@@ -164,28 +167,38 @@ public class EnemyBehaviour : MonoBehaviour
 
             // For Knockback Force, Animation is probably better
 
-            TakeDamage(damage, player);
+            if (other.GetComponent<GreatswordCombat>() == null)
+            {
+                TakeDamage(damage, player, other.transform);
+            }
+            else
+            {
+                TakeDamage(damage, player, other.transform.root.GetChild(0).GetComponent<PlayableCharacter>().ReturnCurrentCharacter().GetComponent<GreatswordCombat>().sword);
+            }
+            
         }
 
     }
 
-    public void TakeDamage(float dmg, Transform player)
+    public void TakeDamage(float dmg, Transform player, Transform weapon)
     {
         agent.speed = 0f;
 
-        ac.Play("Hit", -1, 0f);
+        if(GameManager.instance.RandomChance(100 - this.enemy.interruptResist)) ac.Play("Hit", -1, 0f);
 
         if(this.player == null) this.player = player;
 
         if (health <= dmg) // if current health will be 0 after swing, death
         {
             EnemyDeath(player);
+            deathWeapon = weapon.position;
         }
         else
         {
             health -= dmg; // if not, remove health and lower speed because injured people aren't as fast as they once were
             agent.speed = enemy.speed * (health / enemy.maxHealth);
 
+            deathWeapon = Vector3.zero;
 
             MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer renderer in mr)
@@ -261,20 +274,26 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void CorpseExplode()
     {
-        int x = Random.Range(2, 5); // random number of body parts between 2 and 5
+        /*int x = Random.Range(2, 5);*/ // random number of body parts between 2 and 5
 
         /*bpc.DropLimbs(x, this.transform.position, enemy.enemyType);*/// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
+        GameObject ragdoll = bpc.SpawnRagdoll(this.transform.position, enemy.enemyType);
         bpc.HealthDrop(this.transform.position);
-
-        Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius
-        foreach (Collider hit in colliders)
+        Rigidbody[] rbs = ragdoll.GetComponentsInChildren<Rigidbody>();
+        foreach(Rigidbody rb in rbs)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null && rb.CompareTag("Drop"))
-                rb.AddExplosionForce(Random.Range(5.0f, 10.0f) * 50f, explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
+            rb.AddExplosionForce(10000f, deathWeapon, 25f, 1000f);
         }
+
+        //Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
+        //Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius
+        //foreach (Collider hit in colliders)
+        //{
+        //    Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+        //    if (rb != null && rb.CompareTag("Drop"))
+        //        rb.AddExplosionForce(Random.Range(5.0f, 10.0f) * 50f, explosionPos, 1.0f, 3.0f); // adds force to object rigidbody
+        //}
         Destroy(this.gameObject); // once the explosion has occured, remove the enemy object as transforms no longer required
     }
 

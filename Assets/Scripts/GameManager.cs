@@ -404,9 +404,4 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(shakeDuration);
         cfl.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
-
-    public void CloudTransition()
-    {
-
-    }
 }
