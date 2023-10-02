@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
             {
                 //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
                 SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
+                score = 0;
 
             }
             else
@@ -270,7 +271,6 @@ public class GameManager : MonoBehaviour
             towersBeaten += 1;
 
             totalScore += score;
-            score = 0;
 
             floorIndex = 0;
 
