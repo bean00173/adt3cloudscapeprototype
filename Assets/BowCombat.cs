@@ -8,6 +8,8 @@ public class BowCombat : Combat
     public Transform spawnPoint;
     public GameObject arrow, abilityArrow;
 
+    private bool special = false;
+
     private float leastDist;
     Transform closest;
 
@@ -44,7 +46,7 @@ public class BowCombat : Combat
 
             GameObject arw = Instantiate(arrowPrefab, spawnPoint.position, aimDir);
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(arw, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-            arw.GetComponent<ProjectileData>().PlayerShot(pc.attackModifier * damageMult * (1 + (0.5f * comboIndex)), this);
+            arw.GetComponent<ProjectileData>().PlayerShot(pc.attackModifier * damageMult * (1 + (0.5f * comboIndex)), this, special);
         }
     }
 
@@ -105,8 +107,11 @@ public class BowCombat : Combat
 
     private void BowAbility()
     {
+        special = true;
+
         Shoot(abilityArrow, 500);
 
+        special = false;
         pm.MoveInterrupt(true);
         readyToAtk = true;
     }

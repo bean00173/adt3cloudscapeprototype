@@ -33,7 +33,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Enemy enemy = new Enemy(); // creating new enemy
     public Transform healthbar;
-    public Transform checkPos;
     protected float health;
 
     [HideInInspector]
@@ -48,6 +47,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected float damage;
 
     protected Transform deathWeapon;
+    protected bool specialAtk;
     protected Vector3 explodePos;
 
     protected Collider hit;
@@ -135,16 +135,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        bool specialAtk = false;
         if (other.CompareTag("Weapon") && health > 0) // if weapon trigger enter collider
         {
-            if(other.transform.root.GetChild(0).TryGetComponent(out GreatswordCombat gc))
-            {
-                explodePos = gc.sword.position;
-            }
-            else
-            {
-                explodePos = other.transform.position;
-            }
+            //if(other.transform.root.GetChild(0).TryGetComponent(out GreatswordCombat gc))
+            //{
+            //    explodePos = gc.sword.position;
+            //}
+            //else
+            //{
+            //    explodePos = other.transform.position;
+            //}
 
             if(other.GetComponent<Potion>() == null)
             {
@@ -153,6 +154,7 @@ public class EnemyBehaviour : MonoBehaviour
                     player = other.GetComponent<ProjectileData>().bowArrow.transform.root.GetChild(0);
 
                     damage = other.GetComponent<ProjectileData>().damage;
+                    specialAtk = other.GetComponent<ProjectileData>().special;
                     other.gameObject.SendMessage("StopMove");
 
                     Debug.Log("Hit for " + damage + " Damage!");
@@ -179,22 +181,22 @@ public class EnemyBehaviour : MonoBehaviour
 
             if (other.GetComponent<GreatswordCombat>() == null)
             {
-                TakeDamage(damage, player, other.transform);
+                TakeDamage(damage, player, other.transform, specialAtk);
             }
             else
             {
-                TakeDamage(damage, player, other.transform.root.GetChild(0).GetComponent<PlayableCharacter>().ReturnCurrentCharacter().GetComponent<GreatswordCombat>().sword);
+                TakeDamage(damage, player, other.transform.root.GetChild(0).GetComponent<PlayableCharacter>().ReturnCurrentCharacter().GetComponent<GreatswordCombat>().sword, false);
             }
             
         }
 
     }
 
-    public void TakeDamage(float dmg, Transform player, Transform weapon)
+    public void TakeDamage(float dmg, Transform player, Transform weapon, bool spc)
     {
         agent.speed = 0f;
-
-        if(GameManager.instance.RandomChance(100 - this.enemy.interruptResist)) ac.Play("Hit", -1, 0f);
+        specialAtk = spc;
+        if (GameManager.instance.RandomChance(100 - this.enemy.interruptResist)) ac.Play("Hit", -1, 0f);
 
         if(this.player == null) this.player = player;
 
@@ -209,7 +211,7 @@ public class EnemyBehaviour : MonoBehaviour
             agent.speed = enemy.speed * (health / enemy.maxHealth);
 
             deathWeapon = null;
-
+            
             MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer renderer in mr)
             {
@@ -287,7 +289,7 @@ public class EnemyBehaviour : MonoBehaviour
         /*int x = Random.Range(2, 5);*/ // random number of body parts between 2 and 5
 
         /*bpc.DropLimbs(x, this.transform.position, enemy.enemyType);*/// instantiate generated number of body parts along with particles, blood etc. from BodyPartContainer.cs
-        GameObject ragdoll = bpc.SpawnRagdoll(this.transform.position, this.transform.rotation, enemy.enemyType);
+        GameObject ragdoll = bpc.SpawnRagdoll(this.transform.position, this.transform.rotation, enemy.enemyType, specialAtk);
         bpc.HealthDrop(this.transform.position);
         if(deathWeapon != null)
         {
@@ -302,11 +304,12 @@ public class EnemyBehaviour : MonoBehaviour
                 deathWeapon.SetParent(ragdoll.transform.GetChild(ragdoll.transform.childCount - 1));
             }
         }
-        Rigidbody[] rbs = ragdoll.GetComponentsInChildren<Rigidbody>();
-        foreach(Rigidbody rb in rbs)
-        {
-            rb.AddExplosionForce(500f, explodePos, 25f, 50f);
-        }
+        //Rigidbody[] rbs = ragdoll.GetComponentsInChildren<Rigidbody>();
+        //foreach(Rigidbody rb in rbs)
+        //{
+        //    float upwardsForce = GameManager.activeCharacter.Id == Character.CharacterId.abi ? -10f : 50f;
+        //    rb.AddExplosionForce(10000f, explodePos, 25f, upwardsForce);
+        //}
 
         //Vector3 explosionPos = transform.position; // explosion origin is at enemy position 
         //Collider[] colliders = Physics.OverlapSphere(explosionPos, 2.0f); // finds all colliders within a radius

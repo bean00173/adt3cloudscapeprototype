@@ -35,4 +35,34 @@ public class EnemyMelee : EnemyBehaviour
 
         StartCoroutine(AtkCD());
     }
+
+    public void DoQuarterHit()
+    {
+        //if (atkReady)
+        //{
+        //    atkReady = false;
+
+        //    hit.enabled = true;
+        //}
+        //else
+        //{
+        //    hit.enabled = false;
+        //}
+
+        if (atkReady)
+        {
+            atkReady = false;
+
+            Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
+            foreach (Collider col in colliders)
+            {
+                if (col.transform.GetComponent<PlayerHealth>() != null)
+                {
+                    col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage / 4);
+                }
+            }
+        }
+
+        StartCoroutine(AtkCD());
+    }
 }

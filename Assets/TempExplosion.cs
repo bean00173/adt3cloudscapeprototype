@@ -12,6 +12,8 @@ public class TempExplosion : MonoBehaviour
     public bool explode;
     public bool solo;
 
+    public Transform explodePos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +52,7 @@ public class TempExplosion : MonoBehaviour
                     rb.isKinematic = false;
                     rb.useGravity = true;
 
-                    if (explode) rb.AddExplosionForce(explosionForce, this.transform.root.position, radius, upwardsForce);
+                    if (explode) rb.AddExplosionForce(explosionForce, explodePos.position, radius, upwardsForce);
 
                     Debug.Log($"Added Explosion Force to {rb.name}.");
                 }

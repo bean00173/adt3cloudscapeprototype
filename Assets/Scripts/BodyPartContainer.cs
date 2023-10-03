@@ -16,6 +16,7 @@ public class Ragdoll
     public GameObject prefab;
     public Character.CharacterId correspondingChar;
     public int probability;
+    public bool special;
 }
 
 public class BodyPartContainer : MonoBehaviour
@@ -69,7 +70,7 @@ public class BodyPartContainer : MonoBehaviour
         //}
     }
 
-    public GameObject SpawnRagdoll(Vector3 spawnPos, Quaternion rotation, enemyType type)
+    public GameObject SpawnRagdoll(Vector3 spawnPos, Quaternion rotation, enemyType type, bool spc)
     {
         List<Ragdoll> dolls = new List<Ragdoll>();
         switch (type)
@@ -92,7 +93,7 @@ public class BodyPartContainer : MonoBehaviour
         {
             foreach (Ragdoll rd in dolls)
             {
-                if (rd.correspondingChar == GameManager.activeCharacter.Id)
+                if (rd.correspondingChar == GameManager.activeCharacter.Id && rd.special == spc)
                 {
                     if (GameManager.instance.RandomChance(rd.probability) && !spawned)
                     {

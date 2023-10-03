@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ProjectileData : MonoBehaviour
 {
     [HideInInspector] public float damage;
+    [HideInInspector] public bool special;
     [HideInInspector] public Vector3 motion;
     [HideInInspector] public BowCombat bowArrow;
 
@@ -64,11 +65,12 @@ public class ProjectileData : MonoBehaviour
         motion = mot;
     }
 
-    public void PlayerShot(float dmg, BowCombat bow)
+    public void PlayerShot(float dmg, BowCombat bow, bool spc)
     {
         damage = dmg;
         player = true;
         this.bowArrow = bow;
+        special = spc;
     }
 
     private void StopMove()
@@ -85,16 +87,17 @@ public class ProjectileData : MonoBehaviour
         target = bowArrow.FindNearestEnemy();
 
         Vector3 startPos = spawn;
+        float yValue = target.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute ? spawn.y + (target.GetComponent<NavMeshAgent>().height / 2) : spawn.y;
 
-        while(time < duration)
+        while (time < duration)
         {
             if(target == null)
             {
                 Destroy(this.gameObject);
                 break;
             }
-            Vector3 movePos = new Vector3(target.position.x, spawn.y + (target.GetComponent<NavMeshAgent>().height / 2), target.position.z);
-
+            
+            Vector3 movePos = new Vector3(target.position.x, yValue, target.position.z);
             transform.position = Vector3.Lerp(spawn, movePos, time / duration);
             time += Time.deltaTime;
             yield return null;

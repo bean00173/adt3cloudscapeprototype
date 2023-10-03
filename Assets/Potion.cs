@@ -24,6 +24,8 @@ public class Potion : MonoBehaviour
     private float tickDmgModifier = .5f;
     public float explosionRadius;
 
+    private bool special;
+
     public UnityEvent onExplode = new UnityEvent();
     public UnityEvent onFlame = new UnityEvent();
 
@@ -64,6 +66,8 @@ public class Potion : MonoBehaviour
     {
         if(this._potionType == type.flame)
         {
+            special = true;
+
             if (collision.gameObject.tag == "Ground")
             {
                 StartCoroutine(FirePool());
@@ -72,7 +76,7 @@ public class Potion : MonoBehaviour
         }
         else if(this._potionType == type.explosive)
         {
-            if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall")
+            if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ragdoll")
             {
                 Explode();
                 EndPos();
@@ -101,7 +105,7 @@ public class Potion : MonoBehaviour
         {
             if(col.gameObject.GetComponent<EnemyBehaviour>() != null)
             {
-                col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage, _player, this.transform);
+                col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage, _player, this.transform, special);
                 Debug.Log($"{col.gameObject} took {_damage} damage!");
             }
             else if(col.gameObject.GetComponent<PlayerHealth>() != null)
@@ -132,8 +136,12 @@ public class Potion : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyBehaviour>() != null)
                 {
-                    col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage * tickDmgModifier, _player, this.transform);
+                    col.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(_damage * tickDmgModifier, _player, this.transform, special);
                     Debug.LogError($"{col.gameObject} took {_damage * tickDmgModifier} flame damage!");
+                }
+                else if (col.gameObject.GetComponent<PlayerHealth>() != null)
+                {
+                    col.gameObject.GetComponent<PlayerHealth>().TakeDamage(_damage);
                 }
             }
             time += 1.0f;
