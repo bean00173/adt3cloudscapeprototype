@@ -15,7 +15,10 @@ public class MusicManager : FadedSoundEffect
         source = this.GetComponent<AudioSource>();
         handler = this.GetComponent<SoundHandler>();
 
-        StartCoroutine(Timer());
+        if (_fade)
+        {
+            StartCoroutine(Timer());
+        }
     }
 
     // Update is called once per frame
@@ -23,9 +26,16 @@ public class MusicManager : FadedSoundEffect
     {
         currentState = AudioManager.currentState;
 
-        if (source.clip == null || !source.clip.name.StartsWith(currentState.ToString()))
+        if (source.clip == null)
         {
             handler.PlayRandomSound(currentState.ToString());
+        }
+        else if (!source.clip.name.StartsWith(currentState.ToString()))
+        {
+            StartCoroutine(Fade(.01f));
+            handler.PlayRandomSound(currentState.ToString());
+            StartCoroutine(Fade(1f));
+
         }
     }
 

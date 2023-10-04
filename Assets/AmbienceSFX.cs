@@ -13,9 +13,8 @@ public class AmbienceSFX : FadedSoundEffect
     {
         _baseVol = this.GetComponent<AudioSource>().volume;
 
-        StartCoroutine(WaitForLoad());
-
         handler = this.GetComponent<SoundHandler>();
+
         while(handler.source.clip == null)
         {
             try
@@ -41,8 +40,4 @@ public class AmbienceSFX : FadedSoundEffect
         
     }
 
-    private IEnumerator WaitForLoad()
-    {
-        yield return new WaitUntil(() => AudioManager.instance.loaded == true);
-    }
 }

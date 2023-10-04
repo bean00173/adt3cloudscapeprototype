@@ -45,7 +45,7 @@ public class FadedSoundEffect : MonoBehaviour
         }
     }
 
-    private IEnumerator Fade(float val)
+    protected IEnumerator Fade(float val)
     {
         float startVol = handler.source.volume;
 
@@ -60,7 +60,10 @@ public class FadedSoundEffect : MonoBehaviour
 
         handler.source.volume = val == 1f ? 1f : 0.01f;
 
-        StartCoroutine(Timer());
+        if (_fade)
+        {
+            StartCoroutine(Timer());
+        }
     }
 
     protected IEnumerator Timer()
