@@ -1,24 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-[System.Serializable]
-public class ClipList
-{
-    public string name;
-    public SoundList clip;
-}
-[System.Serializable]
-public class SoundList
-{
-    public List<AudioClip> clips;
-}
-
+[RequireComponent(typeof(AudioSource))]
 public class SoundHandler : MonoBehaviour
 {
+    public AudioType sourceType;
     AudioSource source;
-    //public SoundClip[] soundClips;
-    public List<ClipList> soundClipsList;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +28,33 @@ public class SoundHandler : MonoBehaviour
 
     public void PlaySound(string clip)
     {
-        //if(source.clip != soundClipsList.Find(x => x.name == clip).clip){
-        //    source.clip = soundClipsList.Find(x => x.name == clip).clip;
-        //}
+        try
+        {
+            DoPlay(AudioManager.instance.GetClip(sourceType, clip));
+        }
+        catch(Exception e)
+        {
+            Debug.LogWarning($"{e.GetType()} : AudioClip with name => {clip} | Could Not Be Found. Try A Different Name?");
+        }
+    }
 
-        SoundList soundList = soundClipsList.Find(x => x.name == clip).clip;
+    public void PlayRandomSound(string prefix)
+    {
+        try
+        {
+            DoPlay(AudioManager.instance.GetRandomClip(sourceType, prefix));
+            
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"{e.GetType()} : AudioClip with prefix => {prefix} | Could Not Be Found. Try A Different Prefix?");
+        }
+    }
 
-        source.clip = soundList.clips[Random.Range(0, soundList.clips.Count)];
-        
+    private void DoPlay(AudioClip clip)
+    {
+        source.clip = clip;
         source.Play();
     }
+
 }

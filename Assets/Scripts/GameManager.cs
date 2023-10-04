@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public static int towersBeaten;
     public static Tower towerData;
     public static int floorIndex;
+    public bool floorBeaten { get; private set; }
+
+    public bool canPause;
+    public bool paused { get; private set; }
     public static int score { get; private set; }
     public static int totalScore { get; private set; }
 
@@ -151,6 +155,7 @@ public class GameManager : MonoBehaviour
 
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
         {
+            floorBeaten = false;
 
             if (towerFinished)
             {
@@ -254,6 +259,7 @@ public class GameManager : MonoBehaviour
 
     public void NextFloor()
     {
+        floorBeaten = true;
         Light winLight = GameObject.Find("NextLevelSpotLight").GetComponent<Light>();
 
         winLight.enabled = true;

@@ -1,0 +1,143 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+public enum AudioType
+{
+    player,
+    enemy,
+    ambient,
+    music,
+    effects
+}
+
+public enum GameState
+{
+    Normal,
+    Dungeon,
+    Combat,
+    Loading,
+    Menu,
+    Pause
+}
+
+public class AudioManager : MonoBehaviour
+{
+    public static Dictionary<string, AudioClip> player = new Dictionary<string, AudioClip>();
+    public static Dictionary<string, AudioClip> enemy = new Dictionary<string, AudioClip>();
+    public static Dictionary<string, AudioClip> ambient = new Dictionary<string, AudioClip>();
+    public static Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>();
+    public static Dictionary<string, AudioClip> effects = new Dictionary<string, AudioClip>();
+
+    public static GameState currentState { get; private set; }
+
+    public static Dictionary<AudioType, Dictionary<string , AudioClip>> audioClips = new Dictionary<AudioType, Dictionary<string, AudioClip>>();
+
+    public static AudioManager instance;
+
+    public void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        audioClips.Add(AudioType.player, player);
+        audioClips.Add(AudioType.enemy, enemy);
+        audioClips.Add(AudioType.ambient, ambient);
+        audioClips.Add(AudioType.music, music);
+        audioClips.Add(AudioType.effects, effects);
+
+        //AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
+        foreach (KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
+        {
+            AudioClip[] clips = Resources.LoadAll<AudioClip>($"Audio/{kvp.Key.ToString()}");
+            foreach (AudioClip clip in clips)
+            {
+                kvp.Value.Add(clip.name, clip);
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log(GetRandomClip(AudioType.effects, "Particles_Spark"));
+
+        //foreach (KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
+        //{
+        //    IEnumerable<string> fullMatchingKeys = kvp.Value.Keys.Where(currentKey => currentKey.Contains("Particle_Spark"));
+        //    foreach (string currentKey in fullMatchingKeys)
+        //    {
+        //        Debug.Log(kvp.Value[currentKey]);
+        //    }
+        //}
+
+        Debug.LogError(currentState);
+
+        if (GameManager.instance.paused)
+        {
+            currentState = GameState.Pause;
+        }
+        else
+        {
+            switch (GameManager.instance.currentScene.name)
+            {
+                case "MainMenu": currentState = GameState.Menu; break;
+                case "LoadingScreen": currentState = GameState.Loading; break;
+                case "LevelTest": currentState = GameManager.instance.floorBeaten ? GameState.Dungeon : GameState.Combat; break;
+                case "TowerTest": currentState = GameState.Normal; break;
+
+            }
+        }
+    }
+
+    public AudioClip GetClip(AudioType listName, string id)
+    {
+        foreach(KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
+        {
+            if(kvp.Key == listName)
+            {
+                foreach(KeyValuePair<string, AudioClip> kvp2 in kvp.Value)
+                {
+                    if(kvp2.Key == id) return kvp2.Value;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public AudioClip GetRandomClip(AudioType listName, string prefix)
+    {
+        foreach (KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
+        {
+            if (kvp.Key == listName)
+            {
+                IEnumerable<string> fullMatchingKeys = kvp.Value.Keys.Where(currentKey => currentKey.Contains(prefix));
+
+                List<AudioClip> returnedValues = new List<AudioClip>();
+
+                foreach (string currentKey in fullMatchingKeys)
+                {
+                    returnedValues.Add(kvp.Value[currentKey]);
+                }
+
+                return returnedValues[Random.Range(0, returnedValues.Count)];
+            }
+        }
+
+        return null;
+    }
+
+}

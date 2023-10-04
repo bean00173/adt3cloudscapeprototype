@@ -85,7 +85,7 @@ public class SceneManager : MonoBehaviour
 
         foreach(GameObject a in allObjects)
         {
-            if(a.name == "SceneManager" || a.name == "GameManager" || a.name == "CharacterManager" || a.name == "[Debug Updater]")
+            if(a.name == "SceneManager" || a.name == "GameManager" || a.name == "CharacterManager" || a.name == "[Debug Updater]" || a.name == "AudioManager")
             {
                 objectsToDisable.Remove(a);
             }

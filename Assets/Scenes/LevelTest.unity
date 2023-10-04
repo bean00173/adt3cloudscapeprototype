@@ -832,6 +832,9 @@ MonoBehaviour:
   playableEvent:
     m_PersistentCalls:
       m_Calls: []
+  alternateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &44829707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1517,20 +1520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClipsList:
-  - name: spark
-    clip:
-      clips:
-      - {fileID: 8300000, guid: f017d3402aafd924eb34f98b79daff6f, type: 3}
-      - {fileID: 8300000, guid: 1a71a4c0f06fe7a409f7496a59c1da02, type: 3}
-      - {fileID: 8300000, guid: 4864bed1dc90e0d44861635cdded232c, type: 3}
-      - {fileID: 8300000, guid: ed70742d802182c4a95e489156569f03, type: 3}
-  - name: burst
-    clip:
-      clips:
-      - {fileID: 8300000, guid: 2439ccbb0009c244e93cdec738d172ac, type: 3}
-      - {fileID: 8300000, guid: f66ec8a3889fca944a9e675208819a30, type: 3}
-      - {fileID: 8300000, guid: 40e5f9f431124bb4ea37ee4dcd0ede17, type: 3}
+  sourceType: 0
 --- !u!114 &64055534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,31 +1536,31 @@ MonoBehaviour:
   onBirth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 64055533}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: spark
+          m_StringArgument: Particle_Spark
           m_BoolArgument: 0
         m_CallState: 2
   onBurst:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 64055533}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: burst
+          m_StringArgument: Particle_BurstSpark
           m_BoolArgument: 0
         m_CallState: 2
   onDeath:
@@ -9340,15 +9330,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10277189
+      value: 0.10277192
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000002410352
+      value: 0.00000027717184
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000006597025
+      value: -0.00000008035158
       objectReference: {fileID: 0}
     - target: {fileID: 2179903050763079805, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: healthBar
@@ -9424,11 +9414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000002481326
+      value: 0.00000027717184
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000070330955
+      value: -0.00000008035158
       objectReference: {fileID: 0}
     - target: {fileID: 6960919653369661698, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14886,20 +14876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClipsList:
-  - name: spark
-    clip:
-      clips:
-      - {fileID: 8300000, guid: f017d3402aafd924eb34f98b79daff6f, type: 3}
-      - {fileID: 8300000, guid: 1a71a4c0f06fe7a409f7496a59c1da02, type: 3}
-      - {fileID: 8300000, guid: 4864bed1dc90e0d44861635cdded232c, type: 3}
-      - {fileID: 8300000, guid: ed70742d802182c4a95e489156569f03, type: 3}
-  - name: burst
-    clip:
-      clips:
-      - {fileID: 8300000, guid: 2439ccbb0009c244e93cdec738d172ac, type: 3}
-      - {fileID: 8300000, guid: f66ec8a3889fca944a9e675208819a30, type: 3}
-      - {fileID: 8300000, guid: 40e5f9f431124bb4ea37ee4dcd0ede17, type: 3}
+  sourceType: 0
 --- !u!114 &605457506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14915,31 +14892,31 @@ MonoBehaviour:
   onBirth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605457505}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: spark
+          m_StringArgument: Particle_Spark
           m_BoolArgument: 0
         m_CallState: 2
   onBurst:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605457505}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: burst
+          m_StringArgument: Particle_BurstSpark
           m_BoolArgument: 0
         m_CallState: 2
   onDeath:
@@ -31951,20 +31928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClipsList:
-  - name: spark
-    clip:
-      clips:
-      - {fileID: 8300000, guid: f017d3402aafd924eb34f98b79daff6f, type: 3}
-      - {fileID: 8300000, guid: 1a71a4c0f06fe7a409f7496a59c1da02, type: 3}
-      - {fileID: 8300000, guid: 4864bed1dc90e0d44861635cdded232c, type: 3}
-      - {fileID: 8300000, guid: ed70742d802182c4a95e489156569f03, type: 3}
-  - name: burst
-    clip:
-      clips:
-      - {fileID: 8300000, guid: 2439ccbb0009c244e93cdec738d172ac, type: 3}
-      - {fileID: 8300000, guid: f66ec8a3889fca944a9e675208819a30, type: 3}
-      - {fileID: 8300000, guid: 40e5f9f431124bb4ea37ee4dcd0ede17, type: 3}
+  sourceType: 4
 --- !u!114 &1035902797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31982,14 +31946,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: spark
+          m_StringArgument: Particle_Spark
           m_BoolArgument: 0
         m_CallState: 2
   onBurst:
@@ -31997,14 +31961,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: burst
+          m_StringArgument: Particle_BurstSpark
           m_BoolArgument: 0
         m_CallState: 2
   onDeath:
@@ -34014,6 +33978,161 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0, z: 2}
   m_Center: {x: 0, y: 0.000000047672074, z: 0}
+--- !u!1 &1229070278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229070282}
+  - component: {fileID: 1229070281}
+  - component: {fileID: 1229070280}
+  - component: {fileID: 1229070279}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1229070279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229070278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d650067c84e108f4c89220eefe5da11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1229070280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229070278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceType: 3
+--- !u!82 &1229070281
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229070278}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1229070282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229070278}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.821568, y: -5.8976603, z: -34.75889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1239430805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41342,20 +41461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClipsList:
-  - name: spark
-    clip:
-      clips:
-      - {fileID: 8300000, guid: f017d3402aafd924eb34f98b79daff6f, type: 3}
-      - {fileID: 8300000, guid: 1a71a4c0f06fe7a409f7496a59c1da02, type: 3}
-      - {fileID: 8300000, guid: 4864bed1dc90e0d44861635cdded232c, type: 3}
-      - {fileID: 8300000, guid: ed70742d802182c4a95e489156569f03, type: 3}
-  - name: burst
-    clip:
-      clips:
-      - {fileID: 8300000, guid: 2439ccbb0009c244e93cdec738d172ac, type: 3}
-      - {fileID: 8300000, guid: f66ec8a3889fca944a9e675208819a30, type: 3}
-      - {fileID: 8300000, guid: 40e5f9f431124bb4ea37ee4dcd0ede17, type: 3}
+  sourceType: 0
 --- !u!114 &1727468252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41371,31 +41477,31 @@ MonoBehaviour:
   onBirth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727468251}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: spark
+          m_StringArgument: Particle_Spark
           m_BoolArgument: 0
         m_CallState: 2
   onBurst:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727468251}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: burst
+          m_StringArgument: Particle_BurstSpark
           m_BoolArgument: 0
         m_CallState: 2
   onDeath:
@@ -47763,7 +47869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887106847}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000031367469, y: 0.9819564, z: -0.18910751, w: -0.00000001628782}
+  m_LocalRotation: {x: -0.000000010740529, y: 0.9819564, z: -0.18910752, w: -0.000000055771086}
   m_LocalPosition: {x: 0.25000054, y: 3.6399999, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48759,20 +48865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClipsList:
-  - name: spark
-    clip:
-      clips:
-      - {fileID: 8300000, guid: f017d3402aafd924eb34f98b79daff6f, type: 3}
-      - {fileID: 8300000, guid: 1a71a4c0f06fe7a409f7496a59c1da02, type: 3}
-      - {fileID: 8300000, guid: 4864bed1dc90e0d44861635cdded232c, type: 3}
-      - {fileID: 8300000, guid: ed70742d802182c4a95e489156569f03, type: 3}
-  - name: burst
-    clip:
-      clips:
-      - {fileID: 8300000, guid: 2439ccbb0009c244e93cdec738d172ac, type: 3}
-      - {fileID: 8300000, guid: f66ec8a3889fca944a9e675208819a30, type: 3}
-      - {fileID: 8300000, guid: 40e5f9f431124bb4ea37ee4dcd0ede17, type: 3}
+  sourceType: 0
 --- !u!114 &1937091894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48788,31 +48881,31 @@ MonoBehaviour:
   onBirth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1937091893}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: spark
+          m_StringArgument: Particle_Spark
           m_BoolArgument: 0
         m_CallState: 2
   onBurst:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1937091893}
+      - m_Target: {fileID: 1035902796}
         m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlaySound
+        m_MethodName: PlayRandomSound
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: burst
+          m_StringArgument: Particle_BurstSpark
           m_BoolArgument: 0
         m_CallState: 2
   onDeath:
@@ -57077,3 +57170,4 @@ SceneRoots:
   - {fileID: 971151733}
   - {fileID: 254283878}
   - {fileID: 1379670519}
+  - {fileID: 1229070282}
