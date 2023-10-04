@@ -36,6 +36,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    public bool loaded = false;
+
     public void Awake()
     {
         if (instance != null)
@@ -47,26 +49,14 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        DoLoad();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioClips.Add(AudioType.player, player);
-        audioClips.Add(AudioType.enemy, enemy);
-        audioClips.Add(AudioType.ambient, ambient);
-        audioClips.Add(AudioType.music, music);
-        audioClips.Add(AudioType.effects, effects);
-
-        //AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
-        foreach (KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
-        {
-            AudioClip[] clips = Resources.LoadAll<AudioClip>($"Audio/{kvp.Key.ToString()}");
-            foreach (AudioClip clip in clips)
-            {
-                kvp.Value.Add(clip.name, clip);
-            }
-        }
+        
     }
 
     // Update is called once per frame
@@ -100,6 +90,27 @@ public class AudioManager : MonoBehaviour
 
             }
         }
+    }
+
+    private void DoLoad()
+    {
+        audioClips.Add(AudioType.player, player);
+        audioClips.Add(AudioType.enemy, enemy);
+        audioClips.Add(AudioType.ambient, ambient);
+        audioClips.Add(AudioType.music, music);
+        audioClips.Add(AudioType.effects, effects);
+
+        //AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
+        foreach (KeyValuePair<AudioType, Dictionary<string, AudioClip>> kvp in audioClips)
+        {
+            AudioClip[] clips = Resources.LoadAll<AudioClip>($"Audio/{kvp.Key.ToString()}");
+            foreach (AudioClip clip in clips)
+            {
+                kvp.Value.Add(clip.name, clip);
+            }
+        }
+
+        loaded = true;
     }
 
     public AudioClip GetClip(AudioType listName, string id)

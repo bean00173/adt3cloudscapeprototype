@@ -7,12 +7,11 @@ using System;
 public class SoundHandler : MonoBehaviour
 {
     public AudioType sourceType;
-    AudioSource source;
+    public AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();
 
         //foreach(SoundClip clip in soundClips)
         //{
