@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Audio;
 
 public enum AudioType
 {
@@ -9,7 +10,8 @@ public enum AudioType
     enemy,
     ambient,
     music,
-    effects
+    effects,
+    master
 }
 
 public enum GameState
@@ -30,6 +32,7 @@ public class AudioManager : MonoBehaviour
     public static Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>();
     public static Dictionary<string, AudioClip> effects = new Dictionary<string, AudioClip>();
 
+    public AudioMixer masterMixer;
     public static GameState currentState { get; private set; }
 
     public static Dictionary<AudioType, Dictionary<string , AudioClip>> audioClips = new Dictionary<AudioType, Dictionary<string, AudioClip>>();
@@ -150,5 +153,31 @@ public class AudioManager : MonoBehaviour
 
         return null;
     }
+
+    public void SetMasterVol(float volume)
+    {
+        masterMixer.SetFloat("masterVol", volume);
+    }
+    public void SetMusicVol(float volume)
+    {
+        masterMixer.SetFloat("musicVol", volume);
+    }
+    public void SetSfxVol(float volume)
+    {
+        masterMixer.SetFloat("fxVol", volume);
+    }
+    public void SetAmbienceVol(float volume)
+    {
+        masterMixer.SetFloat("ambientVol", volume);
+    }
+    public void SetPlayerVol(float volume)
+    {
+        masterMixer.SetFloat("playerVol", volume);
+    }
+    public void SetEnemyVol(float volume)
+    {
+        masterMixer.SetFloat("enemyVol", volume);
+    }
+
 
 }

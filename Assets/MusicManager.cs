@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SoundHandler))]
-public class MusicManager : MonoBehaviour
+public class MusicManager : FadedSoundEffect
 {
     private GameState currentState;
-    private AudioSource source;
-    private SoundHandler handler;
-
+    
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        _baseVol = this.GetComponent<AudioSource>().volume;
+
         source = this.GetComponent<AudioSource>();
         handler = this.GetComponent<SoundHandler>();
+
+        StartCoroutine(Timer());
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         currentState = AudioManager.currentState;
 
