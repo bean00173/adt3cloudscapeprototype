@@ -26,7 +26,7 @@ public class MusicManager : FadedSoundEffect
     {
         currentState = AudioManager.currentState;
 
-        if (source.clip == null)
+        if (source.clip == null || !source.isPlaying)
         {
             handler.PlayRandomSound(currentState.ToString());
         }

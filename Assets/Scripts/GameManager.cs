@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossTower;
     public bool bossUI;
 
-
+    GameObject pauseMenu;
 
     // Make this a singleton.
     public void Awake()
@@ -91,6 +91,31 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+        switch (currentScene.name)
+        {
+            case "TowerTest": canPause = true; break;
+            case "LevelTest": canPause = true; break;
+            default:  canPause = false; break;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
+        {
+            paused = true;
+            canPause = false;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
+
+            Button resume = pauseMenu.transform.Find("Resume").GetComponent<Button>();
+            resume.onClick.AddListener(Resume);
+
+            pauseMenu.SetActive(true);
+
+            Time.timeScale = 0;
+        }
+
         if (towerLeft) towerFinished = false;
 
 
@@ -102,7 +127,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (currentScene.name == "TowerTest" || currentScene.name == "LevelTest")
+        if ((currentScene.name == "TowerTest" || currentScene.name == "LevelTest") && !paused)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -174,7 +199,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        canPause = true;
+        paused = false;
+    }
     public bool RandomChance(int prob) // takes in a probability (out of 100) and returns true or false if selected
     {
         //return UnityEngine.Random.value < prob; This is a much simpler way of doing things 

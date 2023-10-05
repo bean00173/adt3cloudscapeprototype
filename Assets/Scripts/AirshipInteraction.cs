@@ -123,17 +123,17 @@ public class AirshipInteraction : MonoBehaviour
             }
         }
 
-        if(readyToDock && Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("Dont want to enter");
-            rb.AddForce(-Vector3.left * 100000f);
-            am.DisableMovement(false);
+        //if(readyToDock && Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Debug.Log("Dont want to enter");
+        //    rb.AddForce(-Vector3.left * 100000f);
+        //    am.DisableMovement(false);
 
-            readyToDock = false;
-            promptReady = false;
-        }
+        //    readyToDock = false;
+        //    promptReady = false;
+        //}
 
-        if(readyToDock && Input.GetKeyDown(KeyCode.F))
+        if(readyToDock && Input.GetKeyDown(KeyCode.E))
         {
             dock?.Invoke();
             source.clip = AudioManager.instance.GetClip(AudioType.effects, "Airship_Bell");

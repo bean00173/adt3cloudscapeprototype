@@ -89,8 +89,8 @@ public class AudioManager : MonoBehaviour
             {
                 case "MainMenu": currentState = GameState.Menu; break;
                 case "LoadingScreen": currentState = GameState.Loading; break;
-                case "LevelTest": currentState = GameManager.instance.floorBeaten && !playerBeaten ? GameState.Dungeon : GameState.Combat; break;
-                case "TowerTest": currentState = GameState.Normal; break;
+                case "LevelTest": currentState = GameManager.instance.paused ? GameState.Pause : (GameManager.instance.floorBeaten && !playerBeaten ? GameState.Dungeon : GameState.Combat); break;
+                case "TowerTest": currentState = GameManager.instance.paused ? GameState.Pause : GameState.Normal; break;
 
             }
         }
