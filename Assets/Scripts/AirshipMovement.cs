@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AirshipMovement : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class AirshipMovement : MonoBehaviour
     [HideInInspector]
     public bool canMove;
 
+    bool emitting;
+    public GameObject cloudsPS;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +62,6 @@ public class AirshipMovement : MonoBehaviour
                 case > 0: turnRight = true; turnLeft = false; break;
                 default: turnRight = false; turnLeft = false; break;
             }
-
         }
     }
 
@@ -104,10 +106,18 @@ public class AirshipMovement : MonoBehaviour
         if(vert != 0)
         {
             ac.SetBool("moving", true);
+            if (!emitting)
+            {
+                emitting = true;
+                cloudsPS.GetComponent<ParticleSystem>().Play();
+            }
+            
         }
         else
         {
             ac.SetBool("moving", false);
+            emitting = false;
+            cloudsPS.GetComponent<ParticleSystem>().Stop();
         }
 
         //transform.Rotate(0, hor * 10 * Time.deltaTime, 0);

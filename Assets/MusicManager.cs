@@ -33,7 +33,7 @@ public class MusicManager : FadedSoundEffect
         else if (!source.clip.name.StartsWith(currentState.ToString()))
         {
             LeavingMenu();
-
+            handler.PlayRandomSound(currentState.ToString());
         }
     }
 

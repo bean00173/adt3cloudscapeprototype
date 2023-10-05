@@ -76,7 +76,7 @@ public class TowerManager : MonoBehaviour
         Destroy(airship.GetComponent<AirshipInteraction>().character);
         Destroy(previousTower);
 
-        airship.GetComponent<AirshipInteraction>().dockPrompt.parent.gameObject.SetActive(true);
+        airship.GetComponent<AirshipInteraction>().dockPrompt.transform.parent.gameObject.SetActive(true);
     }
 
 

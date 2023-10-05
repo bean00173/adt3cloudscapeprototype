@@ -70,6 +70,8 @@ public class PlayerHealth : MonoBehaviour
             dead = true;
             Debug.Log("LOSE");
             ac.Play("Death", -1, 0f);
+
+            AudioManager.instance.PlayerDead();
             this.GetComponent<PlayerMovement>().MoveInterrupt(false);
 
             CharacterManager.instance.CharacterDied(this.GetComponent<PlayableCharacter>().currentCharacter);

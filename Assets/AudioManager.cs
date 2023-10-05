@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public bool loaded = false;
+    bool playerBeaten;
 
     public void Awake()
     {
@@ -88,11 +89,17 @@ public class AudioManager : MonoBehaviour
             {
                 case "MainMenu": currentState = GameState.Menu; break;
                 case "LoadingScreen": currentState = GameState.Loading; break;
-                case "LevelTest": currentState = GameManager.instance.floorBeaten ? GameState.Dungeon : GameState.Combat; break;
+                case "LevelTest": currentState = GameManager.instance.floorBeaten && !playerBeaten ? GameState.Dungeon : GameState.Combat; break;
                 case "TowerTest": currentState = GameState.Normal; break;
 
             }
         }
+    }
+
+    public void PlayerDead()
+    {
+        currentState = GameState.Normal;
+        playerBeaten = true;
     }
 
     private void DoLoad()

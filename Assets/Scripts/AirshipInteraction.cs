@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AirshipInteraction : MonoBehaviour
@@ -12,7 +13,8 @@ public class AirshipInteraction : MonoBehaviour
     public GameObject character { get; private set; }
     Camera mainCamera;
 
-    public Transform airshipObject, dockPrompt;
+    public Transform airshipObject;
+    public GameObject dockPrompt;
     AirshipMovement am;
     Rigidbody rb;
     bool promptReady;
@@ -35,11 +37,15 @@ public class AirshipInteraction : MonoBehaviour
 
     float dist;
 
+    AudioSource source;
+    public UnityEvent dock = new UnityEvent();
+
     // Start is called before the first frame update
     void Start()
     {
         am = GetComponent<AirshipMovement>();
         rb = GetComponentInChildren<Rigidbody>();
+        source = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -85,7 +91,7 @@ public class AirshipInteraction : MonoBehaviour
 
                 Debug.Log("Docked");
 
-                dockPrompt.parent.gameObject.SetActive(false);
+                dockPrompt.transform.parent.gameObject.SetActive(false);
 
                 current.GetChild(2).gameObject.SetActive(true);
 
@@ -129,6 +135,9 @@ public class AirshipInteraction : MonoBehaviour
 
         if(readyToDock && Input.GetKeyDown(KeyCode.F))
         {
+            dock?.Invoke();
+            source.clip = AudioManager.instance.GetClip(AudioType.effects, "Airship_Bell");
+            source.Play();
             Debug.Log("Entering Island");
             Transform container = currentTower.GetComponent<TowerData>().navPointContainer;
             //currentTower.GetComponent<TowerData>().AirshipHitbox.enabled = false;
@@ -169,12 +178,12 @@ public class AirshipInteraction : MonoBehaviour
 
         if (promptReady)
         {
-            dockPrompt.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            dockPrompt.SetActive(true);
             readyToDock = true;
         }
         else
         {
-            dockPrompt.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            dockPrompt.SetActive(false);
         }
 
         //if (Physics.SphereCast(this.transform.position, 3.0f, transform.forward, out hit, 3.0f) && !promptReady)
