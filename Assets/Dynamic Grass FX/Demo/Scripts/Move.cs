@@ -5,6 +5,10 @@ using UnityEngine;
 public class Move : MonoBehaviour {
 
 	public bool sheep;
+	private int count;
+
+	public GameObject explodePs;
+
 	void Update ()
 	{
 		transform.position += transform.forward * Time.deltaTime * 4;
@@ -13,6 +17,33 @@ public class Move : MonoBehaviour {
 
     private void OnMouseDown()
     {
-		this.GetComponent<AudioSource>().Play();
+        if (sheep)
+        {
+			if(count < 10)
+            {
+				this.GetComponent<AudioSource>().Play();
+				count++;
+			}
+            else
+            {
+				this.GetComponent<AudioSource>().clip = AudioManager.instance.GetClip(AudioType.effects, "Sheep_Explode");
+				Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+				foreach(Renderer renderer in renderers)
+                {
+					renderer.enabled = false;
+                }
+
+				this.GetComponent<AudioSource>().Play();
+				explodePs.SetActive(true);
+				sheep = false;
+				Invoke(nameof(DisableSheep), 2f);
+			}
+			
+		}
+    }
+
+	private void DisableSheep()
+    {
+		Destroy(this.gameObject);
     }
 }

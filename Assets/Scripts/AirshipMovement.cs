@@ -7,6 +7,10 @@ public class AirshipMovement : MonoBehaviour
     public float moveSpeed;
     public float rotSpeed;
 
+    bool moving, ascending, descending, turnLeft, turnRight;
+
+    public AudioSource upDown;
+
     float hor, vert;
 
     Rigidbody rb;
@@ -34,6 +38,8 @@ public class AirshipMovement : MonoBehaviour
             vert = Input.GetAxisRaw("Vertical");
 
             ac.SetFloat("horizontalInput", hor);
+            ac.SetBool("turnLeft", turnLeft);
+            ac.SetBool("turnRight", turnRight);
 
             //DoMove();
             ////DoRot();
@@ -43,6 +49,14 @@ public class AirshipMovement : MonoBehaviour
             //    rb.velocity = Vector3.zero;
             //    rb.angularVelocity = Vector3.zero;
             //}
+
+            switch (hor)
+            {
+                case < 0: turnLeft = true; turnRight = false; break;
+                case > 0: turnRight = true; turnLeft = false; break;
+                default: turnRight = false; turnLeft = false; break;
+            }
+
         }
     }
 
@@ -62,10 +76,11 @@ public class AirshipMovement : MonoBehaviour
             {
                 if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.C))
                 {
-
+                    
                 }
                 else
                 {
+                    
                     rb.velocity = Vector3.zero;
                     rb.angularVelocity = Vector3.zero;
                 }
@@ -105,6 +120,7 @@ public class AirshipMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && transform.position.y < 50)
         {
+            if (!upDown.isPlaying) upDown.Play();
             Vector3 vertDir = new Vector3(0, moveSpeed * 10 * Time.fixedDeltaTime, 0);
             Debug.Log(vertDir);
             rb.velocity += vertDir * 50f;
@@ -113,9 +129,14 @@ public class AirshipMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.C) && transform.position.y > -50)
         {
+            if (!upDown.isPlaying) upDown.Play();
             Vector3 vertDir = transform.TransformDirection(new Vector3(0, moveSpeed * -10 * Time.fixedDeltaTime, 0));
             rb.velocity += vertDir * 50f;
             ac.SetFloat("elevation", -1);
+        }
+        else
+        {
+            upDown.Stop();
         }
 
     }
