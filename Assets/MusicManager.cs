@@ -32,9 +32,7 @@ public class MusicManager : FadedSoundEffect
         }
         else if (!source.clip.name.StartsWith(currentState.ToString()))
         {
-            StartCoroutine(Fade(.01f));
-            handler.PlayRandomSound(currentState.ToString());
-            StartCoroutine(Fade(1f));
+            LeavingMenu();
 
         }
     }

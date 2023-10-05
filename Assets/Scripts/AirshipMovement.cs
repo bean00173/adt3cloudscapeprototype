@@ -37,9 +37,12 @@ public class AirshipMovement : MonoBehaviour
             hor = Input.GetAxisRaw("Horizontal");
             vert = Input.GetAxisRaw("Vertical");
 
-            ac.SetFloat("horizontalInput", hor);
+            moving = vert != 0 && !descending && !ascending ? true : false;
+            ac.SetBool("moving", moving);
             ac.SetBool("turnLeft", turnLeft);
             ac.SetBool("turnRight", turnRight);
+            ac.SetBool("ascend", ascending);
+            ac.SetBool("descend", descending);
 
             //DoMove();
             ////DoRot();
@@ -120,6 +123,7 @@ public class AirshipMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && transform.position.y < 50)
         {
+            ascending = true;
             if (!upDown.isPlaying) upDown.Play();
             Vector3 vertDir = new Vector3(0, moveSpeed * 10 * Time.fixedDeltaTime, 0);
             Debug.Log(vertDir);
@@ -129,6 +133,7 @@ public class AirshipMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.C) && transform.position.y > -50)
         {
+            descending = true;
             if (!upDown.isPlaying) upDown.Play();
             Vector3 vertDir = transform.TransformDirection(new Vector3(0, moveSpeed * -10 * Time.fixedDeltaTime, 0));
             rb.velocity += vertDir * 50f;
@@ -136,6 +141,8 @@ public class AirshipMovement : MonoBehaviour
         }
         else
         {
+            ascending = false;
+            descending = false;
             upDown.Stop();
         }
 
