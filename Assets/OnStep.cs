@@ -8,6 +8,7 @@ public class OnStep : MonoBehaviour
     public float stepShakeForce = 0.1f;
     AudioSource source;
     public EnemyBehaviour eb;
+
     // Start is called before the first frame update
     void Start()
     {

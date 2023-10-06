@@ -40,7 +40,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {

@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     public GameObject bossTower;
     public bool bossUI;
 
+    private bool levelListenerAdded, towerListenerAdded;
+
     GameObject pauseMenu;
 
     // Make this a singleton.
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -94,7 +96,7 @@ public class GameManager : MonoBehaviour
         switch (currentScene.name)
         {
             case "TowerTest": canPause = true; break;
-            case "LevelTest": canPause = true; break;
+            case "LevelTest": canPause = floorBeaten ? true : false; break;
             default:  canPause = false; break;
         }
 
@@ -108,8 +110,19 @@ public class GameManager : MonoBehaviour
 
             pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
 
-            Button resume = pauseMenu.transform.Find("Resume").GetComponent<Button>();
-            resume.onClick.AddListener(Resume);
+            if((currentScene.name == "TowerTest" && !towerListenerAdded) || (currentScene.name == "LevelTest" && !levelListenerAdded))
+            {
+                Button resume = pauseMenu.transform.Find("ResumeBtn/Resume").GetComponent<Button>();
+                Button exit = pauseMenu.transform.Find("Leave/YesBtn/Yes").GetComponent<Button>();
+                resume.onClick.AddListener(Resume);
+                exit.onClick.AddListener(BackToMenu);
+
+                switch (currentScene.name)
+                {
+                    case "TowerTest": towerListenerAdded = true; break;
+                    case "LevelTest": levelListenerAdded = true; break;
+                }
+            }
 
             pauseMenu.SetActive(true);
 
@@ -186,6 +199,7 @@ public class GameManager : MonoBehaviour
             {
                 //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
                 SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
+                levelListenerAdded = false;
                 score = 0;
 
             }
@@ -199,6 +213,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BackToMenu()
+    {
+        Debug.LogError("Baii");
+
+        towerListenerAdded = false;
+        levelListenerAdded = false;
+
+        paused = false;
+        canPause = true;
+        Time.timeScale = 1;
+        SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -379,6 +405,7 @@ public class GameManager : MonoBehaviour
         towerData = null;
         score = 0;
         deathListener = false;
+        scaleIndex = 1;
     }
 
     private void DiedInGame()

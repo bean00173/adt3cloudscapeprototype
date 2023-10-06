@@ -76,6 +76,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        Debug.Log($"Attack Ready? {atkReady}. Speed : {agent.speed}. In Range? {InRange(enemy.attackRadius)}");
         //if (atkReady)
         //{
         //    agent.speed = 0;

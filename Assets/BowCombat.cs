@@ -93,6 +93,10 @@ public class BowCombat : Combat
             comboIndex += 1;
         }
 
+    }
+
+    public void AttackReady()
+    {
         pm.MoveInterrupt(true);
         readyToAtk = true;
     }
@@ -101,8 +105,6 @@ public class BowCombat : Combat
     {
         Shoot(arrow, 1);
 
-        pm.MoveInterrupt(true);
-        readyToAtk = true;
     }
 
     private void BowAbility()
@@ -112,8 +114,6 @@ public class BowCombat : Combat
         Shoot(abilityArrow, 500);
 
         special = false;
-        pm.MoveInterrupt(true);
-        readyToAtk = true;
     }
 
     private void Dash()

@@ -29,7 +29,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.23333333
+        time: 0.083333336
         value: {x: 0.6231426, y: 0.6231426, z: 0.6231426}
         inSlope: {x: -0.5863073, y: -0.5863073, z: -0.5863073}
         outSlope: {x: -0.5863073, y: -0.5863073, z: -0.5863073}
@@ -104,7 +104,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.23333333
+        time: 0.083333336
         value: 0.6231426
         inSlope: -0.5863073
         outSlope: -0.5863073
@@ -143,7 +143,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.23333333
+        time: 0.083333336
         value: 0.6231426
         inSlope: -0.5863073
         outSlope: -0.5863073
@@ -182,7 +182,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.23333333
+        time: 0.083333336
         value: 0.6231426
         inSlope: -0.5863073
         outSlope: -0.5863073
@@ -211,7 +211,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.23333333
+  - time: 0.083333336
     functionName: PlayEvent
     data: 
     objectReferenceParameter: {fileID: 0}

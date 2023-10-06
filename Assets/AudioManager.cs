@@ -46,15 +46,15 @@ public class AudioManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            DoLoad();
         }
-
-        DoLoad();
+        
     }
 
     // Start is called before the first frame update
@@ -76,8 +76,6 @@ public class AudioManager : MonoBehaviour
         //        Debug.Log(kvp.Value[currentKey]);
         //    }
         //}
-
-        Debug.LogError(currentState);
 
         if (GameManager.instance.paused)
         {
