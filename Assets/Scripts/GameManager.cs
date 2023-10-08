@@ -112,10 +112,13 @@ public class GameManager : MonoBehaviour
 
             if((currentScene.name == "TowerTest" && !towerListenerAdded) || (currentScene.name == "LevelTest" && !levelListenerAdded))
             {
-                Button resume = pauseMenu.transform.Find("ResumeBtn/Resume").GetComponent<Button>();
-                Button exit = pauseMenu.transform.Find("Leave/YesBtn/Yes").GetComponent<Button>();
+                Button resume = pauseMenu.transform.Find("Main/ResumeBtn/Resume").GetComponent<Button>();
+                Button exit = pauseMenu.transform.Find("Main/Leave/YesBtn/Yes").GetComponent<Button>();
                 resume.onClick.AddListener(Resume);
                 exit.onClick.AddListener(BackToMenu);
+
+                StoreMixerInfo(pauseMenu.transform.Find("Options").transform);
+                pauseMenu.transform.Find("Options").gameObject.SetActive(false);
 
                 switch (currentScene.name)
                 {
@@ -211,6 +214,27 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("SceneTransition");
         }
+    }
+
+    public void StoreMixerInfo(Transform main)
+    {
+        Slider sfxSlider = main.Find("soundbg/SFXSlider").GetComponent<Slider>();
+        sfxSlider.onValueChanged.AddListener(AudioManager.instance.SetSfxVol);
+
+        Slider musicSlider = main.Find("soundbg/MusicSlider").GetComponent<Slider>();
+        musicSlider.onValueChanged.AddListener(AudioManager.instance.SetMusicVol);
+
+        Slider ambienceSlider = main.Find("soundbg/AmbienceSlider").GetComponent<Slider>();
+        ambienceSlider.onValueChanged.AddListener(AudioManager.instance.SetAmbienceVol);
+
+        Slider playerSlider = main.Find("soundbg/PlayerSlider").GetComponent<Slider>();
+        playerSlider.onValueChanged.AddListener(AudioManager.instance.SetPlayerVol);
+
+        Slider enemySlider = main.Find("soundbg/EnemySlider").GetComponent<Slider>();
+        enemySlider.onValueChanged.AddListener(AudioManager.instance.SetEnemyVol);
+
+        Slider masterSlider = main.Find("soundbg/MasterSlider").GetComponent<Slider>();
+        masterSlider.onValueChanged.AddListener(AudioManager.instance.SetMasterVol);
     }
 
     public void BackToMenu()

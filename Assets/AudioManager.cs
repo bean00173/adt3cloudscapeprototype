@@ -92,6 +92,11 @@ public class AudioManager : MonoBehaviour
 
             }
         }
+
+        if(GameManager.instance.currentScene.name == "TowerTest" || GameManager.instance.currentScene.name == "LevelTest")
+        {
+
+        }
     }
 
     public void PlayerDead()

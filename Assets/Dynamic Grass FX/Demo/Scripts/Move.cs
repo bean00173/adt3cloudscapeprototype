@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Move : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Move : MonoBehaviour {
 	private int count;
 
 	public GameObject explodePs;
+	public UnityEvent onExplode = new UnityEvent();
 
 	void Update ()
 	{
@@ -35,6 +37,7 @@ public class Move : MonoBehaviour {
 
 				this.GetComponent<AudioSource>().Play();
 				explodePs.SetActive(true);
+				onExplode?.Invoke();
 				sheep = false;
 				Invoke(nameof(DisableSheep), 2f);
 			}

@@ -6,6 +6,7 @@ using TMPro;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
+[RequireComponent(typeof(AudioSource))]
 public class AirshipDoor : MonoBehaviour
 {
     private GameObject prompt;
@@ -13,15 +14,18 @@ public class AirshipDoor : MonoBehaviour
     
     public UnityEvent leaveIsland;
     
+    
 
     bool active;
     bool canInteract = false;
+    AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         prompt = TowerManager.instance.shipPrompt;
         promptMsg = TowerManager.instance.shipPromptText;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +59,9 @@ public class AirshipDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && canInteract)
             {
+                source.clip = AudioManager.instance.GetClip(AudioType.effects, "Airship_Bell");
+                source.Play();
+
                 this.enabled = false;
                 leaveIsland.Invoke();
 
