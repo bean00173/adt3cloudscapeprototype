@@ -11629,11 +11629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.010570935
+      value: -0.010570859
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0061761276
+      value: -0.00617608
       objectReference: {fileID: 0}
     - target: {fileID: 3834331491523517932, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: dockPrompt
@@ -11696,6 +11696,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
+--- !u!136 &2095981772 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3944117240041441366, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
+  m_PrefabInstance: {fileID: 2095981771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112878177
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,7 +12377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069738686680544260, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
       propertyPath: m_Name
-      value: Tower
+      value: Tower(OLD)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069738686680544260, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2592321816527683934, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
       propertyPath: prompt
@@ -12418,6 +12427,10 @@ PrefabInstance:
       propertyPath: tower.type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6902447585164106755, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
+      propertyPath: navPointContainer
+      value: 
+      objectReference: {fileID: 8212993067001007981}
     - target: {fileID: 6902447585164106755, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
       propertyPath: tower.floors.Array.size
       value: 1
@@ -12571,6 +12584,128 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c01f9e5a0ec0574baaefcbf0e05deb8, type: 3}
+--- !u!1001 &8212993067001007980
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -215.80132
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.7937241
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9725667
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23262426
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -26.903
+      objectReference: {fileID: 0}
+    - target: {fileID: 42333274975243278, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254223790798482992, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_Name
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: AirshipHitbox
+      value: 
+      objectReference: {fileID: 2095981772}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: navPointContainer
+      value: 
+      objectReference: {fileID: 8212993067001007981}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[0].waveEnemyCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].maxCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572298802531857598, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 489812945}
+    - target: {fileID: 2572298802531857598, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: promptMsg
+      value: 
+      objectReference: {fileID: 855396930}
+    - target: {fileID: 5075536008917179832, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0176
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075536008917179832, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0858
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284336944210729520, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.049
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284336944210729520, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284336944210729520, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.022
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+--- !u!4 &8212993067001007981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3508402336115413578, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+  m_PrefabInstance: {fileID: 8212993067001007980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12589,3 +12724,4 @@ SceneRoots:
   - {fileID: 845334421}
   - {fileID: 535395380}
   - {fileID: 1609892184}
+  - {fileID: 8212993067001007980}
