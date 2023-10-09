@@ -96,4 +96,23 @@ public class CharacterManager : MonoBehaviour
 
         return false;
     }
+
+    public bool AnyCharAlive()
+    {
+        if (sebAlive || abiAlive || ravAlive)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ResetCharStatus()
+    {
+        sebAlive = true;
+        abiAlive = true;
+        ravAlive = true;
+    }
 }

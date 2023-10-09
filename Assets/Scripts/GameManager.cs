@@ -428,15 +428,25 @@ public class GameManager : MonoBehaviour
         floorIndex = 0;
         towerData = null;
         score = 0;
+        totalScore = 0;
         deathListener = false;
         scaleIndex = 1;
     }
 
     private void DiedInGame()
     {
+
+        if(!CharacterManager.instance.AnyCharAlive())
+        {
+            SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
+            ResetGame();
+        }
+
         SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
         score = 0;
         deathListener = false;
+
+        
     }
 
     public void ExitApplication()

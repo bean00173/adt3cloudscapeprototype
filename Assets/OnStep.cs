@@ -21,9 +21,9 @@ public class OnStep : MonoBehaviour
         
     }
 
-    public void StepShake()
+    public void StepSound()
     {
-        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(stepShakeForce);
+        //this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(stepShakeForce);
         string clip = "";
         switch (eb.enemy.enemyType)
         {

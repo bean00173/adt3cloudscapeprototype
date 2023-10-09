@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class EnemyMelee : EnemyBehaviour
 {
     public Transform hitCenter;
+    public float shakeAmount = .5f;
 
     public void dohit()
     {
@@ -22,6 +24,8 @@ public class EnemyMelee : EnemyBehaviour
         if (atkReady)
         {
             atkReady = false;
+
+            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(shakeAmount);
 
             Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
             foreach (Collider col in colliders)
