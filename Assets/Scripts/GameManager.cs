@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
     public Transform fadeImg;
 
     public List<GameObject> towerPrefabs;
-    public GameObject bossTower;
-    public bool bossUI;
 
     private bool levelListenerAdded, towerListenerAdded;
 
@@ -472,15 +470,7 @@ public class GameManager : MonoBehaviour
     public GameObject NextTower()
     {
         towerFinished = true;
-        if(towerPrefabs.Count == 0)
-        {
-            bossUI = true;
-            return bossTower;
-        }
-
-        GameObject tower = towerPrefabs[Random.Range(0, towerPrefabs.Count - 1)];
-        towerPrefabs.Remove(tower);
-
+        GameObject tower = TowerManager.instance.GetNextTower(towerPrefabs[TowerManager.instance.towerIndex]);
         return tower;
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 42333274975243278}
   - component: {fileID: 1921296485603830288}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: Tower 1
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,8 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower:
     type: 0
-    bgIslandCount: 0
-    floors: []
+    bgIslandCount: 5
+    floors:
+    - waves:
+      - enemies:
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 5
+        waveEnemyCount: 25
   towerBeaten: 0
   navPointContainer: {fileID: 3508402336115413578}
   AirshipHitbox: {fileID: 0}

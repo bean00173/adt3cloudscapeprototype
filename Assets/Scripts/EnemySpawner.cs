@@ -37,10 +37,10 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
-        if (GameManager.instance.bossUI)
-        {
-            bossUI.SetActive(true);
-        }
+        //if (GameManager.instance.bossUI)
+        //{
+        //    bossUI.SetActive(true);
+        //}
 
         if (enemiesLeft == 0 && aliveEnemies == 0) // if there are no more enemies to spawn, and no more enemies alive...
         {

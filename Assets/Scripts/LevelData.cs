@@ -23,6 +23,7 @@ public class Floor
 public class Tower
 {
     public towerType type;
+    public int bgIslandCount;
     public List<Floor> floors = new List<Floor>();
 }
 [System.Serializable]
