@@ -15,6 +15,7 @@ public class AirshipInteraction : MonoBehaviour
 
     public Transform airshipObject;
     public GameObject dockPrompt;
+    public float dockingDistance = 200f;
     AirshipMovement am;
     Rigidbody rb;
     bool promptReady;
@@ -57,7 +58,7 @@ public class AirshipInteraction : MonoBehaviour
         Debug.DrawLine(this.transform.position, currentTower.position, Color.yellow);
         //Debug.Log(Vector3.Distance(this.transform.position, currentTower.position));
 
-        if (Vector3.Distance(this.transform.position, currentTower.position) < 200.0f && !(docking || docked))
+        if (Vector3.Distance(this.transform.position, currentTower.position) < dockingDistance && !(docking || docked))
         {
             promptReady = true;
         }

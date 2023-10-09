@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab40fa445ff22fc479be407303fecb08, type: 3}
+  m_Name: PropBrush
+  m_EditorClassIdentifier: 
+  Notes: "This script needs Random Prefab Placer Asset to work \n https://assetstore.unity.com/packages/tools/terrain/random-prefab-placer-104765 "
+  prefabs:
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 1336519320203060, guid: 3dce43d547fac4d45bf0cd0c748771ba, type: 3}
+    possibility: 0.3
+    scaleMin: 2.0876791
+    scaleMax: 4.0387473
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 1794032722584632, guid: aef3f69a3b04f46468909623c91f0e90, type: 3}
+    possibility: 0.3
+    scaleMin: 2.0876791
+    scaleMax: 3.8631546
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 1702424250732460, guid: 6a5e09f63934e254eafe5f4c66539903, type: 3}
+    possibility: 0.1
+    scaleMin: 2.0291483
+    scaleMax: 4.126544
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  objectsToPlace: 10

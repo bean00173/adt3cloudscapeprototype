@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab40fa445ff22fc479be407303fecb08, type: 3}
+  m_Name: MyRocks
+  m_EditorClassIdentifier: 
+  Notes: "This script needs Random Prefab Placer Asset to work \n https://assetstore.unity.com/packages/tools/terrain/random-prefab-placer-104765 "
+  prefabs:
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 6869816780795841610, guid: a7a406bc4ee3a42439bddab36677ac2f, type: 3}
+    possibility: 0.8
+    scaleMin: 1.9706175
+    scaleMax: 6.028797
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 2401640409860188753, guid: 59d598514bc57c14d85f887024e5340b, type: 3}
+    possibility: 0.8
+    scaleMin: 2.0876791
+    scaleMax: 5.8532047
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 8970391943243067747, guid: e06a4fdbf478fc247ab23105f6d929c2, type: 3}
+    possibility: 0.8
+    scaleMin: 2.0876791
+    scaleMax: 6.087328
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 5203010626686091450, guid: 28228f8fb4fc1cc4dbd4ed81cf27e7d3, type: 3}
+    possibility: 0.8
+    scaleMin: 2.0584137
+    scaleMax: 6.0580626
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  - allowedLayers:
+      serializedVersion: 2
+      m_Bits: 64
+    prefab: {fileID: 7036919300537374343, guid: 0d9fda81ce254f54db2cd8275ef8b0f5, type: 3}
+    possibility: 0.8
+    scaleMin: 1.9998829
+    scaleMax: 6.0580626
+    placementOffset: {x: 0, y: 0, z: 0}
+    lockedRotations: {x: 1, y: 0, z: 1}
+    useNormalsForRotation: 0
+    maxSlopeAngle: 45
+  objectsToPlace: 10
