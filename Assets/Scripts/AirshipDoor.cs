@@ -51,7 +51,7 @@ public class AirshipDoor : MonoBehaviour
 
         if (GameManager.instance.currentScene.name == "TowerTest" && promptMsg != null)
         {
-            promptMsg.text = GameManager.instance.towerFinished ? "Leave ?" : "You cannot leave a tower unexplored!";
+            promptMsg.text = GameManager.instance.towerFinished ? "Leave ?" : "You cannot leave an island unexplored!";
         }
 
 

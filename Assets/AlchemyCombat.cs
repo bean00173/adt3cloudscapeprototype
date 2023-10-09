@@ -46,7 +46,7 @@ public class AlchemyCombat : Combat
     // Update is called once per frame
     public override void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             CastArc();
         }
@@ -56,9 +56,47 @@ public class AlchemyCombat : Combat
             pointer.SetActive(false);
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.X) && abilityReady) // universal
+        {
+            StartCoroutine(Ability(abilityMethod));
+        }
 
-        base.Update();
+        if (Input.GetKeyUp(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
+        {
+
+            lastPressedTime = Time.time; // set recent click time 
+            if (firstAtk) // if one attack already done
+            {
+                secondAtk = Time.time - lastPressedTime <= comboTime; // check time between now and last pressed, true if less than combo timer
+                if (secondAtk)
+                {
+                    bool thirdAtk = Time.time - lastPressedTime <= comboTime; // same as before but for third attack
+                    if (comboIndex == 2 && thirdAtk) // if combo ready for last hit 
+                    {
+                        ac.SetTrigger("atkEnd");
+                        firstAtk = false; // reset bools
+                        secondAtk = false;
+
+                    }
+                }
+
+            }
+            else
+            {
+                firstAtk = true; // first attack
+            }
+            pm.MoveInterrupt(false); // halts movement for attack
+            Attack(); // call attack
+            readyToAtk = false; // disable interrupting attacks
+        }
+        if ((firstAtk || secondAtk) && Time.time - lastPressedTime > comboTime) // regardless of mouse click, if first or second click achieved + time has expired, fail combo, reset combo progress
+        {
+            Debug.Log("Combo Failed");
+            ac.SetTrigger("atkEnd");
+            secondAtk = false;
+            firstAtk = false;
+            comboIndex = 0;
+        }
     }
 
     private void CastArc()

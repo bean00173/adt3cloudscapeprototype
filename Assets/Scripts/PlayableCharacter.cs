@@ -206,32 +206,38 @@ public class PlayableCharacter : MonoBehaviour
 
     public void DoRaycast()
     {
-        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f))
+        LayerMask mask = LayerMask.GetMask("Door");
+        Collider[] col = Physics.OverlapSphere(this.transform.position, 1f, mask);
+        //Physics.Raycast(transform.position + Vector3.up * 0.1f, this.GetComponent<PlayerMovement>().orientation.forward, out hit, 1f)
+        if (col.Length >= 1)
         {
-            if(hit.transform.tag == "Door" || hit.transform.tag == "AirshipDoor")
+            foreach(Collider collider in col)
             {
-                GameObject go = hit.transform.gameObject;
+                if (collider.transform.CompareTag("Door") || collider.transform.CompareTag("AirshipDoor"))
+                {
+                    GameObject go = collider.transform.gameObject;
 
-                // If no registred hitobject => Entering
-                if (hitObject == null)
-                {
-                    go.SendMessage("PlayerAtDoor");
-                }
-                // If hit object is the same as the registered one => Stay
-                else if (hitObject.GetInstanceID() == go.GetInstanceID())
-                {
-                    //hitObject.SendMessage("OnHitStay");
-                    Debug.Log("Still At Door");
-                }
-                // If new object hit => Exit last + Enter new
-                else
-                {
-                    hitObject.SendMessage("OnHitExit");
-                    go.SendMessage("OnHitEnter");
-                }
+                    // If no registred hitobject => Entering
+                    if (hitObject == null)
+                    {
+                        go.SendMessage("PlayerAtDoor");
+                    }
+                    // If hit object is the same as the registered one => Stay
+                    else if (hitObject.GetInstanceID() == go.GetInstanceID())
+                    {
+                        //hitObject.SendMessage("OnHitStay");
+                        Debug.Log("Still At Door");
+                    }
+                    // If new object hit => Exit last + Enter new
+                    else
+                    {
+                        hitObject.SendMessage("OnHitExit");
+                        go.SendMessage("OnHitEnter");
+                    }
 
-                hitting = true;
-                hitObject = go;
+                    hitting = true;
+                    hitObject = go;
+                }
             }
         }
         else if (hitting)

@@ -117,7 +117,7 @@ public class Combat : MonoBehaviour
             comboIndex = 0;
         }
     }
-    void Attack()
+    protected void Attack()
     {
 
         /*ac.Play("Attack", -1, 0f);*/ // if attack called, begin animations, set state of combo blend tree
@@ -129,7 +129,7 @@ public class Combat : MonoBehaviour
     }
 
 
-    IEnumerator Ability(TestDelegate method) // universal
+    protected IEnumerator Ability(TestDelegate method) // universal
     {
         ac.Play("Ability", -1, 0f);
         method();
@@ -145,7 +145,7 @@ public class Combat : MonoBehaviour
 
 
 
-    IEnumerator Timer(float time) // universal
+    protected IEnumerator Timer(float time) // universal
     {
         float currentTime = 0;
         abilityText.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(time - currentTime) + "s";
