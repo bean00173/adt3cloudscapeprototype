@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEditor.PackageManager;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour

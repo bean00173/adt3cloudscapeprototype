@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class AirshipMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    public float boostSpeed;
+    public float defaultSpeed;
+    private float moveSpeed;
     public float rotSpeed;
 
     bool moving, ascending, descending, turnLeft, turnRight;
@@ -34,7 +36,9 @@ public class AirshipMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? boostSpeed : defaultSpeed;
+
         if (canMove)
         {
             hor = Input.GetAxisRaw("Horizontal");

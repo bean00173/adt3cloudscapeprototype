@@ -122,7 +122,7 @@ public class TowerManager : MonoBehaviour
 
     private void SpawnTowers()
     {
-        for(int i = 0; i < GameManager.instance.towerPrefabs.Count - 1; i++)
+        for(int i = 0; i < GameManager.instance.towerPrefabs.Count; i++)
         {
             Quaternion rotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
             bool newPos = false;
@@ -130,7 +130,7 @@ public class TowerManager : MonoBehaviour
 
             while (!newPos)
             {
-                newPosition = GameManager.instance.SpawnPosition(Random.Range(0, 24), 24, this.transform.position, currentTower.GetComponent<TowerData>().newIslandMaxRadius * 2);
+                newPosition = GameManager.instance.SpawnPosition(Random.Range(6, 18), 24, this.transform.position, currentTower.GetComponent<TowerData>().newIslandMaxRadius * 2);
                 if (!TowerManager.instance.IsIslandConflicting(newPosition))
                 {
                     newPos = true;
