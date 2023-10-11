@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class Door : MonoBehaviour
 {
     public GameObject prompt;
-    public TextMeshProUGUI promptMsg;
+
     bool active;
     bool canInteract = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(GameManager.instance.currentScene.name == "TowerTest")
-        {
-            prompt = TowerManager.instance.doorPrompt;
-            promptMsg = TowerManager.instance.doorPromptText;
+        //if(GameManager.instance.currentScene.name == "TowerTest")
+        //{
+        //    prompt = TowerManager.instance.doorPrompt;
+        //    promptMsg = TowerManager.instance.doorPromptText;
 
-        }
+        //}
     }
 
     // Update is called once per frame
@@ -83,15 +84,20 @@ public class Door : MonoBehaviour
 
         if (GameManager.instance.currentScene.name == "LevelTest")
         {
+            active = true;
+
+            prompt.SetActive(true);
+
+            TextMeshProUGUI text = prompt.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+            
             if(GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0)
             {
-                TowerManager.instance.PlayerAtDoor(this.gameObject);
-                active = true;
+                text.text = GameManager.instance.towerFinished == true ? "Leave Tower ?" : "Next Floor ?";
+                GameManager.instance.readyToLoad = true;
             }
             else
             {
-                TowerManager.instance.PlayerNotAtDoor();
-                active = false;
+                text.text = "You Cannot Leave Until All Enemies Are Defeated!";
             }
         }
         else
@@ -103,8 +109,12 @@ public class Door : MonoBehaviour
 
     private void PlayerNotAtDoor()
     {
+        if(GameManager.instance.currentScene.name == "LevelTest")
+        {
+            prompt.SetActive(false);
+        }
         Debug.LogWarning("LEFT DOOR");
         active = false;
-        TowerManager.instance.PlayerNotAtDoor();
+        TowerManager.instance.PlayerNotAtDoor(this.gameObject);
     }
 }

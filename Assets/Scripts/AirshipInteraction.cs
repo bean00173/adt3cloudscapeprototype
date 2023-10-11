@@ -275,11 +275,13 @@ public class AirshipInteraction : MonoBehaviour
 
     private IEnumerator DoDockingProcedure(Transform container)
     {
+        this.GetComponent<Collider>().enabled = false;
+
         startTime = Time.time;
 
         docking = true;
 
-        float duration = 3.0f;
+        
         float time = 0;
 
         Transform child = NavToPoint(container);
@@ -288,14 +290,17 @@ public class AirshipInteraction : MonoBehaviour
 
         CurrentDockPos(child);
 
+        float duration = 3.0f + (3.0f * ( 1 - (1 / Mathf.Sqrt(Vector3.Distance(this.transform.position, endPos) / 100))));
+
         while (time < duration)
         {
+            
             this.transform.position = Vector3.Lerp(startPos, endPos, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
 
-        yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 2.0f);
+        yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 5.0f);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
