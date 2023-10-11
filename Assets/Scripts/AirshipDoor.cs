@@ -32,8 +32,6 @@ public class AirshipDoor : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(active);
-
         if (GameManager.instance.currentScene.name == "TowerTest")
         {
             if (this.GetComponentInParent<TowerData>().towerBeaten == true)
@@ -47,12 +45,12 @@ public class AirshipDoor : MonoBehaviour
         //}
 
 
-        prompt.SetActive(active);
+        //prompt.SetActive(active);
 
-        if (GameManager.instance.currentScene.name == "TowerTest" && promptMsg != null)
-        {
-            promptMsg.text = GameManager.instance.towerFinished ? "Leave ?" : "You cannot leave an island unexplored!";
-        }
+        //if (GameManager.instance.currentScene.name == "TowerTest" && promptMsg != null)
+        //{
+        //    promptMsg.text = GameManager.instance.towerFinished ? "Leave ?" : "You cannot leave an island unexplored!";
+        //}
 
 
         if (active)
@@ -72,13 +70,14 @@ public class AirshipDoor : MonoBehaviour
 
     private void PlayerAtDoor()
     {
-        Debug.Log("AT DOOR");
+        TowerManager.instance.PlayerAtDoor(this.gameObject, true);
         active = true;
     }
 
     private void PlayerNotAtDoor()
     {
-        Debug.Log("LEFT DOOR");
+        Debug.LogWarning("LEFT DOOR");
         active = false;
+        TowerManager.instance.PlayerNotAtDoor(this.gameObject, true);
     }
 }

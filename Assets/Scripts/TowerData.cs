@@ -18,16 +18,16 @@ public class TowerData : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.onLevelLoad.AddListener(sendTowerData);
         TowerManager.instance.AddIsland(this.gameObject);
 
-        SpawnMinorTowers();
+        //SpawnMinorTowers();
     }
 
     private void Update()
     {
         if(TowerManager.instance.currentTower == this.gameObject)
         {
+            GameManager.instance.onLevelLoad.AddListener(SendTowerData);
             active = true;
         }
 
@@ -55,7 +55,7 @@ public class TowerData : MonoBehaviour
         }
     }
 
-    private void sendTowerData()
+    private void SendTowerData()
     {
         GameManager.instance.StoreTowerData(tower);
     }

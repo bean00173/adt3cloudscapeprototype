@@ -39,7 +39,7 @@ public class TempExplosion : MonoBehaviour
 
             Collider[] colliders = GetComponentsInChildren<Collider>(true);
 
-            Debug.Log($"{name} {GetInstanceID()} has {colliders.Length} children colliders.");
+            //Debug.Log($"{name} {GetInstanceID()} has {colliders.Length} children colliders.");
 
             foreach (Collider hit in colliders)
             {
@@ -54,7 +54,7 @@ public class TempExplosion : MonoBehaviour
 
                     if (explode) rb.AddExplosionForce(explosionForce, explodePos.position, radius, upwardsForce);
 
-                    Debug.Log($"Added Explosion Force to {rb.name}.");
+                    //Debug.Log($"Added Explosion Force to {rb.name}.");
                 }
             }
 

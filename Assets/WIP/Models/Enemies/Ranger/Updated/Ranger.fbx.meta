@@ -16,7 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -82,7 +83,87 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Ranger(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 0.023856891, y: 14.131052, z: 0.050822735}
+      rotation: {x: 0.5, y: -0.49999997, z: -0.5, w: -0.5}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Hood(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -0, y: 12.315798, z: -0.30446228}
+      rotation: {x: 0.11846264, y: 7.1282214e-14, z: -1.09906455e-14, w: 0.99295855}
+      scale: {x: 3.457329, y: 2.9653494, z: 3.2543333}
+    - name: Mask(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -0, y: 14.370563, z: 1.6037327}
+      rotation: {x: -0.7071068, y: 0.0000000842937, z: 0.00000008429372, w: 0.7071067}
+      scale: {x: 112.07797, y: 89.76468, z: 73.12655}
+    - name: Hair(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 0.023856891, y: 14.131052, z: 0.050822735}
+      rotation: {x: 0.5, y: -0.49999997, z: -0.5, w: -0.5}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Torso(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -0.0007496923, y: 9.8876915, z: -0.41880077}
+      rotation: {x: 0.5, y: -0.49999997, z: -0.5, w: -0.5}
+      scale: {x: 116.91288, y: 55.797314, z: 100}
+    - name: Pants(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -0.0010415018, y: 2.587843, z: 1.5308638}
+      rotation: {x: -0.75815105, y: 1.1776352e-17, z: -1.1776351e-17, w: 0.6520789}
+      scale: {x: 39.13617, y: 35.94172, z: 34.63147}
+    - name: L_Shoe(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -0.3897066, y: 0, z: 0.3666678}
+      rotation: {x: 0.5, y: -0.49999997, z: -0.5, w: -0.5}
+      scale: {x: 74.54216, y: 92.7482, z: 100}
+    - name: L_Leg(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -1.5859392, y: 3.795927, z: -0.048767995}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 58.103977, y: 44.159008, z: 100}
+    - name: L_Arm(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: -4.097689, y: 11.1182785, z: 0.7401743}
+      rotation: {x: 0.5, y: -0.49999997, z: -0.5, w: -0.5}
+      scale: {x: 100, y: 67.80678, z: 100}
+    - name: Belt(Grunt).001
+      parentName: Ranger(Clone)
+      position: {x: -0.016440392, y: 7.582442, z: -0.41846934}
+      rotation: {x: -0.522222, y: 0.52222234, z: 0.47674298, w: 0.4767433}
+      scale: {x: 68.59479, y: 70.340385, z: 100}
+    - name: R_Arm(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 2.0754087, y: 11.33439, z: -0.4507173}
+      rotation: {x: -0.6645518, y: -0.24160105, z: 0.24160093, w: 0.6645516}
+      scale: {x: 169.95927, y: 169.95929, z: 169.95927}
+    - name: R_Leg(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 0.9710922, y: 0, z: -0.31845433}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 122.197495, y: 122.197495, z: 122.197495}
+    - name: Straps(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 0.015385072, y: 14.17294, z: -0.12954202}
+      rotation: {x: -0.50000006, y: 0.4999999, z: 0.5, w: 0.5}
+      scale: {x: 104.29993, y: 104.29993, z: 89.70506}
+    - name: Bag(Ranger)
+      parentName: Ranger(Clone)
+      position: {x: 0.14962116, y: 9.635812, z: -1.8506783}
+      rotation: {x: -0.32455984, y: 0.61133343, z: 0.28017431, w: 0.6651576}
+      scale: {x: 105.171165, y: 94.586044, z: 252.88611}
+    - name: Arrows
+      parentName: Ranger(Clone)
+      position: {x: 1.9611365, y: 11.350117, z: -2.3186429}
+      rotation: {x: -0.3140985, y: 0.6028724, z: 0.30007818, w: 0.6692086}
+      scale: {x: 4.7836504, y: 4.1657095, z: 98.50694}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -97,9 +178,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 0
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

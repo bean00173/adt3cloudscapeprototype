@@ -23,7 +23,11 @@ public class TowerManager : MonoBehaviour
     public int towerIndex { get; private set; }
     public float islandBoundaryRadius;
 
+    public bool atDoor;
+
     private List<GameObject> currentIslands = new List<GameObject>();
+
+    private GameObject lastDoor;
 
     private void Awake()
     {
@@ -143,4 +147,55 @@ public class TowerManager : MonoBehaviour
             TowerManager.instance.AddIsland(newIsland);
         }
     }
+
+    public void PlayerAtDoor(GameObject door, bool airship = false)
+    {
+        lastDoor = door;
+
+        if (airship)
+        {
+            shipPrompt.SetActive(true);
+
+            if (GameManager.instance.currentScene.name == "TowerTest" && doorPromptText != null)
+            {
+                shipPromptText.text = GameManager.instance.towerFinished ? "Leave?" : "You cannot leave an island unexplored!";
+            }
+        }
+        else
+        {
+            doorPrompt.SetActive(true);
+
+            GameManager.instance.readyToLoad = true;
+
+            if (GameManager.instance.currentScene.name == "LevelTest" && doorPromptText != null)
+            {
+                doorPromptText.text = GameManager.instance.towerFinished ? "Leave Tower ?" : "Next Floor ?";
+            }
+
+            if (GameManager.instance.currentScene.name == "TowerTest" && doorPromptText != null)
+            {
+                doorPromptText.text = GameManager.instance.towerFinished ? "Dungeon Finished." : "Enter Tower ?";
+            }
+        }
+        
+    }
+
+    public void PlayerNotAtDoor(GameObject door = null, bool airship = false)
+    {
+        if(door == lastDoor)
+        {
+            if (airship)
+            {
+                shipPrompt.SetActive(false);
+            }
+            else
+            {
+                doorPrompt.SetActive(false);
+                GameManager.instance.readyToLoad = false;
+            }
+
+            lastDoor = null;
+        }
+    }
+
 }

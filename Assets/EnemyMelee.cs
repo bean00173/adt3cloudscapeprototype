@@ -8,6 +8,8 @@ public class EnemyMelee : EnemyBehaviour
     public Transform hitCenter;
     public float shakeAmount = .5f;
 
+    int hits;
+
     public void dohit()
     {
         //if (atkReady)
@@ -21,19 +23,32 @@ public class EnemyMelee : EnemyBehaviour
         //    hit.enabled = false;
         //}
 
-        if (atkReady)
+        //if (atkReady)
+        //{
+        //    atkReady = false;
+
+        //    this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(shakeAmount);
+
+        //    Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
+        //    foreach (Collider col in colliders)
+        //    {
+        //        if (col.transform.GetComponent<PlayerHealth>() != null)
+        //        {
+        //            col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage);
+        //        }
+        //    }
+        //}
+
+        atkReady = false;
+
+        this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(shakeAmount);
+
+        Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
+        foreach (Collider col in colliders)
         {
-            atkReady = false;
-
-            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(shakeAmount);
-
-            Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
-            foreach (Collider col in colliders)
+            if (col.transform.GetComponent<PlayerHealth>() != null)
             {
-                if (col.transform.GetComponent<PlayerHealth>() != null)
-                {
-                    col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage);
-                }
+                col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage);
             }
         }
 
@@ -53,20 +68,33 @@ public class EnemyMelee : EnemyBehaviour
         //    hit.enabled = false;
         //}
 
-        if (atkReady)
-        {
-            atkReady = false;
+        //if (atkReady)
+        //{
+        //    atkReady = false;
 
-            Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
-            foreach (Collider col in colliders)
+        //    Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
+        //    foreach (Collider col in colliders)
+        //    {
+        //        if (col.transform.GetComponent<PlayerHealth>() != null)
+        //        {
+        //            col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage / 4);
+        //        }
+        //    }
+        //}
+
+        atkReady = false;
+
+
+
+        Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
+        foreach (Collider col in colliders)
+        {
+            if (col.transform.GetComponent<PlayerHealth>() != null)
             {
-                if (col.transform.GetComponent<PlayerHealth>() != null)
-                {
-                    col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage / 4);
-                }
+                col.transform.GetComponent<PlayerHealth>().TakeDamage(enemy.damage / 4);
             }
         }
 
-        StartCoroutine(AtkCD());
     }
+
 }

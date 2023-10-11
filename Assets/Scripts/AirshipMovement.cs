@@ -36,8 +36,9 @@ public class AirshipMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? boostSpeed : defaultSpeed;
+    {
+        //moveSpeed = Input.GetKey(KeyCode.LeftShift) ? boostSpeed : defaultSpeed;
+        moveSpeed = defaultSpeed;
 
         if (canMove)
         {

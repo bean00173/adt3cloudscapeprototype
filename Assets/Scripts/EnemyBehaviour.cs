@@ -54,8 +54,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected bool atkReady;
 
-    protected Transform projectileSpawn;
-
     protected int hitIndex;
 
     // Start is called before the first frame update
@@ -98,9 +96,9 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (InRange(enemy.attackRadius) && !goal.GetComponent<PlayerHealth>().dead && atkReady)
         {
-            agent.speed = 0;
+            atkReady = false;
 
-            //Debug.LogError($"IN RANGE !! : {InRange()}");
+            agent.speed = 0;
 
             ac.SetTrigger("atkReady");
 
