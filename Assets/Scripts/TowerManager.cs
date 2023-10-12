@@ -82,6 +82,7 @@ public class TowerManager : MonoBehaviour
         GameManager.instance.towerLeft = true;
 
         airship.GetComponent<AirshipMovement>().enabled = true;
+        airship.GetComponent<Collider>().enabled = true;
         airship.GetComponent<AirshipInteraction>().ResetDockStatus();
 
         Destroy(airship.GetComponent<AirshipInteraction>().character);
@@ -163,17 +164,11 @@ public class TowerManager : MonoBehaviour
         }
         else
         {
-            doorPrompt.SetActive(true);
-
             GameManager.instance.readyToLoad = true;
-
-            if (GameManager.instance.currentScene.name == "LevelTest" && doorPromptText != null)
-            {
-                doorPromptText.text = GameManager.instance.towerFinished ? "Leave Tower ?" : "Next Floor ?";
-            }
 
             if (GameManager.instance.currentScene.name == "TowerTest" && doorPromptText != null)
             {
+                doorPrompt.SetActive(true);
                 doorPromptText.text = GameManager.instance.towerFinished ? "Dungeon Finished." : "Enter Tower ?";
             }
         }
