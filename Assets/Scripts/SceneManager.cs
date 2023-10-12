@@ -26,7 +26,11 @@ public class SceneManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            //Destroy(this.gameObject);
         }
         else
         {

@@ -40,7 +40,11 @@ public class CharacterManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            //Destroy(this.gameObject);
         }
         else
         {
@@ -62,6 +66,11 @@ public class CharacterManager : MonoBehaviour
         if(!sebAlive && !abiAlive && !ravAlive)
         {
             Debug.Log("GAME OVER BIG TIME");
+        }
+
+        if(GameManager.instance.currentScene.name == "MainMenu")
+        {
+            Destroy(this.gameObject);
         }
     }
 

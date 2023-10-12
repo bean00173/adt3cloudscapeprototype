@@ -110,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
         // Checking if the player is grounded
 
         grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, whatIsGround);
-        this.GetComponent<PlayableCharacter>().ac.SetBool("grounded", grounded);
 
         Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down, Color.red, 0.2f);
 
@@ -157,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         // Check if conditions for Jump Met
         if (Input.GetKey(KeyCode.Space) && grounded && jumpReady)
         {
+            this.GetComponent<PlayableCharacter>().ac.SetTrigger("Jump");
             jumpReady = false;
             Jump();
 

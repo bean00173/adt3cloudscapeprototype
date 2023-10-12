@@ -69,7 +69,10 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            //Destroy(this.gameObject);
         }
         else
         {
@@ -438,11 +441,12 @@ public class GameManager : MonoBehaviour
             SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
             ResetGame();
         }
-
-        SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
-        score = 0;
-        deathListener = false;
-
+        else
+        {
+            SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
+            score = 0;
+            deathListener = false;
+        }
         
     }
 
