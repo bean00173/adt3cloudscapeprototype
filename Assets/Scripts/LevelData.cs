@@ -23,6 +23,7 @@ public class Floor
 public class Tower
 {
     public towerType type;
+    [Range(1, 5)] public int difficulty;
     public int bgIslandCount;
     public List<Floor> floors = new List<Floor>();
 }
