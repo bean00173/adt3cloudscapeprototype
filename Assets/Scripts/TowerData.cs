@@ -37,8 +37,8 @@ public class TowerData : MonoBehaviour
 
             //Quaternion rotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
 
-            TowerManager.instance.NextTower();
-            TowerManager.instance.NewCurrentTower(GameManager.instance.NextTower());
+            //TowerManager.instance.NextTower();
+            //TowerManager.instance.NewCurrentTower(TowerManager.instance.GetNextTower());
 
             //GameObject newTower = Instantiate(GameManager.instance.NextTower(), GameManager.instance.SpawnPosition(Random.Range(0, 24), 24, this.transform.position, 2 * newIslandMaxRadius), rotation);
 

@@ -197,6 +197,7 @@ public class GameManager : MonoBehaviour
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
         {
             floorBeaten = false;
+            readyToLoad = false;
 
             if (towerFinished)
             {
@@ -470,12 +471,12 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public GameObject NextTower()
-    {
-        towerFinished = true;
-        GameObject tower = TowerManager.instance.GetNextTower(towerPrefabs[TowerManager.instance.towerIndex]);
-        return tower;
-    }
+    //public GameObject NextTower()
+    //{
+    //    towerFinished = true;
+    //    GameObject tower = TowerManager.instance.GetNextTower(towerPrefabs[TowerManager.instance.towerIndex]);
+    //    return tower;
+    //}
 
     public float ReturnCharacterHealth()
     {

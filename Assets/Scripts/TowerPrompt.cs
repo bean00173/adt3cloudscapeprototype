@@ -21,10 +21,15 @@ public class TowerPrompt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        TowerBeaten(TowerManager.instance.currentTower.GetComponent<TowerData>().towerBeaten);
     }
 
-    public void SetPromptValues(int difficulty, List<enemyType> types, int number, bool beaten)
+    public void TowerBeaten(bool beaten)
+    {
+        beatenImage.SetActive(beaten);
+    }
+
+    public void SetPromptValues(int difficulty, List<enemyType> types, int number)
     {
         difficultyImage.fillAmount = .2f * difficulty;
         titleText.text = number.ToString();
@@ -32,11 +37,6 @@ public class TowerPrompt : MonoBehaviour
         {
             if (img.transform.GetComponent<EnemyIdentity>()) img.gameObject.SetActive(types.Contains(img.GetComponent<EnemyIdentity>().type));
             else img.gameObject.SetActive(false);
-        }
-
-        if (beaten)
-        {
-            beatenImage.SetActive(true);
         }
 
     }
