@@ -52,7 +52,7 @@ public class LoadingBehaviour : MonoBehaviour
             //{
             //    yield return new WaitForSeconds(1f);
 
-                
+
             //}
 
             progressBar.transform.localScale = new Vector3(1, 1, 1);

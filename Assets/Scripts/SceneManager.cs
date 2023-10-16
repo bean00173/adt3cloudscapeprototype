@@ -60,16 +60,17 @@ public class SceneManager : MonoBehaviour
         {
             GatherObjects();
             ToggleObjects(false);
+
+            //DoLoad(sceneName, mode);
         }
-        else if(sceneName == "TowerTest")
-        {
-            ToggleObjects(true);
-        }
+        //else if(sceneName == "TowerTest")
+        //{
+        //    DoLoad(sceneName, mode);
+        //}
 
         LoadingData.sceneToLoad = sceneName;
         LoadingData.mode = mode;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-
     }
 
     public void ToggleObjects(bool toggle) 
