@@ -197,6 +197,7 @@ public class GameManager : MonoBehaviour
         if (readyToLoad && Input.GetKeyDown(KeyCode.E))
         {
             floorBeaten = false;
+            readyToLoad = false;
 
             if (towerFinished)
             {

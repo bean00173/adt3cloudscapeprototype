@@ -55,10 +55,9 @@ public class AudioManager : MonoBehaviour
         else
         {
             instance = this;
+            DoLoad();
             DontDestroyOnLoad(this.gameObject);
         }
-
-        DoLoad();
 
     }
 

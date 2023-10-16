@@ -20,21 +20,28 @@ public class Door : MonoBehaviour
         //    promptMsg = TowerManager.instance.doorPromptText;
 
         //}
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (prompt == null && (this.transform.root.gameObject == TowerManager.instance.currentTower))
+        {
+            prompt = TowerManager.instance.previousTower.GetComponentInChildren<Door>().prompt;
+        }
+
         //Debug.LogWarning("Door prompt active : " + active + ", Current Scene is : " + GameManager.instance.currentScene.name);
 
-        if(GameManager.instance.currentScene.name == "TowerTest" && this.GetComponentInParent<TowerData>() != null)
-        {
-            if (this.GetComponentInParent<TowerData>().towerBeaten == true)
-            {
-                canInteract = false;
-            }
-        }
+        //if(GameManager.instance.currentScene.name == "TowerTest" && this.GetComponentInParent<TowerData>() != null)
+        //{
+        //    if (this.GetComponentInParent<TowerData>().towerBeaten == true)
+        //    {
+        //        canInteract = false;
+        //    }
+        //}
         //else if (GameManager.instance.currentScene.name == "LevelTest")
         //{
         //    canInteract = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0 ? true : false;
@@ -97,13 +104,14 @@ public class Door : MonoBehaviour
             }
             else
             {
+                GameManager.instance.readyToLoad = false;
                 text.text = "You Cannot Leave Until All Enemies Are Defeated!";
             }
         }
         else
         {
             TowerManager.instance.PlayerAtDoor(this.gameObject);
-            prompt.GetComponent<TowerPrompt>().SetPromptValues(this.transform.root.GetComponent<TowerData>().tower.difficulty, ReturnEnemyTypes(this.transform.root.GetComponent<TowerData>().tower), GameManager.towersBeaten + 1, this.transform.root.GetComponent<TowerData>().towerBeaten);
+            prompt.GetComponent<TowerPrompt>().SetPromptValues(this.transform.root.GetComponent<TowerData>().tower.difficulty, ReturnEnemyTypes(this.transform.root.GetComponent<TowerData>().tower), GameManager.towersBeaten + 1);
             active = true;
         }
     }

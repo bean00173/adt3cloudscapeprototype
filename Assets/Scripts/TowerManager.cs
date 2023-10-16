@@ -63,6 +63,8 @@ public class TowerManager : MonoBehaviour
 
             listenersAdded = true;
         }
+
+        Debug.LogError($"Can Load? {GameManager.instance.readyToLoad}");
     }
 
     public void NewCurrentTower(GameObject tower)
@@ -79,6 +81,9 @@ public class TowerManager : MonoBehaviour
 
     public void LeaveTower()
     {
+        TowerManager.instance.NextTower();
+        TowerManager.instance.NewCurrentTower(TowerManager.instance.GetNextTower());
+
         GameManager.instance.towerLeft = true;
 
         airship.GetComponent<AirshipMovement>().enabled = true;
@@ -165,12 +170,12 @@ public class TowerManager : MonoBehaviour
         }
         else
         {
-            GameManager.instance.readyToLoad = true;
 
             if (GameManager.instance.currentScene.name == "TowerTest" && doorPromptText != null)
             {
                 doorPrompt.SetActive(true);
                 doorPrompt.GetComponent<TowerPrompt>().promptText.text = GameManager.instance.towerFinished ? "Beaten." : "Enter ?";
+                GameManager.instance.readyToLoad = GameManager.instance.towerFinished ? false : true;
             }
         }
         
