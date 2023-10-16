@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ab3baeb7149c3e546919547b5c389de5
+guid: b54080ad977596a42a78a083b058e6a5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,12 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Rock
-    second: {fileID: 2100000, guid: f490555f7afcabd45a8425d29c5f0911, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Terrain
+      name: defaultMat
     second: {fileID: 2100000, guid: 91a70829ef3883e4c8d6b35c72f80245, type: 2}
   materials:
     materialImportMode: 2
