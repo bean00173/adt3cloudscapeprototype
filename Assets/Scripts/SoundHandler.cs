@@ -53,6 +53,21 @@ public class SoundHandler : MonoBehaviour
         }
     }
 
+    public void PlaySoundRandomChance(string clip, int probability)
+    {
+        try
+        {
+            if (GameManager.instance.RandomChance(probability))
+            {
+                DoPlay(AudioManager.instance.GetClip(sourceType, clip));
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"{e.GetType()} : AudioClip with name => {clip} | Could Not Be Found. Try A Different Name?");
+        }
+    }
+
     private void DoPlay(AudioClip clip)
     {
         source.clip = clip;
