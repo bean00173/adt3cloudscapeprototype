@@ -87,24 +87,44 @@ public class Door : MonoBehaviour
             active = true;
 
             prompt.SetActive(true);
+            string text = "";
 
-            TextMeshProUGUI text = prompt.transform.Find("Text").GetComponent<TextMeshProUGUI>();
-            
-            if(GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0)
+            if (GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0)
             {
-                text.text = GameManager.instance.towerFinished == true ? "Leave Tower ?" : "Next Floor ?";
+                text = GameManager.instance.towerFinished == true ? "Leave Tower ?" : "Next Floor ?";
                 GameManager.instance.readyToLoad = true;
             }
             else
             {
-                text.text = "You Cannot Leave Until All Enemies Are Defeated!";
+                text = "You Cannot Leave Until All Enemies Are Defeated!";
             }
+            prompt.GetComponent<TowerPrompt>().SetPromptValues(this.transform.root.GetComponent<TowerData>().tower.difficulty, ReturnEnemyTypes(GameManager.towerData), GameManager.towersBeaten + 1, this.transform.root.GetComponent<TowerData>().towerBeaten);
         }
         else
         {
             TowerManager.instance.PlayerAtDoor(this.gameObject);
+            prompt.GetComponent<TowerPrompt>().SetPromptValues(this.transform.root.GetComponent<TowerData>().tower.difficulty, ReturnEnemyTypes(this.transform.root.GetComponent<TowerData>().tower), GameManager.towersBeaten + 1, this.transform.root.GetComponent<TowerData>().towerBeaten);
             active = true;
         }
+    }
+
+    private List<enemyType> ReturnEnemyTypes(Tower tower)
+    {
+        List<enemyType> types = new List<enemyType>();
+
+        for(int i = 0; i < tower.floors.Count; i++)
+        {
+            for(int j = 0; j < tower.floors[i].waves.Count; j++)
+            {
+                for(int k = 0; k < tower.floors[i].waves[j].enemies.Count; k++)
+                {
+                    if (!types.Contains(tower.floors[i].waves[j].enemies[k].enemy.GetComponent<EnemyBehaviour>().enemy.enemyType)) types.Add(tower.floors[i].waves[j].enemies[k].enemy.GetComponent<EnemyBehaviour>().enemy.enemyType);
+                }
+                
+            }
+        }
+
+        return types;
     }
 
     private void PlayerNotAtDoor()

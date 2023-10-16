@@ -169,7 +169,7 @@ public class TowerManager : MonoBehaviour
             if (GameManager.instance.currentScene.name == "TowerTest" && doorPromptText != null)
             {
                 doorPrompt.SetActive(true);
-                doorPromptText.text = GameManager.instance.towerFinished ? "Dungeon Finished." : "Enter Tower ?";
+                doorPrompt.GetComponent<TowerPrompt>().promptText.text = GameManager.instance.towerFinished ? "Beaten." : "Enter ?";
             }
         }
         
