@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
@@ -10,11 +11,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public Transform healthBar;
     [Tooltip("Insert the Width of the HealthBar Component Here")]
-    public float healthBarMax, healthBarMin;
     private float health;
     private float currentHealth;
 
     public Transform blood;
+    public Transform canvas;
 
     Animator ac;
 
@@ -49,11 +50,19 @@ public class PlayerHealth : MonoBehaviour
         //currentHealth = health;
 
         //ac = this.GetComponent<PlayableCharacter>().ac;
+
+        //if (GameManager.instance.currentScene.name == "LevelTest")
+        //{
+        //    Button dead = canvas.Find("YouDied").GetComponentInChildren<Button>();
+        //    dead.onClick.AddListener(GameManager.instance.DiedInGame);
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameManager.instance.dead = dead;
+
         if (ac != this.GetComponent<PlayableCharacter>().ac) ac = this.GetComponent<PlayableCharacter>().ac;
 
         if (!dead)
@@ -81,6 +90,18 @@ public class PlayerHealth : MonoBehaviour
             splatter.transform.localScale = Vector3.one * 5;
 
             GameManager.instance.ReturnUIComponent("YouDied").gameObject.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            string text = "";
+            switch (this.GetComponent<PlayableCharacter>().currentCharacter)
+            {
+                case Character.CharacterId.abi: text = "abigail"; break;
+                case Character.CharacterId.seb: text = "sebastian"; break;
+                case Character.CharacterId.rav: text = "ravi"; break;
+            }
+            canvas.Find("YouDied").GetChild(0).Find("CharacterName").GetComponent<TextMeshProUGUI>().text = text;
         }
     }
 

@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     GameObject pauseMenu;
 
+    public bool dead;
+
     // Make this a singleton.
     public void Awake()
     {
@@ -143,9 +145,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if ((currentScene.name == "TowerTest" || currentScene.name == "LevelTest") && !paused)
+        Debug.Log($"Dead ? {dead}");
+
+        if ((currentScene.name == "TowerTest" || (currentScene.name == "LevelTest" && !dead)) && !paused)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
@@ -170,7 +175,8 @@ public class GameManager : MonoBehaviour
                 youDied = ReturnUIComponent("YouDied").gameObject;
                 if (!deathListener)
                 {
-                    youDied.GetComponent<InvokeEvent>().playableEvent.AddListener(DiedInGame);
+                    Button dead = youDied.GetComponentInChildren<Button>();
+                    dead.onClick.AddListener(GameManager.instance.DiedInGame);
                     deathListener = true;
                 }
             }
@@ -250,6 +256,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
     }
+
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -436,7 +443,6 @@ public class GameManager : MonoBehaviour
 
     private void DiedInGame()
     {
-
         if(!CharacterManager.instance.AnyCharAlive())
         {
             SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
@@ -448,6 +454,11 @@ public class GameManager : MonoBehaviour
             score = 0;
             deathListener = false;
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        dead = false;
         
     }
 
