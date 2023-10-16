@@ -24,7 +24,7 @@ public class BowCombat : Combat
 
         base.Start();
 
-        abilityMethod = Dash;
+        //abilityMethod = Dash;
     }
 
     // Update is called once per frame

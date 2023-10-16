@@ -40,7 +40,7 @@ public class AlchemyCombat : Combat
 
         base.Start();
 
-        abilityMethod = AlchemyAbility;
+        //abilityMethod = AlchemyAbility;
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class AlchemyCombat : Combat
 
         if (Input.GetKeyDown(KeyCode.X) && abilityReady) // universal
         {
-            StartCoroutine(Ability(abilityMethod));
+            StartCoroutine(Ability(/*abilityMethod*/));
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
@@ -158,11 +158,16 @@ public class AlchemyCombat : Combat
         fieldHealthUi.SetActive(true);
         GameObject field = Instantiate(_forceField, this.transform.position, Quaternion.identity);
         field.GetComponent<ForceField>().healthImg = this.fieldHealthUi;
+        field.GetComponent<ForceField>().alchCombat = this;
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(field, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
 
         pm.MoveInterrupt(true);
         readyToAtk = true;
     }
 
+    public void Done()
+    {
+        abiDone = true;
+    }
 
 }

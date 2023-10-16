@@ -30,6 +30,8 @@ public class Combat : MonoBehaviour
 
     public GameObject abilityText,/* abilityIcon,*/ abilityProgress, abilityPS, shakeManager;
 
+    protected bool abiDone;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -77,7 +79,7 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X) && abilityReady) // universal
         {
-            StartCoroutine(Ability(abilityMethod));
+            StartCoroutine(Ability(/*abilityMethod*/));
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
@@ -129,13 +131,17 @@ public class Combat : MonoBehaviour
     }
 
 
-    protected IEnumerator Ability(TestDelegate method) // universal
+    protected IEnumerator Ability() // universal
     {
         ac.Play("Ability", -1, 0f);
-        method();
+        
 
         Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
 
+        if(pc.currentCharacter == Character.CharacterId.abi)
+        {
+            yield return new WaitUntil(() => abiDone);
+        }
         //Image image = abilityIcon.GetComponent<Image>();
         //image.color = new Color(image.color.r, image.color.g, image.color.b, .5f);
         abilityReady = false;
@@ -160,6 +166,8 @@ public class Combat : MonoBehaviour
         //image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
         abilityProgress.GetComponent<Image>().fillAmount = 0;
         abilityText.GetComponent<TextMeshProUGUI>().text = "";
+
+        abiDone = false;
 
     }
 

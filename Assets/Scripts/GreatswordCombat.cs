@@ -19,7 +19,7 @@ public class GreatswordCombat : Combat
     {
         base.Start();
 
-        abilityMethod = GreatSwordAbility; // gs
+        //abilityMethod = GreatSwordAbility; // gs
 
         foreach (Collider col in hitContainer.GetComponentsInChildren<Collider>()) // greatsword
         {
