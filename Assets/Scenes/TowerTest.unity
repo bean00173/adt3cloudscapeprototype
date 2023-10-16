@@ -8717,8 +8717,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107664750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.05840983, y: -0.7197824, z: 0.06101569, w: 0.6890419}
-  m_LocalPosition: {x: 1646.0122, y: 46.8494, z: -55.974884}
+  m_LocalRotation: {x: 0.05840982, y: -0.7197826, z: 0.061015707, w: 0.6890417}
+  m_LocalPosition: {x: 1646.0122, y: 46.8494, z: -55.97486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13948,7 +13948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7615937
+      value: 0.76159376
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.x
@@ -13956,15 +13956,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0006889448
+      value: 0.00068878394
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00035711555
+      value: 0.00035703444
       objectReference: {fileID: 0}
     - target: {fileID: 2548290673627471054, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.3594
+      value: 48.359425
       objectReference: {fileID: 0}
     - target: {fileID: 2548290673627471054, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13992,11 +13992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00066720136
+      value: 0.0006671498
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00039604903
+      value: 0.0003960189
       objectReference: {fileID: 0}
     - target: {fileID: 3834331491523517932, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: dockPrompt
@@ -14036,11 +14036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3938021706246151351, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0006784047
+      value: 0.00067825004
       objectReference: {fileID: 0}
     - target: {fileID: 3938021706246151351, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00037686346
+      value: 0.000376773
       objectReference: {fileID: 0}
     - target: {fileID: 5933393790184116915, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_PlayOnAwake
@@ -15041,7 +15041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].waveEnemyCount
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].enemy
@@ -15049,7 +15049,7 @@ PrefabInstance:
       objectReference: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].maxCount
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2572298802531857598, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: prompt

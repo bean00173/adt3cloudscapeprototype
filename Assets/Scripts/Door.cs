@@ -87,18 +87,18 @@ public class Door : MonoBehaviour
             active = true;
 
             prompt.SetActive(true);
-            string text = "";
+
+            TextMeshProUGUI text = prompt.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
             if (GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemiesLeft == 0)
             {
-                text = GameManager.instance.towerFinished == true ? "Leave Tower ?" : "Next Floor ?";
+                text.text = GameManager.instance.towerFinished == true ? "Leave Tower ?" : "Next Floor ?";
                 GameManager.instance.readyToLoad = true;
             }
             else
             {
-                text = "You Cannot Leave Until All Enemies Are Defeated!";
+                text.text = "You Cannot Leave Until All Enemies Are Defeated!";
             }
-            prompt.GetComponent<TowerPrompt>().SetPromptValues(this.transform.root.GetComponent<TowerData>().tower.difficulty, ReturnEnemyTypes(GameManager.towerData), GameManager.towersBeaten + 1, this.transform.root.GetComponent<TowerData>().towerBeaten);
         }
         else
         {
