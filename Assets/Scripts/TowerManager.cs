@@ -86,7 +86,7 @@ public class TowerManager : MonoBehaviour
         airship.GetComponent<AirshipInteraction>().ResetDockStatus();
 
         Destroy(airship.GetComponent<AirshipInteraction>().character);
-        Destroy(previousTower);
+        //Destroy(previousTower);
 
         airship.GetComponent<AirshipInteraction>().dockPrompt.transform.parent.gameObject.SetActive(true);
     }
@@ -120,9 +120,10 @@ public class TowerManager : MonoBehaviour
         return false;
     }
 
-    public GameObject GetNextTower(GameObject island)
+    public GameObject GetNextTower(/*GameObject island*/)
     {
-        return currentIslands.Find(item => item == island);
+        //return currentIslands.Find(item => item == island);
+        return currentIslands[towerIndex];
     }
 
     private void SpawnTowers()
@@ -145,7 +146,7 @@ public class TowerManager : MonoBehaviour
             newPosition = new Vector3(newPosition.x, newPosition.y + (45 * Random.Range(-1, 1)), newPosition.z);
 
             GameObject newIsland = Instantiate(GameManager.instance.towerPrefabs[i], newPosition, rotation);
-            TowerManager.instance.AddIsland(newIsland);
+            AddIsland(newIsland);
         }
     }
 
