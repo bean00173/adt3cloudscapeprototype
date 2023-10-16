@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TowerPrompt : MonoBehaviour
 {
     public TextMeshProUGUI promptText;
-    public Image difficultyImage;
+    public Transform difficultyContainer;
     public Transform enemyTypeContainer;
     public TextMeshProUGUI titleText;
     public GameObject beatenImage;
@@ -31,9 +31,16 @@ public class TowerPrompt : MonoBehaviour
 
     public void SetPromptValues(int difficulty, List<enemyType> types, int number)
     {
-        difficultyImage.fillAmount = .2f * difficulty;
+        foreach(Transform child in difficultyContainer)
+        {
+            child.gameObject.SetActive(false);
+        }
+        for(int i = 0; i < difficulty; i++)
+        {
+            difficultyContainer.GetChild(i).gameObject.SetActive(true);
+        }
         titleText.text = number.ToString();
-        foreach(Transform img in enemyTypeContainer.transform)
+        foreach(Transform img in enemyTypeContainer)
         {
             if (img.transform.GetComponent<EnemyIdentity>()) img.gameObject.SetActive(types.Contains(img.GetComponent<EnemyIdentity>().type));
             else img.gameObject.SetActive(false);
