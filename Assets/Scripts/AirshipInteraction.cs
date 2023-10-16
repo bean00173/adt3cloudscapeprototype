@@ -86,6 +86,9 @@ public class AirshipInteraction : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
+            am.emitting = false;
+            am.cloudsPS.GetComponent<ParticleSystem>().Stop();
+
             if (!dockingComplete)
             {
                 dockingComplete = true;

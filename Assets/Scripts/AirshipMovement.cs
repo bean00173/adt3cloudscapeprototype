@@ -22,7 +22,7 @@ public class AirshipMovement : MonoBehaviour
     [HideInInspector]
     public bool canMove;
 
-    bool emitting;
+    [HideInInspector] public bool emitting;
     public GameObject cloudsPS;
 
     // Start is called before the first frame update
@@ -108,7 +108,7 @@ public class AirshipMovement : MonoBehaviour
         //// Adding Force to the Player Rigidbody if on Ground
         //rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        if(vert != 0)
+        if(vert > 0)
         {
             ac.SetBool("moving", true);
             if (!emitting)

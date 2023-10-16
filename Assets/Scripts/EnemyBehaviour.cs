@@ -26,8 +26,6 @@ public enum enemyType //stores current enemy type so when DropLimbs() is called,
     brute,
     ranger
 }
-
-
 public class EnemyBehaviour : MonoBehaviour
 {
 
