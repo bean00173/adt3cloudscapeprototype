@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 [RequireComponent(typeof(AudioSource))]
@@ -9,10 +10,12 @@ public class SoundHandler : MonoBehaviour
     public AudioType sourceType;
     public AudioSource source;
 
+    public UnityEvent playOnAwake = new UnityEvent();
+
     // Start is called before the first frame update
     void Start()
     {
-
+        playOnAwake?.Invoke();
         //foreach(SoundClip clip in soundClips)
         //{
         //    soundClipsList.Add(clip);

@@ -98,6 +98,11 @@ public class PlayerMovement : MonoBehaviour
         source = this.GetComponent<AudioSource>();
         rb.freezeRotation = true;
         ResetJump();
+
+        foreach(Transform child in this.transform.GetChild(0))
+        {
+            child.GetComponent<OnStep>().onStep.AddListener(DoStep);
+        }
     }
     public void SetAudioClip(int index)
     {
@@ -234,5 +239,17 @@ public class PlayerMovement : MonoBehaviour
         {
             canMove = true;
         }
+    }
+
+    private void DoStep()
+    {
+        string clip = "";
+        switch (this.GetComponent<PlayableCharacter>().currentCharacter)
+        {
+            case Character.CharacterId.seb: clip = "Seb_Step"; break;
+            case Character.CharacterId.abi: clip = "Abi_Step"; break;
+            case Character.CharacterId.rav: clip = "Rav_Step"; break;
+        }
+        this.GetComponent<SoundHandler>().PlaySound(clip);
     }
 }
