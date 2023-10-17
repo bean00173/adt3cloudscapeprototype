@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using UnityEditor.Rendering;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundHandler : MonoBehaviour
 {
     public AudioType sourceType;
     public AudioSource source;
+    public bool volControl;
 
     public UnityEvent playOnAwake = new UnityEvent();
 
@@ -25,7 +27,10 @@ public class SoundHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.GetComponent<ParticleSystem>() && volControl)
+        {
+            ParticleVolumeControl(1 - (this.GetComponent<ParticleSystem>().time / this.GetComponent<ParticleSystem>().main.duration));
+        }
     }
 
     public void PlaySound(string clip)
@@ -72,6 +77,20 @@ public class SoundHandler : MonoBehaviour
     {
         source.clip = clip;
         source.Play();
+    }
+
+    private void ParticleVolumeControl(float vol)
+    {
+        if(vol < .05)
+        {
+            StopPlaying();
+        }
+        source.volume = vol;
+    }
+
+    private void StopPlaying()
+    {
+        source.Stop();
     }
 
 }

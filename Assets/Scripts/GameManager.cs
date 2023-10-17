@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private GameObject youDied;
     public Transform promptText;
 
-    bool deathListener;
+    [HideInInspector] public bool deathListener;
 
     [HideInInspector]
     public bool readyToLoad;
@@ -450,9 +450,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            GameManager.instance.towerFinished = false;
             SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
             score = 0;
-            deathListener = false;
         }
 
         Cursor.lockState = CursorLockMode.Locked;

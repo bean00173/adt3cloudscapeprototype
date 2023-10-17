@@ -66,6 +66,7 @@ public class LoadingBehaviour : MonoBehaviour
             {
                 UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
 
+                GameManager.instance.deathListener = false;
                 SceneManager.instance.ToggleObjects(true);
             }
             yield return null;
