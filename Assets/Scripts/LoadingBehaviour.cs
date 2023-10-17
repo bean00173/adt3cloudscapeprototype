@@ -19,21 +19,21 @@ public class LoadingBehaviour : MonoBehaviour
 
     private void ChooseBG()
     {
-        if((LoadingData.sceneToLoad == "TowerTest" && GameManager.instance.currentScene.name == "LevelTest") ||(LoadingData.sceneToLoad == "LevelTest"))
+        if((LoadingData.sceneToLoad == "TowerTest" && GameManager.instance.currentScene.name == "LevelTest") || (LoadingData.sceneToLoad == "LevelTest"))
         {
             int bgIndex = 0;
             switch (GameManager.activeCharacter.Id)
             {
                 case Character.CharacterId.seb: bgIndex = 0; break;
-                case Character.CharacterId.rav: bgIndex = 0; break; // CHANGE WHEN MORE CHARACTERS
-                case Character.CharacterId.abi: bgIndex = 0; break;
+                case Character.CharacterId.rav: bgIndex = 1; break; // CHANGE WHEN MORE CHARACTERS
+                case Character.CharacterId.abi: bgIndex = 2; break;
             }
             bg.GetComponent<Image>().sprite = backgrounds[bgIndex];
             
         }
         else
         {
-            bg.GetComponent<Image>().sprite = backgrounds[1];
+            bg.GetComponent<Image>().sprite = backgrounds[backgrounds.Count - 1];
         }
     }
 

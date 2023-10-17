@@ -47,6 +47,7 @@ public class ForceField : MonoBehaviour
             //float a = ((health - other.GetComponent<ProjectileData>().damage) / maxHealth) + (time / lifespan);
             time += ((health - other.GetComponent<ProjectileData>().damage) / maxHealth) + (time / lifespan);
             health -= other.GetComponent<ProjectileData>().damage;
+            this.GetComponent<SoundHandler>().PlaySound("Forcefield_Hit");
             Destroy(other.gameObject);
         }
     }
