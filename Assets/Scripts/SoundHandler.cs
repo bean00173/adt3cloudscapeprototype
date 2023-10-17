@@ -81,7 +81,7 @@ public class SoundHandler : MonoBehaviour
         }
         else
         {
-            PlaySound("Seb_Attack_Last");
+            PlaySound("Seb_Last_Attack");
         }
     }
 

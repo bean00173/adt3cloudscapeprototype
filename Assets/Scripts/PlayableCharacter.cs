@@ -134,6 +134,10 @@ public class PlayableCharacter : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        notCd = true;
+    }
     //public void CanMove()
     //{
     //    rb.useGravity = true;

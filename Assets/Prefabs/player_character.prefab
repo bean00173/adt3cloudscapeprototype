@@ -1280,7 +1280,7 @@ Transform:
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13282,7 +13282,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -13368,7 +13368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceType: 0
-  source: {fileID: 0}
+  source: {fileID: 5953507722982515168}
   volControl: 0
   playOnAwake:
     m_PersistentCalls:
