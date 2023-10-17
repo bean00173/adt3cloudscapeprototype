@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2194115761931273664, guid: 3148b0057757c5e49a1d7284d605de90, type: 3}
       propertyPath: m_Name
-      value: PT_Fruit_Tree_01_logs Variant
+      value: Logs_2
       objectReference: {fileID: 0}
     - target: {fileID: 2492491227371442399, guid: 3148b0057757c5e49a1d7284d605de90, type: 3}
       propertyPath: m_Mesh
@@ -77,10 +77,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2194115761931273664, guid: 3148b0057757c5e49a1d7284d605de90, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 6805430304699836883}
   m_SourcePrefab: {fileID: 100100000, guid: 3148b0057757c5e49a1d7284d605de90, type: 3}
---- !u!1 &4612440726703189011 stripped
+--- !u!1 &647935712076736306 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2194115761931273664, guid: 3148b0057757c5e49a1d7284d605de90, type: 3}
   m_PrefabInstance: {fileID: 1625516555890615026}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4612440726703189011}
+  m_GameObject: {fileID: 647935712076736306}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bd5e5ddd242bd64581fb5ed9c0e0507, type: 3}

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fae1e260fe6764d4294c4ab57fdf218b, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Village_Fence_04 1 Variant
+      value: Fence_3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fae1e260fe6764d4294c4ab57fdf218b, type: 3}
       propertyPath: m_LocalScale.x
@@ -63,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: fae1e260fe6764d4294c4ab57fdf218b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: fae1e260fe6764d4294c4ab57fdf218b, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
