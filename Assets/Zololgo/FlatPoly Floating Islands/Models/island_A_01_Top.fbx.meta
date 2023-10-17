@@ -3,7 +3,12 @@ guid: 50370596d14cbfb41ba374711ced48a9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder1_auv
+    second: {fileID: 2100000, guid: 4882d83810704df4eb327df0096346a2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 14.2
+    globalScale: 1420
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
