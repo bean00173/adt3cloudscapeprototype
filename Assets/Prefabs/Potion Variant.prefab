@@ -5097,19 +5097,7 @@ MonoBehaviour:
   explosionRadius: 7
   onExplode:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4507442121252711974}
-        m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-        m_MethodName: PlayRandomSound
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Explode
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onFlame:
     m_PersistentCalls:
       m_Calls: []
@@ -5191,10 +5179,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4609718909496024658, guid: a9212769b0ae3d34497a7ab4ad541ce5, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5203,7 +5191,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5290,6 +5278,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 1351668628919568653}
+  volControl: 0
+  playOnAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507442121252711974}
+        m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Potion_Spin
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6162273713970132478 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1018664272722485354, guid: ecd59d57331870545b06458f7f8f76d7, type: 3}

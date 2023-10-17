@@ -124,13 +124,13 @@ public class Potion : MonoBehaviour
         this.transform.eulerAngles = Vector3.zero;
         GameObject ps = Instantiate(flamePS, this.transform.position, Quaternion.identity);
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ps, UnityEngine.SceneManagement.SceneManager.GetSceneByName("LevelTest"));
-
+        this.GetComponent<AudioSource>().volume = 0f;
+        this.GetComponent<AudioSource>().Stop();
         //yield return new WaitForSeconds(.75f);
         float time = 0;
 
         while(time < flameDuration)
         {
-            this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(.1f);
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, flameRadius);
             foreach(Collider col in colliders)
             {
@@ -148,6 +148,7 @@ public class Potion : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
 
+        
         Destroy(this.gameObject);
     }
 }

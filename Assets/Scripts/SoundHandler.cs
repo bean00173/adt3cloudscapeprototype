@@ -73,6 +73,18 @@ public class SoundHandler : MonoBehaviour
         }
     }
 
+    public void SebastianPipeClang(int probability)
+    {
+        if (GameManager.instance.RandomChance(probability))
+        {
+            DoPlay(AudioManager.instance.GetClip(sourceType, "Seb_PipeClang"));
+        }
+        else
+        {
+            PlaySound("Seb_Attack_Last");
+        }
+    }
+
     private void DoPlay(AudioClip clip)
     {
         source.clip = clip;
