@@ -1741,6 +1741,7 @@ MonoBehaviour:
   towerLeft: 0
   fadeImg: {fileID: 0}
   towerPrefabs: []
+  dead: 0
 --- !u!1 &22532965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5745,6 +5746,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 3
   source: {fileID: 704389163}
+  playOnAwake:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &704389163
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8806,8 +8810,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107664750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.058409736, y: -0.7197832, z: 0.06101575, w: 0.689041}
-  m_LocalPosition: {x: 1646.0122, y: 46.8494, z: -55.9747}
+  m_LocalRotation: {x: 0.05840974, y: -0.71978337, z: 0.061015766, w: 0.6890409}
+  m_LocalPosition: {x: 1646.0122, y: 46.8494, z: -55.974655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9050,6 +9054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 2
   source: {fileID: 1197813037}
+  playOnAwake:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &1197813037
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11503,6 +11510,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 1661123737}
+  playOnAwake:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &1661123737
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14425,7 +14435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7615937
+      value: 0.76159376
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.x
@@ -14433,15 +14443,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0006880105
+      value: 0.0006877402
       objectReference: {fileID: 0}
     - target: {fileID: 2472537948797317913, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00035663586
+      value: 0.00035650367
       objectReference: {fileID: 0}
     - target: {fileID: 2548290673627471054, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.359585
+      value: 48.35963
       objectReference: {fileID: 0}
     - target: {fileID: 2548290673627471054, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14461,7 +14471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7975658
+      value: 0.79756594
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.x
@@ -14469,11 +14479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00066635385
+      value: 0.00066610024
       objectReference: {fileID: 0}
     - target: {fileID: 3586462199852603209, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00039554687
+      value: 0.00039539
       objectReference: {fileID: 0}
     - target: {fileID: 3834331491523517932, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: dockPrompt
@@ -14513,11 +14523,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3938021706246151351, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000677419
+      value: 0.00067712826
       objectReference: {fileID: 0}
     - target: {fileID: 3938021706246151351, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0003762999
+      value: 0.00037614495
       objectReference: {fileID: 0}
     - target: {fileID: 5933393790184116915, guid: ac566d906d55ee74c8aae58de0caf9ab, type: 3}
       propertyPath: m_PlayOnAwake
@@ -15517,15 +15527,51 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].waveEnemyCount
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[1].waveEnemyCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[2].waveEnemyCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[1].enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[2].enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[1].enemies.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[2].enemies.Array.data[0].enemy
       value: 
       objectReference: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
     - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
       propertyPath: tower.floors.Array.data[0].waves.Array.data[0].enemies.Array.data[0].maxCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[1].enemies.Array.data[0].maxCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921296485603830288, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
+      propertyPath: tower.floors.Array.data[0].waves.Array.data[2].enemies.Array.data[0].maxCount
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2572298802531857598, guid: 0022f4e6bc2cf1b439e4c9b74d94354b, type: 3}
