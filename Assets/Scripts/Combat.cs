@@ -133,8 +133,10 @@ public class Combat : MonoBehaviour
     {
         ac.Play("Ability", -1, 0f);
         
-
-        Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
+        if(pc.currentCharacter == Character.CharacterId.seb)
+        {
+            Instantiate(abilityPS, transform.position, Quaternion.identity, transform);
+        }
 
         if(pc.currentCharacter == Character.CharacterId.abi)
         {

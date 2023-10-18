@@ -5,6 +5,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class AirshipInteraction : MonoBehaviour
 {
@@ -18,17 +19,19 @@ public class AirshipInteraction : MonoBehaviour
     public float dockingDistance = 200f;
     AirshipMovement am;
     Rigidbody rb;
-    bool promptReady;
-    bool readyToDock;
-    bool docked;
-    bool dockingComplete;
-    bool aligned;
-    bool goingToDock;
-    float leastDist;
+    bool promptReady; //
+    bool readyToDock; //
+    bool docked; //
+    bool dockingComplete; //
+    bool aligned; //
+    bool goingToDock; //
+    float leastDist; //
 
-    Transform closest;
-    Transform current;
-    Transform currentTower;
+    Transform lookTarget; //
+
+    Transform closest; //
+    Transform current; //
+    Transform currentTower; //
 
     string targetName;
 
@@ -73,7 +76,7 @@ public class AirshipInteraction : MonoBehaviour
             Debug.DrawLine(this.transform.position, current.position, Color.yellow);
             //Debug.Log(dist);
 
-            if (dist < 2.0f)
+            if (dist < 5.0f)
             {
                 docked = true;
                 rb.velocity = Vector3.zero;
@@ -100,13 +103,10 @@ public class AirshipInteraction : MonoBehaviour
                 current.GetChild(2).gameObject.SetActive(true);
 
                 //GetComponentInChildren<PlayableCharacter>().CanMove();
-                am.enabled = false;
 
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
-                    character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
-                    character.GetComponentInChildren<PlayableCharacter>().fell.AddListener(RedoSpawn);
-                    StartCoroutine(DeactivateCombat(character));
+                    Spawn();
                 }
             }
         }
@@ -150,6 +150,7 @@ public class AirshipInteraction : MonoBehaviour
             GameManager.instance.towerLeft = false;
 
             am.canMove = false;
+            am.enabled = false;
 
             StartCoroutine(DoDockingProcedure(container));
 
@@ -213,10 +214,12 @@ public class AirshipInteraction : MonoBehaviour
 
     private void Spawn()
     {
-        character = Instantiate(player, current.GetChild(1).transform.position, Quaternion.identity);
+        //lookTarget.gameObject.SetActive(false);
+        character = Instantiate(player, current.GetChild(1).transform.position, current.GetChild(0).transform.rotation * Quaternion.Euler(0, 180, 0));
         character.GetComponentInChildren<PlayableCharacter>().fell.AddListener(RedoSpawn);
         StartCoroutine(DeactivateCombat(character));
     }
+
 
     //private void OnCollisionEnter(Collision collision)
     //{
@@ -361,6 +364,7 @@ public class AirshipInteraction : MonoBehaviour
 
     public void ResetDockStatus()
     {
+        lookTarget.gameObject.SetActive(true);
         am.canMove = true;
         promptReady = false;
         readyToDock = false;

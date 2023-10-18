@@ -47,6 +47,7 @@ public class PlayableCharacter : MonoBehaviour
 
     private void Start()
     {
+
         this.transform.parent.GetComponentInChildren<CinemachineFreeLook>().Priority = 20;
 
         rb = this.GetComponent<Rigidbody>();
