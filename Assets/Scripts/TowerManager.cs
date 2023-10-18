@@ -63,8 +63,6 @@ public class TowerManager : MonoBehaviour
 
             listenersAdded = true;
         }
-
-        Debug.LogError($"Can Load? {GameManager.instance.readyToLoad}");
     }
 
     public void NewCurrentTower(GameObject tower)

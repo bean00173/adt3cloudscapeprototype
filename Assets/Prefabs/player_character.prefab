@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722781911848959181}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.26658413, y: -0.000000030013627, z: -0.000000001112679, w: 0.9638117}
+  m_LocalRotation: {x: -0.26658413, y: 0.000000022753824, z: 0.0000000036178367, w: 0.9638117}
   m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -787,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4082902199016594518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
+  m_LocalRotation: {x: 0.10277195, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.994705}
   m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1279,7 +1279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
+  m_LocalRotation: {x: 0.10277195, y: 1.6240154e-10, z: 0.0000000018555518, w: 0.994705}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13294,6 +13294,7 @@ MonoBehaviour:
   abilityPS: {fileID: 6237827061040652056, guid: 757c0a4cde030734fbfaad3656e63903, type: 3}
   shakeManager: {fileID: 8291708679281383084}
   hitContainer: {fileID: 4865241203615327672}
+  comboMaxPs: {fileID: 3452898149359081138, guid: 2a9d2bdb559751145a4743a45b26a0b1, type: 3}
   sword: {fileID: 0}
 --- !u!114 &9195145469950438451
 MonoBehaviour:
@@ -13816,7 +13817,7 @@ MonoBehaviour:
   abilityReady: 0
   abilityText: {fileID: 0}
   abilityProgress: {fileID: 0}
-  abilityPS: {fileID: 6237827061040652056, guid: 757c0a4cde030734fbfaad3656e63903, type: 3}
+  abilityPS: {fileID: 0}
   shakeManager: {fileID: 8291708679281383084}
   enemyContainer: {fileID: 0}
   spawnPoint: {fileID: 1170892339209941336}

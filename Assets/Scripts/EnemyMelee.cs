@@ -8,6 +8,8 @@ public class EnemyMelee : EnemyBehaviour
     public Transform hitCenter;
     public float shakeAmount = .5f;
 
+    public ParticleSystem lHitPs, rHitPs;
+
     int hits;
 
     public void dohit()
@@ -40,6 +42,9 @@ public class EnemyMelee : EnemyBehaviour
         //}
 
         atkReady = false;
+
+        ParticleSystem ps = hitIndex == 0 ? rHitPs : lHitPs;
+        ps.Play();
 
         this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(shakeAmount);
 
@@ -84,7 +89,8 @@ public class EnemyMelee : EnemyBehaviour
 
         atkReady = false;
 
-
+        ParticleSystem ps = hitIndex == 0 ? rHitPs : lHitPs;
+        ps.Play();
 
         Collider[] colliders = Physics.OverlapSphere(hitCenter.position, enemy.attackRadius);
         foreach (Collider col in colliders)

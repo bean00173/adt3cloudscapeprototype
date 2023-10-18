@@ -9,6 +9,8 @@ public class GreatswordCombat : Combat
     List<Collider> colliders = new List<Collider>(); 
     Collider hit;
 
+    public GameObject comboMaxPs;
+
     bool readyToHold = true;
     bool holding;
 
@@ -66,6 +68,11 @@ public class GreatswordCombat : Combat
         hit.enabled = true;
 
         this.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce((comboIndex + 1));
+
+        if(comboIndex == 2)
+        {
+            Instantiate(comboMaxPs, transform.position, Quaternion.identity);
+        }
 
         //StartCoroutine(GameManager.instance.DoCameraShake(shakeManager.GetComponentInChildren<CinemachineFreeLook>(), .25f));
     }

@@ -366,6 +366,8 @@ public class GameManager : MonoBehaviour
             towerFinished = true;
             towersBeaten += 1;
 
+            CharacterManager.instance.ResetCharStatus();
+
             totalScore += score;
 
             floorIndex = 0;
