@@ -367,7 +367,6 @@ public class AirshipInteraction : MonoBehaviour
 
     public void ResetDockStatus()
     {
-        lookTarget.gameObject.SetActive(true);
         playerUi.SetActive(false);
         am.canMove = true;
         promptReady = false;
