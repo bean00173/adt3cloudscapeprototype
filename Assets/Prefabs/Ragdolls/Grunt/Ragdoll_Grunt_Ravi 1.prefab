@@ -62,6 +62,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4859850038461062245}
   - {fileID: 7971508220512243204}
   - {fileID: 8120917088767250826}
   m_Father: {fileID: 0}
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 1671990654759625907}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls:
@@ -191,6 +193,68 @@ MonoBehaviour:
           m_StringArgument: Blood_Impact
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &3502741485017910298
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6848366721881024005}
+    m_Modifications:
+    - target: {fileID: 6699939847986878362, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_Name
+      value: PS_BloodExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.006341812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.007169074
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.67305696
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7395288
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -95.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 191.523
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 348.544
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+--- !u!4 &4859850038461062245 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8353503368385630335, guid: 09249fae0ba017a45a0ffbe807bf8e57, type: 3}
+  m_PrefabInstance: {fileID: 3502741485017910298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7578085929496111599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -930,6 +994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 5750527905409408595}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -1126,6 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 8530993904562886302}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -1322,6 +1388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 495868044375415405}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -1518,6 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 4442962471980941076}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -1714,6 +1782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 1493850308727635955}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -1910,6 +1979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 4697961046016682114}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -2106,6 +2176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 5935518152271438129}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -2302,6 +2373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 4014048508893008562}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -2574,6 +2646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 2825423272466940268}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -2770,6 +2843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 3848780157088626428}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -2966,6 +3040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 4754395329503212760}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []
@@ -3162,6 +3237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceType: 4
   source: {fileID: 7416440504251631898}
+  volControl: 0
   playOnAwake:
     m_PersistentCalls:
       m_Calls: []

@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     public Transform blood;
     public Transform canvas;
 
+    public GameObject healPs;
+
     Animator ac;
 
     public UnityEvent onDeath = new UnityEvent();
@@ -148,6 +150,7 @@ public class PlayerHealth : MonoBehaviour
             else if (other.CompareTag("HealthOrb"))
             {
                 Debug.Log(other.gameObject);
+                GameObject ps = Instantiate(healPs, this.transform.position, Quaternion.identity);
                 Heal();
                 Destroy(other.transform.parent.gameObject);
             }
