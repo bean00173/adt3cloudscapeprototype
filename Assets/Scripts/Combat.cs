@@ -84,7 +84,6 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && readyToAtk && pm.grounded) // if mouse clicked
         {
-            
             lastPressedTime = Time.time; // set recent click time 
             if (firstAtk) // if one attack already done
             {
@@ -121,7 +120,6 @@ public class Combat : MonoBehaviour
     }
     protected void Attack()
     {
-
         /*ac.Play("Attack", -1, 0f);*/ // if attack called, begin animations, set state of combo blend tree
         ac.SetTrigger("atk");
         ac.SetFloat("atkIndex", comboIndex);
