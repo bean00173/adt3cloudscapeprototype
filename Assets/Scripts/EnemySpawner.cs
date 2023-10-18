@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public Transform enemyContainer;
-    private List<Transform> spawns = new List<Transform>(); 
+    private List<Transform> spawns = new List<Transform>();
     private List<Transform> validSpawns = new List<Transform>();
     private List<Wave> waves = new List<Wave>();
 
@@ -19,12 +20,12 @@ public class EnemySpawner : MonoBehaviour
     bool nextFloor;
 
     public GameObject bossUI, hbCanvas;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         waves = GameManager.instance.ReturnTowerData().floors[GameManager.floorIndex].waves;
-        foreach(Transform child in this.transform) // gather list of spawn points
+        foreach (Transform child in this.transform) // gather list of spawn points
         {
             spawns.Add(child);
         }
@@ -61,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if(aliveEnemies > 0)
+        if (aliveEnemies > 0)
         {
             player.GetComponent<PlayableCharacter>().canInteract = false;
         }
@@ -74,12 +75,12 @@ public class EnemySpawner : MonoBehaviour
         //    SpawnEnemies(5, 2.0f);
         //}
 
-        if(enemiesLeft > 0)
+        if (enemiesLeft > 0)
         {
 
             foreach (WaveEnemy enemy in waves[waveIndex].enemies)
             {
-                
+
                 Debug.Log(enemy.enemy.name);
 
                 int currentOfType = 0;
@@ -139,6 +140,42 @@ public class EnemySpawner : MonoBehaviour
             enemiesLeft -= 1;
         }
 
+    }
+
+    public void DoExternalEnemySpawn(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            switch (Random.value)
+            {
+                case < .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_ranger") as GameObject, 1); break;
+                case > .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_grunt") as GameObject, 1); break;
+                case .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_brute") as GameObject, 1); break;
+            }
+        }
+    }
+
+    private void SpawnMinionEnemy(GameObject enemy, int count)
+    {
+        Transform spawnPoint = FindSpawnPoint();
+        float radius = enemy.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute ? radius = 5.0f : radius = 2.0f;
+
+        for (int i = 0; i < count; i++)
+        {
+            Debug.Log("Spawning Enemy");
+            Transform agent = Instantiate(enemy, GameManager.instance.SpawnPosition(i, count, spawnPoint.position, radius), Quaternion.identity, enemyContainer).transform;
+            agent.GetComponent<EnemyBehaviour>().SetupHealthBar(hbCanvas.transform);
+        }
+
+    }
+
+    public void BossDied()
+    {
+        foreach(GameObject enemy in enemyContainer)
+        {
+            bool spc = player.GetComponent<PlayableCharacter>().currentCharacter == Character.CharacterId.rav ? true : false;
+            enemy.GetComponent<EnemyBehaviour>().TakeDamage(10000000f, player, null, spc);
+        }
     }
 
     private Transform FindSpawnPoint()
