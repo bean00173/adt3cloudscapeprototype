@@ -70,7 +70,14 @@ public class SceneManager : MonoBehaviour
 
         LoadingData.sceneToLoad = sceneName;
         LoadingData.mode = mode;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        if(mode == LoadSceneMode.Additive)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScreen", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
     }
 
     public void ToggleObjects(bool toggle) 
