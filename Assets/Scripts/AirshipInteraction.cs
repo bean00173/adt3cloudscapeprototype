@@ -16,6 +16,7 @@ public class AirshipInteraction : MonoBehaviour
 
     public Transform airshipObject;
     public GameObject dockPrompt;
+    public GameObject playerUi;
     public float dockingDistance = 200f;
     AirshipMovement am;
     Rigidbody rb;
@@ -107,6 +108,7 @@ public class AirshipInteraction : MonoBehaviour
                 if (GameObject.FindObjectOfType<PlayableCharacter>() == null)
                 {
                     Spawn();
+                    playerUi.SetActive(true);
                 }
             }
         }
@@ -148,6 +150,7 @@ public class AirshipInteraction : MonoBehaviour
             airshipObject.GetComponent<Animator>().SetBool("moving", false);
 
             GameManager.instance.towerLeft = false;
+
 
             am.canMove = false;
             am.enabled = false;
@@ -365,6 +368,7 @@ public class AirshipInteraction : MonoBehaviour
     public void ResetDockStatus()
     {
         lookTarget.gameObject.SetActive(true);
+        playerUi.SetActive(false);
         am.canMove = true;
         promptReady = false;
         readyToDock = false;
