@@ -25,7 +25,7 @@ public class Healthbar : MonoBehaviour
     {
         if(functional) // scales the health bar to be a % of original size based on % of health remaining
         {
-            this.transform.GetChild(1).GetComponent<Image>().fillAmount = eb.GetHealthPercentage();
+            this.transform.GetChild(transform.childCount - 1).GetComponent<Image>().fillAmount = eb.GetHealthPercentage();
         }
 
         //this.transform.position = eb.transform.position + ((eb.GetComponent<NavMeshAgent>().height + 5.0f) * Vector3.up);

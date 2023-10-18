@@ -10,6 +10,7 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour
 {
     public Transform healthBar;
+    public Transform vignette;
     [Tooltip("Insert the Width of the HealthBar Component Here")]
     private float health;
     private float currentHealth;
@@ -25,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool dead { get ; private set; }
 
-
+    bool inCombat;
     private void Awake()
     {
         if (GameManager.instance.currentScene.name == "LevelTest")
@@ -47,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //healthBar.localScale = Vector3.one;
         //health = CharacterManager.instance.GetCurrentCharacter(GetComponent<PlayableCharacter>().currentCharacter).health;
         //currentHealth = health;
@@ -73,6 +75,17 @@ public class PlayerHealth : MonoBehaviour
             if (healthScale >= 0)
             {
                 healthBar.GetComponentInChildren<Image>().fillAmount = healthScale;
+
+
+                if (!GameManager.instance.floorBeaten)
+                {
+                    vignette.localScale = Vector3.Lerp(vignette.localScale, (1f + ((2.5f - 1f) * healthScale)) * Vector3.one, Time.deltaTime);
+                }
+                else
+                {
+                    vignette.localScale = Vector3.Lerp(vignette.localScale, 2.5f * Vector3.one, Time.deltaTime);
+                }
+                
             }
         }
 
@@ -106,6 +119,7 @@ public class PlayerHealth : MonoBehaviour
             canvas.Find("YouDied").GetChild(0).Find("CharacterName").GetComponent<TextMeshProUGUI>().text = text;
         }
     }
+
 
     public void TakeDamage(float damage)
     {
