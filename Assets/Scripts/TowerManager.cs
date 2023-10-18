@@ -129,6 +129,11 @@ public class TowerManager : MonoBehaviour
         return currentIslands[towerIndex];
     }
 
+    public float GetIslandCount()
+    {
+        return currentIslands.Count;
+    }
+
     private void SpawnTowers()
     {
         for(int i = 0; i < GameManager.instance.towerPrefabs.Count; i++)

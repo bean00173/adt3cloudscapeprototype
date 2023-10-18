@@ -24,7 +24,8 @@ public enum enemyType //stores current enemy type so when DropLimbs() is called,
 {
     grunt,
     brute,
-    ranger
+    ranger,
+    boss
 }
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -200,6 +201,11 @@ public class EnemyBehaviour : MonoBehaviour
         {
             deathWeapon = weapon;
             EnemyDeath(player);
+
+            if(this.enemy.enemyType == enemyType.boss)
+            {
+                GetComponent<SpawnMinions>().MinionDeath();
+            }
         }
         else
         {
@@ -267,7 +273,7 @@ public class EnemyBehaviour : MonoBehaviour
     //    }
     //}
 
-    private void EnemyDeath(Transform player) // separate function for death method
+     void EnemyDeath(Transform player) // separate function for death method
     {
         GameManager.instance.ScoreUp(this.enemy.score);
         if (GameManager.instance.RandomChance(player.GetComponent<PlayableCharacter>().slowMoChance) && GameManager.instance.timeSlow == false) GameManager.instance.SlowTime(player.GetComponent<PlayableCharacter>().slowMoDuration);

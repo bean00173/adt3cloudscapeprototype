@@ -33,6 +33,7 @@ public class BodyPartContainer : MonoBehaviour
     public List<Ragdoll> bruteDolls = new List<Ragdoll>();
     public List<Ragdoll> gruntDolls = new List<Ragdoll>();
     public List<Ragdoll> rangerDolls = new List<Ragdoll>();
+    public List<Ragdoll> bossDolls = new List<Ragdoll>();
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +84,9 @@ public class BodyPartContainer : MonoBehaviour
                 break;
             case enemyType.ranger:
                 dolls = new List<Ragdoll>(rangerDolls);
+                break;
+            case enemyType.boss:
+                dolls = new List<Ragdoll>(bossDolls);
                 break;
             default:
                 break;

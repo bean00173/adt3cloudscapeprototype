@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private List<int> chance = new List<int>();
 
     public TextMeshProUGUI scoreText;
-    private GameObject youDied;
+    private GameObject youDied, backToMenu;
     public Transform promptText;
 
     [HideInInspector] public bool deathListener;
@@ -60,11 +60,13 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> towerPrefabs;
 
-    private bool levelListenerAdded, towerListenerAdded;
+    private bool levelListenerAdded, towerListenerAdded, menuListenerAdded;
 
     GameObject pauseMenu;
 
     public bool dead;
+
+    public bool victory, defeat;
 
     // Make this a singleton.
     public void Awake()
@@ -207,11 +209,17 @@ public class GameManager : MonoBehaviour
 
             if (towerFinished)
             {
-                //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
-                SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
-                levelListenerAdded = false;
-                score = 0;
-
+                if(TowerManager.instance.towerIndex + 2 > TowerManager.instance.GetIslandCount())
+                {
+                    SceneManager.instance.LoadScene("GameWin", LoadSceneMode.Single);
+                }
+                else
+                {
+                    //currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("TowerTest");
+                    SceneManager.instance.LoadScene("TowerTest", LoadSceneMode.Additive);
+                    levelListenerAdded = false;
+                    score = 0;
+                }
             }
             else
             {
@@ -220,6 +228,17 @@ public class GameManager : MonoBehaviour
                 SceneManager.instance.LoadScene("LevelTest", LoadSceneMode.Additive);
             }
             Debug.Log("SceneTransition");
+        }
+
+        if (currentScene.name == "GameWin")
+        {
+            backToMenu = ReturnUIComponent("MainMenu").gameObject;
+            if (!menuListenerAdded)
+            {
+                Button leave = backToMenu.GetComponentInChildren<Button>();
+                leave.onClick.AddListener(ResetGame);
+                menuListenerAdded = true;
+            }
         }
     }
 
@@ -432,23 +451,22 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        capableOfDying = false;
-        readyToLoad = false;
-        towerFinished = false;
-        floorIndex = 0;
+        activeCharacter = null;
+        characterHealth = 1;
+        scaleIndex = 1;
+        towersBeaten = 0;
         towerData = null;
+        floorIndex = 0;
         score = 0;
         totalScore = 0;
-        deathListener = false;
-        scaleIndex = 1;
     }
 
     private void DiedInGame()
     {
         if(!CharacterManager.instance.AnyCharAlive())
         {
-            SceneManager.instance.LoadScene("MainMenu", LoadSceneMode.Single);
-            ResetGame();
+            SceneManager.instance.LoadScene("GameWin", LoadSceneMode.Single);
+            //ResetGame();
         }
         else
         {
