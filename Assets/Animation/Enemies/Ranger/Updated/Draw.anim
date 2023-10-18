@@ -62305,9 +62305,23 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.5833333
+    functionName: PlaySound
+    data: Ranger_Draw
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.1833333
     functionName: PlayEvent
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2
+    functionName: PlaySound
+    data: Ranger_Release
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

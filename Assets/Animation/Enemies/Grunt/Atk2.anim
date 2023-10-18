@@ -32550,9 +32550,23 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.1
+    functionName: PlayRandomSound
+    data: Grunt_Attack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.26666668
     functionName: PlayAlt
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.28333333
+    functionName: PlayRandomSound
+    data: Grunt_Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -32564,9 +32578,23 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.5
+    functionName: PlayRandomSound
+    data: Grunt_Attack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.75
     functionName: PlayEvent
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.76666665
+    functionName: PlayRandomSound
+    data: Grunt_Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

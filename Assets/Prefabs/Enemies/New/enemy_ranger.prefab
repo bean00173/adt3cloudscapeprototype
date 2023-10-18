@@ -499,7 +499,10 @@ PrefabInstance:
       addedObject: {fileID: 5704415154587010127}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66589dd52c61a404f93342c641911e07, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2769067061093696349}
+      addedObject: {fileID: 2713725420503623435}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66589dd52c61a404f93342c641911e07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5312090197090986945}
   m_SourcePrefab: {fileID: 100100000, guid: 66589dd52c61a404f93342c641911e07, type: 3}
 --- !u!4 &1289972907651676430 stripped
 Transform:
@@ -555,7 +558,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepShakeForce: 0.1
   eb: {fileID: 1700523873745917998}
---- !u!82 &2769067061093696349
+  onStep:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!82 &2713725420503623435
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,7 +582,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -611,7 +617,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -651,6 +657,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5312090197090986945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922253273658876852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fdc05693ccb474eb983efcddd7ba52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceType: 1
+  source: {fileID: 2713725420503623435}
+  volControl: 0
+  playOnAwake:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &5498959108506340134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 66589dd52c61a404f93342c641911e07, type: 3}

@@ -9964,7 +9964,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10017,7 +10017,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 75
+      scalar: 25
       minScalar: 50
       maxCurve:
         serializedVersion: 2
@@ -10599,7 +10599,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 3
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -10828,7 +10828,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
