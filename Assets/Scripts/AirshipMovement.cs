@@ -84,7 +84,7 @@ public class AirshipMovement : MonoBehaviour
 
             if (vert == 0)
             {
-                if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.C))
+                if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift))
                 {
                     
                 }
@@ -146,7 +146,7 @@ public class AirshipMovement : MonoBehaviour
             ac.SetFloat("elevation", 1);
 
         }
-        else if (Input.GetKey(KeyCode.C) && transform.position.y > -50)
+        else if (Input.GetKey(KeyCode.LeftShift) && transform.position.y > -50)
         {
             descending = true;
             if (!upDown.isPlaying) upDown.Play();
