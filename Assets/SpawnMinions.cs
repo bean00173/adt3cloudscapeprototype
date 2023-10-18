@@ -34,7 +34,7 @@ public class SpawnMinions : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(minionCount);
+        yield return new WaitForSeconds(cdPeriod);
         canTry = true;
     }
 

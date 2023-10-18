@@ -148,9 +148,9 @@ public class EnemySpawner : MonoBehaviour
         {
             switch (Random.value)
             {
-                case < .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_ranger") as GameObject, 1); break;
+                case < .3f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_ranger") as GameObject, 1); break;
                 case > .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_grunt") as GameObject, 1); break;
-                case .5f: SpawnMinionEnemy(Resources.Load("Enemies/enemy_brute") as GameObject, 1); break;
+                default: SpawnMinionEnemy(Resources.Load("Enemies/enemy_brute") as GameObject, 1); break;
             }
         }
     }
