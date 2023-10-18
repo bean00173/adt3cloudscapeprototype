@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722781911848959181}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.26658413, y: -0.000000030013627, z: -0.000000001112679, w: 0.9638117}
+  m_LocalRotation: {x: -0.26658413, y: -0.000000037111032, z: 0.0000000032480303, w: 0.9638117}
   m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1280,7 +1280,7 @@ Transform:
   m_GameObject: {fileID: 5321541302810113325}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10277195, y: -0.000000014682013, z: 0.000000003154764, w: 0.994705}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.0000002484988, z: 0.0000014087624}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.0000003727482, z: 0.0000021131436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11731,7 +11731,8 @@ MonoBehaviour:
   currentCharacter: 0
   ac: {fileID: 0}
   characterContainer: {fileID: 7824498333873508811}
-  switchCooldown: 2
+  switchCooldown: 1
+  switchPs: {fileID: 2103567651944860883, guid: 81f68a862b02be7409fd919acf3c6279, type: 3}
   canInteract: 1
   fell:
     m_PersistentCalls:

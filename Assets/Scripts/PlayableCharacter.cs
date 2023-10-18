@@ -28,6 +28,8 @@ public class PlayableCharacter : MonoBehaviour
 
     public float switchCooldown;
 
+    public GameObject switchPs;
+
     [HideInInspector]
     public bool canInteract = true;
 
@@ -171,6 +173,8 @@ public class PlayableCharacter : MonoBehaviour
                 switched = true;
             }
         }
+
+        Instantiate(switchPs, this.transform.position, Quaternion.identity);
 
         ac = characterContainer.GetChild(characterIndex).transform.GetComponentInChildren<Animator>();
 
