@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour
 
     GameObject pauseMenu;
 
+    public Transform toggle;
+
     public bool dead;
     public bool notTutorial;
     public static bool playTutorial = true;
@@ -91,12 +94,15 @@ public class GameManager : MonoBehaviour
     {
         slowTimeMethod = ResumeNormalTimeScale;
         scaleIndex = 1;
-        
+
+
+        toggle.GetComponent<Toggle>().onValueChanged.AddListener(PlayTutorial);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(toggle && toggle.GetComponent<Toggle>().isOn != playTutorial) toggle.GetComponent<Toggle>().isOn = playTutorial;
 
         switch (currentScene.name)
         {
@@ -262,9 +268,6 @@ public class GameManager : MonoBehaviour
 
         Slider masterSlider = main.Find("soundbg/MasterSlider").GetComponent<Slider>();
         masterSlider.onValueChanged.AddListener(AudioManager.instance.SetMasterVol);
-
-        Toggle toggle = main.Find("Toggle").GetComponent<Toggle>();
-        toggle.onValueChanged.AddListener(PlayTutorial);
     }
 
     private void PlayTutorial(bool play)

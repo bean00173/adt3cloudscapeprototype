@@ -8,7 +8,7 @@ public class TutorialScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameManager.playTutorial == false) GameManager.instance.notTutorial = true;
     }
 
     // Update is called once per frame
@@ -36,6 +36,10 @@ public class TutorialScreen : MonoBehaviour
             }
 
             played = true;
+        }
+        else
+        {
+            GameManager.instance.notTutorial = true;
         }
     }
 
