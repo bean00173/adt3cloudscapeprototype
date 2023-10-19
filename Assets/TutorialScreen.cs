@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialScreen : MonoBehaviour
 {
+    bool played;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,24 +14,42 @@ public class TutorialScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close();
+        }
     }
 
-    private void OnEnable()
+    public void Enable()
     {
-        Time.timeScale = 0f;
-        GameManager.instance.canPause = false;
+        if(!played)
+        {
+            Time.timeScale = 0f;
+            GameManager.instance.notTutorial = false;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            foreach (Transform t in transform)
+            {
+                t.gameObject.SetActive(true);
+            }
+
+            played = true;
+        }
     }
 
-    private void OnDisable()
+    public void Close()
     {
         Time.timeScale = 1f;
-        GameManager.instance.canPause = true;
+        GameManager.instance.notTutorial = true;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        foreach (Transform t in transform)
+        {
+            t.gameObject.SetActive(false);
+        }
     }
 }

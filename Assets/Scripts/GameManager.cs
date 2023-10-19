@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     GameObject pauseMenu;
 
     public bool dead;
-
+    public bool notTutorial;
     public bool victory, defeat;
 
     // Make this a singleton.
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
             default:  canPause = false; break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause && notTutorial)
         {
             paused = true;
             canPause = false;
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Dead ? {dead}");
 
-        if ((currentScene.name == "TowerTest" || (currentScene.name == "LevelTest" && !dead)) && !paused)
+        if ((currentScene.name == "TowerTest" || (currentScene.name == "LevelTest" && !dead)) && !paused && notTutorial)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
