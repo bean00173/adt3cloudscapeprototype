@@ -174,8 +174,11 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach(Transform enemy in enemyContainer)
         {
-            bool spc = player.GetComponent<PlayableCharacter>().currentCharacter == Character.CharacterId.rav ? true : false;
-            enemy.GetComponent<EnemyBehaviour>().TakeDamage(10000000f, player, null, spc);
+            if(enemy.GetComponent<EnemyBehaviour>().enemy.enemyType != enemyType.boss)
+            {
+                bool spc = player.GetComponent<PlayableCharacter>().currentCharacter == Character.CharacterId.rav ? true : false;
+                enemy.GetComponent<EnemyBehaviour>().TakeDamage(10000000f, player, null, spc);
+            }
         }
     }
 
