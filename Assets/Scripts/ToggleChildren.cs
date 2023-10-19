@@ -27,11 +27,11 @@ public class ToggleChildren : MonoBehaviour
     {
         if (arrowKeys)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 CycleToNext();
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 CycleToPrevious();
             }
