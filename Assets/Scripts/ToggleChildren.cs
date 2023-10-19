@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToggleChildren : MonoBehaviour
 {
     int index = 0;
+
+    public bool arrowKeys;
+    public GameObject prev, next;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +18,12 @@ public class ToggleChildren : MonoBehaviour
         }
 
         transform.GetChild(index).gameObject.SetActive(true);
+
+        if (arrowKeys)
+        {
+            prev.GetComponent<Button>().onClick.AddListener(CycleToPrevious);
+            next.GetComponent<Button>().onClick.AddListener(CycleToNext);
+        }
     }
 
     // Update is called once per frame

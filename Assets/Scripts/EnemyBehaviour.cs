@@ -283,7 +283,17 @@ public class EnemyBehaviour : MonoBehaviour
         health = 0;
         agent.speed = 0;
         CorpseExplode(); // call explosion
-         // turn off renderer (not object as explosion references its transforms) to make invisible
+
+        GameManager.instance.totalDefeated++;
+        switch (enemy.enemyType)
+        {
+            case enemyType.grunt: GameManager.instance.gruntsDefeated++;  break;
+            case enemyType.brute: GameManager.instance.brutesDefeated++; break;
+            case enemyType.ranger: GameManager.instance.rangersDefeated++; break;
+            case enemyType.boss: GameManager.instance.specialsDefeated++; break;
+        }
+
+        // turn off renderer (not object as explosion references its transforms) to make invisible
     }
 
     private void CorpseExplode()

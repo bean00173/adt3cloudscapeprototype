@@ -10,10 +10,15 @@ public class LoadingBehaviour : MonoBehaviour
     [SerializeField] private GameObject progressBar, continuePrompt, bg;
     [SerializeField] private TextMeshProUGUI progressText;
 
+    public float loadDelay;
+    public GameObject tipPanel;
+
     public List<Sprite> backgrounds = new List<Sprite>();
 
     private void Start()
     {
+        AudioManager.instance.SetState(GameState.Loading);
+        AudioInterrupt(true);
         StartCoroutine(LoadSceneAsync());
     }
 
@@ -29,6 +34,8 @@ public class LoadingBehaviour : MonoBehaviour
                 case Character.CharacterId.abi: bgIndex = 2; break;
             }
             bg.GetComponent<Image>().sprite = backgrounds[bgIndex];
+
+            tipPanel.SetActive(true);
             
         }
         else
@@ -55,18 +62,19 @@ public class LoadingBehaviour : MonoBehaviour
 
             //}
 
-            progressBar.GetComponent<Image>().fillAmount = 1f;
+            progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, 1f, loadDelay * Time.deltaTime);
             //progressText.text = "(100%)";
+            yield return new WaitUntil(() => progressBar.GetComponent<Image>().fillAmount == 1f);
 
             continuePrompt.gameObject.SetActive(true);
-
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 continuePrompt.gameObject.SetActive(false);
                 ;
                 UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+
+                AudioInterrupt(false);
 
                 GameManager.instance.deathListener = false;
                 SceneManager.instance.ToggleObjects(true);
@@ -83,10 +91,11 @@ public class LoadingBehaviour : MonoBehaviour
 
             while (!operation.isDone)
             {
-                progressBar.GetComponent<Image>().fillAmount = operation.progress + 0.1f;
+                progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, operation.progress + 0.1f, loadDelay * Time.deltaTime);
+                //yield return new WaitUntil(() => progressBar.GetComponent<Image>().fillAmount == 1f);
                 //progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
 
-                if (operation.progress >= .9f)
+                if (operation.progress >= .9f && progressBar.GetComponent<Image>().fillAmount >= operation.progress)
                 {
                     GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
 
@@ -94,6 +103,7 @@ public class LoadingBehaviour : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
+                        AudioInterrupt(false);
                         continuePrompt.gameObject.SetActive(false);
                         operation.allowSceneActivation = true;
                         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
@@ -110,10 +120,11 @@ public class LoadingBehaviour : MonoBehaviour
 
             while (!operation.isDone)
             {
-                progressBar.GetComponent<Image>().fillAmount = operation.progress + 0.1f;
+                progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, operation.progress + 0.1f, loadDelay * Time.deltaTime);
+                //yield return new WaitUntil(() => progressBar.GetComponent<Image>().fillAmount == 1f);
                 //progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
 
-                if (operation.progress >= .9f)
+                if (operation.progress >= .9f && progressBar.GetComponent<Image>().fillAmount >= operation.progress)
                 {
                     GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
 
@@ -121,6 +132,7 @@ public class LoadingBehaviour : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
+                        AudioInterrupt(false);
                         operation.allowSceneActivation = true;
                         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
                     }
@@ -128,5 +140,10 @@ public class LoadingBehaviour : MonoBehaviour
                 yield return null;
             }
         }        
+    }
+
+    private void AudioInterrupt(bool interrupt)
+    {
+        AudioManager.instance.interrupt = interrupt;
     }
 }

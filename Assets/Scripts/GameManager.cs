@@ -70,7 +70,11 @@ public class GameManager : MonoBehaviour
     public bool dead;
     public bool notTutorial;
     public static bool playTutorial = true;
+
+
     public bool victory, defeat;
+    public float gruntsDefeated, brutesDefeated, rangersDefeated, specialsDefeated, totalDefeated, totalDeaths;
+
 
     // Make this a singleton.
     public void Awake()
@@ -219,6 +223,7 @@ public class GameManager : MonoBehaviour
                 if(TowerManager.instance.towerIndex + 2 > TowerManager.instance.GetIslandCount())
                 {
                     SceneManager.instance.LoadScene("GameWin", LoadSceneMode.Single);
+                    victory = true;
                 }
                 else
                 {
@@ -478,6 +483,7 @@ public class GameManager : MonoBehaviour
         if(!CharacterManager.instance.AnyCharAlive())
         {
             SceneManager.instance.LoadScene("GameWin", LoadSceneMode.Single);
+            defeat = true;
             //ResetGame();
         }
         else
@@ -489,6 +495,9 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        totalScore -= 100;
+        totalDeaths++;
 
         dead = false;
         

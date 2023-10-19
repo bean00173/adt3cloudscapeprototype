@@ -21,7 +21,8 @@ public enum GameState
     Combat,
     Loading,
     Menu,
-    Pause
+    Pause,
+    Win
 }
 
 public class AudioManager : MonoBehaviour
@@ -41,6 +42,8 @@ public class AudioManager : MonoBehaviour
 
     public bool loaded = false;
     bool playerBeaten;
+
+    public bool interrupt;
 
     public void Awake()
     {
@@ -87,14 +90,19 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            switch (GameManager.instance.currentScene.name)
+            if (!interrupt)
             {
-                case "MainMenu": currentState = GameState.Menu; break;
-                case "LoadingScreen": currentState = GameState.Loading; break;
-                case "LevelTest": currentState = GameManager.instance.paused ? GameState.Pause : (GameManager.instance.floorBeaten && !playerBeaten ? GameState.Dungeon : GameState.Combat); break;
-                case "TowerTest": currentState = GameManager.instance.paused ? GameState.Pause : GameState.Normal; break;
+                switch (GameManager.instance.currentScene.name)
+                {
+                    case "MainMenu": currentState = GameState.Menu; break;
+                    case "GameWin": currentState = GameState.Win; break;
+                    case "LoadingScreen": currentState = GameState.Loading; break;
+                    case "LevelTest": currentState = GameManager.instance.paused ? GameState.Pause : (GameManager.instance.floorBeaten && !playerBeaten ? GameState.Dungeon : GameState.Combat); break;
+                    case "TowerTest": currentState = GameManager.instance.paused ? GameState.Pause : GameState.Normal; break;
 
+                }
             }
+            
         }
 
         if(GameManager.instance.currentScene.name == "TowerTest" || GameManager.instance.currentScene.name == "LevelTest")
@@ -191,6 +199,11 @@ public class AudioManager : MonoBehaviour
     public void SetEnemyVol(float volume)
     {
         masterMixer.SetFloat("enemyVol", volume);
+    }
+
+    public void SetState(GameState state)
+    {
+        currentState = state;
     }
 
 
