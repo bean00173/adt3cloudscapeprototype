@@ -653,3 +653,83 @@ MonoBehaviour:
       m_YScaleBool: 0
       m_ZScaleBool: 0
     name: Wheat_1
+  - gameObject: {fileID: 919132149155446097, guid: ead9b1b46ee9dba4d9b874e8272ae4da, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: 90, y: 0, z: 0}
+      m_RotationRangeMax: {x: 90, y: 360, z: 0}
+      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
+      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
+      m_UniformScale: {x: 0.2, y: 0.3}
+      m_UniformBool: 1
+      m_XRotationBool: 1
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 0
+      m_YScaleBool: 0
+      m_ZScaleBool: 0
+    name: Box_2
+  - gameObject: {fileID: 919132149155446097, guid: 2b86e94f375a0874198890ea04037541, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: -90, y: 0, z: 0}
+      m_RotationRangeMax: {x: -90, y: 360, z: 0}
+      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
+      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
+      m_UniformScale: {x: 0.2, y: 0.3}
+      m_UniformBool: 1
+      m_XRotationBool: 1
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 0
+      m_YScaleBool: 0
+      m_ZScaleBool: 0
+    name: Box_3
+  - gameObject: {fileID: 919132149155446097, guid: b66ecceb90fc62240a1f4ff980284af5, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: -90, y: 0, z: 0}
+      m_RotationRangeMax: {x: -90, y: 360, z: 0}
+      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
+      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
+      m_UniformScale: {x: 0.2, y: 0.3}
+      m_UniformBool: 1
+      m_XRotationBool: 1
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 0
+      m_YScaleBool: 0
+      m_ZScaleBool: 0
+    name: Crystal_Box
+  - gameObject: {fileID: 919132149155446097, guid: 936ea6e4443153d419447e95d6dd97e6, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: -90, y: 0, z: 0}
+      m_RotationRangeMax: {x: -90, y: 0, z: 0}
+      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
+      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
+      m_UniformScale: {x: 0.1, y: 0.3}
+      m_UniformBool: 1
+      m_XRotationBool: 1
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 0
+      m_YScaleBool: 0
+      m_ZScaleBool: 0
+    name: Crystal_Bucket
+  - gameObject: {fileID: 919132149155446097, guid: 4d2f0ffb03cccaa408f6ec9b1c44bd69, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: 0, y: 0, z: 0}
+      m_RotationRangeMax: {x: 0, y: 0, z: 0}
+      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
+      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
+      m_UniformScale: {x: 1, y: 1}
+      m_UniformBool: 1
+      m_XRotationBool: 0
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 0
+      m_YScaleBool: 0
+      m_ZScaleBool: 0
+    name: Crystal_Pot
