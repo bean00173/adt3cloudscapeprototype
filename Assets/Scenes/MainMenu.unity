@@ -49375,7 +49375,11 @@ MonoBehaviour:
   capableOfDying: 0
   towerLeft: 0
   fadeImg: {fileID: 1365270640}
-  towerPrefabs: []
+  towerPrefabs:
+  - {fileID: 301333986583299435, guid: 1552446d5dd695d409ad0d09ecf08ec3, type: 3}
+  - {fileID: 8170564452587727226, guid: 35a4f84ecab00d248883c9dbafc43f9d, type: 3}
+  - {fileID: 2289520999816317006, guid: 6b146dac434006147a4d8e37b72781ca, type: 3}
+  - {fileID: 2027091372930332754, guid: 72472935e5f4932409e69d1a3d4bf488, type: 3}
   toggle: {fileID: 1646951560}
   dead: 0
   notTutorial: 0

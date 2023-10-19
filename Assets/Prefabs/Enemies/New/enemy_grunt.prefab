@@ -148,12 +148,12 @@ MonoBehaviour:
   enemy:
     enemyType: 0
     maxHealth: 75
-    damage: 15
+    damage: 10
     interruptResist: 10
-    speed: 10
+    speed: 9
     attackRadius: 2.5
-    attackCd: 1
-    score: 5
+    attackCd: 2
+    score: 10
   healthbar: {fileID: 7606661515631026518}
   goal: {fileID: 0}
   hitCenter: {fileID: 2724395284859551823}

@@ -192,9 +192,9 @@ MonoBehaviour:
     maxHealth: 4000
     damage: 100
     interruptResist: 100
-    speed: 1.5
+    speed: 2
     attackRadius: 5
-    attackCd: 2
+    attackCd: 5
     score: 5000
   healthbar: {fileID: 8412293550683728120}
   goal: {fileID: 0}

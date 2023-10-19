@@ -54,10 +54,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     enemyType: 1
-    maxHealth: 200
+    maxHealth: 250
     damage: 65
     interruptResist: 75
-    speed: 3
+    speed: 5
     attackRadius: 2.5
     attackCd: 2
     score: 30
