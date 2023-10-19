@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     public bool dead;
     public bool notTutorial;
+    public static bool playTutorial = true;
     public bool victory, defeat;
 
     // Make this a singleton.
@@ -261,6 +262,14 @@ public class GameManager : MonoBehaviour
 
         Slider masterSlider = main.Find("soundbg/MasterSlider").GetComponent<Slider>();
         masterSlider.onValueChanged.AddListener(AudioManager.instance.SetMasterVol);
+
+        Toggle toggle = main.Find("Toggle").GetComponent<Toggle>();
+        toggle.onValueChanged.AddListener(PlayTutorial);
+    }
+
+    private void PlayTutorial(bool play)
+    {
+        playTutorial = play;
     }
 
     public void BackToMenu()

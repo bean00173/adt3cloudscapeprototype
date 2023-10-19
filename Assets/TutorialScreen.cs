@@ -22,7 +22,7 @@ public class TutorialScreen : MonoBehaviour
 
     public void Enable()
     {
-        if(!played)
+        if (!played && GameManager.playTutorial)
         {
             Time.timeScale = 0f;
             GameManager.instance.notTutorial = false;
