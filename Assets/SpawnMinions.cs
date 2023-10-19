@@ -40,6 +40,7 @@ public class SpawnMinions : MonoBehaviour
 
     private void SpawnEnemies()
     {
+        this.GetComponentInChildren<Animator>().SetTrigger("Summon");
         spawner.DoExternalEnemySpawn((int)Mathf.Round(Random.Range(.75f, 1.25f) * minionCount));
     }
 

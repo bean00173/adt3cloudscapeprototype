@@ -61,10 +61,12 @@ public class LoadingBehaviour : MonoBehaviour
 
 
             //}
-
-            progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, 1f, loadDelay * Time.deltaTime);
+            while(progressBar.GetComponent<Image>().fillAmount != 1f)
+            {
+                progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, 1f, loadDelay * Time.deltaTime);
+            }
             //progressText.text = "(100%)";
-            yield return new WaitUntil(() => progressBar.GetComponent<Image>().fillAmount == 1f);
+            //yield return new WaitUntil(() => progressBar.GetComponent<Image>().fillAmount == 1f);
 
             continuePrompt.gameObject.SetActive(true);
 

@@ -19,17 +19,23 @@ public class ToggleChildren : MonoBehaviour
 
         transform.GetChild(index).gameObject.SetActive(true);
 
-        if (arrowKeys)
-        {
-            prev.GetComponent<Button>().onClick.AddListener(CycleToPrevious);
-            next.GetComponent<Button>().onClick.AddListener(CycleToNext);
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (arrowKeys)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                CycleToNext();
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                CycleToPrevious();
+            }
+        }
     }
 
     public void CycleToNext()
