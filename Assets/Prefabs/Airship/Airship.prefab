@@ -202,8 +202,8 @@ MonoBehaviour:
   player: {fileID: 804327095213773214, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
   airshipObject: {fileID: 7455058327983941095}
   dockPrompt: {fileID: 0}
+  playerUi: {fileID: 0}
   dockingDistance: 200
-  lookTarget: {fileID: 659438127362247119}
   dock:
     m_PersistentCalls:
       m_Calls: []
@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327530947252487409}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6311771, y: -0.010743473, z: -0.005870825, w: 0.7755422}
+  m_LocalRotation: {x: 0.6311771, y: -0.010743471, z: -0.0058708237, w: 0.7755422}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21324,6 +21324,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3592802955068050977}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7109603377840101106, guid: 86db7e8357d42c4409dfdd0c9c340ca0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8763727616094932496}
     - targetCorrespondingSourceObject: {fileID: 2907231342272057641, guid: 86db7e8357d42c4409dfdd0c9c340ca0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2825467116893272766}
@@ -21356,6 +21359,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7629575188952370248, guid: 86db7e8357d42c4409dfdd0c9c340ca0, type: 3}
   m_PrefabInstance: {fileID: 1050467065375173039}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7799777846607265629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7109603377840101106, guid: 86db7e8357d42c4409dfdd0c9c340ca0, type: 3}
+  m_PrefabInstance: {fileID: 1050467065375173039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8763727616094932496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799777846607265629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815254be4bbc053449ba9260ab385ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  alternateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8419549391245367907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8812486375470691276, guid: 86db7e8357d42c4409dfdd0c9c340ca0, type: 3}
