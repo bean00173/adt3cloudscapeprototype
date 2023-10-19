@@ -55,8 +55,8 @@ public class LoadingBehaviour : MonoBehaviour
 
             //}
 
-            progressBar.transform.localScale = new Vector3(1, 1, 1);
-            progressText.text = "(100%)";
+            progressBar.GetComponent<Image>().fillAmount = 1f;
+            //progressText.text = "(100%)";
 
             continuePrompt.gameObject.SetActive(true);
 
@@ -64,6 +64,8 @@ public class LoadingBehaviour : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                continuePrompt.gameObject.SetActive(false);
+                ;
                 UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
 
                 GameManager.instance.deathListener = false;
@@ -81,8 +83,8 @@ public class LoadingBehaviour : MonoBehaviour
 
             while (!operation.isDone)
             {
-                progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
-                progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
+                progressBar.GetComponent<Image>().fillAmount = operation.progress + 0.1f;
+                //progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
 
                 if (operation.progress >= .9f)
                 {
@@ -92,6 +94,7 @@ public class LoadingBehaviour : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
+                        continuePrompt.gameObject.SetActive(false);
                         operation.allowSceneActivation = true;
                         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
                     }
@@ -107,8 +110,8 @@ public class LoadingBehaviour : MonoBehaviour
 
             while (!operation.isDone)
             {
-                progressBar.transform.localScale = new Vector3(operation.progress + 0.1f, 1, 1);
-                progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
+                progressBar.GetComponent<Image>().fillAmount = operation.progress + 0.1f;
+                //progressText.text = "(" + (operation.progress * 100 + 10).ToString() + "%)";
 
                 if (operation.progress >= .9f)
                 {
