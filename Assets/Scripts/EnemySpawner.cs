@@ -135,6 +135,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Debug.Log("Spawning Enemy");
+            StartCoroutine(ExecuteAfterTime(Random.value * 2f));
             Transform agent = Instantiate(enemy, GameManager.instance.SpawnPosition(i, count, spawnPoint.position, radius), Quaternion.identity, enemyContainer).transform;
             agent.GetComponent<EnemyBehaviour>().SetupHealthBar(hbCanvas.transform);
             enemiesLeft -= 1;
@@ -171,11 +172,16 @@ public class EnemySpawner : MonoBehaviour
 
     public void BossDied()
     {
-        foreach(GameObject enemy in enemyContainer)
+        foreach(Transform enemy in enemyContainer)
         {
             bool spc = player.GetComponent<PlayableCharacter>().currentCharacter == Character.CharacterId.rav ? true : false;
             enemy.GetComponent<EnemyBehaviour>().TakeDamage(10000000f, player, null, spc);
         }
+    }
+
+    private IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     private Transform FindSpawnPoint()

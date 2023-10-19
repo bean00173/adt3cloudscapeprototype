@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
 
         if (currentScene.name == "GameWin")
         {
-            backToMenu = ReturnUIComponent("MainMenu").gameObject;
+            backToMenu = ReturnUIComponent("Results").Find("Btn").gameObject;
             if (!menuListenerAdded)
             {
                 Button leave = backToMenu.GetComponentInChildren<Button>();
@@ -497,6 +497,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
 
         totalScore -= 100;
+
+        totalScore = totalScore < 0 ? 0 : totalScore;
         totalDeaths++;
 
         dead = false;

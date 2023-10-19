@@ -8599,6 +8599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b34d992cbeb4cc46817de9140db44a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowKeys: 0
+  prev: {fileID: 0}
+  next: {fileID: 0}
 --- !u!1001 &551297098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24891,6 +24894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 24100000, guid: a9212769b0ae3d34497a7ab4ad541ce5, type: 2}
   loaded: 0
+  interrupt: 0
 --- !u!4 &1490934439
 Transform:
   m_ObjectHideFlags: 0
@@ -49377,6 +49381,12 @@ MonoBehaviour:
   notTutorial: 0
   victory: 0
   defeat: 0
+  gruntsDefeated: 0
+  brutesDefeated: 0
+  rangersDefeated: 0
+  specialsDefeated: 0
+  totalDefeated: 0
+  totalDeaths: 0
 --- !u!1001 &2069118459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51892,7 +51902,7 @@ SceneRoots:
   - {fileID: 1216047200}
   - {fileID: 1845725477}
   - {fileID: 168677203}
-  - {fileID: 296071271}
   - {fileID: 2102995804}
   - {fileID: 140982089}
   - {fileID: 8046118730973257213}
+  - {fileID: 296071271}

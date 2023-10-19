@@ -26,8 +26,10 @@ public class SpawnMinions : MonoBehaviour
             canTry = false;
             if (GameManager.instance.RandomChance(chance))
             {
-                SpawnEnemies();
+                this.GetComponentInChildren<Animator>().SetTrigger("Summon");
             }
+
+            StartCoroutine(Timer());
 
         }
     }
@@ -38,9 +40,9 @@ public class SpawnMinions : MonoBehaviour
         canTry = true;
     }
 
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
-        this.GetComponentInChildren<Animator>().SetTrigger("Summon");
+        
         spawner.DoExternalEnemySpawn((int)Mathf.Round(Random.Range(.75f, 1.25f) * minionCount));
     }
 

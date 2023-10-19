@@ -50,7 +50,6 @@ public class LoadingBehaviour : MonoBehaviour
 
         if (LoadingData.sceneToLoad == "TowerTest" && GameManager.instance.currentScene.name == "LevelTest")
         {
-
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LevelTest");
 
             GameManager.instance.UpdateCurrentScene(LoadingData.sceneToLoad);
@@ -61,7 +60,7 @@ public class LoadingBehaviour : MonoBehaviour
 
 
             //}
-            while(progressBar.GetComponent<Image>().fillAmount != 1f)
+            while(progressBar.GetComponent<Image>().fillAmount < .9f)
             {
                 progressBar.GetComponent<Image>().fillAmount = Mathf.Lerp(progressBar.GetComponent<Image>().fillAmount, 1f, loadDelay * Time.deltaTime);
             }
@@ -70,17 +69,28 @@ public class LoadingBehaviour : MonoBehaviour
 
             continuePrompt.gameObject.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                continuePrompt.gameObject.SetActive(false);
-                ;
-                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
 
-                AudioInterrupt(false);
+            continuePrompt.gameObject.SetActive(false);
+            ;
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
 
-                GameManager.instance.deathListener = false;
-                SceneManager.instance.ToggleObjects(true);
-            }
+            AudioInterrupt(false);
+
+            GameManager.instance.deathListener = false;
+            SceneManager.instance.ToggleObjects(true);
+
+            //if (Input.GetKeyDown(KeyCode.Return))
+            //{
+            //    continuePrompt.gameObject.SetActive(false);
+            //    ;
+            //    UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("LoadingScreen");
+
+            //    AudioInterrupt(false);
+
+            //    GameManager.instance.deathListener = false;
+            //    SceneManager.instance.ToggleObjects(true);
+            //}
             yield return null;
         }
         else if(LoadingData.sceneToLoad == "LevelTest" && GameManager.instance.currentScene.name == "LevelTest")

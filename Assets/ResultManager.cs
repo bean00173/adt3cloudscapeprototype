@@ -15,11 +15,11 @@ public class ResultManager : MonoBehaviour
 
         towersBeaten.text = GameManager.towersBeaten.ToString();
         enemiesDefeated.text = GameManager.instance.totalDefeated.ToString();
-        gruntsDefeated.text = GameManager.instance.gruntsDefeated.ToString();
-        brutesDefeated.text = GameManager.instance.brutesDefeated.ToString();
-        rangersDefeated.text = GameManager.instance.rangersDefeated.ToString();
-        specialsDefeated.text = GameManager.instance.specialsDefeated.ToString();
-        totalDeaths.text = GameManager.instance.totalDeaths.ToString();
+        gruntsDefeated.text = $"{GameManager.instance.gruntsDefeated}";
+        brutesDefeated.text = $"{GameManager.instance.brutesDefeated}";
+        rangersDefeated.text = $"{GameManager.instance.rangersDefeated}";
+        specialsDefeated.text = $"{GameManager.instance.specialsDefeated}";
+        totalDeaths.text = $"{GameManager.instance.totalDeaths}";
         totalScore.text = GameManager.totalScore.ToString();
     }
 

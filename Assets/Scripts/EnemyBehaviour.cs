@@ -55,6 +55,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected int hitIndex;
 
+    protected bool canMove;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -66,6 +68,14 @@ public class EnemyBehaviour : MonoBehaviour
         bpc = GameObject.Find("BodyParts").GetComponent<BodyPartContainer>();
 
         LimitSpawnVelocity();
+        if(this.enemy.enemyType == enemyType.boss)
+        {
+            Invoke(nameof(StartMove), 3f);
+        }
+        else
+        {
+            StartMove();
+        }
 
         StartCoroutine(AtkCD());
     }
@@ -112,7 +122,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             agent.speed = 0;
         }
-        else
+        else if (canMove)
         {
             agent.speed = enemy.speed;
             HandleMove();
@@ -120,6 +130,11 @@ public class EnemyBehaviour : MonoBehaviour
 
         ac.SetFloat("speed", agent.speed);
 
+    }
+
+    private void StartMove()
+    {
+        canMove = true;
     }
 
     private void LookAtTarget()
@@ -191,6 +206,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(float dmg, Transform player, Transform weapon, bool spc)
     {
+        if(this.enemy.enemyType == enemyType.boss && dmg > 10000f)
+        {
+            dmg = 200f;
+        }
+
         agent.speed = 0f;
         specialAtk = spc;
         if (GameManager.instance.RandomChance(100 - this.enemy.interruptResist)) ac.Play("Hit", -1, 0f);

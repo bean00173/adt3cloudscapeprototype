@@ -37,8 +37,6 @@ public class BowCombat : Combat
     {
         Transform enemy = FindNearestEnemy();
 
-
-
         if(enemy != null)
         {
             Vector3 aimTarget = enemy.position;

@@ -87,7 +87,7 @@ public class ProjectileData : MonoBehaviour
         target = bowArrow.FindNearestEnemy();
 
         Vector3 startPos = spawn;
-        float yValue = target.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute ? spawn.y + (target.GetComponent<NavMeshAgent>().height / 2) : spawn.y;
+        float yValue = (target.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.brute || target.GetComponent<EnemyBehaviour>().enemy.enemyType == enemyType.boss) ? spawn.y + (target.GetComponent<NavMeshAgent>().height / 2) : spawn.y;
 
         while (time < duration)
         {
