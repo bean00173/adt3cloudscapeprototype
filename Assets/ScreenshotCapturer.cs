@@ -18,7 +18,7 @@ public class ScreenshotCapturer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             index++;
-            ScreenCapture.CaptureScreenshot($"C:/Documents/{characterName}{index}.png");
+            ScreenCapture.CaptureScreenshot($"{Application.persistentDataPath}/{characterName}{index}.png");
             Debug.Log("PhotoTaken");
         }
     }
