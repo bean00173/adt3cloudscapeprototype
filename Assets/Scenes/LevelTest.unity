@@ -10497,11 +10497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8899715745764706179, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00010694847
+      value: 0.000106978
       objectReference: {fileID: 0}
     - target: {fileID: 8899715745764706179, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000029548053
+      value: -0.000029552513
       objectReference: {fileID: 0}
     - target: {fileID: 8899715745764706179, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -10509,7 +10509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8899715745764706179, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09510446
+      value: 0.09510443
       objectReference: {fileID: 0}
     - target: {fileID: 9035831876859987333, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: abilityText
@@ -27965,6 +27965,7 @@ MonoBehaviour:
     correspondingChar: 0
     probability: 50
     special: 0
+  bossDolls: []
 --- !u!1 &863117549
 GameObject:
   m_ObjectHideFlags: 0
@@ -49478,7 +49479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

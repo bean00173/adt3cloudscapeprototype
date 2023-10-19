@@ -28,8 +28,7 @@ public class EnemyRange : EnemyBehaviour
         Vector3 aimTarget = goal.position;
 
         float y = goal.transform.GetComponent<CapsuleCollider>() ? aimTarget.y + (goal.transform.GetComponent<CapsuleCollider>().height / 2) : 1f;
-        Vector3 target = new Vector3(aimTarget.x - this.transform.position.x, 0f, aimTarget.z - this.transform.position.z);
-        Debug.DrawLine(this.transform.position, target, Color.green);
+        Vector3 target = new Vector3(aimTarget.x - projectileSpawn.position.x, 0f, aimTarget.z - projectileSpawn.position.z);
         Quaternion aimDir = Quaternion.LookRotation(target);
         target.Normalize();
         Vector3 velocity = target * 60f;
