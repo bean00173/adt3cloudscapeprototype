@@ -124,17 +124,57 @@ MonoBehaviour:
     floors:
     - waves:
       - enemies:
-        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
-          maxCount: 5
-        waveEnemyCount: 5
-      - enemies:
         - enemy: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
-          maxCount: 5
-        waveEnemyCount: 5
+          maxCount: 10
+        waveEnemyCount: 30
       - enemies:
         - enemy: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
           maxCount: 5
-        waveEnemyCount: 5
+        - enemy: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
+          maxCount: 3
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 10
+        waveEnemyCount: 36
+    - waves:
+      - enemies:
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 15
+        waveEnemyCount: 75
+    - waves:
+      - enemies:
+        - enemy: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
+          maxCount: 10
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 5
+        waveEnemyCount: 45
+      - enemies:
+        - enemy: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
+          maxCount: 5
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 10
+        - enemy: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
+          maxCount: 5
+        waveEnemyCount: 60
+      - enemies:
+        - enemy: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
+          maxCount: 5
+        - enemy: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
+          maxCount: 10
+        waveEnemyCount: 45
+    - waves:
+      - enemies:
+        - enemy: {fileID: 7200340131177676263, guid: 34fb319aae19ef54ea84e58d06b8b428, type: 3}
+          maxCount: 7
+        - enemy: {fileID: 5877475514222135477, guid: 8b64ef27ef8312d4da8e8fc8a0e07ecd, type: 3}
+          maxCount: 8
+        - enemy: {fileID: 3550065256129446314, guid: 6368f81334289d84092e8d50267fc3e0, type: 3}
+          maxCount: 5
+        waveEnemyCount: 60
+    - waves:
+      - enemies:
+        - enemy: {fileID: 3550065256129446314, guid: c9e42b059f8001a42ab177efbcc67e33, type: 3}
+          maxCount: 1
+        waveEnemyCount: 1
   towerBeaten: 0
   navPointContainer: {fileID: 5489191458391616383}
   AirshipHitbox: {fileID: 0}
@@ -32254,6 +32294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: {fileID: 0}
+  activationPs: {fileID: 0}
 --- !u!64 &7782280259928861831
 MeshCollider:
   m_ObjectHideFlags: 0

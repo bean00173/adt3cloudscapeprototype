@@ -7,9 +7,12 @@ using UnityEngine.UIElements;
 public class Door : MonoBehaviour
 {
     public GameObject prompt;
+    public GameObject activationPs;
 
     bool active;
     bool canInteract = true;
+
+    bool playPs;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,17 @@ public class Door : MonoBehaviour
         if (prompt == null && (this.transform.root.gameObject == TowerManager.instance.currentTower))
         {
             prompt = TowerManager.instance.previousTower.GetComponentInChildren<Door>().prompt;
+        }
+
+        if(GameManager.instance.currentScene.name == "LevelTest" && GameManager.instance.towerFinished == true && !playPs)
+        {
+            playPs = true;
+            this.transform.GetChild(0).gameObject.SetActive(true);
+            Instantiate(activationPs, this.transform.position, Quaternion.identity);
+            List<Material> materials = new List<Material>();
+            materials.Add(this.GetComponent<Renderer>().materials[0]);
+            materials.Add(Resources.Load("Materials/GlowingDoor") as Material);
+            this.GetComponent<Renderer>().SetMaterials(materials);
         }
 
         //Debug.LogWarning("Door prompt active : " + active + ", Current Scene is : " + GameManager.instance.currentScene.name);
