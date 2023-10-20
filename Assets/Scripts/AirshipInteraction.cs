@@ -212,6 +212,7 @@ public class AirshipInteraction : MonoBehaviour
     {
         am.ac.Play("Startup");
         character = null;
+        playerUi.SetActive(true);
         Invoke(nameof(Spawn), 2.0f);
     }
 
@@ -220,6 +221,15 @@ public class AirshipInteraction : MonoBehaviour
         //lookTarget.gameObject.SetActive(false);
         character = Instantiate(player, current.GetChild(1).transform.position, current.GetChild(0).transform.rotation * Quaternion.Euler(0, 180, 0));
         character.GetComponentInChildren<PlayableCharacter>().fell.AddListener(RedoSpawn);
+        foreach(Transform ci in playerUi.transform)
+        {
+            if (ci.GetComponent<CharacterInterface>())
+            {
+                character.GetComponentInChildren<PlayableCharacter>().worldCollide.AddListener(ci.GetComponent<CharacterInterface>().Fell);
+                ci.GetComponent<CharacterInterface>().character = character.GetComponentInChildren<PlayableCharacter>();
+            }
+            
+        }
         StartCoroutine(DeactivateCombat(character));
     }
 

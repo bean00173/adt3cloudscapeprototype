@@ -45,6 +45,8 @@ public class PlayableCharacter : MonoBehaviour
     bool notCd = true;
     private bool falling;
 
+    [HideInInspector] public UnityEvent worldCollide = new UnityEvent();
+
     private void Start()
     {
         this.transform.parent.GetComponentInChildren<CinemachineFreeLook>().Priority = 20;
@@ -56,6 +58,10 @@ public class PlayableCharacter : MonoBehaviour
         if(GameManager.activeCharacter != null)
         {
             currentCharacter = GameManager.activeCharacter.Id;
+        }
+        else
+        {
+            SendCharacterData();
         }
 
         switch(currentCharacter)
@@ -261,6 +267,7 @@ public class PlayableCharacter : MonoBehaviour
         if (collision.collider.CompareTag("WorldPlane"))
         {
             falling = true;
+            worldCollide.Invoke();
             Debug.Log("Fell out of world");
             worldBox = collision.gameObject;
             worldBox.SetActive(false);

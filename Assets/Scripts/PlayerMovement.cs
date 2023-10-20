@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         // Adding Force to the Player Rigidbody if on Ground
         if (grounded)
         {
-            rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * movementSpeed * 10f * rb.mass, ForceMode.Force);
         }
 
     }

@@ -17,8 +17,12 @@ public class ToggleChildren : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
-        transform.GetChild(index).gameObject.SetActive(true);
+        if (arrowKeys)
+        {
+            index = Random.Range(0, this.transform.childCount);
+        }
 
+        transform.GetChild(index).gameObject.SetActive(true);
         
     }
 

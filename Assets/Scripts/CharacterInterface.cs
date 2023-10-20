@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterInterface : MonoBehaviour
 {
     public Character.CharacterId currentCharacter;
-    private PlayableCharacter character;
+    public PlayableCharacter character;
 
     private void OnEnable()
     {
@@ -44,5 +44,10 @@ public class CharacterInterface : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Fell()
+    {
+        this.transform.parent.gameObject.SetActive(false);
     }
 }

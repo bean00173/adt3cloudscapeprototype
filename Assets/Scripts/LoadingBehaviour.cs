@@ -36,7 +36,6 @@ public class LoadingBehaviour : MonoBehaviour
             bg.GetComponent<Image>().sprite = backgrounds[bgIndex];
 
             tipPanel.SetActive(true);
-            
         }
         else
         {
