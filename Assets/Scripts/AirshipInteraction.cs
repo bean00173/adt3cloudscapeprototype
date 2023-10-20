@@ -319,6 +319,8 @@ public class AirshipInteraction : MonoBehaviour
             yield return null;
         }
 
+        StartCoroutine(Timer(3f));
+
         yield return new WaitUntil(() => Vector3.Distance(this.transform.position, endPos) < 5.0f);
 
         rb.velocity = Vector3.zero;
@@ -375,6 +377,17 @@ public class AirshipInteraction : MonoBehaviour
 
     //}
 
+    private IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (!dockingComplete)
+        {
+            StopAllCoroutines();
+            am.enabled = true;
+            ResetDockStatus();
+        }
+    }
     public void ResetDockStatus()
     {
         playerUi.SetActive(false);

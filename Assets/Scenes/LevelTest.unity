@@ -4504,6 +4504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacter: 2
+  character: {fileID: 0}
 --- !u!1 &183922717
 GameObject:
   m_ObjectHideFlags: 0
@@ -5546,11 +5547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000106466614
+      value: 0.000106481304
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000011040191
+      value: 0.0000110370365
       objectReference: {fileID: 0}
     - target: {fileID: 1240844441056307648, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5646,11 +5647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000106481304
+      value: 0.000106466614
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000110370365
+      value: 0.000011040191
       objectReference: {fileID: 0}
     - target: {fileID: 6844406339694337729, guid: fcc5bc182187f2c4bac913015193b26f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -11649,6 +11650,10 @@ PrefabInstance:
     - target: {fileID: 4423045620967985251, guid: 166fec8034c34324380d1847f5a5fe73, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423045620967985251, guid: 166fec8034c34324380d1847f5a5fe73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4423045620967985251, guid: 166fec8034c34324380d1847f5a5fe73, type: 3}
       propertyPath: m_TagString
@@ -19543,7 +19548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthOrb:
     prefab: {fileID: 1894791112103360131, guid: 478d6b669f413af409d7dbaab9e8d68e, type: 3}
-    probability: 33
+    probability: 40
     selected: 0
   bruteDolls:
   - prefab: {fileID: 969993879523563284, guid: e643ba450aa343e4cb1cd5989f432738, type: 3}
@@ -21057,6 +21062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacter: 1
+  character: {fileID: 0}
 --- !u!1 &930053892
 GameObject:
   m_ObjectHideFlags: 0
@@ -37606,6 +37612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacter: 0
+  character: {fileID: 0}
 --- !u!1 &1748175717
 GameObject:
   m_ObjectHideFlags: 0
@@ -40288,7 +40295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887106847}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000022601474, y: 0.9819564, z: -0.18910751, w: 0.00011736001}
+  m_LocalRotation: {x: 0.000022604198, y: 0.9819564, z: -0.18910751, w: 0.000117374155}
   m_LocalPosition: {x: 0.24880485, y: 3.6399999, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

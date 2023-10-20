@@ -176,12 +176,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     enemyType: 2
-    maxHealth: 115
+    maxHealth: 125
     damage: 5
     interruptResist: 30
     speed: 5
     attackRadius: 30
-    attackCd: 1
+    attackCd: 2
     score: 15
   healthbar: {fileID: 9040783431008605675}
   goal: {fileID: 0}

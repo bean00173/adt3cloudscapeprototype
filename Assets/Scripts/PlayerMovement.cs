@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
         // reset y velocity, to ensure jump height is always same
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(transform.up * jumpForce * rb.mass, ForceMode.Impulse);
     }
 
     private void ResetJump()
